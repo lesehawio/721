@@ -984,10 +984,7 @@
         // ============================================================
         const PEOPLE = {
             "ABS": { name: "Abbas", label: "عباس" },
-            "MAH": { name: "Maha", label: "مها" },
-            "ALI": { name: "Ali", label: "علی" },
-            "SELF": { name: "Self", label: "خودم" },
-            "SARA": { name: "Sara", label: "سارا" }
+
         };
 
         // ============================================================
@@ -1043,348 +1040,93 @@
                 { date: "1405-04-11", action: "Hypothesis Added", type: "hypothesis" }
             ]
         }, {
-            id: "OBS-002",
-            person: "ABS",
-            date: "1405-04-11",
-            time: "20:15",
-            category: "تماس",
-            event: "تماس کوتاه",
-            cardStatus: "Hypothesis",
-            tags: ["تماس", "کار", "استرس"],
-            links: ["OBS-005", "OBS-011", "PAT-001"],
-            linksText: "مرتبط با OBS-005، OBS-011 و الگوی PAT-001",
-            observation: {
-                text: "تماس فقط ۵ دقیقه طول کشید.\nمکالمه زودتر از حد معمول تمام شد.",
-                details: "مدت تماس: ۵ دقیقه"
-            },
-            hypotheses: [
-                { title: "خستگی", confidence: 60, status: "تأیید شد" },
-                { title: "مشغله کاری", confidence: 55, status: "در حال بررسی" },
-                { title: "بی‌میلی به گفتگو", confidence: 35, status: "رد شد" }
-            ],
-            patterns: [
-                { title: "کاهش مدت تماس", description: "در سه تماس اخیر مدت مکالمه کاهش یافته است.", occurrences: 3 }
-            ],
-            timeline: [
-                { date: "1405-04-11", action: "Observation Added", type: "add" },
-                { date: "1405-04-12", action: "Hypothesis Added", type: "hypothesis" },
-                { date: "1405-04-13", action: "Pattern Linked", type: "pattern" }
-            ]
-        }, {
-            id: "OBS-003",
-            person: "ABS",
-            date: "1405-04-12",
-            time: "19:00",
-            category: "تماس",
-            event: "تماس طولانی",
-            cardStatus: "Pattern",
-            tags: ["تماس", "احساس", "محبت"],
-            links: ["OBS-008"],
-            linksText: "مرتبط با OBS-008",
-            observation: {
-                text: "تماس ۲۵ دقیقه‌ای.\nگفتگوی عمیق و صمیمی.",
-                details: "مدت تماس: ۲۵ دقیقه"
-            },
-            hypotheses: [
-                { title: "روحیه خوب", confidence: 75, status: "تأیید شد" },
-                { title: "نیاز به ارتباط", confidence: 65, status: "تأیید شد" }
-            ],
-            patterns: [
-                { title: "تماس طولانی پس از سکوت", description: "پس از روزهای سکوت، تماس‌ها طولانی‌تر می‌شوند.",
-                    occurrences: 2 }
-            ],
-            timeline: [
-                { date: "1405-04-12", action: "Observation Added", type: "add" },
-                { date: "1405-04-13", action: "Pattern Linked", type: "pattern" },
-                { date: "1405-04-14", action: "Hypothesis Confirmed", type: "confirmed" }
-            ]
-        }, {
-            id: "OBS-004",
-            person: "ABS",
-            date: "1405-04-13",
-            time: "21:30",
-            category: "پیام",
-            event: "پاسخ با تأخیر",
-            cardStatus: "Observation",
-            tags: ["پیام", "دعوا", "سکوت"],
-            links: ["OBS-006"],
-            linksText: "مرتبط با OBS-006",
-            observation: {
-                text: "پاسخ با تأخیر ۳ ساعته داده شد.\nمحتوای پیام کوتاه و سرد بود.",
-                details: "تأخیر: ۳ ساعت"
-            },
-            hypotheses: [
-                { title: "ناراحتی", confidence: 40, status: "در حال بررسی" },
-                { title: "تأخیر عمدی", confidence: 25, status: "رد شد" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-13", action: "Observation Added", type: "add" }
-            ]
-        }, {
-            id: "OBS-005",
-            person: "ABS",
-            date: "1405-04-14",
-            time: "22:00",
-            category: "تماس",
-            event: "تماس بی‌پاسخ",
-            cardStatus: "Rejected",
-            tags: ["تماس", "کار", "استرس"],
-            links: ["OBS-002", "OBS-011", "PAT-001"],
-            linksText: "مرتبط با OBS-002، OBS-011 و الگوی PAT-001",
-            observation: {
-                text: "تماس پاسخ داده نشد.\nصدای زنگ خورد و قطع شد.",
-                details: "زمان تماس: 22:00"
-            },
-            hypotheses: [
-                { title: "خواب", confidence: 70, status: "تأیید شد" },
-                { title: "عدم تمایل به پاسخ", confidence: 30, status: "رد شد" }
-            ],
-            patterns: [
-                { title: "عدم پاسخ در شب", description: "در روزهای پایانی هفته، تماس‌ها کمتر پاسخ داده می‌شوند.",
-                    occurrences: 3 }
-            ],
-            timeline: [
-                { date: "1405-04-14", action: "Observation Added", type: "add" },
-                { date: "1405-04-15", action: "Pattern Linked", type: "pattern" }
-            ]
-        }, {
-            id: "OBS-006",
-            person: "ABS",
-            date: "1405-04-15",
-            time: "17:45",
-            category: "پیام",
-            event: "پاسخ فوری",
-            cardStatus: "Pattern",
-            tags: ["پیام", "احساس", "خوشحالی"],
-            links: ["OBS-004"],
-            linksText: "مرتبط با OBS-004",
-            observation: {
-                text: "پاسخ فوری دریافت شد.\nلحن پیام گرم و صمیمی بود.",
-                details: "زمان پاسخ: فوری"
-            },
-            hypotheses: [
-                { title: "حال خوب", confidence: 80, status: "تأیید شد" },
-                { title: "منتظر پیام بودن", confidence: 55, status: "در حال بررسی" }
-            ],
-            patterns: [
-                { title: "پاسخ فوری با لحن مثبت", description: "پاسخ‌های فوری معمولاً با لحن مثبت همراه هستند.",
-                    occurrences: 4 }
-            ],
-            timeline: [
-                { date: "1405-04-15", action: "Observation Added", type: "add" },
-                { date: "1405-04-16", action: "Pattern Linked", type: "pattern" },
-                { date: "1405-04-17", action: "Hypothesis Confirmed", type: "confirmed" }
-            ]
-        }, {
-            id: "OBS-007",
-            person: "ABS",
-            date: "1405-04-16",
-            time: "09:00",
-            category: "جلسه",
-            event: "برنامه‌ریزی",
-            cardStatus: "Observation",
-            tags: ["کار", "وقت", "خانواده"],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "جلسه برنامه‌ریزی‌شده.\nحضور به موقع و آمادگی کامل.",
-                details: "مدت جلسه: ۴۵ دقیقه"
-            },
-            hypotheses: [
-                { title: "مسئولیت‌پذیری بالا", confidence: 85, status: "تأیید شد" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-16", action: "Observation Added", type: "add" }
-            ]
-        }, {
-            id: "OBS-008",
-            person: "ABS",
-            date: "1405-04-17",
-            time: "20:00",
-            category: "تماس",
-            event: "تماس طولانی",
-            cardStatus: "Hypothesis",
-            tags: ["تماس", "احساس", "خوشحالی"],
-            links: ["OBS-003"],
-            linksText: "مرتبط با OBS-003",
-            observation: {
-                text: "تماس ۳۰ دقیقه‌ای.\nگفتگوی عمیق درباره آینده.",
-                details: "مدت تماس: ۳۰ دقیقه"
-            },
-            hypotheses: [
-                { title: "نیاز به حمایت عاطفی", confidence: 65, status: "تأیید شد" }
-            ],
-            patterns: [
-                { title: "تماس طولانی پس از ملاقات", description: "تماس‌های طولانی معمولاً پس از ملاقات حضوری رخ می‌دهند.",
-                    occurrences: 3 }
-            ],
-            timeline: [
-                { date: "1405-04-17", action: "Observation Added", type: "add" },
-                { date: "1405-04-18", action: "Pattern Linked", type: "pattern" }
-            ]
-        }, {
-            id: "OBS-009",
-            person: "MAH",
-            date: "1405-04-18",
-            time: "19:30",
-            category: "احساس",
-            event: "حمایت",
-            cardStatus: "Observation",
-            tags: ["احساس", "خانواده", "محبت"],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "ابراز همدردی کرد.\nگفت: \"نگران نباش، همه چیز درست می‌شود.\"",
-                details: "حمایت عاطفی"
-            },
-            hypotheses: [
-                { title: "احساسات عمیق مادری", confidence: 90, status: "تأیید شد" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-18", action: "Observation Added", type: "add" }
-            ]
-        }, {
-            id: "OBS-010",
-            person: "ABS",
-            date: "1405-04-19",
-            time: "21:00",
-            category: "پیام",
-            event: "بدون پاسخ",
-            cardStatus: "Rejected",
-            tags: ["پیام", "سکوت", "خانواده"],
-            links: ["OBS-001", "OBS-012"],
-            linksText: "مرتبط با OBS-001 و OBS-012",
-            observation: {
-                text: "تا پایان شب پاسخی دریافت نشد.\nمشاهده پیام اما عدم پاسخ.",
-                details: "آخر هفته"
-            },
-            hypotheses: [
-                { title: "درگیری ذهنی", confidence: 40, status: "در حال بررسی" }
-            ],
-            patterns: [
-                { title: "عدم پاسخ در شب", description: "الگوی عدم پاسخ در شب‌های آخر هفته تکرار می‌شود.", occurrences: 4 }
-            ],
-            timeline: [
-                { date: "1405-04-19", action: "Observation Added", type: "add" },
-                { date: "1405-04-20", action: "Pattern Linked", type: "pattern" }
-            ]
-        }, {
-            id: "OBS-011",
-            person: "ABS",
-            date: "1405-04-20",
-            time: "20:30",
-            category: "تماس",
-            event: "تماس کوتاه",
-            cardStatus: "Hypothesis",
-            tags: ["تماس", "کار", "استرس"],
-            links: ["OBS-002", "OBS-005", "PAT-001"],
-            linksText: "مرتبط با OBS-002، OBS-005 و الگوی PAT-001",
-            observation: {
-                text: "تماس ۴ دقیقه‌ای.\nگفت: \"فعلاً سرم شلوغه، بعداً زنگ می‌زنم.\"",
-                details: "مدت تماس: ۴ دقیقه"
-            },
-            hypotheses: [
-                { title: "مشغله کاری", confidence: 75, status: "تأیید شد" },
-                { title: "فرار از گفتگو", confidence: 30, status: "رد شد" }
-            ],
-            patterns: [
-                { title: "کاهش مدت تماس", description: "تماس‌های کوتاه در روزهای کاری افزایش دارد.", occurrences: 5 }
-            ],
-            timeline: [
-                { date: "1405-04-20", action: "Observation Added", type: "add" },
-                { date: "1405-04-21", action: "Pattern Linked", type: "pattern" }
-            ]
-        }, {
-            id: "OBS-012",
-            person: "ALI",
-            date: "1405-04-21",
-            time: "19:00",
-            category: "پیام",
-            event: "بدون پاسخ",
-            cardStatus: "Observation",
-            tags: ["پیام", "دوست", "سکوت"],
-            links: ["OBS-001", "OBS-010"],
-            linksText: "مرتبط با OBS-001 و OBS-010",
-            observation: {
-                text: "پیام دوستانه ارسال شد اما پاسخی دریافت نشد.",
-                details: "ارسال به دوست"
-            },
-            hypotheses: [
-                { title: "مشغله", confidence: 35, status: "در حال بررسی" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-21", action: "Observation Added", type: "add" }
-            ]
-        }, {
+        {
             id: "OBS-013",
+        
             person: "ABS",
-            date: "1405-04-22",
-            time: "18:00",
-            category: "تماس",
-            event: "تماس طولانی",
-            cardStatus: "Pattern",
-            tags: ["تماس", "کار", "برنامه"],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "تماس ۲۰ دقیقه‌ای.\nبرنامه‌ریزی برای دیدار بعدی.",
-                details: "مدت تماس: ۲۰ دقیقه"
-            },
-            hypotheses: [
-                { title: "علاقه به برنامه‌ریزی", confidence: 70, status: "تأیید شد" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-22", action: "Observation Added", type: "add" }
-            ]
-        }, {
-            id: "OBS-014",
-            person: "SELF",
-            date: "1405-04-23",
-            time: "20:00",
-            category: "جلسه",
-            event: "خودشناسی",
-            cardStatus: "Observation",
-            tags: ["خانواده", "وقت", "احساس"],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "جلسه خودسازی.\nبررسی اهداف هفتگی.",
-                details: "جلسه هفتگی"
-            },
-            hypotheses: [
-                { title: "تعهد به رشد شخصی", confidence: 85, status: "تأیید شد" }
-            ],
-            patterns: [],
-            timeline: [
-                { date: "1405-04-23", action: "Observation Added", type: "add" }
-            ]
-        }, {
-            id: "OBS-015",
-            person: "SARA",
-            date: "1405-04-24",
-            time: "20:15",
+        
+            date: "1405-04-20",
+        
+            time: "23:31",
+        
             category: "پیام",
-            event: "پاسخ",
+        
+            event: "اتهام خیانت",
+        
             cardStatus: "Observation",
-            tags: ["پیام", "خوشحالی", "دوست"],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "پاسخ سریع دریافت شد.\nپیام حاوی خبر خوب.",
-                details: "خبر خوب"
-            },
-            hypotheses: [
-                { title: "احساس مثبت", confidence: 80, status: "تأیید شد" }
+        
+            tags: [
+                "پیام",
+                "دعوا",
+                "احساس"
             ],
-            patterns: [],
+        
+            links: [],
+        
+            linksText: "",
+        
+            observation: {
+                text: "گفتگو پس از تماس‌های بی‌پاسخ آغاز شد. عباس چندین بار اتهام داشتن رابطه با «علی» و سپس «علیرضا» را مطرح کرد.",
+                details:
+        `23:31 کاربر پیام «عشق خلم؟» ارسال کرد.
+        پاسخی دریافت نشد.
+        چند تماس برقرار شد که پاسخ داده نشد.
+        23:42 عباس پاسخ داد.
+        در ادامه چندین پیام شامل اتهام خیانت، اشاره به «علی» و «علیرضا» ارسال کرد.
+        کاربر وجود هرگونه رابطه را رد کرد.
+        گفتگو با پیام‌های همراه با عصبانیت پایان یافت.`
+            },
+        
+            hypotheses: [
+        
+                {
+                    title: "حسادت یا بدبینی نسبت به ارتباط با علیرضا",
+                    confidence: null,
+                    status: "در حال بررسی"
+                },
+        
+                {
+                    title: "استفاده از نام علیرضا برای ایجاد فشار روانی",
+                    confidence: null,
+                    status: "در حال بررسی"
+                },
+        
+                {
+                    title: "ممکن است اطلاعاتی خارج از گفتگو دیده باشد",
+                    confidence: null,
+                    status: "بدون شواهد کافی"
+                }
+        
+            ],
+        
+            patterns: [
+        
+                {
+                    title: "تکرار اتهام بدون ارائه شواهد",
+                    description:
+                    "در این رویداد چندین بار اتهام مطرح شد اما مدرک مشخصی ارائه نشد.",
+                    occurrences: 1
+                },
+        
+                {
+                    title: "افزایش شدت پیام‌ها هنگام عدم دریافت پاسخ فوری",
+                    description:
+                    "با فاصله افتادن بین پاسخ‌های کاربر، لحن پیام‌ها تندتر شد.",
+                    occurrences: 1
+                }
+        
+            ],
+        
             timeline: [
-                { date: "1405-04-24", action: "Observation Added", type: "add" }
+        
+                {
+                    date: "1405-04-20 23:31",
+                    action: "Observation Added",
+                    type: "add"
+                }
+        
             ]
+
         }];
 
         // ============================================================
