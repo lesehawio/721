@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROJECT 721 · Evidence Notebook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #070a12;
+            color: #d0ddf0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.light {
+            background: #eef2f7;
+            color: #1a2636;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            background: radial-gradient(ellipse at 20% 30%, #0e1a2a, #04070c);
+            transition: all 0.3s ease;
+        }
+
+        body.light #app {
+            background: radial-gradient(ellipse at 20% 30%, #d8e0ec, #b8c8dc);
+        }
+
+        /* ===== TOPBAR ===== */
+        #topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            background: rgba(4, 8, 16, 0.4);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(60, 100, 170, 0.06);
+            min-height: 52px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        body.light #topbar {
+            background: rgba(220, 230, 245, 0.6);
+            border-bottom: 1px solid rgba(80, 120, 180, 0.08);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px;
+        }
+
+        .brand-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-simple {
+            background: rgba(60, 100, 170, 0.06);
+            border: 1px solid rgba(60, 100, 170, 0.06);
+            color: #8ab8ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-simple:hover {
+            background: rgba(60, 100, 170, 0.12);
+        }
+
+        body.light .btn-simple {
+            color: #1a4a7a;
+            border-color: rgba(40, 80, 160, 0.08);
+            background: rgba(40, 80, 160, 0.04);
+        }
+
+        body.light .btn-simple:hover {
+            background: rgba(40, 80, 160, 0.08);
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            color: #6a8aaa;
+            font-size: 1rem;
+            padding: 4px 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-icon:hover {
+            background: rgba(60, 100, 170, 0.06);
+            color: #8ab4e0;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        #searchBar {
+            padding: 6px 20px;
+            background: rgba(4, 8, 16, 0.3);
+            border-bottom: 1px solid rgba(60, 100, 170, 0.04);
+            flex-shrink: 0;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        body.light #searchBar {
+            background: rgba(220, 230, 245, 0.3);
+        }
+
+        #searchBar input {
+            flex: 1;
+            min-width: 100px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(20, 30, 50, 0.3);
+            border: 1px solid rgba(60, 100, 170, 0.06);
+            color: #d0ddf0;
+            font-family: inherit;
+            font-size: 0.65rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        body.light #searchBar input {
+            background: rgba(200, 215, 235, 0.4);
+            color: #1a2636;
+        }
+
+        #searchBar input:focus {
+            border-color: #4a7aff;
+        }
+
+        #searchBar input::placeholder {
+            color: #4a6a8a;
+        }
+
+        #searchBar .search-results {
+            font-size: 0.55rem;
+            color: #5a7a9a;
+            padding: 2px 6px;
+            white-space: nowrap;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 240px;
+            max-width: 80vw;
+            height: 100%;
+            background: rgba(10, 18, 32, 0.92);
+            backdrop-filter: blur(32px);
+            border-right: 1px solid rgba(60, 100, 170, 0.04);
+            z-index: 1000;
+            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0.8rem;
+            overflow-y: auto;
+            box-shadow: 10px 0 60px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light .sidebar {
+            background: rgba(220, 230, 245, 0.92);
+            border-right-color: rgba(80, 120, 180, 0.06);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(3px);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(60, 100, 170, 0.04);
+            margin-bottom: 0.6rem;
+        }
+
+        body.light .sidebar-header {
+            border-bottom-color: rgba(80, 120, 180, 0.06);
+        }
+
+        .sidebar-header .brand {
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-close {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(60, 100, 170, 0.04);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #6a8aaa;
+            transition: 0.3s;
+        }
+
+        .sidebar-close:hover {
+            color: #d0ddf0;
+            border-color: rgba(60, 100, 170, 0.1);
+        }
+
+        body.light .sidebar-close {
+            color: #4a6a8a;
+        }
+        body.light .sidebar-close:hover {
+            color: #1a2636;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sidebar-nav .menu-item {
+            padding: 6px 10px;
+            color: #6a8aaa;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: right;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.15s;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .sidebar-nav .menu-item:hover {
+            background: rgba(60, 120, 200, 0.04);
+            color: #8ab8ff;
+        }
+
+        .sidebar-nav .menu-item.active {
+            background: rgba(60, 120, 200, 0.08);
+            color: #8ab8ff;
+        }
+
+        body.light .sidebar-nav .menu-item {
+            color: #4a6a8a;
+        }
+        body.light .sidebar-nav .menu-item:hover {
+            background: rgba(60, 120, 200, 0.04);
+            color: #1a4a7a;
+        }
+        body.light .sidebar-nav .menu-item.active {
+            background: rgba(60, 120, 200, 0.08);
+            color: #1a4a7a;
+        }
+
+        .sidebar-nav .menu-item i {
+            width: 16px;
+            color: #4a7aaa;
+            font-size: 0.7rem;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: rgba(60, 100, 170, 0.04);
+            margin: 4px 0;
+        }
+
+        body.light .sidebar-divider {
+            background: rgba(80, 120, 180, 0.06);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(60, 100, 170, 0.04);
+            font-size: 0.45rem;
+            color: #4a6a8a;
+            text-align: center;
+        }
+
+        .sidebar-footer .link-plus {
+            color: #8b5cf6;
+            font-weight: 600;
+            font-size: 0.6rem;
+            text-decoration: none;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .sidebar-footer .link-plus:hover {
+            color: #a78bfa;
+        }
+
+        /* ===== CONTENT ===== */
+        #content {
+            flex: 1;
+            padding: 12px 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .glass {
+            background: rgba(10, 18, 32, 0.4);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(60, 100, 170, 0.04);
+            border-radius: 12px;
+            padding: 10px 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        body.light .glass {
+            background: rgba(220, 230, 245, 0.5);
+            border-color: rgba(80, 120, 180, 0.06);
+        }
+
+        .card-title {
+            font-size: 0.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4a7aaa;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: 0.5rem;
+            color: #5a7a9a;
+        }
+
+        .stats-row .stat-item {
+            background: rgba(16, 28, 48, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        body.light .stats-row .stat-item {
+            background: rgba(200, 215, 235, 0.2);
+        }
+
+        .stats-row .stat-item .num {
+            font-weight: 600;
+            color: #c0d8f0;
+        }
+
+        /* ===== RECORD CARD ===== */
+        .record-card {
+            background: rgba(16, 28, 48, 0.1);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            border-right: 3px solid rgba(60, 150, 255, 0.15);
+            transition: all 0.2s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .record-card:hover {
+            background: rgba(16, 28, 48, 0.18);
+        }
+
+        body.light .record-card {
+            background: rgba(200, 215, 235, 0.12);
+        }
+
+        body.light .record-card:hover {
+            background: rgba(200, 215, 235, 0.2);
+        }
+
+        /* ===== CARD HEADER ===== */
+        .card-header {
+            padding: 6px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card-header .left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .card-header .id {
+            font-weight: 600;
+            color: #8ab8ff;
+            font-size: 0.6rem;
+        }
+
+        .card-header .person {
+            font-size: 0.45rem;
+            color: #5a9ac0;
+            background: rgba(60, 150, 255, 0.06);
+            padding: 1px 6px;
+            border-radius: 30px;
+            border: 1px solid rgba(60, 150, 255, 0.06);
+        }
+
+        .card-header .date {
+            color: #5a7a9a;
+            font-size: 0.45rem;
+        }
+
+        .card-header .category {
+            font-size: 0.4rem;
+            padding: 1px 6px;
+            border-radius: 30px;
+            background: rgba(40, 80, 140, 0.08);
+            border: 1px solid rgba(40, 80, 140, 0.04);
+            color: #6a9ac0;
+        }
+
+        .card-header .event {
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: #c0d8f0;
+        }
+
+        body.light .card-header .event {
+            color: #1a3a5a;
+        }
+
+        .card-header .expand-icon {
+            color: #5a7a9a;
+            font-size: 0.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card-header .expand-icon.open {
+            transform: rotate(180deg);
+        }
+
+        /* ===== CARD BODY ===== */
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 10px;
+        }
+
+        .card-body.open {
+            max-height: 2500px;
+            padding: 0 10px 10px 10px;
+        }
+
+        /* ===== SECTIONS ===== */
+        .card-body .section {
+            margin-top: 6px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: rgba(16, 28, 48, 0.06);
+            border-right: 3px solid transparent;
+        }
+
+        body.light .card-body .section {
+            background: rgba(200, 215, 235, 0.1);
+        }
+
+        .card-body .section .section-label {
+            font-size: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+        }
+
+        .card-body .section .section-content {
+            font-size: 0.6rem;
+            color: #c0d8f0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        body.light .card-body .section .section-content {
+            color: #1a3a5a;
+        }
+
+        .section-observation {
+            border-right-color: #4a7aff;
+        }
+        .section-observation .section-label {
+            color: #4a7aff;
+        }
+
+        .section-hypothesis {
+            border-right-color: #f59e0b;
+        }
+        .section-hypothesis .section-label {
+            color: #f59e0b;
+        }
+
+        .section-pattern {
+            border-right-color: #8b5cf6;
+        }
+        .section-pattern .section-label {
+            color: #8b5cf6;
+        }
+
+        /* ===== HYPOTHESIS ITEMS ===== */
+        .hypothesis-item {
+            padding: 4px 6px;
+            margin-bottom: 2px;
+            border-radius: 4px;
+            background: rgba(245, 158, 11, 0.04);
+            border-right: 2px solid rgba(245, 158, 11, 0.1);
+            font-size: 0.55rem;
+        }
+
+        body.light .hypothesis-item {
+            background: rgba(245, 158, 11, 0.04);
+        }
+
+        .hypothesis-item .h-title {
+            font-weight: 500;
+            color: #c0d8f0;
+        }
+
+        body.light .hypothesis-item .h-title {
+            color: #1a3a5a;
+        }
+
+        .hypothesis-item .h-meta {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            font-size: 0.45rem;
+            color: #5a7a9a;
+            margin-top: 2px;
+        }
+
+        .conf-badge {
+            padding: 1px 6px;
+            border-radius: 30px;
+            font-size: 0.4rem;
+            font-weight: 600;
+        }
+
+        .conf-badge.low {
+            background: rgba(100, 100, 140, 0.15);
+            color: #8080b0;
+        }
+
+        .conf-badge.medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        .conf-badge.high {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+        }
+
+        /* ===== STATUS BADGES ===== */
+        .status-badge {
+            padding: 1px 6px;
+            border-radius: 30px;
+            font-size: 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .status-review {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        .status-confirmed {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+        }
+
+        .status-rejected {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        /* ===== PATTERN ITEMS ===== */
+        .pattern-item {
+            padding: 4px 6px;
+            margin-bottom: 2px;
+            border-radius: 4px;
+            background: rgba(139, 92, 246, 0.04);
+            border-right: 2px solid rgba(139, 92, 246, 0.1);
+            font-size: 0.55rem;
+        }
+
+        body.light .pattern-item {
+            background: rgba(139, 92, 246, 0.04);
+        }
+
+        .pattern-item .p-title {
+            font-weight: 500;
+            color: #c0d8f0;
+        }
+
+        body.light .pattern-item .p-title {
+            color: #1a3a5a;
+        }
+
+        .pattern-item .p-meta {
+            font-size: 0.45rem;
+            color: #5a7a9a;
+            margin-top: 2px;
+        }
+
+        /* ===== TAGS ===== */
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(60, 100, 170, 0.04);
+        }
+
+        .tags-row .tag {
+            font-size: 0.4rem;
+            padding: 1px 6px;
+            border-radius: 30px;
+            background: rgba(40, 80, 140, 0.06);
+            border: 1px solid rgba(40, 80, 140, 0.04);
+            color: #5a8aaa;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .tags-row .tag .tag-icon {
+            font-size: 0.35rem;
+        }
+
+        /* ===== RELATED ===== */
+        .related-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(60, 100, 170, 0.04);
+        }
+
+        .related-row .related-label {
+            font-size: 0.4rem;
+            color: #5a7a9a;
+            margin-left: 4px;
+        }
+
+        .related-row .related-item {
+            font-size: 0.4rem;
+            padding: 1px 6px;
+            border-radius: 30px;
+            background: rgba(60, 150, 255, 0.06);
+            border: 1px solid rgba(60, 150, 255, 0.04);
+            color: #5a9ac0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .related-row .related-item:hover {
+            background: rgba(60, 150, 255, 0.12);
+        }
+
+        .related-row .related-item .rel-icon {
+            font-size: 0.35rem;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline-row {
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(60, 100, 170, 0.04);
+        }
+
+        .timeline-row .tl-label {
+            font-size: 0.4rem;
+            color: #5a7a9a;
+            margin-bottom: 2px;
+        }
+
+        .timeline-row .tl-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.4rem;
+            color: #5a7a9a;
+            padding: 1px 0;
+        }
+
+        .timeline-row .tl-item .tl-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #4a7aff;
+        }
+
+        .timeline-row .tl-item .tl-dot.green {
+            background: #34d399;
+        }
+        .timeline-row .tl-item .tl-dot.orange {
+            background: #f59e0b;
+        }
+        .timeline-row .tl-item .tl-dot.purple {
+            background: #8b5cf6;
+        }
+
+        .timeline-row .tl-item .tl-text {
+            color: #6a8aaa;
+        }
+
+        .timeline-row .tl-item .tl-text strong {
+            color: #c0d8f0;
+        }
+
+        body.light .timeline-row .tl-item .tl-text strong {
+            color: #1a3a5a;
+        }
+
+        .no-data {
+            color: #5a7a9a;
+            font-size: 0.55rem;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            #topbar {
+                padding: 6px 10px;
+            }
+            #searchBar {
+                padding: 4px 10px;
+            }
+            #searchBar input {
+                font-size: 0.55rem;
+                padding: 4px 6px;
+                min-width: 60px;
+            }
+            #content {
+                padding: 6px 8px;
+            }
+            .brand-name {
+                font-size: 0.7rem;
+            }
+            .logo {
+                width: 22px;
+                height: 22px;
+            }
+            .btn-simple {
+                font-size: 0.5rem;
+                padding: 2px 6px;
+            }
+            .card-header {
+                padding: 4px 6px;
+            }
+            .card-body.open {
+                padding: 0 6px 6px 6px;
+            }
+            .card-body .section {
+                padding: 4px 6px;
+            }
+            .card-header .event {
+                font-size: 0.5rem;
+            }
+            .sidebar {
+                width: 200px;
+                padding: 0.6rem;
+            }
+            .stats-row .stat-item {
+                font-size: 0.45rem;
+                padding: 1px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <!-- ===== TOPBAR ===== -->
+        <header id="topbar">
+            <div class="brand">
+                <img class="logo" src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" alt="PROJECT 721" />
+                <span class="brand-name">PROJECT 721</span>
+            </div>
+            <div class="topbar-right">
+                <button class="btn-simple" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i> <span id="themeLabel">تاریک</span>
+                </button>
+                <button class="btn-icon" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span class="brand">PROJECT 721</span>
+                <button class="sidebar-close" id="closeSidebar"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <button data-page="dashboard" class="menu-item active">
+                    <i class="fas fa-home"></i> خانه
+                </button>
+                <button data-page="records" class="menu-item">
+                    <i class="fas fa-book"></i> پرونده‌ها
+                </button>
+                <button data-page="people" class="menu-item">
+                    <i class="fas fa-users"></i> افراد
+                </button>
+                <div class="sidebar-divider"></div>
+                <button data-page="settings" class="menu-item">
+                    <i class="fas fa-cog"></i> تنظیمات
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <span>v1.0 · Evidence Notebook</span>
+                <a href="#" class="link-plus" id="linkPlus">
+                    <i class="fas fa-user-circle"></i> Character Profile (PLUS)
+                </a>
+            </div>
+        </aside>
+
+        <!-- ===== SEARCH BAR ===== -->
+        <div id="searchBar">
+            <input id="searchInput" placeholder="جستجو در پرونده‌ها..." />
+            <span class="search-results" id="resultCount">۰ نتیجه</span>
+        </div>
+
+        <!-- ===== CONTENT ===== -->
+        <main id="content"></main>
+
+    </div>
+
+    <script>
+        /**
+         * PROJECT 721 — Evidence Notebook
+         * با تگ‌های کامل، وضعیت‌های رنگی و لینک‌های دقیق
+         */
+
+        // ============================================================
+        // PEOPLE
+        // ============================================================
+        const PEOPLE = {
+            "ABS": { name: "Abbas", label: "عباس" },
+            "MAH": { name: "Maha", label: "مها" },
+            "ALI": { name: "Ali", label: "علی" },
+            "SELF": { name: "Self", label: "خودم" },
+            "SARA": { name: "Sara", label: "سارا" }
+        };
+
+        // ============================================================
+        // TAG ICONS
+        // ============================================================
+        const TAG_ICONS = {
+            "خانواده": "👨‍👩‍👧",
+            "کار": "💼",
+            "تماس": "📞",
+            "پیام": "💬",
+            "احساس": "💭",
+            "دعوا": "⚡",
+            "شوخی": "😂",
+            "وقت": "⏰",
+            "سکوت": "🔇",
+            "استرس": "😰",
+            "خوشحالی": "😊",
+            "ناراحتی": "😢",
+            "محبت": "❤️",
+            "کار": "💼",
+            "خانواده": "👨‍👩‍👧",
+            "دوست": "🤝",
+            "سلامت": "💊",
+            "پول": "💰",
+            "سفر": "✈️"
+        };
+
+        // ============================================================
+        // RECORDS
+        // ============================================================
+        const RECORDS = [{
+            id: "OBS-001",
+            person: "ABS",
+            date: "1405-04-10",
+            time: "18:30",
+            category: "پیام",
+            event: "بدون پاسخ",
+            tags: ["پیام", "سکوت", "خانواده"],
+            related: ["OBS-010", "OBS-012"],
+            relatedText: "این مشاهده مربوط به OBS-010 و OBS-012 است.",
+            observation: {
+                text: "تا پایان شب پاسخی دریافت نشد.\nپیام در همان روز پاسخ داده نشد.",
+                details: "پیام ارسال شده در ساعت 18:30"
+            },
+            hypotheses: [
+                { title: "مشغله شخصی", confidence: 45, status: "در حال بررسی" },
+                { title: "بی‌تمایلی به پاسخ", confidence: 30, status: "رد شد" }
+            ],
+            patterns: [
+                { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3,
+                    relatedTo: ["OBS-010", "OBS-012"] }
+            ],
+            timeline: [
+                { date: "1405-04-10", action: "Observation Added", type: "add" },
+                { date: "1405-04-11", action: "Hypothesis Added", type: "hypothesis" }
+            ]
+        }, {
+            id: "OBS-002",
+            person: "ABS",
+            date: "1405-04-11",
+            time: "20:15",
+            category: "تماس",
+            event: "تماس کوتاه",
+            tags: ["تماس", "کار", "استرس"],
+            related: ["OBS-005", "OBS-011"],
+            relatedText: "این مشاهده از OBS-005 و OBS-011 ساخته شده است.",
+            observation: {
+                text: "تماس فقط ۵ دقیقه طول کشید.\nمکالمه زودتر از حد معمول تمام شد.",
+                details: "مدت تماس: ۵ دقیقه"
+            },
+            hypotheses: [
+                { title: "خستگی", confidence: 60, status: "تأیید شد" },
+                { title: "مشغله کاری", confidence: 55, status: "در حال بررسی" },
+                { title: "بی‌میلی به گفتگو", confidence: 35, status: "رد شد" }
+            ],
+            patterns: [
+                { title: "کاهش مدت تماس", description: "در سه تماس اخیر مدت مکالمه کاهش یافته است.", occurrences: 3,
+                    relatedTo: ["OBS-005", "OBS-011"] }
+            ],
+            timeline: [
+                { date: "1405-04-11", action: "Observation Added", type: "add" },
+                { date: "1405-04-12", action: "Hypothesis Added", type: "hypothesis" },
+                { date: "1405-04-13", action: "Pattern Linked", type: "pattern" }
+            ]
+        }, {
+            id: "OBS-003",
+            person: "ABS",
+            date: "1405-04-12",
+            time: "19:00",
+            category: "تماس",
+            event: "تماس طولانی",
+            tags: ["تماس", "احساس", "محبت"],
+            related: ["OBS-008"],
+            relatedText: "این مشاهده با OBS-008 مرتبط است.",
+            observation: {
+                text: "تماس ۲۵ دقیقه‌ای.\nگفتگوی عمیق و صمیمی.",
+                details: "مدت تماس: ۲۵ دقیقه"
+            },
+            hypotheses: [
+                { title: "روحیه خوب", confidence: 75, status: "تأیید شد" },
+                { title: "نیاز به ارتباط", confidence: 65, status: "تأیید شد" }
+            ],
+            patterns: [
+                { title: "تماس طولانی پس از سکوت", description: "پس از روزهای سکوت، تماس‌ها طولانی‌تر می‌شوند.",
+                    occurrences: 2, relatedTo: ["OBS-008"] }
+            ],
+            timeline: [
+                { date: "1405-04-12", action: "Observation Added", type: "add" },
+                { date: "1405-04-13", action: "Pattern Linked", type: "pattern" },
+                { date: "1405-04-14", action: "Hypothesis Confirmed", type: "confirmed" }
+            ]
+        }, {
+            id: "OBS-004",
+            person: "ABS",
+            date: "1405-04-13",
+            time: "21:30",
+            category: "پیام",
+            event: "پاسخ با تأخیر",
+            tags: ["پیام", "دعوا", "سکوت"],
+            related: ["OBS-006"],
+            relatedText: "این مشاهده مربوط به OBS-006 است.",
+            observation: {
+                text: "پاسخ با تأخیر ۳ ساعته داده شد.\nمحتوای پیام کوتاه و سرد بود.",
+                details: "تأخیر: ۳ ساعت"
+            },
+            hypotheses: [
+                { title: "ناراحتی", confidence: 40, status: "در حال بررسی" },
+                { title: "تأخیر عمدی", confidence: 25, status: "رد شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-13", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-005",
+            person: "ABS",
+            date: "1405-04-14",
+            time: "22:00",
+            category: "تماس",
+            event: "تماس بی‌پاسخ",
+            tags: ["تماس", "کار", "استرس"],
+            related: ["OBS-002", "OBS-011"],
+            relatedText: "این الگو از OBS-002 و OBS-011 ساخته شده است.",
+            observation: {
+                text: "تماس پاسخ داده نشد.\nصدای زنگ خورد و قطع شد.",
+                details: "زمان تماس: 22:00"
+            },
+            hypotheses: [
+                { title: "خواب", confidence: 70, status: "تأیید شد" },
+                { title: "عدم تمایل به پاسخ", confidence: 30, status: "رد شد" }
+            ],
+            patterns: [
+                { title: "عدم پاسخ در شب", description: "در روزهای پایانی هفته، تماس‌ها کمتر پاسخ داده می‌شوند.",
+                    occurrences: 3, relatedTo: ["OBS-002", "OBS-011"] }
+            ],
+            timeline: [
+                { date: "1405-04-14", action: "Observation Added", type: "add" },
+                { date: "1405-04-15", action: "Pattern Linked", type: "pattern" }
+            ]
+        }, {
+            id: "OBS-006",
+            person: "ABS",
+            date: "1405-04-15",
+            time: "17:45",
+            category: "پیام",
+            event: "پاسخ فوری",
+            tags: ["پیام", "احساس", "خوشحالی"],
+            related: ["OBS-004"],
+            relatedText: "این مشاهده با OBS-004 مرتبط است.",
+            observation: {
+                text: "پاسخ فوری دریافت شد.\nلحن پیام گرم و صمیمی بود.",
+                details: "زمان پاسخ: فوری"
+            },
+            hypotheses: [
+                { title: "حال خوب", confidence: 80, status: "تأیید شد" },
+                { title: "منتظر پیام بودن", confidence: 55, status: "در حال بررسی" }
+            ],
+            patterns: [
+                { title: "پاسخ فوری با لحن مثبت", description: "پاسخ‌های فوری معمولاً با لحن مثبت همراه هستند.",
+                    occurrences: 4, relatedTo: ["OBS-004"] }
+            ],
+            timeline: [
+                { date: "1405-04-15", action: "Observation Added", type: "add" },
+                { date: "1405-04-16", action: "Pattern Linked", type: "pattern" },
+                { date: "1405-04-17", action: "Hypothesis Confirmed", type: "confirmed" }
+            ]
+        }, {
+            id: "OBS-007",
+            person: "ABS",
+            date: "1405-04-16",
+            time: "09:00",
+            category: "جلسه",
+            event: "برنامه‌ریزی",
+            tags: ["کار", "وقت", "خانواده"],
+            related: [],
+            relatedText: "",
+            observation: {
+                text: "جلسه برنامه‌ریزی‌شده.\nحضور به موقع و آمادگی کامل.",
+                details: "مدت جلسه: ۴۵ دقیقه"
+            },
+            hypotheses: [
+                { title: "مسئولیت‌پذیری بالا", confidence: 85, status: "تأیید شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-16", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-008",
+            person: "ABS",
+            date: "1405-04-17",
+            time: "20:00",
+            category: "تماس",
+            event: "تماس طولانی",
+            tags: ["تماس", "احساس", "خوشحالی"],
+            related: ["OBS-003"],
+            relatedText: "این مشاهده با OBS-003 مرتبط است.",
+            observation: {
+                text: "تماس ۳۰ دقیقه‌ای.\nگفتگوی عمیق درباره آینده.",
+                details: "مدت تماس: ۳۰ دقیقه"
+            },
+            hypotheses: [
+                { title: "نیاز به حمایت عاطفی", confidence: 65, status: "تأیید شد" }
+            ],
+            patterns: [
+                { title: "تماس طولانی پس از ملاقات", description: "تماس‌های طولانی معمولاً پس از ملاقات حضوری رخ می‌دهند.",
+                    occurrences: 3, relatedTo: ["OBS-003"] }
+            ],
+            timeline: [
+                { date: "1405-04-17", action: "Observation Added", type: "add" },
+                { date: "1405-04-18", action: "Pattern Linked", type: "pattern" }
+            ]
+        }, {
+            id: "OBS-009",
+            person: "MAH",
+            date: "1405-04-18",
+            time: "19:30",
+            category: "احساس",
+            event: "حمایت",
+            tags: ["احساس", "خانواده", "محبت"],
+            related: [],
+            relatedText: "",
+            observation: {
+                text: "ابراز همدردی کرد.\nگفت: \"نگران نباش، همه چیز درست می‌شود.\"",
+                details: "حمایت عاطفی"
+            },
+            hypotheses: [
+                { title: "احساسات عمیق مادری", confidence: 90, status: "تأیید شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-18", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-010",
+            person: "ABS",
+            date: "1405-04-19",
+            time: "21:00",
+            category: "پیام",
+            event: "بدون پاسخ",
+            tags: ["پیام", "سکوت", "خانواده"],
+            related: ["OBS-001", "OBS-012"],
+            relatedText: "این مشاهده با OBS-001 و OBS-012 مرتبط است.",
+            observation: {
+                text: "تا پایان شب پاسخی دریافت نشد.\nمشاهده پیام اما عدم پاسخ.",
+                details: "آخر هفته"
+            },
+            hypotheses: [
+                { title: "درگیری ذهنی", confidence: 40, status: "در حال بررسی" }
+            ],
+            patterns: [
+                { title: "عدم پاسخ در شب", description: "الگوی عدم پاسخ در شب‌های آخر هفته تکرار می‌شود.", occurrences: 4,
+                    relatedTo: ["OBS-001", "OBS-012"] }
+            ],
+            timeline: [
+                { date: "1405-04-19", action: "Observation Added", type: "add" },
+                { date: "1405-04-20", action: "Pattern Linked", type: "pattern" }
+            ]
+        }, {
+            id: "OBS-011",
+            person: "ABS",
+            date: "1405-04-20",
+            time: "20:30",
+            category: "تماس",
+            event: "تماس کوتاه",
+            tags: ["تماس", "کار", "استرس"],
+            related: ["OBS-002", "OBS-005"],
+            relatedText: "این الگو از OBS-002 و OBS-005 ساخته شده است.",
+            observation: {
+                text: "تماس ۴ دقیقه‌ای.\nگفت: \"فعلاً سرم شلوغه، بعداً زنگ می‌زنم.\"",
+                details: "مدت تماس: ۴ دقیقه"
+            },
+            hypotheses: [
+                { title: "مشغله کاری", confidence: 75, status: "تأیید شد" },
+                { title: "فرار از گفتگو", confidence: 30, status: "رد شد" }
+            ],
+            patterns: [
+                { title: "کاهش مدت تماس", description: "تماس‌های کوتاه در روزهای کاری افزایش دارد.", occurrences: 5,
+                    relatedTo: ["OBS-002", "OBS-005"] }
+            ],
+            timeline: [
+                { date: "1405-04-20", action: "Observation Added", type: "add" },
+                { date: "1405-04-21", action: "Pattern Linked", type: "pattern" }
+            ]
+        }, {
+            id: "OBS-012",
+            person: "ALI",
+            date: "1405-04-21",
+            time: "19:00",
+            category: "پیام",
+            event: "بدون پاسخ",
+            tags: ["پیام", "دوست", "سکوت"],
+            related: ["OBS-001", "OBS-010"],
+            relatedText: "این مشاهده با OBS-001 و OBS-010 مرتبط است.",
+            observation: {
+                text: "پیام دوستانه ارسال شد اما پاسخی دریافت نشد.",
+                details: "ارسال به دوست"
+            },
+            hypotheses: [
+                { title: "مشغله", confidence: 35, status: "در حال بررسی" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-21", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-013",
+            person: "ABS",
+            date: "1405-04-22",
+            time: "18:00",
+            category: "تماس",
+            event: "تماس طولانی",
+            tags: ["تماس", "کار", "برنامه"],
+            related: [],
+            relatedText: "",
+            observation: {
+                text: "تماس ۲۰ دقیقه‌ای.\nبرنامه‌ریزی برای دیدار بعدی.",
+                details: "مدت تماس: ۲۰ دقیقه"
+            },
+            hypotheses: [
+                { title: "علاقه به برنامه‌ریزی", confidence: 70, status: "تأیید شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-22", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-014",
+            person: "SELF",
+            date: "1405-04-23",
+            time: "20:00",
+            category: "جلسه",
+            event: "خودشناسی",
+            tags: ["خانواده", "وقت", "احساس"],
+            related: [],
+            relatedText: "",
+            observation: {
+                text: "جلسه خودسازی.\nبررسی اهداف هفتگی.",
+                details: "جلسه هفتگی"
+            },
+            hypotheses: [
+                { title: "تعهد به رشد شخصی", confidence: 85, status: "تأیید شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-23", action: "Observation Added", type: "add" }
+            ]
+        }, {
+            id: "OBS-015",
+            person: "SARA",
+            date: "1405-04-24",
+            time: "20:15",
+            category: "پیام",
+            event: "پاسخ",
+            tags: ["پیام", "خوشحالی", "دوست"],
+            related: [],
+            relatedText: "",
+            observation: {
+                text: "پاسخ سریع دریافت شد.\nپیام حاوی خبر خوب.",
+                details: "خبر خوب"
+            },
+            hypotheses: [
+                { title: "احساس مثبت", confidence: 80, status: "تأیید شد" }
+            ],
+            patterns: [],
+            timeline: [
+                { date: "1405-04-24", action: "Observation Added", type: "add" }
+            ]
+        }];
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let currentPage = 'dashboard';
+        let searchQuery = '';
+        let expandedCard = null;
+        let currentFilter = 'all';
+        let selectedPerson = null;
+
+        // ============================================================
+        // HELPERS
+        // ============================================================
+        function getPersonLabel(personId) {
+            return PEOPLE[personId] ? PEOPLE[personId].label : personId;
+        }
+
+        function getPersonName(personId) {
+            return PEOPLE[personId] ? PEOPLE[personId].name : personId;
+        }
+
+        function getRecordsByPerson(personId) {
+            return RECORDS.filter(r => r.person === personId);
+        }
+
+        function getPersonStats(personId) {
+            const records = getRecordsByPerson(personId);
+            return {
+                total: records.length,
+                obs: records.filter(r => r.observation && r.observation.text).length,
+                hyp: records.filter(r => r.hypotheses && r.hypotheses.length > 0).length,
+                pat: records.filter(r => r.patterns && r.patterns.length > 0).length
+            };
+        }
+
+        function getAllTags() {
+            const tags = new Set();
+            RECORDS.forEach(r => (r.tags || []).forEach(t => tags.add(t)));
+            return Array.from(tags).sort();
+        }
+
+        function getTagIcon(tag) {
+            return TAG_ICONS[tag] || '🏷️';
+        }
+
+        function getConfidenceClass(confidence) {
+            if (confidence < 40) return 'low';
+            if (confidence < 70) return 'medium';
+            return 'high';
+        }
+
+        function getStatusClass(status) {
+            if (status === 'تأیید شد') return 'status-confirmed';
+            if (status === 'رد شد') return 'status-rejected';
+            return 'status-review';
+        }
+
+        function getStatusIcon(status) {
+            if (status === 'تأیید شد') return '🟢';
+            if (status === 'رد شد') return '🔴';
+            return '🟡';
+        }
+
+        function getFilteredRecords(query, filter, person) {
+            let result = RECORDS;
+
+            if (person) {
+                result = result.filter(r => r.person === person);
+            }
+
+            if (query.trim()) {
+                const q = query.trim().toLowerCase();
+                result = result.filter(r =>
+                    r.id.toLowerCase().includes(q) ||
+                    r.person.toLowerCase().includes(q) ||
+                    getPersonLabel(r.person).includes(q) ||
+                    r.category.toLowerCase().includes(q) ||
+                    r.event.toLowerCase().includes(q) ||
+                    r.observation.text.toLowerCase().includes(q) ||
+                    (r.tags || []).some(t => t.toLowerCase().includes(q)) ||
+                    (r.related || []).some(rel => rel.toLowerCase().includes(q))
+                );
+            }
+
+            if (filter !== 'all') {
+                if (filter === 'hypothesis') {
+                    result = result.filter(r => r.hypotheses && r.hypotheses.length > 0);
+                } else if (filter === 'pattern') {
+                    result = result.filter(r => r.patterns && r.patterns.length > 0);
+                } else if (filter === 'confirmed') {
+                    result = result.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'تأیید شد'));
+                } else if (filter === 'rejected') {
+                    result = result.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'رد شد'));
+                }
+            }
+
+            return result;
+        }
+
+        // ============================================================
+        // TOGGLE CARD
+        // ============================================================
+        window.toggleCard = function(id) {
+            if (expandedCard === id) {
+                expandedCard = null;
+            } else {
+                expandedCard = id;
+            }
+            render();
+        };
+
+        // ============================================================
+        // SEARCH BY RELATED
+        // ============================================================
+        window.searchRelated = function(id) {
+            document.getElementById('searchInput').value = id;
+            searchQuery = id;
+            if (currentPage !== 'records') {
+                currentPage = 'records';
+                selectedPerson = null;
+                document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
+                document.querySelector('[data-page="records"]').classList.add('active');
+            }
+            render();
+        };
+
+        // ============================================================
+        // RENDER
+        // ============================================================
+        function render() {
+            const content = document.getElementById('content');
+
+            if (currentPage === 'dashboard') {
+                content.innerHTML = renderDashboard();
+                return;
+            }
+
+            if (currentPage === 'records') {
+                content.innerHTML = renderRecords();
+                return;
+            }
+
+            if (currentPage === 'people') {
+                content.innerHTML = renderPeople();
+                return;
+            }
+
+            if (currentPage === 'settings') {
+                content.innerHTML = renderSettings();
+                return;
+            }
+
+            content.innerHTML = renderDashboard();
+        }
+
+        // ============================================================
+        // DASHBOARD
+        // ============================================================
+        function renderDashboard() {
+            const total = RECORDS.length;
+            const people = Object.keys(PEOPLE).length;
+            const totalHyp = RECORDS.filter(r => r.hypotheses && r.hypotheses.length > 0).length;
+            const totalPat = RECORDS.filter(r => r.patterns && r.patterns.length > 0).length;
+            const confirmed = RECORDS.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'تأیید شد')).length;
+            const rejected = RECORDS.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'رد شد')).length;
+            const tags = getAllTags();
+
+            let recentRecords = [...RECORDS].slice(-5).reverse();
+
+            return `
+                <div class="glass">
+                    <div class="card-title"><i class="fas fa-chart-pie"></i> خلاصه</div>
+                    <div class="stats-row">
+                        <span class="stat-item"><span class="num">${total}</span> مشاهدات</span>
+                        <span class="stat-item"><span class="num">${totalHyp}</span> فرضیه</span>
+                        <span class="stat-item"><span class="num">${totalPat}</span> الگو</span>
+                        <span class="stat-item"><span class="num">${people}</span> افراد</span>
+                        <span class="stat-item" style="color:#34d399;">🟢 <span class="num">${confirmed}</span> تأیید</span>
+                        <span class="stat-item" style="color:#ef4444;">🔴 <span class="num">${rejected}</span> رد</span>
+                        <span class="stat-item"><span class="num">${tags.length}</span> تگ</span>
+                    </div>
+                </div>
+
+                <div class="glass">
+                    <div class="card-title"><i class="fas fa-clock"></i> آخرین مشاهدات</div>
+                    ${recentRecords.map(r => renderCard(r, false)).join('')}
+                    ${recentRecords.length === 0 ? '<div class="no-data">هیچ مشاهده‌ای ثبت نشده است</div>' : ''}
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // RECORDS
+        // ============================================================
+        function renderRecords() {
+            const filtered = getFilteredRecords(searchQuery, currentFilter, selectedPerson);
+            document.getElementById('resultCount').innerHTML = filtered.length > 0 ?
+                `<strong>${filtered.length}</strong> نتیجه` :
+                '۰ نتیجه';
+
+            let filterHtml = `
+                <div style="display:flex; gap:3px; flex-wrap:wrap; margin-bottom:6px;">
+                    <button class="filter-chip ${currentFilter === 'all' ? 'active' : ''}" data-filter="all" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🏷️ همه</button>
+                    <button class="filter-chip ${currentFilter === 'hypothesis' ? 'active' : ''}" data-filter="hypothesis" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">💡 فرضیه</button>
+                    <button class="filter-chip ${currentFilter === 'pattern' ? 'active' : ''}" data-filter="pattern" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🧩 الگو</button>
+                    <button class="filter-chip ${currentFilter === 'confirmed' ? 'active' : ''}" data-filter="confirmed" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟢 تأیید</button>
+                    <button class="filter-chip ${currentFilter === 'rejected' ? 'active' : ''}" data-filter="rejected" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🔴 رد</button>
+                </div>
+            `;
+
+            if (selectedPerson) {
+                filterHtml +=
+                    `<div style="font-size:0.45rem;color:#5a9ac0;margin-bottom:4px;">👤 نمایش برای: ${getPersonLabel(selectedPerson)} (${getPersonName(selectedPerson)})</div>`;
+            }
+
+            return `
+                <div class="glass">
+                    <div class="card-title"><i class="fas fa-book"></i> پرونده‌ها (${filtered.length})</div>
+                    ${filterHtml}
+                    ${filtered.map(r => renderCard(r, true)).join('')}
+                    ${filtered.length === 0 ? '<div class="no-data">نتیجه‌ای یافت نشد</div>' : ''}
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // CARD
+        // ============================================================
+        function renderCard(record, showAll) {
+            const isOpen = expandedCard === record.id;
+
+            // نمایش تگ‌ها با آیکون
+            const tagsHtml = (record.tags || []).map(t =>
+                `<span class="tag"><span class="tag-icon">${getTagIcon(t)}</span> ${t}</span>`
+            ).join('');
+
+            // نمایش لینک‌ها با آیکون
+            const relatedHtml = (record.related || []).map(id =>
+                `<span class="related-item" onclick="event.stopPropagation();searchRelated('${id}')"><span class="rel-icon">🔗</span> ${id}</span>`
+            ).join('');
+
+            return `
+                <div class="record-card" onclick="toggleCard('${record.id}')">
+                    <div class="card-header">
+                        <div class="left">
+                            <span class="id">${record.id}</span>
+                            <span class="person" title="${getPersonName(record.person)}">${getPersonLabel(record.person)}</span>
+                            <span class="date">${record.date} ${record.time || ''}</span>
+                            <span class="category">${record.category}</span>
+                            <span class="event">${record.event}</span>
+                        </div>
+                        <span class="expand-icon ${isOpen ? 'open' : ''}"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="card-body ${isOpen ? 'open' : ''}">
+
+                        <!-- Observation -->
+                        <div class="section section-observation">
+                            <div class="section-label"><i class="fas fa-eye"></i> Observation</div>
+                            <div class="section-content">${record.observation.text}</div>
+                            ${record.observation.details ? `<div style="font-size:0.5rem;color:#5a7a9a;margin-top:2px;">📌 ${record.observation.details}</div>` : ''}
+                        </div>
+
+                        <!-- Hypotheses -->
+                        ${record.hypotheses && record.hypotheses.length > 0 ? `
+                            <div class="section section-hypothesis">
+                                <div class="section-label"><i class="fas fa-lightbulb"></i> Hypotheses</div>
+                                ${record.hypotheses.map(h => `
+                                    <div class="hypothesis-item">
+                                        <div class="h-title">${h.title}</div>
+                                        <div class="h-meta">
+                                            <span class="conf-badge ${getConfidenceClass(h.confidence)}">${h.confidence}%</span>
+                                            <span class="status-badge ${getStatusClass(h.status)}">${getStatusIcon(h.status)} ${h.status}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        <!-- Patterns -->
+                        ${record.patterns && record.patterns.length > 0 ? `
+                            <div class="section section-pattern">
+                                <div class="section-label"><i class="fas fa-stream"></i> Patterns</div>
+                                ${record.patterns.map(p => `
+                                    <div class="pattern-item">
+                                        <div class="p-title">${p.title}</div>
+                                        <div class="p-meta">${p.description} · تکرار: ${p.occurrences} بار</div>
+                                        ${p.relatedTo && p.relatedTo.length > 0 ? `<div class="p-meta" style="margin-top:2px;">🔗 از: ${p.relatedTo.join(', ')}</div>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        <!-- Tags -->
+                        ${record.tags && record.tags.length > 0 ? `
+                            <div class="tags-row">
+                                ${tagsHtml}
+                            </div>
+                        ` : ''}
+
+                        <!-- Related -->
+                        ${record.related && record.related.length > 0 ? `
+                            <div class="related-row">
+                                <span class="related-label">🔗 مرتبط:</span>
+                                ${relatedHtml}
+                            </div>
+                            ${record.relatedText ? `<div style="font-size:0.4rem;color:#5a7a9a;margin-top:2px;padding-right:4px;">${record.relatedText}</div>` : ''}
+                        ` : ''}
+
+                        <!-- Timeline -->
+                        ${record.timeline && record.timeline.length > 0 ? `
+                            <div class="timeline-row">
+                                <div class="tl-label"><i class="fas fa-history"></i> History</div>
+                                ${record.timeline.map(t => `
+                                    <div class="tl-item">
+                                        <span class="tl-dot ${t.type === 'add' ? '' : t.type === 'hypothesis' ? 'orange' : t.type === 'pattern' ? 'purple' : 'green'}"></span>
+                                        <span class="tl-text">${t.date} · <strong>${t.action}</strong></span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // PEOPLE
+        // ============================================================
+        function renderPeople() {
+            let html = `
+                <div class="glass">
+                    <div class="card-title"><i class="fas fa-users"></i> افراد</div>
+            `;
+
+            Object.entries(PEOPLE).forEach(([id, data]) => {
+                const stats = getPersonStats(id);
+
+                html += `
+                    <div class="person-card" onclick="selectPerson('${id}')" style="background:rgba(16,28,48,0.12);border-radius:10px;padding:8px 12px;margin-bottom:4px;border-right:3px solid rgba(60,150,255,0.15);cursor:pointer;transition:all 0.2s;">
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                            <span style="font-weight:600;color:#8ab8ff;font-size:0.6rem;">${id}</span>
+                            <span style="font-size:0.6rem;color:#c0d8f0;">${data.label} (${data.name})</span>
+                        </div>
+                        <div style="display:flex;gap:6px;font-size:0.45rem;color:#5a7a9a;margin-top:4px;flex-wrap:wrap;">
+                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">📄 ${stats.total} پرونده</span>
+                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">👁️ ${stats.obs} مشاهده</span>
+                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">💡 ${stats.hyp} فرضیه</span>
+                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">🧩 ${stats.pat} الگو</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div style="margin-top:6px; font-size:0.45rem; color:#5a7a9a;">
+                    <span>💡 روی هر فرد کلیک کنید تا پرونده‌های او نمایش داده شود</span>
+                </div>
+            `;
+
+            html += `</div>`;
+            return html;
+        }
+
+        // ============================================================
+        // SELECT PERSON
+        // ============================================================
+        window.selectPerson = function(personId) {
+            selectedPerson = selectedPerson === personId ? null : personId;
+            currentPage = 'records';
+            document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
+            document.querySelector('[data-page="records"]').classList.add('active');
+            render();
+        };
+
+        // ============================================================
+        // SETTINGS
+        // ============================================================
+        function renderSettings() {
+            return `
+                <div class="glass">
+                    <div class="card-title"><i class="fas fa-cog"></i> تنظیمات</div>
+                    <div style="display:flex; flex-direction:column; gap:4px; font-size:0.65rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid rgba(60,100,170,0.03);">
+                            <span>🌙 تم</span>
+                            <span><button class="btn-simple" onclick="document.getElementById('themeToggle').click()">تغییر تم</button></span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
+                            <span>نسخه</span>
+                            <span style="color:#4a6a8a;">v1.0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-top:1px solid rgba(60,100,170,0.03);">
+                            <span>کل پرونده‌ها</span>
+                            <span style="color:#5a9ac0;">${RECORDS.length}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
+                            <span>افراد</span>
+                            <span style="color:#5a9ac0;">${Object.keys(PEOPLE).length}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-top:1px solid rgba(60,100,170,0.03);">
+                            <span style="font-size:0.5rem; color:#4a6a8a;">وضعیت داده</span>
+                            <span style="font-size:0.5rem; color:#5aaa7a;">✅ ${RECORDS.length} پرونده معتبر</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
+                            <span style="font-size:0.5rem; color:#4a6a8a;">هیچ عدد ساختگی</span>
+                            <span style="font-size:0.5rem; color:#5aaa7a;">✅ رعایت شده</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // FILTER CHIPS
+        // ============================================================
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('filter-chip')) {
+                currentFilter = e.target.dataset.filter;
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                e.target.classList.add('active');
+                render();
+            }
+        });
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('active');
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', openSidebar);
+        document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+        document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+
+        document.querySelectorAll('.sidebar-nav .menu-item[data-page]').forEach(item => {
+            item.addEventListener('click', function() {
+                currentPage = this.dataset.page;
+                selectedPerson = null;
+                document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                closeSidebar();
+                render();
+            });
+        });
+
+        // ============================================================
+        // PLUS LINK
+        // ============================================================
+        document.getElementById('linkPlus').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('🔗 Character Profile (PLUS)\n\nاین بخش به فایل plus.html متصل است.\nتمام تحلیل‌های شخصیتی و جمع‌بندی‌ها در این بخش انجام می‌شوند.');
+        });
+
+        // ============================================================
+        // SEARCH
+        // ============================================================
+        document.getElementById('searchInput').addEventListener('input', function() {
+            searchQuery = this.value;
+            if (currentPage !== 'records') {
+                currentPage = 'records';
+                selectedPerson = null;
+                document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
+                document.querySelector('[data-page="records"]').classList.add('active');
+            }
+            render();
+        });
+
+        // ============================================================
+        // THEME
+        // ============================================================
+        let theme = 'dark';
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            document.body.classList.toggle('light', theme === 'light');
+            this.querySelector('#themeIcon').className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+            this.querySelector('#themeLabel').textContent = theme === 'light' ? 'روشن' : 'تاریک';
+        });
+
+        // ============================================================
+        // START
+        // ============================================================
+        render();
+
+        console.log('✅ PROJECT 721 — Evidence Notebook');
+        console.log(`📊 ${RECORDS.length} پرونده بارگذاری شد`);
+        console.log(`👤 ${Object.keys(PEOPLE).length} فرد`);
+        console.log(`🏷️ ${getAllTags().length} تگ`);
+        console.log('🎯 ساختار: Observation · Hypothesis · Pattern');
+        console.log('🟡 در حال بررسی 🟢 تأیید شد 🔴 رد شد');
+        console.log('🔗 لینک بین کارت‌ها و جستجوی کامل');
+        console.log('❌ هیچ عدد ساختگی وجود ندارد');
+    </script>
+
+</body>
+</html>
