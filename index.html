@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROJECT 721 · ورود</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #070a12;
+            color: #d0ddf0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background: radial-gradient(ellipse at 20% 30%, #0e1a2a, #04070c);
+        }
+
+        /* ===== LOGIN CONTAINER ===== */
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 0 20px;
+        }
+
+        .glass {
+            background: rgba(10, 18, 32, 0.5);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(60, 100, 170, 0.06);
+            border-radius: 20px;
+            padding: 44px 36px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* ===== LOGO ===== */
+        .logo-wrapper {
+            margin-bottom: 16px;
+        }
+
+        .logo-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 0;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 4px 30px rgba(74, 122, 255, 0.08));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: #4a6a8a;
+            margin-top: 2px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(60, 100, 170, 0.08), transparent);
+            margin: 18px 0 22px 0;
+        }
+
+        /* ===== INPUT ===== */
+        .login-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(20, 30, 50, 0.3);
+            border: 1px solid rgba(60, 100, 170, 0.06);
+            color: #d0ddf0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+            direction: ltr;
+            letter-spacing: 4px;
+            font-weight: 500;
+        }
+
+        .login-input:focus {
+            border-color: rgba(74, 122, 255, 0.2);
+            box-shadow: 0 0 0 4px rgba(74, 122, 255, 0.04);
+        }
+
+        .login-input::placeholder {
+            color: #3a5a7a;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* ===== BUTTON ===== */
+        .login-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(74, 122, 255, 0.08);
+            border: 1px solid rgba(74, 122, 255, 0.08);
+            color: #8ab8ff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: rgba(74, 122, 255, 0.15);
+            border-color: rgba(74, 122, 255, 0.15);
+            transform: scale(1.01);
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        .login-btn i {
+            font-size: 0.8rem;
+        }
+
+        /* ===== ERROR ===== */
+        .login-error {
+            color: #ef4444;
+            font-size: 0.7rem;
+            margin-top: 12px;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-error.show {
+            opacity: 1;
+        }
+
+        /* ===== HINT ===== */
+        .login-hint {
+            font-size: 0.5rem;
+            color: #2a4a6a;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(60, 100, 170, 0.03);
+            letter-spacing: 0.5px;
+        }
+
+        .login-hint span {
+            color: #3a6a8a;
+            font-weight: 600;
+            font-family: monospace;
+            letter-spacing: 2px;
+            direction: ltr;
+            display: inline-block;
+            background: rgba(60, 100, 170, 0.04);
+            padding: 0 8px;
+            border-radius: 4px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            .glass {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            .logo-img {
+                width: 110px;
+                height: 110px;
+            }
+            .logo-title {
+                font-size: 1.2rem;
+            }
+            .login-input {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+            }
+            .login-btn {
+                font-size: 0.75rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .glass {
+                padding: 22px 16px;
+                border-radius: 14px;
+            }
+            .logo-img {
+                width: 90px;
+                height: 90px;
+            }
+            .logo-title {
+                font-size: 1rem;
+            }
+            .login-input {
+                font-size: 0.7rem;
+                padding: 8px 12px;
+            }
+            .login-btn {
+                font-size: 0.7rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <div class="login-container">
+            <div class="glass">
+
+                <!-- ===== LOGO ===== -->
+                <div class="logo-wrapper">
+                    <img class="logo-img" src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" alt="PROJECT 721" />
+                    <div class="logo-title">PROJECT 721</div>
+                    <div class="logo-subtitle">EVIDENCE NOTEBOOK</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- ===== INPUT ===== -->
+                <input type="password" class="login-input" id="passwordInput" placeholder="رمز عبور را وارد کنید..." autocomplete="off" />
+
+                <!-- ===== BUTTON ===== -->
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-arrow-left"></i> ورود
+                </button>
+
+                <!-- ===== ERROR ===== -->
+                <div class="login-error" id="loginError">❌ رمز عبور اشتباه است</div>
+
+                <!-- ===== HINT ===== -->
+                <div class="login-hint">
+                    🔑 رمز پیش‌فرض: <span>Vv542369</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /**
+         * PROJECT 721 — صفحه ورود
+         * رمز: Vv542369
+         */
+
+        (function() {
+            'use strict';
+
+            // ===== رمز عبور =====
+            const CORRECT_PASSWORD = 'Vv542369';
+
+            // ===== DOM =====
+            const passwordInput = document.getElementById('passwordInput');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginError = document.getElementById('loginError');
+
+            // ===== توابع =====
+            function attemptLogin() {
+                const password = passwordInput.value.trim();
+
+                if (password === CORRECT_PASSWORD) {
+                    window.location.href = '721.html';
+                } else {
+                    loginError.classList.add('show');
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    setTimeout(() => {
+                        loginError.classList.remove('show');
+                    }, 3000);
+                }
+            }
+
+            // ===== رویدادها =====
+            loginBtn.addEventListener('click', attemptLogin);
+
+            passwordInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    attemptLogin();
+                }
+            });
+
+            // ===== FOCUS =====
+            passwordInput.focus();
+
+            console.log('🔐 PROJECT 721 — صفحه ورود');
+            console.log('🔑 رمز: Vv542369');
+        })();
+    </script>
+
+</body>
+</html>
