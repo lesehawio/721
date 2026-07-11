@@ -349,6 +349,7 @@
             text-decoration: none;
             display: block;
             margin-top: 4px;
+            cursor: pointer;
         }
 
         .sidebar-footer .link-plus:hover {
@@ -953,7 +954,8 @@
             </nav>
             <div class="sidebar-footer">
                 <span>v1.0 · Evidence Notebook</span>
-                <a href="#" class="link-plus" id="linkPlus">
+                <!-- ===== اصلاح: هایپرلینک به پوشه A ===== -->
+                <a href="./A/" class="link-plus" id="linkPlus">
                     <i class="fas fa-user-circle"></i> Character Profile (PLUS)
                 </a>
             </div>
@@ -1867,14 +1869,6 @@
                 closeSidebar();
                 render();
             });
-        });
-
-        // ============================================================
-        // PLUS LINK
-        // ============================================================
-        document.getElementById('linkPlus').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('🔗 Character Profile (PLUS)\n\nاین بخش به فایل plus.html متصل است.\nتمام تحلیل‌های شخصیتی و جمع‌بندی‌ها در این بخش انجام می‌شوند.');
         });
 
         // ============================================================
