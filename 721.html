@@ -441,6 +441,28 @@
             background: rgba(200, 215, 235, 0.2);
         }
 
+        /* ===== CARD STATUS COLORS ===== */
+        .record-card.status-observation {
+            border-right-color: #4a7aff;
+        }
+
+        .record-card.status-hypothesis {
+            border-right-color: #f59e0b;
+        }
+
+        .record-card.status-pattern {
+            border-right-color: #8b5cf6;
+        }
+
+        .record-card.status-rejected {
+            border-right-color: #ef4444;
+            opacity: 0.7;
+        }
+
+        .record-card.status-rejected:hover {
+            opacity: 0.9;
+        }
+
         /* ===== CARD HEADER ===== */
         .card-header {
             padding: 6px 10px;
@@ -495,6 +517,41 @@
 
         body.light .card-header .event {
             color: #1a3a5a;
+        }
+
+        /* ===== STATUS BADGE ON CARD ===== */
+        .card-status-badge {
+            font-size: 0.4rem;
+            padding: 1px 8px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-weight: 500;
+        }
+
+        .card-status-badge.status-obs {
+            background: rgba(74, 122, 255, 0.12);
+            color: #4a7aff;
+            border: 1px solid rgba(74, 122, 255, 0.1);
+        }
+
+        .card-status-badge.status-hyp {
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+        }
+
+        .card-status-badge.status-pat {
+            background: rgba(139, 92, 246, 0.12);
+            color: #8b5cf6;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .card-status-badge.status-rej {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.1);
         }
 
         .card-header .expand-icon {
@@ -631,14 +688,10 @@
             color: #34d399;
         }
 
-        /* ===== STATUS BADGES ===== */
         .status-badge {
             padding: 1px 6px;
             border-radius: 30px;
             font-size: 0.4rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
         }
 
         .status-review {
@@ -711,8 +764,8 @@
             font-size: 0.35rem;
         }
 
-        /* ===== RELATED ===== */
-        .related-row {
+        /* ===== LINKS ===== */
+        .links-row {
             display: flex;
             flex-wrap: wrap;
             gap: 3px;
@@ -721,13 +774,13 @@
             border-top: 1px solid rgba(60, 100, 170, 0.04);
         }
 
-        .related-row .related-label {
+        .links-row .links-label {
             font-size: 0.4rem;
             color: #5a7a9a;
             margin-left: 4px;
         }
 
-        .related-row .related-item {
+        .links-row .link-item {
             font-size: 0.4rem;
             padding: 1px 6px;
             border-radius: 30px;
@@ -740,11 +793,11 @@
             gap: 3px;
         }
 
-        .related-row .related-item:hover {
+        .links-row .link-item:hover {
             background: rgba(60, 150, 255, 0.12);
         }
 
-        .related-row .related-item .rel-icon {
+        .links-row .link-item .link-icon {
             font-size: 0.35rem;
         }
 
@@ -920,7 +973,8 @@
     <script>
         /**
          * PROJECT 721 — Evidence Notebook
-         * با تگ‌های کامل، وضعیت‌های رنگی و لینک‌های دقیق
+         * با وضعیت کارت (Observation, Hypothesis, Pattern, Rejected)
+         * و بخش Links کامل
          */
 
         // ============================================================
@@ -951,8 +1005,6 @@
             "خوشحالی": "😊",
             "ناراحتی": "😢",
             "محبت": "❤️",
-            "کار": "💼",
-            "خانواده": "👨‍👩‍👧",
             "دوست": "🤝",
             "سلامت": "💊",
             "پول": "💰",
@@ -960,7 +1012,7 @@
         };
 
         // ============================================================
-        // RECORDS
+        // RECORDS — با وضعیت کارت و لینک‌ها
         // ============================================================
         const RECORDS = [{
             id: "OBS-001",
@@ -969,9 +1021,10 @@
             time: "18:30",
             category: "پیام",
             event: "بدون پاسخ",
+            cardStatus: "Observation",
             tags: ["پیام", "سکوت", "خانواده"],
-            related: ["OBS-010", "OBS-012"],
-            relatedText: "این مشاهده مربوط به OBS-010 و OBS-012 است.",
+            links: ["OBS-010", "OBS-012"],
+            linksText: "مرتبط با OBS-010 و OBS-012",
             observation: {
                 text: "تا پایان شب پاسخی دریافت نشد.\nپیام در همان روز پاسخ داده نشد.",
                 details: "پیام ارسال شده در ساعت 18:30"
@@ -981,8 +1034,7 @@
                 { title: "بی‌تمایلی به پاسخ", confidence: 30, status: "رد شد" }
             ],
             patterns: [
-                { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3,
-                    relatedTo: ["OBS-010", "OBS-012"] }
+                { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3 }
             ],
             timeline: [
                 { date: "1405-04-10", action: "Observation Added", type: "add" },
@@ -995,9 +1047,10 @@
             time: "20:15",
             category: "تماس",
             event: "تماس کوتاه",
+            cardStatus: "Hypothesis",
             tags: ["تماس", "کار", "استرس"],
-            related: ["OBS-005", "OBS-011"],
-            relatedText: "این مشاهده از OBS-005 و OBS-011 ساخته شده است.",
+            links: ["OBS-005", "OBS-011", "PAT-001"],
+            linksText: "مرتبط با OBS-005، OBS-011 و الگوی PAT-001",
             observation: {
                 text: "تماس فقط ۵ دقیقه طول کشید.\nمکالمه زودتر از حد معمول تمام شد.",
                 details: "مدت تماس: ۵ دقیقه"
@@ -1008,8 +1061,7 @@
                 { title: "بی‌میلی به گفتگو", confidence: 35, status: "رد شد" }
             ],
             patterns: [
-                { title: "کاهش مدت تماس", description: "در سه تماس اخیر مدت مکالمه کاهش یافته است.", occurrences: 3,
-                    relatedTo: ["OBS-005", "OBS-011"] }
+                { title: "کاهش مدت تماس", description: "در سه تماس اخیر مدت مکالمه کاهش یافته است.", occurrences: 3 }
             ],
             timeline: [
                 { date: "1405-04-11", action: "Observation Added", type: "add" },
@@ -1023,9 +1075,10 @@
             time: "19:00",
             category: "تماس",
             event: "تماس طولانی",
+            cardStatus: "Pattern",
             tags: ["تماس", "احساس", "محبت"],
-            related: ["OBS-008"],
-            relatedText: "این مشاهده با OBS-008 مرتبط است.",
+            links: ["OBS-008"],
+            linksText: "مرتبط با OBS-008",
             observation: {
                 text: "تماس ۲۵ دقیقه‌ای.\nگفتگوی عمیق و صمیمی.",
                 details: "مدت تماس: ۲۵ دقیقه"
@@ -1036,7 +1089,7 @@
             ],
             patterns: [
                 { title: "تماس طولانی پس از سکوت", description: "پس از روزهای سکوت، تماس‌ها طولانی‌تر می‌شوند.",
-                    occurrences: 2, relatedTo: ["OBS-008"] }
+                    occurrences: 2 }
             ],
             timeline: [
                 { date: "1405-04-12", action: "Observation Added", type: "add" },
@@ -1050,9 +1103,10 @@
             time: "21:30",
             category: "پیام",
             event: "پاسخ با تأخیر",
+            cardStatus: "Observation",
             tags: ["پیام", "دعوا", "سکوت"],
-            related: ["OBS-006"],
-            relatedText: "این مشاهده مربوط به OBS-006 است.",
+            links: ["OBS-006"],
+            linksText: "مرتبط با OBS-006",
             observation: {
                 text: "پاسخ با تأخیر ۳ ساعته داده شد.\nمحتوای پیام کوتاه و سرد بود.",
                 details: "تأخیر: ۳ ساعت"
@@ -1072,9 +1126,10 @@
             time: "22:00",
             category: "تماس",
             event: "تماس بی‌پاسخ",
+            cardStatus: "Rejected",
             tags: ["تماس", "کار", "استرس"],
-            related: ["OBS-002", "OBS-011"],
-            relatedText: "این الگو از OBS-002 و OBS-011 ساخته شده است.",
+            links: ["OBS-002", "OBS-011", "PAT-001"],
+            linksText: "مرتبط با OBS-002، OBS-011 و الگوی PAT-001",
             observation: {
                 text: "تماس پاسخ داده نشد.\nصدای زنگ خورد و قطع شد.",
                 details: "زمان تماس: 22:00"
@@ -1085,7 +1140,7 @@
             ],
             patterns: [
                 { title: "عدم پاسخ در شب", description: "در روزهای پایانی هفته، تماس‌ها کمتر پاسخ داده می‌شوند.",
-                    occurrences: 3, relatedTo: ["OBS-002", "OBS-011"] }
+                    occurrences: 3 }
             ],
             timeline: [
                 { date: "1405-04-14", action: "Observation Added", type: "add" },
@@ -1098,9 +1153,10 @@
             time: "17:45",
             category: "پیام",
             event: "پاسخ فوری",
+            cardStatus: "Pattern",
             tags: ["پیام", "احساس", "خوشحالی"],
-            related: ["OBS-004"],
-            relatedText: "این مشاهده با OBS-004 مرتبط است.",
+            links: ["OBS-004"],
+            linksText: "مرتبط با OBS-004",
             observation: {
                 text: "پاسخ فوری دریافت شد.\nلحن پیام گرم و صمیمی بود.",
                 details: "زمان پاسخ: فوری"
@@ -1111,7 +1167,7 @@
             ],
             patterns: [
                 { title: "پاسخ فوری با لحن مثبت", description: "پاسخ‌های فوری معمولاً با لحن مثبت همراه هستند.",
-                    occurrences: 4, relatedTo: ["OBS-004"] }
+                    occurrences: 4 }
             ],
             timeline: [
                 { date: "1405-04-15", action: "Observation Added", type: "add" },
@@ -1125,9 +1181,10 @@
             time: "09:00",
             category: "جلسه",
             event: "برنامه‌ریزی",
+            cardStatus: "Observation",
             tags: ["کار", "وقت", "خانواده"],
-            related: [],
-            relatedText: "",
+            links: [],
+            linksText: "",
             observation: {
                 text: "جلسه برنامه‌ریزی‌شده.\nحضور به موقع و آمادگی کامل.",
                 details: "مدت جلسه: ۴۵ دقیقه"
@@ -1146,9 +1203,10 @@
             time: "20:00",
             category: "تماس",
             event: "تماس طولانی",
+            cardStatus: "Hypothesis",
             tags: ["تماس", "احساس", "خوشحالی"],
-            related: ["OBS-003"],
-            relatedText: "این مشاهده با OBS-003 مرتبط است.",
+            links: ["OBS-003"],
+            linksText: "مرتبط با OBS-003",
             observation: {
                 text: "تماس ۳۰ دقیقه‌ای.\nگفتگوی عمیق درباره آینده.",
                 details: "مدت تماس: ۳۰ دقیقه"
@@ -1158,7 +1216,7 @@
             ],
             patterns: [
                 { title: "تماس طولانی پس از ملاقات", description: "تماس‌های طولانی معمولاً پس از ملاقات حضوری رخ می‌دهند.",
-                    occurrences: 3, relatedTo: ["OBS-003"] }
+                    occurrences: 3 }
             ],
             timeline: [
                 { date: "1405-04-17", action: "Observation Added", type: "add" },
@@ -1171,9 +1229,10 @@
             time: "19:30",
             category: "احساس",
             event: "حمایت",
+            cardStatus: "Observation",
             tags: ["احساس", "خانواده", "محبت"],
-            related: [],
-            relatedText: "",
+            links: [],
+            linksText: "",
             observation: {
                 text: "ابراز همدردی کرد.\nگفت: \"نگران نباش، همه چیز درست می‌شود.\"",
                 details: "حمایت عاطفی"
@@ -1192,9 +1251,10 @@
             time: "21:00",
             category: "پیام",
             event: "بدون پاسخ",
+            cardStatus: "Rejected",
             tags: ["پیام", "سکوت", "خانواده"],
-            related: ["OBS-001", "OBS-012"],
-            relatedText: "این مشاهده با OBS-001 و OBS-012 مرتبط است.",
+            links: ["OBS-001", "OBS-012"],
+            linksText: "مرتبط با OBS-001 و OBS-012",
             observation: {
                 text: "تا پایان شب پاسخی دریافت نشد.\nمشاهده پیام اما عدم پاسخ.",
                 details: "آخر هفته"
@@ -1203,8 +1263,7 @@
                 { title: "درگیری ذهنی", confidence: 40, status: "در حال بررسی" }
             ],
             patterns: [
-                { title: "عدم پاسخ در شب", description: "الگوی عدم پاسخ در شب‌های آخر هفته تکرار می‌شود.", occurrences: 4,
-                    relatedTo: ["OBS-001", "OBS-012"] }
+                { title: "عدم پاسخ در شب", description: "الگوی عدم پاسخ در شب‌های آخر هفته تکرار می‌شود.", occurrences: 4 }
             ],
             timeline: [
                 { date: "1405-04-19", action: "Observation Added", type: "add" },
@@ -1217,9 +1276,10 @@
             time: "20:30",
             category: "تماس",
             event: "تماس کوتاه",
+            cardStatus: "Hypothesis",
             tags: ["تماس", "کار", "استرس"],
-            related: ["OBS-002", "OBS-005"],
-            relatedText: "این الگو از OBS-002 و OBS-005 ساخته شده است.",
+            links: ["OBS-002", "OBS-005", "PAT-001"],
+            linksText: "مرتبط با OBS-002، OBS-005 و الگوی PAT-001",
             observation: {
                 text: "تماس ۴ دقیقه‌ای.\nگفت: \"فعلاً سرم شلوغه، بعداً زنگ می‌زنم.\"",
                 details: "مدت تماس: ۴ دقیقه"
@@ -1229,8 +1289,7 @@
                 { title: "فرار از گفتگو", confidence: 30, status: "رد شد" }
             ],
             patterns: [
-                { title: "کاهش مدت تماس", description: "تماس‌های کوتاه در روزهای کاری افزایش دارد.", occurrences: 5,
-                    relatedTo: ["OBS-002", "OBS-005"] }
+                { title: "کاهش مدت تماس", description: "تماس‌های کوتاه در روزهای کاری افزایش دارد.", occurrences: 5 }
             ],
             timeline: [
                 { date: "1405-04-20", action: "Observation Added", type: "add" },
@@ -1243,9 +1302,10 @@
             time: "19:00",
             category: "پیام",
             event: "بدون پاسخ",
+            cardStatus: "Observation",
             tags: ["پیام", "دوست", "سکوت"],
-            related: ["OBS-001", "OBS-010"],
-            relatedText: "این مشاهده با OBS-001 و OBS-010 مرتبط است.",
+            links: ["OBS-001", "OBS-010"],
+            linksText: "مرتبط با OBS-001 و OBS-010",
             observation: {
                 text: "پیام دوستانه ارسال شد اما پاسخی دریافت نشد.",
                 details: "ارسال به دوست"
@@ -1264,9 +1324,10 @@
             time: "18:00",
             category: "تماس",
             event: "تماس طولانی",
+            cardStatus: "Pattern",
             tags: ["تماس", "کار", "برنامه"],
-            related: [],
-            relatedText: "",
+            links: [],
+            linksText: "",
             observation: {
                 text: "تماس ۲۰ دقیقه‌ای.\nبرنامه‌ریزی برای دیدار بعدی.",
                 details: "مدت تماس: ۲۰ دقیقه"
@@ -1285,9 +1346,10 @@
             time: "20:00",
             category: "جلسه",
             event: "خودشناسی",
+            cardStatus: "Observation",
             tags: ["خانواده", "وقت", "احساس"],
-            related: [],
-            relatedText: "",
+            links: [],
+            linksText: "",
             observation: {
                 text: "جلسه خودسازی.\nبررسی اهداف هفتگی.",
                 details: "جلسه هفتگی"
@@ -1306,9 +1368,10 @@
             time: "20:15",
             category: "پیام",
             event: "پاسخ",
+            cardStatus: "Observation",
             tags: ["پیام", "خوشحالی", "دوست"],
-            related: [],
-            relatedText: "",
+            links: [],
+            linksText: "",
             observation: {
                 text: "پاسخ سریع دریافت شد.\nپیام حاوی خبر خوب.",
                 details: "خبر خوب"
@@ -1366,6 +1429,36 @@
             return TAG_ICONS[tag] || '🏷️';
         }
 
+        function getCardStatusClass(status) {
+            const map = {
+                'Observation': 'status-obs',
+                'Hypothesis': 'status-hyp',
+                'Pattern': 'status-pat',
+                'Rejected': 'status-rej'
+            };
+            return map[status] || 'status-obs';
+        }
+
+        function getCardStatusColor(status) {
+            const map = {
+                'Observation': 'status-observation',
+                'Hypothesis': 'status-hypothesis',
+                'Pattern': 'status-pattern',
+                'Rejected': 'status-rejected'
+            };
+            return map[status] || 'status-observation';
+        }
+
+        function getCardStatusIcon(status) {
+            const map = {
+                'Observation': '🟦',
+                'Hypothesis': '🟨',
+                'Pattern': '🟩',
+                'Rejected': '🔴'
+            };
+            return map[status] || '🟦';
+        }
+
         function getConfidenceClass(confidence) {
             if (confidence < 40) return 'low';
             if (confidence < 70) return 'medium';
@@ -1399,21 +1492,22 @@
                     getPersonLabel(r.person).includes(q) ||
                     r.category.toLowerCase().includes(q) ||
                     r.event.toLowerCase().includes(q) ||
+                    r.cardStatus.toLowerCase().includes(q) ||
                     r.observation.text.toLowerCase().includes(q) ||
                     (r.tags || []).some(t => t.toLowerCase().includes(q)) ||
-                    (r.related || []).some(rel => rel.toLowerCase().includes(q))
+                    (r.links || []).some(l => l.toLowerCase().includes(q))
                 );
             }
 
             if (filter !== 'all') {
-                if (filter === 'hypothesis') {
-                    result = result.filter(r => r.hypotheses && r.hypotheses.length > 0);
+                if (filter === 'observation') {
+                    result = result.filter(r => r.cardStatus === 'Observation');
+                } else if (filter === 'hypothesis') {
+                    result = result.filter(r => r.cardStatus === 'Hypothesis');
                 } else if (filter === 'pattern') {
-                    result = result.filter(r => r.patterns && r.patterns.length > 0);
-                } else if (filter === 'confirmed') {
-                    result = result.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'تأیید شد'));
+                    result = result.filter(r => r.cardStatus === 'Pattern');
                 } else if (filter === 'rejected') {
-                    result = result.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'رد شد'));
+                    result = result.filter(r => r.cardStatus === 'Rejected');
                 }
             }
 
@@ -1433,9 +1527,9 @@
         };
 
         // ============================================================
-        // SEARCH BY RELATED
+        // SEARCH BY LINK
         // ============================================================
-        window.searchRelated = function(id) {
+        window.searchByLink = function(id) {
             document.getElementById('searchInput').value = id;
             searchQuery = id;
             if (currentPage !== 'records') {
@@ -1482,10 +1576,10 @@
         function renderDashboard() {
             const total = RECORDS.length;
             const people = Object.keys(PEOPLE).length;
-            const totalHyp = RECORDS.filter(r => r.hypotheses && r.hypotheses.length > 0).length;
-            const totalPat = RECORDS.filter(r => r.patterns && r.patterns.length > 0).length;
-            const confirmed = RECORDS.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'تأیید شد')).length;
-            const rejected = RECORDS.filter(r => r.hypotheses && r.hypotheses.some(h => h.status === 'رد شد')).length;
+            const totalObs = RECORDS.filter(r => r.cardStatus === 'Observation').length;
+            const totalHyp = RECORDS.filter(r => r.cardStatus === 'Hypothesis').length;
+            const totalPat = RECORDS.filter(r => r.cardStatus === 'Pattern').length;
+            const totalRej = RECORDS.filter(r => r.cardStatus === 'Rejected').length;
             const tags = getAllTags();
 
             let recentRecords = [...RECORDS].slice(-5).reverse();
@@ -1494,12 +1588,12 @@
                 <div class="glass">
                     <div class="card-title"><i class="fas fa-chart-pie"></i> خلاصه</div>
                     <div class="stats-row">
-                        <span class="stat-item"><span class="num">${total}</span> مشاهدات</span>
-                        <span class="stat-item"><span class="num">${totalHyp}</span> فرضیه</span>
-                        <span class="stat-item"><span class="num">${totalPat}</span> الگو</span>
+                        <span class="stat-item"><span class="num">${total}</span> کل</span>
+                        <span class="stat-item" style="color:#4a7aff;">🟦 <span class="num">${totalObs}</span> مشاهده</span>
+                        <span class="stat-item" style="color:#f59e0b;">🟨 <span class="num">${totalHyp}</span> فرضیه</span>
+                        <span class="stat-item" style="color:#8b5cf6;">🟩 <span class="num">${totalPat}</span> الگو</span>
+                        <span class="stat-item" style="color:#ef4444;">🔴 <span class="num">${totalRej}</span> رد</span>
                         <span class="stat-item"><span class="num">${people}</span> افراد</span>
-                        <span class="stat-item" style="color:#34d399;">🟢 <span class="num">${confirmed}</span> تأیید</span>
-                        <span class="stat-item" style="color:#ef4444;">🔴 <span class="num">${rejected}</span> رد</span>
                         <span class="stat-item"><span class="num">${tags.length}</span> تگ</span>
                     </div>
                 </div>
@@ -1524,9 +1618,9 @@
             let filterHtml = `
                 <div style="display:flex; gap:3px; flex-wrap:wrap; margin-bottom:6px;">
                     <button class="filter-chip ${currentFilter === 'all' ? 'active' : ''}" data-filter="all" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🏷️ همه</button>
-                    <button class="filter-chip ${currentFilter === 'hypothesis' ? 'active' : ''}" data-filter="hypothesis" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">💡 فرضیه</button>
-                    <button class="filter-chip ${currentFilter === 'pattern' ? 'active' : ''}" data-filter="pattern" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🧩 الگو</button>
-                    <button class="filter-chip ${currentFilter === 'confirmed' ? 'active' : ''}" data-filter="confirmed" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟢 تأیید</button>
+                    <button class="filter-chip ${currentFilter === 'observation' ? 'active' : ''}" data-filter="observation" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟦 مشاهده</button>
+                    <button class="filter-chip ${currentFilter === 'hypothesis' ? 'active' : ''}" data-filter="hypothesis" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟨 فرضیه</button>
+                    <button class="filter-chip ${currentFilter === 'pattern' ? 'active' : ''}" data-filter="pattern" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟩 الگو</button>
                     <button class="filter-chip ${currentFilter === 'rejected' ? 'active' : ''}" data-filter="rejected" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🔴 رد</button>
                 </div>
             `;
@@ -1551,6 +1645,8 @@
         // ============================================================
         function renderCard(record, showAll) {
             const isOpen = expandedCard === record.id;
+            const statusClass = getCardStatusColor(record.cardStatus);
+            const statusBadgeClass = getCardStatusClass(record.cardStatus);
 
             // نمایش تگ‌ها با آیکون
             const tagsHtml = (record.tags || []).map(t =>
@@ -1558,12 +1654,12 @@
             ).join('');
 
             // نمایش لینک‌ها با آیکون
-            const relatedHtml = (record.related || []).map(id =>
-                `<span class="related-item" onclick="event.stopPropagation();searchRelated('${id}')"><span class="rel-icon">🔗</span> ${id}</span>`
+            const linksHtml = (record.links || []).map(id =>
+                `<span class="link-item" onclick="event.stopPropagation();searchByLink('${id}')"><span class="link-icon">🔗</span> ${id}</span>`
             ).join('');
 
             return `
-                <div class="record-card" onclick="toggleCard('${record.id}')">
+                <div class="record-card ${statusClass}" onclick="toggleCard('${record.id}')">
                     <div class="card-header">
                         <div class="left">
                             <span class="id">${record.id}</span>
@@ -1571,6 +1667,7 @@
                             <span class="date">${record.date} ${record.time || ''}</span>
                             <span class="category">${record.category}</span>
                             <span class="event">${record.event}</span>
+                            <span class="card-status-badge ${statusBadgeClass}">${getCardStatusIcon(record.cardStatus)} ${record.cardStatus}</span>
                         </div>
                         <span class="expand-icon ${isOpen ? 'open' : ''}"><i class="fas fa-chevron-down"></i></span>
                     </div>
@@ -1607,7 +1704,6 @@
                                     <div class="pattern-item">
                                         <div class="p-title">${p.title}</div>
                                         <div class="p-meta">${p.description} · تکرار: ${p.occurrences} بار</div>
-                                        ${p.relatedTo && p.relatedTo.length > 0 ? `<div class="p-meta" style="margin-top:2px;">🔗 از: ${p.relatedTo.join(', ')}</div>` : ''}
                                     </div>
                                 `).join('')}
                             </div>
@@ -1620,13 +1716,13 @@
                             </div>
                         ` : ''}
 
-                        <!-- Related -->
-                        ${record.related && record.related.length > 0 ? `
-                            <div class="related-row">
-                                <span class="related-label">🔗 مرتبط:</span>
-                                ${relatedHtml}
+                        <!-- Links -->
+                        ${record.links && record.links.length > 0 ? `
+                            <div class="links-row">
+                                <span class="links-label">🔗 لینک‌ها:</span>
+                                ${linksHtml}
                             </div>
-                            ${record.relatedText ? `<div style="font-size:0.4rem;color:#5a7a9a;margin-top:2px;padding-right:4px;">${record.relatedText}</div>` : ''}
+                            ${record.linksText ? `<div style="font-size:0.4rem;color:#5a7a9a;margin-top:2px;padding-right:4px;">${record.linksText}</div>` : ''}
                         ` : ''}
 
                         <!-- Timeline -->
@@ -1811,13 +1907,15 @@
         // ============================================================
         render();
 
-        console.log('✅ PROJECT 721 — Evidence Notebook');
+        console.log('✅ PROJECT 721 — Evidence Notebook با وضعیت کارت و لینک‌ها');
         console.log(`📊 ${RECORDS.length} پرونده بارگذاری شد`);
+        console.log(`🟦 Observation: ${RECORDS.filter(r => r.cardStatus === 'Observation').length}`);
+        console.log(`🟨 Hypothesis: ${RECORDS.filter(r => r.cardStatus === 'Hypothesis').length}`);
+        console.log(`🟩 Pattern: ${RECORDS.filter(r => r.cardStatus === 'Pattern').length}`);
+        console.log(`🔴 Rejected: ${RECORDS.filter(r => r.cardStatus === 'Rejected').length}`);
         console.log(`👤 ${Object.keys(PEOPLE).length} فرد`);
         console.log(`🏷️ ${getAllTags().length} تگ`);
-        console.log('🎯 ساختار: Observation · Hypothesis · Pattern');
-        console.log('🟡 در حال بررسی 🟢 تأیید شد 🔴 رد شد');
-        console.log('🔗 لینک بین کارت‌ها و جستجوی کامل');
+        console.log('🔗 لینک بین کارت‌ها');
         console.log('❌ هیچ عدد ساختگی وجود ندارد');
     </script>
 
