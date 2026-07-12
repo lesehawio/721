@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PROJECT 721 · مغز دیجیتال</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PROJECT 721+ · تحلیل رفتار</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ==============================================
-               ROOT VARIABLES
-            ============================================== */
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
         :root {
-            --bg-primary: #05080f;
-            --bg-glass: rgba(0, 10, 25, 0.85);
-            --text-primary: #D6E4E5;
-            --text-secondary: #8895aa;
-            --accent: #6BE7C8;
-            --accent-glow: rgba(107, 231, 200, 0.15);
-            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            --logo-url: url('https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png');
+            --bg-primary: #070A12;
+            --bg-secondary: #0B0F1A;
+            --bg-card: rgba(12, 18, 30, 0.4);
+            --bg-card-hover: rgba(12, 18, 30, 0.6);
+            --border-subtle: rgba(60, 90, 140, 0.05);
+            --border-glass: rgba(60, 90, 140, 0.035);
+            --text-primary: #E8EDF5;
+            --text-secondary: #8899B5;
+            --text-muted: #4A6080;
+            --text-accent: #7AB7FF;
+            --blue: #4A7AFF;
+            --teal: #38D9A9;
+            --purple: #8B5CF6;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --green: #34D399;
+            --glass-bg: rgba(10, 16, 28, 0.25);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --radius-pill: 30px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * {
@@ -29,1589 +42,1307 @@
         }
 
         body {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            color: #fff;
-            user-select: none;
-            -webkit-user-select: none;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ==============================================
-               LOADING SCREEN
-            ============================================== */
-        #loading {
-            position: fixed;
-            inset: 0;
+        #app {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #05080f;
-            z-index: 1000;
-            transition: opacity 0.8s ease;
-        }
-        #loading.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        #loading .spinner {
-            width: 48px;
-            height: 48px;
-            border: 2px solid rgba(0, 200, 255, 0.08);
-            border-top-color: #00e5ff;
-            border-right-color: #7b2cbf;
-            border-radius: 50%;
-            animation: spin 0.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        #loading p {
-            margin-top: 20px;
-            color: #6a8ba8;
-            font-size: 13px;
-            letter-spacing: 3px;
-            font-weight: 300;
+            height: 100vh;
+            width: 100vw;
+            background: radial-gradient(ellipse at 20% 30%, #0C1520, var(--bg-primary));
         }
 
-        /* ==============================================
-               UI OVERLAY
-            ============================================== */
-        #ui-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 10;
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(74, 122, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(74, 122, 255, 0.18);
         }
 
-        /* ===== TOP BAR ===== */
-        #top-bar {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            right: 16px;
+        /* ============================================================
+           TOP NAV — با جستجو
+           ============================================================ */
+        #topnav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 20;
-            pointer-events: all;
-            gap: 12px;
-            flex-wrap: wrap;
+            padding: 10px 28px;
+            background: rgba(10, 16, 28, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            min-height: 54px;
+            flex-shrink: 0;
+            z-index: 10;
         }
 
-        /* ===== LOGO ===== */
-        #logo-container {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 4px 14px 4px 10px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 200, 255, 0.06);
+            gap: 14px;
         }
 
-        #logo-container .logo-img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid rgba(107, 231, 200, 0.15);
+        .logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            object-fit: contain;
+            opacity: 0.9;
         }
 
-        #logo-container .logo-text {
-            font-size: 18px;
+        .nav-brand {
+            font-size: 0.8rem;
             font-weight: 700;
-            background: linear-gradient(145deg, #4FD1C5, #6BE7C8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
         }
 
-        #logo-container .logo-text small {
-            font-size: 9px;
-            -webkit-text-fill-color: var(--text-secondary);
-            opacity: 0.4;
-            font-weight: 300;
-            display: block;
-            margin-top: -2px;
-            letter-spacing: 1px;
+        .nav-brand-plus {
+            font-size: 0.5rem;
+            color: var(--purple);
+            font-weight: 600;
+            background: rgba(139, 92, 246, 0.08);
+            padding: 2px 10px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(139, 92, 246, 0.06);
+            margin-right: 6px;
         }
 
-        #status {
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 6px 16px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 200, 255, 0.08);
-            font-size: 10px;
-            color: rgba(120, 160, 190, 0.6);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.5px;
-        }
-        #status .dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #00e5ff;
-            animation: pulse-dot 2s infinite;
-            box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 0.2;
-                transform: scale(0.7);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.3);
-            }
+        .nav-divider {
+            width: 1px;
+            height: 18px;
+            background: var(--border-glass);
         }
 
-        #top-right {
+        .nav-search {
+            background: rgba(60, 90, 140, 0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-pill);
+            padding: 5px 16px;
             display: flex;
             align-items: center;
             gap: 10px;
-            pointer-events: all;
-            flex-wrap: wrap;
+            color: var(--text-muted);
+            font-size: 0.55rem;
+            transition: var(--transition);
+            min-width: 220px;
+            flex: 1;
+            max-width: 400px;
         }
 
-        /* ===== LANGUAGE TOGGLE ===== */
-        #lang-toggle {
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 200, 255, 0.08);
-            border-radius: 30px;
-            padding: 4px 8px;
-            display: flex;
-            gap: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 11px;
+        .nav-search:focus-within {
+            border-color: rgba(74, 122, 255, 0.15);
+            background: rgba(60, 90, 140, 0.06);
         }
-        #lang-toggle:hover {
-            border-color: rgba(0, 200, 255, 0.2);
+
+        .nav-search i {
+            font-size: 0.5rem;
+            color: var(--text-muted);
         }
-        #lang-toggle .lang-btn {
-            padding: 4px 12px;
-            border-radius: 20px;
+
+        .nav-search input {
+            background: transparent;
             border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 11px;
-            font-weight: 500;
-        }
-        #lang-toggle .lang-btn.active {
-            background: rgba(0, 200, 255, 0.15);
-            color: var(--accent);
-        }
-        #lang-toggle .lang-btn:hover {
-            color: #fff;
-        }
-
-        /* ===== HAMBURGER MENU ===== */
-        #hamburger {
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 200, 255, 0.08);
-            border-radius: 30px;
-            padding: 8px 14px;
-            cursor: pointer;
-            transition: var(--transition);
-            pointer-events: all;
-            font-size: 18px;
             color: var(--text-primary);
-            line-height: 1;
-        }
-        #hamburger:hover {
-            border-color: rgba(0, 200, 255, 0.2);
-            background: rgba(0, 200, 255, 0.05);
-        }
-
-        /* ==============================================
-               SIDEBAR
-            ============================================== */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            right: -420px;
-            width: 400px;
-            max-width: 90vw;
-            height: 100vh;
-            background: var(--bg-glass);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-left: 1px solid rgba(0, 200, 255, 0.06);
-            padding: 24px 20px;
-            z-index: 50;
-            transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            overflow-y: auto;
-            pointer-events: all;
-        }
-        #sidebar.open {
-            right: 0;
+            outline: none;
+            font-size: 0.55rem;
+            font-family: inherit;
+            flex: 1;
+            width: 100%;
         }
 
-        #sidebar::-webkit-scrollbar {
-            width: 3px;
-        }
-        #sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        #sidebar::-webkit-scrollbar-thumb {
-            background: rgba(0, 200, 255, 0.2);
-            border-radius: 10px;
+        .nav-search input::placeholder {
+            color: var(--text-muted);
         }
 
-        #sidebar-close {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .nav-search .search-shortcut {
+            font-size: 0.4rem;
+            color: var(--text-muted);
+            background: rgba(60, 90, 140, 0.04);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border-glass);
+            font-weight: 400;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============================================================
+           PROFILE HEADER
+           ============================================================ */
+        #profile-header {
+            background: rgba(10, 16, 28, 0.25);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 28px;
+            flex-shrink: 0;
+        }
+
+        .profile-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .profile-avatar {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            border: 2px solid rgba(74, 122, 255, 0.08);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(74, 122, 255, 0.04);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-avatar .avatar-fallback {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            font-size: 16px;
-        }
-        #sidebar-close:hover {
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-        }
-
-        #sidebar .sidebar-title {
-            font-size: 18px;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        #sidebar .sidebar-title span {
-            background: linear-gradient(145deg, #4FD1C5, #6BE7C8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-accent);
+            background: linear-gradient(135deg, rgba(74, 122, 255, 0.06), rgba(139, 92, 246, 0.06));
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .category-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: var(--radius);
-            padding: 12px 14px;
-            cursor: pointer;
-            transition: var(--transition);
-            pointer-events: all;
-        }
-        .category-item:hover {
-            background: rgba(107, 231, 200, 0.04);
-            border-color: rgba(107, 231, 200, 0.08);
-            transform: translateY(-1px);
-        }
-        .category-item .cat-icon {
-            font-size: 18px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .category-item .cat-name {
-            font-size: 12px;
-            font-weight: 500;
+        .profile-name {
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--text-primary);
         }
-        .category-item .cat-desc {
-            font-size: 9px;
+
+        .profile-id {
+            font-size: 0.5rem;
             color: var(--text-secondary);
-            opacity: 0.6;
-            margin-top: 2px;
-        }
-        .category-item .cat-badge {
-            font-size: 8px;
-            background: rgba(107, 231, 200, 0.08);
-            color: var(--accent);
-            padding: 1px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 4px;
+            font-weight: 500;
         }
 
-        /* ===== REGION LABEL ===== */
-        #region-label {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 10px 28px;
-            border-radius: 40px;
-            border: 1px solid rgba(0, 200, 255, 0.1);
-            font-size: 14px;
-            font-weight: 400;
-            color: #c8e4ff;
-            letter-spacing: 0.3px;
-            pointer-events: none;
-            z-index: 10;
-            text-align: center;
-            min-width: 100px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-            max-width: 90%;
-        }
-        #region-label .sub {
-            font-size: 9px;
-            opacity: 0.4;
-            font-weight: 300;
-            display: block;
-            margin-top: 2px;
-            letter-spacing: 1px;
-        }
-        #region-label .hormone-indicator {
-            font-size: 10px;
-            opacity: 0.7;
-            display: block;
-            margin-top: 4px;
-            color: #00e5ff;
-            letter-spacing: 2px;
+        .profile-status {
+            font-size: 0.45rem;
+            color: var(--green);
+            background: rgba(52, 211, 153, 0.06);
+            padding: 2px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(52, 211, 153, 0.06);
         }
 
-        /* ===== INFO BOTTOM ===== */
-        #info {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 6px 16px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 200, 255, 0.05);
-            font-size: 10px;
-            color: rgba(150, 180, 210, 0.4);
-            text-align: center;
-            pointer-events: none;
-            z-index: 10;
-            white-space: nowrap;
-            max-width: 90%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            letter-spacing: 0.5px;
-        }
-        #info strong {
-            color: rgba(0, 229, 255, 0.4);
-            font-weight: 400;
-        }
-
-        /* ===== HORMONE PANEL ===== */
-        #hormone-panel {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 10px 10px;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 200, 255, 0.06);
-            pointer-events: none;
-            z-index: 10;
-            min-width: 80px;
-            max-height: 60vh;
-            overflow: hidden;
-        }
-        #hormone-panel .title {
-            font-size: 7px;
-            color: rgba(120, 160, 190, 0.3);
-            text-align: center;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-            font-weight: 300;
-        }
-        .hormone-item {
+        .profile-stats {
             display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 3px;
-            padding: 1px 0;
-        }
-        .hormone-item .color-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        .hormone-item .name {
-            font-size: 7px;
-            color: rgba(180, 200, 220, 0.5);
-            flex: 1;
-            letter-spacing: 0.3px;
-            min-width: 30px;
-        }
-        .hormone-item .bar-bg {
-            width: 30px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-        .hormone-item .bar-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
-            width: 50%;
-        }
-        .hormone-item .value {
-            font-size: 6px;
-            color: rgba(120, 160, 190, 0.3);
-            width: 14px;
-            text-align: right;
-            font-family: monospace;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        /* ===== SWIN CYCLE ===== */
-        #swin-cycle {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 10px 10px;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 200, 255, 0.04);
-            pointer-events: none;
-            z-index: 10;
-            min-width: 60px;
-        }
-        #swin-cycle .title {
-            font-size: 6px;
-            color: rgba(120, 160, 190, 0.25);
-            text-align: center;
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-            font-weight: 300;
-        }
-        .cycle-step {
+        .profile-stat {
+            background: rgba(16, 28, 48, 0.04);
+            padding: 3px 12px;
+            border-radius: var(--radius-pill);
             display: flex;
             align-items: center;
             gap: 4px;
-            padding: 1px 0;
-            font-size: 7px;
-            color: rgba(180, 200, 220, 0.2);
-            transition: all 0.5s ease;
-        }
-        .cycle-step.active {
-            color: rgba(0, 229, 255, 0.7);
-        }
-        .cycle-step .step-num {
-            font-size: 6px;
-            font-weight: 700;
-            opacity: 0.2;
-            width: 10px;
-        }
-        .cycle-step.active .step-num {
-            opacity: 0.7;
-            color: #00e5ff;
-        }
-        .cycle-step .step-name {
-            font-size: 6px;
-            letter-spacing: 0.5px;
+            font-size: 0.4rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-glass);
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            #hormone-panel {
-                right: 6px;
-                padding: 6px 6px;
-                min-width: 50px;
-                transform: translateY(-50%) scale(0.7);
-                transform-origin: right center;
-                max-height: 50vh;
+        .profile-stat .num {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .profile-stat .num.confirmed {
+            color: var(--green);
+        }
+        .profile-stat .num.review {
+            color: var(--amber);
+        }
+        .profile-stat .num.contradiction {
+            color: var(--red);
+        }
+
+        /* ============================================================
+           INSIGHTS
+           ============================================================ */
+        #insights {
+            background: rgba(10, 16, 28, 0.25);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            flex-shrink: 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .insight-item {
+            background: rgba(16, 28, 48, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            border: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .insight-item:hover {
+            background: rgba(16, 28, 48, 0.08);
+        }
+
+        .insight-item .insight-label {
+            font-size: 0.4rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .insight-item .insight-value {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2px;
+        }
+
+        .insight-item .insight-sub {
+            font-size: 0.35rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .insight-item .insight-tag {
+            font-size: 0.35rem;
+            padding: 1px 8px;
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            margin-top: 3px;
+        }
+
+        .insight-tag.strong {
+            background: rgba(52, 211, 153, 0.06);
+            color: var(--green);
+        }
+        .insight-tag.challenge {
+            background: rgba(245, 158, 11, 0.06);
+            color: var(--amber);
+        }
+        .insight-tag.contradiction {
+            background: rgba(239, 68, 68, 0.06);
+            color: var(--red);
+        }
+        .insight-tag.missing {
+            background: rgba(100, 100, 140, 0.06);
+            color: var(--text-muted);
+        }
+        .insight-tag.suggestion {
+            background: rgba(74, 122, 255, 0.06);
+            color: var(--text-accent);
+        }
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        #main-content {
+            flex: 1;
+            padding: 16px 28px 28px 28px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            align-content: start;
+        }
+
+        .section-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================
+           GLASS CARDS
+           ============================================================ */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            transition: var(--transition);
+        }
+
+        .glass:hover {
+            background: var(--bg-card);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 0.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title .badge {
+            font-size: 0.35rem;
+            padding: 1px 8px;
+            border-radius: var(--radius-pill);
+            background: rgba(60, 90, 140, 0.04);
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ============================================================
+           DIMENSION CARDS
+           ============================================================ */
+        .dim-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .dim-card {
+            background: rgba(16, 28, 48, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            border-right: 2px solid rgba(74, 122, 255, 0.06);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dim-card:hover {
+            background: rgba(16, 28, 48, 0.08);
+            transform: translateX(-2px);
+        }
+
+        .dim-card .dc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dim-card .dc-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .dim-card .dc-conf {
+            font-size: 0.45rem;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: var(--radius-pill);
+        }
+
+        .dim-card .dc-conf.high {
+            background: rgba(52, 211, 153, 0.06);
+            color: var(--green);
+        }
+        .dim-card .dc-conf.medium {
+            background: rgba(245, 158, 11, 0.06);
+            color: var(--amber);
+        }
+        .dim-card .dc-conf.low {
+            background: rgba(100, 100, 140, 0.06);
+            color: var(--text-muted);
+        }
+        .dim-card .dc-conf.contradiction {
+            background: rgba(239, 68, 68, 0.06);
+            color: var(--red);
+        }
+
+        .dim-card .dc-meta {
+            display: flex;
+            gap: 6px;
+            font-size: 0.35rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+
+        .dim-card .dc-summary {
+            font-size: 0.45rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            line-height: 1.5;
+            padding: 4px 6px;
+            background: rgba(16, 28, 48, 0.02);
+            border-radius: 4px;
+            border-right: 2px solid rgba(74, 122, 255, 0.04);
+        }
+
+        .dim-card .dc-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(60, 90, 140, 0.04);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .dim-card .dc-bar .dc-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        /* ============================================================
+           DETAIL EXPAND
+           ============================================================ */
+        .dim-card .dc-detail {
+            display: none;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid var(--border-glass);
+            font-size: 0.45rem;
+            color: var(--text-secondary);
+        }
+
+        .dim-card .dc-detail.open {
+            display: block;
+        }
+
+        .dc-detail .dd-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(60, 90, 140, 0.02);
+        }
+
+        .dc-detail .dd-row .dd-label {
+            color: var(--text-muted);
+        }
+        .dc-detail .dd-row .dd-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .dc-detail .dd-evidence {
+            margin-top: 4px;
+            padding: 4px 8px;
+            background: rgba(74, 122, 255, 0.04);
+            border-radius: 4px;
+            font-size: 0.4rem;
+            color: var(--text-secondary);
+            border-right: 2px solid rgba(74, 122, 255, 0.06);
+        }
+
+        .dc-detail .dd-counter {
+            margin-top: 4px;
+            padding: 4px 8px;
+            background: rgba(239, 68, 68, 0.04);
+            border-radius: 4px;
+            font-size: 0.4rem;
+            color: var(--red);
+            border-right: 2px solid rgba(239, 68, 68, 0.06);
+        }
+
+        .dc-detail .dd-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .dc-detail .dd-chips .chip {
+            font-size: 0.35rem;
+            padding: 2px 8px;
+            border-radius: var(--radius-pill);
+            background: rgba(74, 122, 255, 0.04);
+            border: 1px solid rgba(74, 122, 255, 0.04);
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           SUMMARY
+           ============================================================ */
+        .summary-text {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding: 2px 0;
+        }
+
+        .summary-text strong {
+            color: var(--text-primary);
+        }
+
+        .summary-text .highlight {
+            color: var(--text-accent);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1200px) {
+            .insights-grid {
+                grid-template-columns: 1fr 1fr 1fr;
             }
-            #swin-cycle {
-                left: 6px;
-                padding: 6px 6px;
-                transform: translateY(-50%) scale(0.7);
-                transform-origin: left center;
-                min-width: 40px;
+            .dim-grid {
+                grid-template-columns: 1fr 1fr;
             }
-            #region-label {
-                font-size: 11px;
-                padding: 6px 14px;
-                bottom: 50px;
-                min-width: 60px;
+        }
+
+        @media (max-width: 900px) {
+            #main-content {
+                grid-template-columns: 1fr;
+                padding: 12px 16px;
             }
-            #region-label .sub {
-                font-size: 7px;
+            .section-full {
+                grid-column: 1;
             }
-            #region-label .hormone-indicator {
-                font-size: 8px;
+            .insights-grid {
+                grid-template-columns: 1fr 1fr;
             }
-            #info {
-                font-size: 8px;
-                padding: 4px 10px;
-                bottom: 12px;
-                white-space: normal;
-                max-width: 85%;
+            .dim-grid {
+                grid-template-columns: 1fr 1fr;
             }
-            #top-bar {
-                top: 10px;
-                left: 10px;
-                right: 10px;
+            #topnav {
+                padding: 8px 16px;
+                flex-wrap: wrap;
                 gap: 8px;
             }
-            #logo-container .logo-text {
-                font-size: 14px;
+            .nav-search {
+                min-width: 150px;
+                max-width: 100%;
+                order: 3;
+                flex: 1 1 100%;
             }
-            #logo-container .logo-img {
-                width: 28px;
-                height: 28px;
+            #profile-header {
+                padding: 10px 16px;
             }
-            #status {
-                font-size: 8px;
-                padding: 4px 10px;
+            #insights {
+                padding: 10px 16px;
             }
-            #sidebar {
-                width: 100%;
-                right: -100%;
-                padding: 16px;
-            }
-            .category-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
-            }
-            .category-item {
-                padding: 8px 10px;
-            }
-            .category-item .cat-name {
-                font-size: 10px;
-            }
-            #lang-toggle .lang-btn {
-                font-size: 9px;
-                padding: 2px 8px;
-            }
-            #hamburger {
-                padding: 6px 10px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #logo-container .logo-text small {
-                display: none;
-            }
-            #top-right {
+            .profile-stats {
                 gap: 4px;
             }
-            #status {
-                display: none;
+            .profile-stat {
+                font-size: 0.35rem;
+                padding: 2px 8px;
             }
         }
 
-        /* ===== OVERLAY ===== */
-        #sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        #sidebar-overlay.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        canvas {
-            display: block;
-            width: 100vw;
-            height: 100vh;
+        @media (max-width: 600px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+            .dim-grid {
+                grid-template-columns: 1fr;
+            }
+            #main-content {
+                padding: 8px 10px;
+            }
+            #topnav {
+                padding: 6px 10px;
+            }
+            #profile-header {
+                padding: 8px 10px;
+            }
+            #insights {
+                padding: 8px 10px;
+            }
+            .profile-left {
+                gap: 10px;
+            }
+            .profile-avatar {
+                width: 40px;
+                height: 40px;
+            }
+            .profile-name {
+                font-size: 0.85rem;
+            }
+            .glass {
+                padding: 8px 10px;
+            }
+            .dim-card {
+                padding: 6px 8px;
+            }
+            .dim-card .dc-summary {
+                font-size: 0.4rem;
+            }
+            .nav-search {
+                min-width: 100%;
+            }
+            .nav-search .search-shortcut {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================================================================
-    LOADING
-    ================================================================ -->
-    <div id="loading">
-        <div style="font-size:40px;margin-bottom:16px;">🧠</div>
-        <div class="spinner"></div>
-        <p>بارگذاری مغز دیجیتال</p>
-    </div>
+    <div id="app">
 
-    <!-- ================================================================
-    SIDEBAR OVERLAY
-    ================================================================ -->
-    <div id="sidebar-overlay"></div>
-
-    <!-- ================================================================
-    SIDEBAR
-    ================================================================ -->
-    <div id="sidebar">
-        <button id="sidebar-close"><i class="fas fa-times"></i></button>
-        <div class="sidebar-title">
-            <span>🧠 دسته‌بندی‌ها</span>
-        </div>
-        <div class="category-grid" id="categoryGrid">
-            <!-- توسط JS پر می‌شود -->
-        </div>
-        <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.03);">
-            <div style="font-size:10px;color:var(--text-secondary);opacity:0.4;text-align:center;">
-                PROJECT 721 · نسخه ۲.۰
+        <!-- ============================================================
+        TOP NAV — با جستجو
+        ============================================================ -->
+        <header id="topnav">
+            <div class="nav-left">
+                <img class="logo" src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" alt="PROJECT 721" />
+                <span class="nav-brand">PROJECT 721<span class="nav-brand-plus">+</span></span>
+                <span class="nav-divider"></span>
+                <span class="nav-person">MR721AS · عباس</span>
             </div>
-        </div>
-    </div>
 
-    <!-- ================================================================
-    UI OVERLAY
-    ================================================================ -->
-    <div id="ui-overlay">
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="جستجو در مشاهدات، الگوها، ابعاد..." />
+                <span class="search-shortcut">⌘K</span>
+            </div>
 
-        <!-- TOP BAR -->
-        <div id="top-bar">
-            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                <!-- LOGO -->
-                <div id="logo-container">
-                    <img class="logo-img" id="logoImage"
-                    src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png"
-                    alt="PROJECT 721 Logo"
-                    onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
-                    <div id="logoFallback" style="display:none;align-items:center;gap:6px;">
-                        <span style="font-size:28px;">🧠</span>
-                        <div>
-                            <span class="logo-text">721</span>
-                            <small style="display:block;font-size:8px;color:var(--text-secondary);opacity:0.4;">cognitive</small>
-                        </div>
+            <div class="nav-right"></div>
+        </header>
+
+        <!-- ============================================================
+        PROFILE HEADER
+        ============================================================ -->
+        <div id="profile-header">
+            <div class="profile-top">
+                <div class="profile-left">
+                    <div class="profile-avatar">
+                        <img src="https://uploadkon.ir/uploads/8edd12_26photo-2026-06-11-21-44-46.png" alt="عباس" />
                     </div>
                     <div>
-                        <span class="logo-text">721</span>
-                        <small>سیستم تحلیل شناختی</small>
+                        <div class="profile-name">عباس</div>
+                        <div class="profile-id">MR721AS · آخرین بروزرسانی: ۱۴۰۵-۰۴-۱۲</div>
                     </div>
+                    <span class="profile-status"><i class="fas fa-circle" style="font-size:0.3rem;"></i> مبتنی بر شواهد</span>
                 </div>
+                <div class="profile-stats" id="profileStats">
+                    <!-- توسط JS پر می‌شود -->
+                </div>
+            </div>
+        </div>
 
-                <div id="status">
-                    <span class="dot"></span>
-                    <span>SWIN · ۴۰+ ناحیه · ۱۴+ هورمون</span>
+        <!-- ============================================================
+        INSIGHTS
+        ============================================================ -->
+        <div id="insights">
+            <div class="insights-grid" id="insightsGrid">
+                <!-- توسط JS پر می‌شود -->
+            </div>
+        </div>
+
+        <!-- ============================================================
+        MAIN CONTENT
+        ============================================================ -->
+        <div id="main-content">
+
+            <!-- ==========================================================
+            DIMENSIONS
+            ========================================================== -->
+            <div class="glass section-full">
+                <div class="card-header">
+                    <span class="card-title"><i class="fas fa-brain"></i> ابعاد شخصیت</span>
+                    <span class="badge" id="dimCount">۰ بعد</span>
+                </div>
+                <div class="dim-grid" id="dimGrid">
+                    <!-- توسط JS پر می‌شود -->
                 </div>
             </div>
 
-            <div id="top-right">
-                <div id="lang-toggle">
-                    <button class="lang-btn active" data-lang="fa">فا</button>
-                    <button class="lang-btn" data-lang="en">En</button>
+            <!-- ==========================================================
+            SUMMARY
+            ========================================================== -->
+            <div class="glass section-full">
+                <div class="card-header">
+                    <span class="card-title"><i class="fas fa-file-lines"></i> خلاصه تحلیل</span>
+                    <span class="badge">بر اساس شواهد</span>
                 </div>
-                <button id="hamburger"><i class="fas fa-bars"></i></button>
+                <div class="summary-text" id="summaryText">
+                    <!-- توسط JS پر می‌شود -->
+                </div>
             </div>
+
         </div>
 
-        <!-- REGION LABEL -->
-        <div id="region-label">
-            ✦ قشر پیشانی
-            <span class="sub">لوب پیشانی · چپ · مدیریت</span>
-            <span class="hormone-indicator">⬆ دوپامین ۶.۲ · ⬇ کورتیزول ۳.۱</span>
-        </div>
-
-        <!-- INFO -->
-        <div id="info"><strong>⚡ PROJECT 721</strong> · سیستم تحلیل شناختی · غیرپزشکی</div>
-
-        <!-- HORMONE PANEL -->
-        <div id="hormone-panel">
-            <div class="title">🧬 هورمون‌ها</div>
-            <div id="hormone-list"></div>
-        </div>
-
-        <!-- SWIN CYCLE -->
-        <div id="swin-cycle">
-            <div class="title">🔄 چرخه</div>
-            <div class="cycle-step active" data-step="0">
-                <span class="step-num">۱</span>
-                <span class="step-name">حس نیاز</span>
-            </div>
-            <div class="cycle-step" data-step="1">
-                <span class="step-num">۲</span>
-                <span class="step-name">تشخیص نوع</span>
-            </div>
-            <div class="cycle-step" data-step="2">
-                <span class="step-num">۳</span>
-                <span class="step-name">برآورد میزان</span>
-            </div>
-            <div class="cycle-step" data-step="3">
-                <span class="step-num">۴</span>
-                <span class="step-name">انتخاب پاسخ</span>
-            </div>
-            <div class="cycle-step" data-step="4">
-                <span class="step-num">۵</span>
-                <span class="step-name">اجرای آگاهانه</span>
-            </div>
-            <div class="cycle-step" data-step="5">
-                <span class="step-num">۶</span>
-                <span class="step-name">حس سیری</span>
-            </div>
-            <div class="cycle-step" data-step="6">
-                <span class="step-num">۷</span>
-                <span class="step-name">بازگشت به تعادل</span>
-            </div>
-        </div>
     </div>
 
-    <!-- ================================================================
-    THREE.JS IMPORT MAP
-    ================================================================ -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
+    <script>
+        /**
+         * ============================================================
+         * PROJECT 721+ — Data-Driven Behavior Analysis Dashboard
+         * ============================================================
+         * 
+         * تمام داده‌ها در این آرایه مرکزی قرار دارند.
+         * هر تغییری در این آرایه، کل سیستم را به‌روز می‌کند.
+         * هیچ عدد ساختگی وجود ندارد.
+         * ============================================================
+         */
 
-    <!-- ================================================================
-    MAIN SCRIPT
-    ================================================================ -->
-    <script type="module">
-        // ================================================================
-        // ================================================================
-        // ================================================================
-        // 📊 بخش ۱: داده‌های قابل ویرایش
-        // ================================================================
-        // ================================================================
-        // ================================================================
+        // ============================================================
+        // DATA — تنها جایی که داده‌ها ذخیره می‌شوند
+        // ============================================================
 
-        // --------------------------------
-        // ۱.۱. هورمون‌ها (مقادیر را اینجا تغییر دهید)
-        // --------------------------------
-        const HORMONES = [
-            { id: 'dopamine', nameFa: 'دوپامین', nameEn: 'Dopamine', color: '#ff6b35', value: 5.2 },
-            { id: 'serotonin', nameFa: 'سروتونین', nameEn: 'Serotonin', color: '#4ecdc4', value: 6.8 },
-            { id: 'cortisol', nameFa: 'کورتیزول', nameEn: 'Cortisol', color: '#ff4757', value: 3.5 },
-            { id: 'endorphin', nameFa: 'اندورفین', nameEn: 'Endorphin', color: '#ff6b81', value: 4.8 },
-            { id: 'oxytocin', nameFa: 'اکسی‌توسین', nameEn: 'Oxytocin', color: '#ff9ff3', value: 5.5 },
-            { id: 'norepinephrine', nameFa: 'نوراپی‌نفرین', nameEn: 'Norepinephrine', color: '#feca57', value: 4.2 },
-            { id: 'gaba', nameFa: 'گابا', nameEn: 'GABA', color: '#54a0ff', value: 6.0 },
-            { id: 'glutamate', nameFa: 'گلوتامات', nameEn: 'Glutamate', color: '#5f27cd', value: 5.0 },
-            { id: 'testosterone', nameFa: 'تستوسترون', nameEn: 'Testosterone', color: '#ff6348', value: 4.5 },
-            { id: 'melatonin', nameFa: 'ملاتونین', nameEn: 'Melatonin', color: '#2e86de', value: 3.8 },
-            { id: 'ghrelin', nameFa: 'گرلین', nameEn: 'Ghrelin', color: '#e67e22', value: 5.8 },
-            { id: 'leptin', nameFa: 'لپتین', nameEn: 'Leptin', color: '#27ae60', value: 4.2 },
-        ];
-
-        // --------------------------------
-        // ۱.۲. داده‌های MBTI (مقادیر را اینجا تغییر دهید)
-        // --------------------------------
-        const MBTI_DATA = {
-            type: 'ISTJ',
-            title: 'The Logistician',
-            dimensions: {
-                introversion: 97, // درون‌گرایی
-                extraversion: 30, // برون‌گرایی
-                sensing: 87, // حسی
-                intuition: 13, // شهودی
-                thinking: 92, // منطقی
-                feeling: 8, // احساسی
-                judging: 100, // قضاوتی
-                perceiving: 0, // ادراکی
+        const DATA = {
+            person: {
+                id: 'MR721AS',
+                name: 'عباس',
+                created: '۱۴۰۵-۰۴-۱۰',
+                updated: '۱۴۰۵-۰۴-۱۲'
             },
-            strengths: ['منطقی', 'وفادار', 'قابل اعتماد', 'منظم', 'سخت‌کوش', 'مسئولیت‌پذیر'],
-            weaknesses: ['مقاوم در برابر تغییر', 'کم‌انعطاف', 'بی‌توجهی به احساسات', 'سخت‌گیر'],
-            suitableCareers: ['حسابداری', 'حقوقی', 'مدیریت', 'برنامه‌نویسی', 'تحلیل‌گری', 'پلیس', 'داروسازی'],
-        };
 
-        // --------------------------------
-        // ۱.۳. شاخص‌های اضافی (مقادیر را اینجا تغییر دهید)
-        // --------------------------------
-        const EXTRA_INDEXES = [
-            { name: 'اعتماد به نفس', category: 'Personality', value: 78 },
-            { name: 'همدلی', category: 'Emotion', value: 45 },
-            { name: 'مدیریت زمان', category: 'Behavior', value: 92 },
-            { name: 'تحمل استرس', category: 'Stress', value: 65 },
-            { name: 'کیفیت خواب', category: 'Sleep', value: 55 },
-            { name: 'تعاملات اجتماعی', category: 'Social', value: 30 },
-            { name: 'انگیزه پیشرفت', category: 'Motivation', value: 88 },
-            { name: 'خودکنترلی', category: 'Self Control', value: 85 },
-            { name: 'وفاداری', category: 'Relationship', value: 95 },
-            { name: 'تصمیم‌گیری منطقی', category: 'Decision Making', value: 90 },
-            { name: 'ارتباط موثر', category: 'Communication', value: 42 },
-            { name: 'خلاقیت', category: 'Cognition', value: 35 },
-        ];
+            // ===== مشاهدات =====
+            observations: [
+                { id: 'OBS-001', date: '۱۴۰۵-۰۴-১০', dimension: 'استرس', desc: 'تا پایان شب پاسخی دریافت نشد.',
+                    evidence: true },
+                { id: 'OBS-002', date: '۱۴۰۵-۰۴-۱۱', dimension: 'ارتباط', desc: 'تماس ۵ دقیقه‌ای', evidence: true },
+                { id: 'OBS-003', date: '۱۴۰۵-۰۴-۱۲', dimension: 'ارزش‌ها', desc: 'گفت: "قول می‌دم" و انجام داد',
+                    evidence: true },
+                { id: 'OBS-004', date: '۱۴۰۵-۰۴-۱۲', dimension: 'ارتباط', desc: 'شروع گفتگو نکرد', evidence: true },
+                { id: 'OBS-005', date: '۱۴۰۵-۰۴-۱۳', dimension: 'استرس', desc: 'تماس پاسخ داده نشد', evidence: true },
+                { id: 'OBS-006', date: '۱۴۰۵-۰۴-۱۳', dimension: 'هیجان', desc: 'ابراز خوشحالی کرد', evidence: true },
+                { id: 'OBS-007', date: '۱۴۰۵-۰۴-۱۴', dimension: 'تصمیم‌گیری', desc: 'سریع تصمیم گرفت', evidence: true },
+                { id: 'OBS-008', date: '۱۴۰۵-۰۴-۱۴', dimension: 'نزدیکی', desc: 'خودش برنامه دیدار ریخت', evidence: true },
+                { id: 'OBS-009', date: '۱۴۰۵-۰۴-۱۵', dimension: 'هیجان', desc: 'لبخند زد و خوشحال شد', evidence: true },
+                { id: 'OBS-010', date: '۱۴۰۵-۰۴-۱۵', dimension: 'استرس', desc: 'سکوت کرد و فاصله گرفت', evidence: true },
+                { id: 'OBS-011', date: '۱۴۰۵-۰۴-۱۶', dimension: 'ارتباط', desc: 'پاسخ کوتاه داد', evidence: true },
+                { id: 'OBS-012', date: '۱۴۰۵-۰۴-۱۶', dimension: 'سبک زندگی', desc: 'دیروقت پیام داد', evidence: true },
+                { id: 'OBS-013', date: '۱۴۰۵-۰۴-۱۷', dimension: 'تصمیم‌گیری', desc: 'منطقی تصمیم گرفت', evidence: true },
+                { id: 'OBS-014', date: '۱۴۰۵-۰۴-۱۷', dimension: 'ارتباط', desc: 'تماس گرفت و شروع کرد', evidence: true },
+                { id: 'OBS-015', date: '۱۴۰۵-۰۴-۱۸', dimension: 'قابلیت اتکا', desc: 'قولش را انجام داد', evidence: true },
+                { id: 'OBS-016', date: '۱۴۰۵-۰۴-۱۸', dimension: 'نزدیکی', desc: 'خودش پیام داد', evidence: true },
+                { id: 'OBS-017', date: '۱۴۰۵-۰۴-۱۹', dimension: 'تعارض', desc: 'در بحث شوخی کرد', evidence: false },
+                { id: 'OBS-018', date: '۱۴۰۵-۰۴-۱۹', dimension: 'سبک زندگی', desc: 'آخر هفته فعال بود', evidence: true },
+                { id: 'OBS-019', date: '۱۴۰۵-۰۴-۲۰', dimension: 'ارزش‌ها', desc: 'احترام گذاشت', evidence: true },
+                { id: 'OBS-020', date: '۱۴۰۵-۰۴-۲۰', dimension: 'ارتباط', desc: 'پاسخ سریع داد', evidence: true },
+                { id: 'OBS-021', date: '۱۴۰۵-۰۴-۲۱', dimension: 'قابلیت اتکا', desc: 'سر قرار آمد', evidence: true },
+                { id: 'OBS-022', date: '۱۴۰۵-۰۴-۲۱', dimension: 'انگیزه', desc: 'از موضوع کار انرژی گرفت',
+                    evidence: true },
+                { id: 'OBS-023', date: '۱۴۰۵-۰۴-۲۲', dimension: 'قابلیت اتکا', desc: 'قول را به موقع انجام داد',
+                    evidence: true },
+                { id: 'OBS-024', date: '۱۴۰۵-۰۴-۲۲', dimension: 'تعارض', desc: 'در تعارض سکوت کرد', evidence: true },
+                { id: 'OBS-025', date: '۱۴۰۵-۰۴-۲۳', dimension: 'ارتباط', desc: 'خودش تماس گرفت', evidence: true },
+            ],
 
-        // --------------------------------
-        // ۱.۴. دسته‌بندی‌ها (مقادیر را اینجا تغییر دهید)
-        // --------------------------------
-        const CATEGORIES = [
-            { id: 'personality', icon: '🧠', nameFa: 'شخصیت', nameEn: 'Personality', descFa: 'MBTI، صفات، تیپ‌شناسی',
-                descEn: 'MBTI, Traits, Typology', badge: 'ISTJ' },
-            { id: 'cognition', icon: '💡', nameFa: 'شناخت', nameEn: 'Cognition', descFa: 'پردازش اطلاعات، تفکر',
-                descEn: 'Information Processing, Thinking', badge: '۹۲%' },
-            { id: 'emotion', icon: '❤️', nameFa: 'هیجان', nameEn: 'Emotion', descFa: 'حالت‌های عاطفی، ابراز',
-                descEn: 'Emotional States, Expression', badge: '۲۵%' },
-            { id: 'behavior', icon: '🎯', nameFa: 'رفتار', nameEn: 'Behavior', descFa: 'الگوهای رفتاری، عادت',
-                descEn: 'Behavioral Patterns, Habits', badge: '۱۰۰%' },
-            { id: 'communication', icon: '🗣️', nameFa: 'ارتباط', nameEn: 'Communication', descFa: 'سبک ارتباطی، گوش دادن',
-                descEn: 'Communication Style, Listening', badge: '۴۲%' },
-            { id: 'stress', icon: '⚡', nameFa: 'استرس', nameEn: 'Stress', descFa: 'سطح استرس، واکنش',
-                descEn: 'Stress Level, Reaction', badge: '۶۵%' },
-            { id: 'sleep', icon: '🌙', nameFa: 'خواب', nameEn: 'Sleep', descFa: 'کیفیت و کمیت خواب',
-                descEn: 'Sleep Quality & Quantity', badge: '۵۵%' },
-            { id: 'social', icon: '👥', nameFa: 'اجتماعی', nameEn: 'Social', descFa: 'تعاملات، شبکه‌سازی',
-                descEn: 'Interactions, Networking', badge: '۳۰%' },
-            { id: 'motivation', icon: '🔥', nameFa: 'انگیزه', nameEn: 'Motivation', descFa: 'پشتکار، تلاش',
-                descEn: 'Persistence, Effort', badge: '۸۸%' },
-            { id: 'self_control', icon: '🧘', nameFa: 'خودکنترلی', nameEn: 'Self Control', descFa: 'انضباط، کنترل تکانه',
-                descEn: 'Discipline, Impulse Control', badge: '۸۵%' },
-            { id: 'relationship', icon: '💞', nameFa: 'دلبستگی', nameEn: 'Relationship', descFa: 'روابط عاطفی، وفاداری',
-                descEn: 'Emotional Relationships, Loyalty', badge: '۹۵%' },
-            { id: 'decision', icon: '⚖️', nameFa: 'تصمیم‌گیری', nameEn: 'Decision Making', descFa: 'سبک تصمیم‌گیری، منطق',
-                descEn: 'Decision Style, Logic', badge: '۹۰%' },
-        ];
+            // ===== الگوها (Patterns) =====
+            patterns: [
+                { id: 'PAT-001', dimension: 'ارتباط', desc: 'پاسخ‌های کوتاه' },
+                { id: 'PAT-002', dimension: 'استرس', desc: 'سکوت در استرس' },
+                { id: 'PAT-003', dimension: 'قابلیت اتکا', desc: 'انجام قول' },
+                { id: 'PAT-004', dimension: 'ارتباط', desc: 'شروع نکردن گفتگو' },
+                { id: 'PAT-005', dimension: 'تصمیم‌گیری', desc: 'تصمیم سریع' },
+                { id: 'PAT-006', dimension: 'نزدیکی', desc: 'برنامه دیدار' },
+                { id: 'PAT-007', dimension: 'ارزش‌ها', desc: 'صداقت' },
+                { id: 'PAT-008', dimension: 'هیجان', desc: 'ابراز خوشحالی' },
+                { id: 'PAT-009', dimension: 'سبک زندگی', desc: 'فعالیت آخر هفته' },
+                { id: 'PAT-010', dimension: 'تعارض', desc: 'سکوت در تعارض' },
+            ],
 
-        // ================================================================
-        // ================================================================
-        // ================================================================
-        // 📊 پایان بخش داده‌های قابل ویرایش
-        // ================================================================
-        // ================================================================
-        // ================================================================
+            // ===== فرضیه‌ها (Hypotheses) =====
+            hypotheses: [
+                { id: 'HYP-001', dimension: 'ارتباط', desc: 'ممکن است در استرس ارتباط کم‌تر شود', status: 'confirmed' },
+                { id: 'HYP-002', dimension: 'قابلیت اتکا', desc: 'معمولاً قول‌هایش را انجام می‌دهد', status: 'confirmed' },
+                { id: 'HYP-003', dimension: 'تعارض', desc: 'در تعارض سکوت می‌کند', status: 'review' },
+                { id: 'HYP-004', dimension: 'انگیزه', desc: 'کار بیشترین انرژی را به او می‌دهد', status: 'confirmed' },
+                { id: 'HYP-005', dimension: 'ارتباط', desc: 'کمتر شروع‌کننده گفتگو است', status: 'confirmed' },
+            ],
 
+            // ===== تناقض‌ها (Contradictions) =====
+            contradictions: [
+                { id: 'CON-001', dimension: 'تعارض', desc: 'در OBS-017 شوخی کرده اما در OBS-024 سکوت کرده' },
+            ],
 
-        // ================================================================
-        // ۲. IMPORTS
-        // ================================================================
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-        import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-
-        // ================================================================
-        // ۳. I18N
-        // ================================================================
-        let currentLang = 'fa';
-        const i18nMap = {
-            'loading': { fa: 'بارگذاری مغز دیجیتال', en: 'Loading Digital Brain' },
-            'status': { fa: 'SWIN · ۴۰+ ناحیه · ۱۴+ هورمون', en: 'SWIN · 40+ Regions · 14+ Hormones' },
-            'info': { fa: 'سیستم تحلیل شناختی · غیرپزشکی', en: 'Cognitive Analysis System · Non-Medical' },
-            'hormones': { fa: '🧬 هورمون‌ها', en: '🧬 Hormones' },
-            'cycle': { fa: '🔄 چرخه', en: '🔄 Cycle' },
-            'cycle1': { fa: 'حس نیاز', en: 'Need Sense' },
-            'cycle2': { fa: 'تشخیص نوع', en: 'Type Detect' },
-            'cycle3': { fa: 'برآورد میزان', en: 'Estimate' },
-            'cycle4': { fa: 'انتخاب پاسخ', en: 'Response Select' },
-            'cycle5': { fa: 'اجرای آگاهانه', en: 'Conscious Execute' },
-            'cycle6': { fa: 'حس سیری', en: 'Satiety Sense' },
-            'cycle7': { fa: 'بازگشت به تعادل', en: 'Balance Return' },
-            'categories': { fa: 'دسته‌بندی‌ها', en: 'Categories' },
-            'sidebar_footer': { fa: 'PROJECT 721 · نسخه ۲.۰', en: 'PROJECT 721 · v2.0' },
-            'region_sub': { fa: 'لوب پیشانی · چپ · مدیریت', en: 'Frontal Lobe · Left · Executive' },
-        };
-
-        function t(key) {
-            return i18nMap[key]?.[currentLang] || i18nMap[key]?.fa || key;
-        }
-
-        function updateLanguage() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.dataset.i18n;
-                el.textContent = t(key);
-            });
-            renderCategories();
-            renderHormones();
-        }
-
-        // ================================================================
-        // ۴. RENDER FUNCTIONS
-        // ================================================================
-
-        function renderCategories() {
-            const container = document.getElementById('categoryGrid');
-            container.innerHTML = CATEGORIES.map(cat => `
-                    <div class="category-item" data-category="${cat.id}">
-                        <span class="cat-icon">${cat.icon}</span>
-                        <div class="cat-name">${currentLang === 'fa' ? cat.nameFa : cat.nameEn}</div>
-                        <div class="cat-desc">${currentLang === 'fa' ? cat.descFa : cat.descEn}</div>
-                        ${cat.badge ? `<span class="cat-badge">${cat.badge}</span>` : ''}
-                    </div>
-                `).join('');
-
-            container.querySelectorAll('.category-item').forEach(el => {
-                el.addEventListener('click', function() {
-                    const catId = this.dataset.category;
-                    if (window.highlightBrainRegions) {
-                        window.highlightBrainRegions(catId);
-                    }
-                    const searchTerm = currentLang === 'fa' ?
-                        CATEGORIES.find(c => c.id === catId)?.nameFa :
-                        CATEGORIES.find(c => c.id === catId)?.nameEn;
-                    document.getElementById('region-label').innerHTML = `
-                            ✦ ${searchTerm || catId}
-                            <span class="sub">${currentLang === 'fa' ? 'فیلتر شده' : 'Filtered'}</span>
-                            <span class="hormone-indicator">🔍 ${currentLang === 'fa' ? 'نمایش مناطق مرتبط' : 'Showing related regions'}</span>
-                        `;
-                    closeSidebar();
-                });
-            });
-        }
-
-        function renderHormones() {
-            const container = document.getElementById('hormone-list');
-            container.innerHTML = '';
-            HORMONES.forEach((h) => {
-                const div = document.createElement('div');
-                div.className = 'hormone-item';
-                const name = currentLang === 'fa' ? h.nameFa : h.nameEn;
-                div.innerHTML = `
-                        <span class="color-dot" style="background:${h.color}"></span>
-                        <span class="name">${name}</span>
-                        <div class="bar-bg">
-                            <div class="bar-fill" style="width:${(h.value / 10) * 100}%;background:${h.color}"></div>
-                        </div>
-                        <span class="value">${h.value.toFixed(1)}</span>
-                    `;
-                container.appendChild(div);
-            });
-        }
-
-        // ================================================================
-        // ۵. SIDEBAR
-        // ================================================================
-        function openSidebar() {
-            document.getElementById('sidebar').classList.add('open');
-            document.getElementById('sidebar-overlay').classList.add('open');
-        }
-
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('sidebar-overlay').classList.remove('open');
-        }
-
-        document.getElementById('hamburger').addEventListener('click', openSidebar);
-        document.getElementById('sidebar-close').addEventListener('click', closeSidebar);
-        document.getElementById('sidebar-overlay').addEventListener('click', closeSidebar);
-
-        // ================================================================
-        // ۶. LANGUAGE TOGGLE
-        // ================================================================
-        document.querySelectorAll('#lang-toggle .lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('#lang-toggle .lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentLang = this.dataset.lang;
-                document.documentElement.dir = currentLang === 'fa' ? 'rtl' : 'ltr';
-                updateLanguage();
-            });
-        });
-
-        // ================================================================
-        // ۷. THREE.JS BRAIN
-        // ================================================================
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x05080f);
-        scene.fog = new THREE.Fog(0x05080f, 12, 25);
-
-        const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 50);
-        camera.position.set(7, 4, 9);
-        camera.lookAt(0, 0.2, 0);
-
-        const renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: false,
-            powerPreference: "high-performance"
-        });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        document.body.prepend(renderer.domElement);
-
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.06;
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 0.4;
-        controls.minDistance = 3;
-        controls.maxDistance = 20;
-        controls.target.set(0, 0.2, 0);
-        controls.update();
-
-        // Lights
-        const ambient = new THREE.AmbientLight(0x1a2a3a, 0.3);
-        scene.add(ambient);
-
-        const keyLight = new THREE.DirectionalLight(0xffeedd, 2.5);
-        keyLight.position.set(5, 10, 8);
-        keyLight.castShadow = true;
-        keyLight.shadow.mapSize.width = 2048;
-        keyLight.shadow.mapSize.height = 2048;
-        scene.add(keyLight);
-
-        const fillLight = new THREE.DirectionalLight(0x4488ff, 0.5);
-        fillLight.position.set(-5, 2, -4);
-        scene.add(fillLight);
-
-        const rimLight = new THREE.DirectionalLight(0x88ddff, 0.6);
-        rimLight.position.set(0, -3, 10);
-        scene.add(rimLight);
-
-        const hemi = new THREE.HemisphereLight(0x445577, 0x1a0a22, 0.4);
-        scene.add(hemi);
-
-        // Particles
-        const particleCount = 1500;
-        const particleGeo = new THREE.BufferGeometry();
-        const particlePos = new Float32Array(particleCount * 3);
-        for (let i = 0; i < particleCount; i++) {
-            particlePos[i * 3] = (Math.random() - 0.5) * 50;
-            particlePos[i * 3 + 1] = (Math.random() - 0.5) * 30;
-            particlePos[i * 3 + 2] = (Math.random() - 0.5) * 50;
-        }
-        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-        const particleMat = new THREE.PointsMaterial({
-            color: 0x4488ff,
-            size: 0.03,
-            transparent: true,
-            opacity: 0.12,
-            blending: THREE.AdditiveBlending,
-            sizeAttenuation: true,
-            depthWrite: false,
-        });
-        const particles = new THREE.Points(particleGeo, particleMat);
-        scene.add(particles);
-
-        // Bloom
-        const composer = new EffectComposer(renderer);
-        const renderPass = new RenderPass(scene, camera);
-        composer.addPass(renderPass);
-        const bloomPass = new UnrealBloomPass(
-            new THREE.Vector2(window.innerWidth, window.innerHeight),
-            0.35, 0.3, 0.08
-        );
-        composer.addPass(bloomPass);
-        composer.addPass(new OutputPass());
-
-        // ================================================================
-        // ۸. BUILD BRAIN
-        // ================================================================
-        const brainGroup = new THREE.Group();
-        scene.add(brainGroup);
-
-        const allRegions = [];
-
-        function createBrainMaterial(color, emissiveColor = null, opacity = 0.7) {
-            const base = new THREE.Color(color);
-            const emissive = emissiveColor ? new THREE.Color(emissiveColor) : new THREE.Color(0x000000);
-            return new THREE.MeshPhysicalMaterial({
-                color: base,
-                metalness: 0.1,
-                roughness: 0.2,
-                clearcoat: 0.5,
-                clearcoatRoughness: 0.15,
-                emissive: emissive,
-                emissiveIntensity: 0.12,
-                transparent: true,
-                opacity: opacity,
-                envMapIntensity: 0.6,
-                side: THREE.DoubleSide,
-                depthWrite: true,
-                ior: 1.4,
-                thickness: 0.3,
-            });
-        }
-
-        function createRegion(geo, color, pos, scale, name, region, hemisphere, emissive = null, opacity = 0.7) {
-            const mat = createBrainMaterial(color, emissive, opacity);
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.position.set(pos.x, pos.y, pos.z);
-            mesh.scale.set(scale.x, scale.y, scale.z);
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-            mesh.userData = {
-                name: name,
-                region: region,
-                hemisphere: hemisphere,
-                id: `region-${name}`,
-                category: 'general',
-            };
-            return mesh;
-        }
-
-        const colorPalette = [
-            0x3a86ff, 0x7b2cbf, 0xff006e, 0xfb5607, 0xffbe0b, 0x00bbf9, 0x9c89b8, 0xf08080,
-            0x7b9e89, 0x6a4c93, 0x1982c4, 0x8ac926, 0xf15bb5, 0x00a6fb, 0xca6702, 0xbb3e03,
-            0x2b2d42, 0x8d99ae, 0xef233c, 0x2d6a4f, 0x40916c, 0x52b788, 0x95d5b2, 0xb7e4c7,
-            0x1b263b, 0x415a77, 0x778da9, 0xe0e1dd, 0x0b525b, 0x7b2cbf, 0x9d4edd, 0xc77dff,
-            0x7209b7, 0x3a0ca3, 0x4361ee, 0x4cc9f0, 0x4895ef, 0x560bad, 0x5e60ce, 0x7400b8
-        ];
-
-        // LOBES
-        const lobeData = [
-            { pos: { x: -1.8, y: 1.2, z: 0.8 }, scale: { x: 1.2, y: 1.0, z: 0.9 }, name: 'L-frontal',
-                region: 'لوب پیشانی', hemi: 'چپ', cat: 'personality' },
-            { pos: { x: 1.8, y: 1.2, z: 0.8 }, scale: { x: 1.2, y: 1.0, z: 0.9 }, name: 'R-frontal',
-                region: 'لوب پیشانی', hemi: 'راست', cat: 'personality' },
-            { pos: { x: -1.6, y: 0.8, z: -0.2 }, scale: { x: 1.0, y: 0.8, z: 0.8 }, name: 'L-parietal',
-                region: 'لوب آهیانه‌ای', hemi: 'چپ', cat: 'cognition' },
-            { pos: { x: 1.6, y: 0.8, z: -0.2 }, scale: { x: 1.0, y: 0.8, z: 0.8 }, name: 'R-parietal',
-                region: 'لوب آهیانه‌ای', hemi: 'راست', cat: 'cognition' },
-            { pos: { x: -2.0, y: -0.2, z: 1.2 }, scale: { x: 0.8, y: 0.7, z: 0.9 }, name: 'L-temporal',
-                region: 'لوب گیجگاهی', hemi: 'چپ', cat: 'emotion' },
-            { pos: { x: 2.0, y: -0.2, z: 1.2 }, scale: { x: 0.8, y: 0.7, z: 0.9 }, name: 'R-temporal',
-                region: 'لوب گیجگاهی', hemi: 'راست', cat: 'emotion' },
-            { pos: { x: -1.4, y: 0.2, z: -1.8 }, scale: { x: 0.9, y: 0.7, z: 0.7 }, name: 'L-occipital',
-                region: 'لوب پس‌سری', hemi: 'چپ', cat: 'cognition' },
-            { pos: { x: 1.4, y: 0.2, z: -1.8 }, scale: { x: 0.9, y: 0.7, z: 0.7 }, name: 'R-occipital',
-                region: 'لوب پس‌سری', hemi: 'راست', cat: 'cognition' },
-        ];
-
-        lobeData.forEach((item, idx) => {
-            const geo = new THREE.SphereGeometry(1, 48, 36);
-            const mesh = createRegion(geo, colorPalette[idx % colorPalette.length], item.pos, item.scale,
-                item.name, item.region, item.hemi, 0x2266ff, 0.7);
-            mesh.userData.category = item.cat;
-            brainGroup.add(mesh);
-            allRegions.push(mesh);
-        });
-
-        // CEREBELLUM
-        const cbData = [
-            { pos: { x: -1.0, y: -1.6, z: -0.6 }, scale: { x: 0.8, y: 0.5, z: 0.6 }, name: 'Cerebellum-L',
-                region: 'مخچه', hemi: 'چپ', cat: 'behavior' },
-            { pos: { x: 1.0, y: -1.6, z: -0.6 }, scale: { x: 0.8, y: 0.5, z: 0.6 }, name: 'Cerebellum-R',
-                region: 'مخچه', hemi: 'راست', cat: 'behavior' }
-        ];
-
-        cbData.forEach((item, idx) => {
-            const geo = new THREE.TorusKnotGeometry(0.7, 0.2, 48, 16);
-            const mesh = createRegion(geo, 0x8ac926, item.pos, item.scale, item.name, item.region, item.hemi,
-                0x44aa44, 0.8);
-            mesh.userData.category = item.cat;
-            brainGroup.add(mesh);
-            allRegions.push(mesh);
-        });
-
-        // BRAINSTEM
-        const stemGeo = new THREE.CylinderGeometry(0.45, 0.65, 1.4, 24);
-        const stemMesh = createRegion(stemGeo, 0x4cc9f0, { x: 0, y: -2.0, z: 0.2 }, { x: 0.7, y: 0.9, z: 0.7 },
-            'Brainstem', 'ساقه مغز', 'میانی', 0x0088ff, 0.85);
-        stemMesh.userData.category = 'stress';
-        brainGroup.add(stemMesh);
-        allRegions.push(stemMesh);
-
-        // DEEP STRUCTURES
-        const deepData = [
-            { pos: { x: -1.2, y: 0.4, z: 1.0 }, scale: { x: 0.45, y: 0.3, z: 0.4 }, name: 'L-insula',
-                region: 'اینسولا', hemi: 'چپ', color: 0xf15bb5, cat: 'emotion' },
-            { pos: { x: 1.2, y: 0.4, z: 1.0 }, scale: { x: 0.45, y: 0.3, z: 0.4 }, name: 'R-insula',
-                region: 'اینسولا', hemi: 'راست', color: 0xf15bb5, cat: 'emotion' },
-            { pos: { x: -0.7, y: 0.8, z: 0.0 }, scale: { x: 0.5, y: 0.2, z: 0.3 }, name: 'L-cingulate',
-                region: 'سینگولیت', hemi: 'چپ', color: 0x9d4edd, cat: 'self_control' },
-            { pos: { x: 0.7, y: 0.8, z: 0.0 }, scale: { x: 0.5, y: 0.2, z: 0.3 }, name: 'R-cingulate',
-                region: 'سینگولیت', hemi: 'راست', color: 0x9d4edd, cat: 'self_control' },
-            { pos: { x: -1.5, y: -0.6, z: 0.7 }, scale: { x: 0.4, y: 0.3, z: 0.5 }, name: 'L-hippocampus',
-                region: 'هیپوکامپ', hemi: 'چپ', color: 0x00bbf9, cat: 'cognition' },
-            { pos: { x: 1.5, y: -0.6, z: 0.7 }, scale: { x: 0.4, y: 0.3, z: 0.5 }, name: 'R-hippocampus',
-                region: 'هیپوکامپ', hemi: 'راست', color: 0x00bbf9, cat: 'cognition' },
-            { pos: { x: -0.5, y: -0.8, z: 0.3 }, scale: { x: 0.3, y: 0.3, z: 0.3 }, name: 'L-amygdala',
-                region: 'آمیگدال', hemi: 'چپ', color: 0xff006e, cat: 'emotion' },
-            { pos: { x: 0.5, y: -0.8, z: 0.3 }, scale: { x: 0.3, y: 0.3, z: 0.3 }, name: 'R-amygdala',
-                region: 'آمیگدال', hemi: 'راست', color: 0xff006e, cat: 'emotion' },
-            { pos: { x: -0.4, y: 0.0, z: 0.0 }, scale: { x: 0.35, y: 0.35, z: 0.35 }, name: 'L-thalamus',
-                region: 'تالاموس', hemi: 'چپ', color: 0x7b2cbf, cat: 'cognition' },
-            { pos: { x: 0.4, y: 0.0, z: 0.0 }, scale: { x: 0.35, y: 0.35, z: 0.35 }, name: 'R-thalamus',
-                region: 'تالاموس', hemi: 'راست', color: 0x7b2cbf, cat: 'cognition' },
-            { pos: { x: -0.25, y: -0.3, z: 0.0 }, scale: { x: 0.3, y: 0.3, z: 0.3 }, name: 'L-hypothalamus',
-                region: 'هیپوتالاموس', hemi: 'چپ', color: 0xca6702, cat: 'stress' },
-            { pos: { x: 0.25, y: -0.3, z: 0.0 }, scale: { x: 0.3, y: 0.3, z: 0.3 }, name: 'R-hypothalamus',
-                region: 'هیپوتالاموس', hemi: 'راست', color: 0xca6702, cat: 'stress' },
-        ];
-
-        deepData.forEach((item) => {
-            let geo;
-            if (item.name.includes('insula')) geo = new THREE.TorusGeometry(0.45, 0.15, 20, 28);
-            else if (item.name.includes('cingulate')) geo = new THREE.BoxGeometry(0.6, 0.25, 0.4);
-            else if (item.name.includes('hippocampus')) geo = new THREE.CylinderGeometry(0.4, 0.3, 0.5, 20);
-            else geo = new THREE.SphereGeometry(0.45, 28, 20);
-
-            const mesh = createRegion(geo, item.color, item.pos, item.scale, item.name, item.region, item.hemi,
-                0x8844ff, 0.7);
-            mesh.userData.category = item.cat;
-            brainGroup.add(mesh);
-            allRegions.push(mesh);
-
-            if (item.name.includes('hippocampus')) {
-                mesh.rotation.x = 0.3;
-                mesh.rotation.z = 0.2;
-            }
-        });
-
-        // FUNCTIONAL AREAS
-        const funcNames = [
-            'L-basal', 'R-basal', 'L-motor', 'R-motor',
-            'L-somatosensory', 'R-somatosensory', 'L-visual', 'R-visual',
-            'L-auditory', 'R-auditory', 'L-wernicke', 'R-wernicke',
-            'L-broca', 'R-broca'
-        ];
-        const funcRegions = [
-            'گره‌های قاعده‌ای', 'گره‌های قاعده‌ای', 'قشر حرکتی', 'قشر حرکتی',
-            'قشر حسی-پیکری', 'قشر حسی-پیکری', 'قشر بینایی', 'قشر بینایی',
-            'قشر شنوایی', 'قشر شنوایی', 'ناحیه ورنیکه', 'ناحیه ورنیکه',
-            'ناحیه بروکا', 'ناحیه بروکا'
-        ];
-        const funcPos = [
-            { x: -0.8, y: -0.15, z: -0.2 }, { x: 0.8, y: -0.15, z: -0.2 },
-            { x: -1.0, y: 0.5, z: -0.4 }, { x: 1.0, y: 0.5, z: -0.4 },
-            { x: -1.2, y: 0.1, z: -0.6 }, { x: 1.2, y: 0.1, z: -0.6 },
-            { x: -0.5, y: -0.4, z: -1.0 }, { x: 0.5, y: -0.4, z: -1.0 },
-            { x: -0.6, y: -0.7, z: -0.2 }, { x: 0.6, y: -0.7, z: -0.2 },
-            { x: -1.3, y: -0.1, z: 0.4 }, { x: 1.3, y: -0.1, z: 0.4 },
-            { x: -0.9, y: 0.7, z: 0.4 }, { x: 0.9, y: 0.7, z: 0.4 }
-        ];
-
-        for (let i = 0; i < funcNames.length; i++) {
-            const name = funcNames[i];
-            const region = funcRegions[i];
-            const pos = funcPos[i];
-            const hemi = name.startsWith('L') ? 'چپ' : 'راست';
-            const color = colorPalette[(i + 16) % colorPalette.length];
-            const geo = new THREE.SphereGeometry(0.35, 24, 18);
-            const mesh = createRegion(geo, color, pos, { x: 0.45, y: 0.4, z: 0.45 }, name, region, hemi,
-                0xaa88ff, 0.7);
-            mesh.userData.category = 'behavior';
-            brainGroup.add(mesh);
-            allRegions.push(mesh);
-        }
-
-        // CONNECTIONS
-        const connectionMat = new THREE.LineBasicMaterial({
-            color: 0x4488ff,
-            transparent: true,
-            opacity: 0.04,
-            blending: THREE.AdditiveBlending,
-        });
-
-        for (let i = 0; i < allRegions.length; i++) {
-            for (let j = i + 1; j < allRegions.length; j += 3) {
-                const p1 = allRegions[i].position;
-                const p2 = allRegions[j].position;
-                const dist = p1.distanceTo(p2);
-                if (dist < 3.0 && dist > 0.5) {
-                    const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-                    mid.x += (Math.random() - 0.5) * 0.3;
-                    mid.y += (Math.random() - 0.5) * 0.3;
-                    mid.z += (Math.random() - 0.5) * 0.3;
-                    const curve = new THREE.QuadraticBezierCurve3(p1.clone(), mid, p2.clone());
-                    const points = curve.getPoints(12);
-                    const geo = new THREE.BufferGeometry().setFromPoints(points);
-                    const line = new THREE.Line(geo, connectionMat);
-                    brainGroup.add(line);
+            // ===== ابعاد (Dimensions) =====
+            dimensions: {
+                'ارتباط': {
+                    name: 'ارتباط',
+                    summary: 'عباس معمولاً پاسخ‌گو است اما آغازکننده گفتگو نیست.'
+                },
+                'هیجان': {
+                    name: 'هیجان',
+                    summary: 'در جمع احساسات کمتری نشان می‌دهد. ابراز خوشحالی متوسط.'
+                },
+                'نزدیکی': {
+                    name: 'نزدیکی',
+                    summary: 'بیشتر پاسخ‌دهنده است تا شروع‌کننده.'
+                },
+                'قابلیت اتکا': {
+                    name: 'قابلیت اتکا',
+                    summary: 'بسیار قابل اعتماد. قول‌هایش را به موقع انجام می‌دهد.'
+                },
+                'سبک زندگی': {
+                    name: 'سبک زندگی',
+                    summary: 'شب‌ها فعال است. آخر هفته‌ها بیشتر ارتباط برقرار می‌کند.'
+                },
+                'تصمیم‌گیری': {
+                    name: 'تصمیم‌گیری',
+                    summary: 'سریع و منطقی تصمیم می‌گیرد.'
+                },
+                'ارزش‌ها': {
+                    name: 'ارزش‌ها',
+                    summary: 'به صداقت، احترام و استقلال اهمیت می‌دهد.'
+                },
+                'استرس': {
+                    name: 'استرس',
+                    summary: 'در شرایط استرس سکوت می‌کند و فاصله می‌گیرد.'
+                },
+                'انگیزه': {
+                    name: 'انگیزه',
+                    summary: 'موضوع کار بیشترین انرژی را به او می‌دهد.'
+                },
+                'تعارض': {
+                    name: 'تعارض',
+                    summary: 'در تعارض معمولاً سکوت می‌کند اما گاهی با شوخی واکنش نشان می‌دهد.'
                 }
             }
-        }
+        };
 
-        // HORMONE PARTICLES
-        const hormoneParticles = [];
-        HORMONES.forEach((hormone, idx) => {
-            const color = new THREE.Color(hormone.color);
-            const count = 15 + Math.floor(Math.random() * 20);
-            for (let i = 0; i < count; i++) {
-                const size = 0.02 + Math.random() * 0.04;
-                const geo = new THREE.SphereGeometry(size, 6, 6);
-                const mat = new THREE.MeshBasicMaterial({
-                    color: color,
-                    transparent: true,
-                    opacity: 0.2 + Math.random() * 0.3,
-                    blending: THREE.AdditiveBlending,
+        // ============================================================
+        // ENGINE — محاسبه‌گرهای داده‌محور
+        // ============================================================
+
+        const Engine = {
+            // ---- آمار کلی ----
+            getStats: function() {
+                const totalObs = DATA.observations.length;
+                const totalPatterns = DATA.patterns.length;
+                const totalHyp = DATA.hypotheses.length;
+                const confirmed = DATA.hypotheses.filter(h => h.status === 'confirmed').length;
+                const review = DATA.hypotheses.filter(h => h.status === 'review').length;
+                const contradictions = DATA.contradictions.length;
+
+                return { totalObs, totalPatterns, totalHyp, confirmed, review, contradictions };
+            },
+
+            // ---- محاسبه ابعاد ----
+            getDimensions: function() {
+                const dims = {};
+                const obs = DATA.observations;
+                const patterns = DATA.patterns;
+                const hyps = DATA.hypotheses;
+                const cons = DATA.contradictions;
+
+                const allDims = Object.keys(DATA.dimensions);
+
+                allDims.forEach(dim => {
+                    const obsCount = obs.filter(o => o.dimension === dim).length;
+                    const evidenceCount = obs.filter(o => o.dimension === dim && o.evidence === true).length;
+                    const patternCount = patterns.filter(p => p.dimension === dim).length;
+                    const contradictionCount = cons.filter(c => c.dimension === dim).length;
+
+                    let confidence = 0;
+                    if (obsCount > 0) {
+                        confidence = Math.round((evidenceCount / obsCount) * 100);
+                    }
+
+                    let status = 'low';
+                    if (confidence >= 70 && contradictionCount === 0) status = 'high';
+                    else if (confidence >= 40 && contradictionCount <= 1) status = 'medium';
+                    else if (contradictionCount > 0) status = 'contradiction';
+
+                    dims[dim] = {
+                        name: DATA.dimensions[dim]?.name || dim,
+                        summary: DATA.dimensions[dim]?.summary || '',
+                        obsCount,
+                        evidenceCount,
+                        patternCount,
+                        contradictionCount,
+                        confidence,
+                        status,
+                        observations: obs.filter(o => o.dimension === dim).map(o => o.id),
+                        patterns: patterns.filter(p => p.dimension === dim).map(p => p.id),
+                        evidences: obs.filter(o => o.dimension === dim && o.evidence === true).map(o => o.id),
+                    };
                 });
-                const mesh = new THREE.Mesh(geo, mat);
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.random() * Math.PI * 2;
-                const radius = 1.5 + Math.random() * 3.0;
-                mesh.position.set(
-                    Math.cos(theta) * Math.sin(phi) * radius,
-                    Math.sin(theta) * Math.sin(phi) * radius * 0.6,
-                    Math.cos(phi) * radius * 0.8
-                );
-                mesh.userData = {
-                    hormoneId: hormone.id,
-                    theta: theta,
-                    phi: phi,
-                    radius: radius,
-                    speed: 0.1 + Math.random() * 0.2,
-                    floatSpeed: 0.3 + Math.random() * 0.5,
-                    phase: Math.random() * Math.PI * 2,
+
+                return dims;
+            },
+
+            // ---- Insights ----
+            getInsights: function() {
+                const dims = this.getDimensions();
+                const stats = this.getStats();
+
+                let strongest = null;
+                let strongestConf = -1;
+                for (const [key, dim] of Object.entries(dims)) {
+                    if (dim.status === 'high' && dim.contradictionCount === 0 && dim.confidence > strongestConf) {
+                        strongest = key;
+                        strongestConf = dim.confidence;
+                    }
+                }
+
+                let challenge = 'ارتباط';
+                let challengeConf = dims['ارتباط']?.confidence || 0;
+
+                let maxContradiction = null;
+                let maxContradictionCount = 0;
+                for (const [key, dim] of Object.entries(dims)) {
+                    if (dim.contradictionCount > maxContradictionCount) {
+                        maxContradiction = key;
+                        maxContradictionCount = dim.contradictionCount;
+                    }
+                }
+
+                let missingData = null;
+                let minCoverage = 101;
+                for (const [key, dim] of Object.entries(dims)) {
+                    if (dim.obsCount < 5 && dim.obsCount < minCoverage) {
+                        missingData = key;
+                        minCoverage = dim.obsCount;
+                    }
+                }
+                if (!missingData) {
+                    for (const [key, dim] of Object.entries(dims)) {
+                        if (dim.obsCount < minCoverage) {
+                            missingData = key;
+                            minCoverage = dim.obsCount;
+                        }
+                    }
+                }
+
+                return {
+                    strongest: strongest || 'نامشخص',
+                    strongestConf: strongestConf,
+                    challenge: challenge,
+                    challengeConf: challengeConf,
+                    contradiction: maxContradiction || 'ندارد',
+                    contradictionCount: maxContradictionCount,
+                    missingData: missingData || 'همه ابعاد داده کافی دارند',
+                    coverage: Math.round((stats.totalObs / (Object.keys(dims).length * 10)) * 100)
                 };
-                brainGroup.add(mesh);
-                hormoneParticles.push(mesh);
-            }
-        });
+            },
 
-        // ================================================================
-        // ۹. INTERACTIONS
-        // ================================================================
-        const raycaster = new THREE.Raycaster();
-        const pointer = new THREE.Vector2();
-        let selectedObject = null;
-        let hoveredObject = null;
+            // ---- خلاصه ----
+            getSummary: function() {
+                const stats = this.getStats();
+                const insights = this.getInsights();
 
-        window.highlightBrainRegions = function(categoryId) {
-            allRegions.forEach(mesh => {
-                const isMatch = mesh.userData.category === categoryId;
-                mesh.material.emissiveIntensity = isMatch ? 2.0 : 0.05;
-                mesh.material.opacity = isMatch ? 1.0 : 0.3;
-                if (!isMatch) {
-                    mesh.material.color.setHex(0x1a2740);
+                let summary = '';
+                summary += `<strong>${stats.totalObs}</strong> مشاهده ثبت شده است.\n`;
+                summary += `<strong>${stats.totalPatterns}</strong> الگو مستند شده است.\n`;
+                summary += `<strong>${stats.confirmed}</strong> فرضیه تأیید شده است.\n`;
+                if (stats.contradictions > 0) {
+                    summary +=
+                        `<span style="color:var(--red);">${stats.contradictions}</span> تناقض حل‌نشده باقی مانده است.\n\n`;
                 } else {
-                    mesh.material.color.setHex(0x6BE7C8);
+                    summary += `هیچ تناقضی ثبت نشده است.\n\n`;
                 }
-            });
+
+                if (insights.strongest) {
+                    summary +=
+                        `<span class="highlight">نقطه قوت اصلی:</span> ${insights.strongest} (${insights.strongestConf}%)\n`;
+                }
+                summary +=
+                    `<span class="highlight">چالش اصلی:</span> ${insights.challenge} (${insights.challengeConf}%)\n`;
+
+                if (insights.contradictionCount > 0) {
+                    summary +=
+                        `<span class="highlight">تناقض مهم:</span> ${insights.contradiction} (${insights.contradictionCount} تناقض)\n`;
+                }
+
+                if (insights.missingData) {
+                    summary +=
+                        `\n<span style="color:var(--text-muted);font-size:0.5rem;">⚠️ حوزه‌های ${insights.missingData} نیاز به داده بیشتر دارند.\n`;
+                    summary += `💡 پیشنهاد: رفتار در این حوزه را بیشتر ثبت کنید.</span>`;
+                }
+
+                return summary;
+            },
+
+            // ---- جستجو ----
+            search: function(query) {
+                if (!query || query.trim() === '') {
+                    return { observations: [], patterns: [], dimensions: [] };
+                }
+
+                const q = query.trim().toLowerCase();
+                const results = {
+                    observations: [],
+                    patterns: [],
+                    dimensions: []
+                };
+
+                // جستجو در مشاهدات
+                DATA.observations.forEach(obs => {
+                    const searchable = [obs.id, obs.desc, obs.dimension, obs.date].join(' ').toLowerCase();
+                    if (searchable.includes(q)) {
+                        results.observations.push(obs);
+                    }
+                });
+
+                // جستجو در الگوها
+                DATA.patterns.forEach(p => {
+                    const searchable = [p.id, p.desc, p.dimension].join(' ').toLowerCase();
+                    if (searchable.includes(q)) {
+                        results.patterns.push(p);
+                    }
+                });
+
+                // جستجو در ابعاد
+                Object.keys(DATA.dimensions).forEach(key => {
+                    const dim = DATA.dimensions[key];
+                    const searchable = [key, dim.name, dim.summary].join(' ').toLowerCase();
+                    if (searchable.includes(q)) {
+                        results.dimensions.push({ key, ...dim });
+                    }
+                });
+
+                return results;
+            },
+
+            // ---- هایلایت جستجو ----
+            highlightResults: function(query) {
+                const results = this.search(query);
+                const dims = this.getDimensions();
+
+                // هایلایت کارت‌های ابعاد
+                document.querySelectorAll('.dim-card').forEach(card => {
+                    const name = card.querySelector('.dc-name')?.textContent || '';
+                    const summary = card.querySelector('.dc-summary')?.textContent || '';
+                    const searchable = (name + ' ' + summary).toLowerCase();
+
+                    if (query && query.trim() !== '' && !searchable.includes(query.trim().toLowerCase())) {
+                        card.style.opacity = '0.3';
+                        card.style.transform = 'scale(0.98)';
+                    } else {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }
+                });
+
+                return results;
+            }
         };
 
-        function getIntersects(event) {
-            const rect = renderer.domElement.getBoundingClientRect();
-            const clientX = event.clientX || (event.touches && event.touches[0].clientX);
-            const clientY = event.clientY || (event.touches && event.touches[0].clientY);
-            if (clientX === undefined) return [];
-            pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-            pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-            raycaster.setFromCamera(pointer, camera);
-            return raycaster.intersectObjects(allRegions);
-        }
+        // ============================================================
+        // RENDER — نمایش داده‌ها
+        // ============================================================
 
-        function updateLabel(obj, isSelected = false) {
-            const label = document.getElementById('region-label');
-            if (obj) {
-                const name = obj.userData.name;
-                const region = obj.userData.region || '';
-                const hemi = obj.userData.hemisphere || '';
-                const cat = obj.userData.category || 'general';
-                const catData = CATEGORIES.find(c => c.id === cat);
-                const catName = catData ? (currentLang === 'fa' ? catData.nameFa : catData.nameEn) : cat;
-                const idx = allRegions.indexOf(obj) % HORMONES.length;
-                const hormone = HORMONES[idx] || HORMONES[0];
-                const hValue = (hormone.value + (Math.random() - 0.5) * 0.3).toFixed(1);
-                const status = parseFloat(hValue) > 6 ? '⬆' : (parseFloat(hValue) < 4 ? '⬇' : '➡');
-                label.innerHTML = `
-                        ✦ ${name}
-                        <span class="sub">${region} · ${hemi} · ${catName}</span>
-                        <span class="hormone-indicator">${status} ${currentLang === 'fa' ? hormone.nameFa : hormone.nameEn} ${hValue}</span>
-                    `;
-            } else {
-                label.innerHTML = `
-                        ✦ ${currentLang === 'fa' ? 'قشر پیشانی' : 'Frontal Cortex'}
-                        <span class="sub">${currentLang === 'fa' ? 'لوب پیشانی · چپ · مدیریت' : 'Frontal Lobe · Left · Executive'}</span>
-                        <span class="hormone-indicator">⬆ ${currentLang === 'fa' ? 'دوپامین' : 'Dopamine'} ۶.۲ · ⬇ ${currentLang === 'fa' ? 'کورتیزول' : 'Cortisol'} ۳.۱</span>
-                    `;
+        function render() {
+            const stats = Engine.getStats();
+            const dims = Engine.getDimensions();
+            const insights = Engine.getInsights();
+
+            // ---- Profile Stats ----
+            document.getElementById('profileStats').innerHTML = `
+                <span class="profile-stat"><span class="num">${stats.totalObs}</span> مشاهده</span>
+                <span class="profile-stat"><span class="num">${stats.totalPatterns}</span> الگو</span>
+                <span class="profile-stat"><span class="num">${stats.totalHyp}</span> فرضیه</span>
+                <span class="profile-stat"><span class="num confirmed">${stats.confirmed}</span> تأیید</span>
+                <span class="profile-stat"><span class="num review">${stats.review}</span> بررسی</span>
+                <span class="profile-stat"><span class="num contradiction">${stats.contradictions}</span> تناقض</span>
+            `;
+
+            // ---- Insights ----
+            document.getElementById('insightsGrid').innerHTML = `
+                <div class="insight-item">
+                    <div class="insight-label">💪 نقطه قوت</div>
+                    <div class="insight-value">${insights.strongest}</div>
+                    <div class="insight-sub">${insights.strongestConf}% اطمینان</div>
+                    <span class="insight-tag strong">✅ تأییدشده</span>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">⚠️ چالش اصلی</div>
+                    <div class="insight-value">${insights.challenge}</div>
+                    <div class="insight-sub">${insights.challengeConf}% · کمتر شروع می‌کند</div>
+                    <span class="insight-tag challenge">🔄 نیاز به بررسی</span>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">🔀 تناقض مهم</div>
+                    <div class="insight-value">${insights.contradiction}</div>
+                    <div class="insight-sub">${insights.contradictionCount} تناقض ثبت شده</div>
+                    <span class="insight-tag contradiction">⚠️ نیاز به بررسی</span>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">📭 داده ناکافی</div>
+                    <div class="insight-value">${insights.missingData}</div>
+                    <div class="insight-sub">پوشش: ${insights.coverage}%</div>
+                    <span class="insight-tag missing">📌 نیاز به داده</span>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-label">💡 پیشنهاد بعدی</div>
+                    <div class="insight-value">ثبت رفتار در ${insights.missingData}</div>
+                    <div class="insight-sub">برای تکمیل تحلیل</div>
+                    <span class="insight-tag suggestion">🎯 اولویت بالا</span>
+                </div>
+            `;
+
+            // ---- Dimensions ----
+            const dimGrid = document.getElementById('dimGrid');
+            const dimCount = Object.keys(dims).length;
+            document.getElementById('dimCount').textContent = `${dimCount} بعد`;
+
+            let dimHtml = '';
+            for (const [key, dim] of Object.entries(dims)) {
+                const confClass = dim.status === 'high' ? 'high' :
+                    dim.status === 'medium' ? 'medium' :
+                    dim.status === 'contradiction' ? 'contradiction' : 'low';
+
+                const detailId = 'detail-' + key.replace(/\s/g, '');
+
+                dimHtml += `
+                    <div class="dim-card" onclick="toggleDetail('${key.replace(/\s/g, '')}')">
+                        <div class="dc-header">
+                            <span class="dc-name">${dim.name}</span>
+                            <span class="dc-conf ${confClass}">${dim.confidence}%</span>
+                        </div>
+                        <div class="dc-meta">
+                            <span>${dim.obsCount} obs</span>
+                            <span>${dim.patternCount} الگو</span>
+                            <span>${dim.evidenceCount} شاهد</span>
+                            <span>${dim.contradictionCount} تناقض</span>
+                        </div>
+                        <div class="dc-summary">${dim.summary}</div>
+                        <div class="dc-bar"><div class="dc-fill" style="width:${dim.confidence}%;background:${dim.confidence >= 70 ? '#34d399' : dim.confidence >= 40 ? '#f59e0b' : '#8080b0'};"></div></div>
+                        <div class="dc-detail" id="${detailId}">
+                            <div class="dd-row"><span class="dd-label">مشاهدات</span><span class="dd-value">${dim.observations.join(', ') || '—'}</span></div>
+                            <div class="dd-row"><span class="dd-label">الگوها</span><span class="dd-value">${dim.patterns.join(', ') || '—'}</span></div>
+                            <div class="dd-evidence"><strong>شواهد:</strong> ${dim.evidences.join(', ') || 'هیچ شواهدی ثبت نشده'}</div>
+                            ${dim.contradictionCount > 0 ? `<div class="dd-counter">⚠️ ${dim.contradictionCount} تناقض ثبت شده</div>` : ''}
+                            <div class="dd-chips">
+                                ${dim.observations.slice(0, 5).map(id => `<span class="chip">${id}</span>`).join('')}
+                                ${dim.observations.length > 5 ? `<span class="chip">+${dim.observations.length - 5}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
+            dimGrid.innerHTML = dimHtml;
+
+            // ---- Summary ----
+            document.getElementById('summaryText').innerHTML = Engine.getSummary();
         }
 
-        renderer.domElement.addEventListener('pointermove', (event) => {
-            const intersects = getIntersects(event);
-            if (intersects.length > 0) {
-                const obj = intersects[0].object;
-                if (hoveredObject !== obj) {
-                    if (hoveredObject) {
-                        hoveredObject.material.emissiveIntensity = 0.12;
-                        hoveredObject.material.opacity = 0.7;
+        // ============================================================
+        // SEARCH — جستجوی پیشرفته
+        // ============================================================
+
+        let searchTimeout = null;
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value;
+
+            searchTimeout = setTimeout(() => {
+                if (query && query.trim() !== '') {
+                    const results = Engine.highlightResults(query);
+
+                    // نمایش نتایج در کنسول (برای توسعه‌دهنده)
+                    console.log('🔍 نتایج جستجو:', results);
+
+                    // به‌روزرسانی خلاصه با نتایج جستجو
+                    const summaryEl = document.getElementById('summaryText');
+                    if (results.observations.length > 0 || results.patterns.length > 0 || results.dimensions
+                        .length > 0) {
+                        let searchSummary = `<span style="color:var(--text-accent);">🔍 نتایج جستجو برای "${query}":</span>\n\n`;
+
+                        if (results.observations.length > 0) {
+                            searchSummary +=
+                                `<strong>${results.observations.length}</strong> مشاهده یافت شد: `;
+                            searchSummary += results.observations.map(o => o.id).join('، ') + '\n';
+                        }
+
+                        if (results.patterns.length > 0) {
+                            searchSummary +=
+                                `<strong>${results.patterns.length}</strong> الگو یافت شد: `;
+                            searchSummary += results.patterns.map(p => p.id).join('، ') + '\n';
+                        }
+
+                        if (results.dimensions.length > 0) {
+                            searchSummary +=
+                                `<strong>${results.dimensions.length}</strong> بعد یافت شد: `;
+                            searchSummary += results.dimensions.map(d => d.name).join('، ') + '\n';
+                        }
+
+                        summaryEl.innerHTML = searchSummary;
+                    } else {
+                        // اگر نتیجه‌ای پیدا نشد، خلاصه اصلی را برگردان
+                        summaryEl.innerHTML = Engine.getSummary();
                     }
-                    hoveredObject = obj;
-                    hoveredObject.material.emissiveIntensity = 1.2;
-                    hoveredObject.material.opacity = 0.95;
-                    updateLabel(obj);
-                    renderer.domElement.style.cursor = 'pointer';
+                } else {
+                    // اگر جستجو خالی بود، خلاصه اصلی را برگردان
+                    document.querySelectorAll('.dim-card').forEach(card => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    });
+                    document.getElementById('summaryText').innerHTML = Engine.getSummary();
                 }
-            } else {
-                if (hoveredObject) {
-                    hoveredObject.material.emissiveIntensity = 0.12;
-                    hoveredObject.material.opacity = 0.7;
-                    hoveredObject = null;
-                    if (!selectedObject) updateLabel(null);
-                    else updateLabel(selectedObject, true);
-                    renderer.domElement.style.cursor = 'default';
-                }
+            }, 300);
+        });
+
+        // ============================================================
+        // SHORTCUT — ⌘K برای فوکوس روی جستجو
+        // ============================================================
+
+        document.addEventListener('keydown', function(e) {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+                document.getElementById('searchInput').select();
             }
         });
 
-        renderer.domElement.addEventListener('click', (event) => {
-            const intersects = getIntersects(event);
-            if (intersects.length > 0) {
-                const obj = intersects[0].object;
-                if (selectedObject && selectedObject !== obj) {
-                    selectedObject.material.emissiveIntensity = 0.12;
-                    selectedObject.material.opacity = 0.7;
-                }
-                selectedObject = obj;
-                obj.material.emissiveIntensity = 2.0;
-                obj.material.opacity = 1.0;
-                updateLabel(obj, true);
-                controls.target.copy(obj.position);
-                controls.update();
-
-                const cat = obj.userData.category;
-                if (cat) {
-                    document.querySelectorAll('.category-item').forEach(el => {
-                        el.style.borderColor = el.dataset.category === cat ? 'rgba(107,231,200,0.3)' :
-                            'rgba(255,255,255,0.04)';
-                        el.style.background = el.dataset.category === cat ?
-                            'rgba(107,231,200,0.06)' : 'rgba(255,255,255,0.02)';
-                    });
-                }
-            } else {
-                if (selectedObject) {
-                    selectedObject.material.emissiveIntensity = 0.12;
-                    selectedObject.material.opacity = 0.7;
-                    selectedObject = null;
-                    updateLabel(null);
-                    document.querySelectorAll('.category-item').forEach(el => {
-                        el.style.borderColor = 'rgba(255,255,255,0.04)';
-                        el.style.background = 'rgba(255,255,255,0.02)';
-                    });
-                }
+        // ============================================================
+        // TOGGLE DETAIL
+        // ============================================================
+        function toggleDetail(id) {
+            const el = document.getElementById('detail-' + id);
+            if (el) {
+                el.classList.toggle('open');
             }
-        });
-
-        renderer.domElement.addEventListener('touchstart', (event) => {
-            if (event.touches.length === 1) {
-                const touch = event.touches[0];
-                const fakeEvent = { clientX: touch.clientX, clientY: touch.clientY };
-                const intersects = getIntersects(fakeEvent);
-                if (intersects.length > 0) {
-                    const obj = intersects[0].object;
-                    if (selectedObject && selectedObject !== obj) {
-                        selectedObject.material.emissiveIntensity = 0.12;
-                        selectedObject.material.opacity = 0.7;
-                    }
-                    selectedObject = obj;
-                    obj.material.emissiveIntensity = 2.0;
-                    obj.material.opacity = 1.0;
-                    updateLabel(obj, true);
-                    controls.target.copy(obj.position);
-                }
-            }
-        }, { passive: true });
-
-        // ================================================================
-        // ۱۰. ANIMATION LOOP
-        // ================================================================
-        let cycleStep = 0;
-        let cycleTimer = 0;
-
-        function updateSWINCycle(step) {
-            const steps = document.querySelectorAll('.cycle-step');
-            steps.forEach((el, idx) => {
-                el.classList.toggle('active', idx === step);
-            });
         }
 
-        function animate() {
-            const elapsed = performance.now() / 1000;
-            const delta = 0.016;
+        // ============================================================
+        // EXPOSE TO GLOBAL
+        // ============================================================
+        window.toggleDetail = toggleDetail;
 
-            cycleTimer += delta;
-            if (cycleTimer > 5) {
-                cycleTimer = 0;
-                cycleStep = (cycleStep + 1) % 7;
-                updateSWINCycle(cycleStep);
-            }
+        // ============================================================
+        // INIT
+        // ============================================================
+        render();
 
-            hormoneParticles.forEach((p) => {
-                const data = p.userData;
-                data.theta += data.speed * 0.008;
-                data.phi += data.speed * 0.006;
-                const r = data.radius + Math.sin(elapsed * data.floatSpeed + data.phase) * 0.15;
-                p.position.x = Math.cos(data.theta) * Math.sin(data.phi) * r;
-                p.position.y = Math.sin(data.theta) * Math.sin(data.phi) * r * 0.6 + Math.sin(elapsed * 0.2 +
-                    data.phase) * 0.15;
-                p.position.z = Math.cos(data.phi) * r * 0.8;
-                p.material.opacity = 0.15 + Math.sin(elapsed * 0.4 + data.phase) * 0.12 + 0.12;
-            });
-
-            allRegions.forEach((mesh, idx) => {
-                const floatY = Math.sin(elapsed * 0.15 + idx * 0.5) * 0.0015;
-                mesh.position.y += floatY;
-                if (idx % 2 === 0) {
-                    mesh.rotation.z += Math.sin(elapsed * 0.08 + idx) * 0.00001;
-                }
-            });
-
-            HORMONES.forEach((h) => {
-                const idx = HORMONES.indexOf(h);
-                const target = 4 + Math.sin(elapsed * 0.08 + idx * 0.6) * 1.8 + Math.random() * 0.05 - 0.025;
-                h.value += (Math.max(0.5, Math.min(9.5, target)) - h.value) * 0.008;
-            });
-
-            if (Math.floor(elapsed * 5) % 2 === 0) {
-                renderHormones();
-            }
-
-            controls.update();
-            composer.render();
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        // ================================================================
-        // ۱۱. RESIZE
-        // ================================================================
-        window.addEventListener('resize', () => {
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            camera.aspect = w / h;
-            camera.updateProjectionMatrix();
-            renderer.setSize(w, h);
-            composer.setSize(w, h);
-        });
-
-        // ================================================================
-        // ۱۲. INIT
-        // ================================================================
-        renderCategories();
-        renderHormones();
-        updateLanguage();
-
-        setTimeout(() => {
-            document.getElementById('loading').classList.add('hidden');
-        }, 1200);
-
-        console.log('🧠 PROJECT 721 · Digital Brain');
-        console.log(`📊 ${allRegions.length} regions, ${HORMONES.length} hormones`);
-        console.log('📝 MBTI:', MBTI_DATA.type, MBTI_DATA.title);
-        console.log('📈 Extra Indexes:', EXTRA_INDEXES.length);
-        console.log('💡 Tip: ویرایش داده‌ها در بخش "داده‌های قابل ویرایش" در بالای کد');
+        console.log('📋 PROJECT 721+ — Data-Driven Dashboard');
+        console.log(`👤 ${DATA.person.name} · ${DATA.person.id}`);
+        console.log(`📊 ${DATA.observations.length} مشاهده · ${DATA.patterns.length} الگو · ${DATA.hypotheses.length} فرضیه`);
+        console.log('✅ تمام اعداد از داده‌های موجود محاسبه می‌شوند');
+        console.log('⚠️ هیچ عدد ساختگی وجود ندارد');
+        console.log('💡 برای افزودن داده، آرایه‌های DATA را ویرایش کنید');
+        console.log('🔍 برای جستجو از ⌘K استفاده کنید');
     </script>
+
 </body>
 </html>
