@@ -1013,58 +1013,99 @@
         // ============================================================
         // RECORDS — با وضعیت کارت و لینک‌ها
         // ============================================================
-        const RECORDS = [{
-            id: "OBS-001",
-            person: "ABS",
-            date: "1405-04-10",
-            time: "18:30",
-            category: "پیام",
-            event: "بدون پاسخ",
-            cardStatus: "Observation",
-            tags: ["پیام", "سکوت", "خانواده"],
-            links: ["OBS-010", "OBS-012"],
-            linksText: "مرتبط با OBS-010 و OBS-012",
-            observation: {
-                text: "تا پایان شب پاسخی دریافت نشد.\nپیام در همان روز پاسخ داده نشد.",
-                details: "پیام ارسال شده در ساعت 18:30"
-            },
-            hypotheses: [
-                { title: "مشغله شخصی", confidence: 45, status: "در حال بررسی" },
-                { title: "بی‌تمایلی به پاسخ", confidence: 30, status: "رد شد" }
-            ],
-            patterns: [
-                { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3 }
-            ],
-            timeline: [
-                { date: "1405-04-10", action: "Observation Added", type: "add" },
-                { date: "1405-04-11", action: "Hypothesis Added", type: "hypothesis" }
-            ]
-        }, {
-            id: "OBS-002",
-            person: "ABS",
-            date: "1405-04-10",
-            time: "18:30",
-            category: "پیام",
-            event: "بدون پاسخ",
-            cardStatus: "Observation",
-            tags: ["پیام", "سکوت", "خانواده"],
-            links: ["OBS-010", "OBS-012"],
-            linksText: "مرتبط با OBS-010 و OBS-012",
-            observation: {
-                text: "تا پایان شب پاسخی دریافت نشد.\nپیام در همان روز پاسخ داده نشد.",
-                details: "پیام ارسال شده در ساعت 18:30"
-            },
-            hypotheses: [
-                { title: "مشغله شخصی", confidence: 45, status: "در حال بررسی" },
-                { title: "بی‌تمایلی به پاسخ", confidence: 30, status: "رد شد" }
-            ],
-            patterns: [
-                { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3 }
-            ],
-            timeline: [
-                { date: "1405-04-10", action: "Observation Added", type: "add" },
-                { date: "1405-04-11", action: "Hypothesis Added", type: "hypothesis" }
-        }];
+const RECORDS = [{
+    id: "OBS-001",  // ← تغییر ID به OBS-001
+    person: "ABS",
+    date: "1405-04-20",
+    time: "23:31",
+    category: "پیام",
+    event: "اتهام خیانت",
+    cardStatus: "Observation",
+    tags: ["پیام", "دعوا", "احساس"],
+    links: [],
+    linksText: "",
+    observation: {
+        text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ عباس آغاز شد. در ادامه چندین بار اتهام داشتن رابطه با «علی» و سپس «علیرضا» مطرح شد. کاربر وجود هرگونه رابطه را رد کرد.",
+        details: "شروع گفتگو با پیام «عشق خلم؟» در ساعت 23:31 و ادامه مکالمه تا پایان شب."
+    },
+    hypotheses: [
+        {
+            title: "عباس تصور می‌کند کاربر با علیرضا در ارتباط است.",
+            confidence: null,
+            status: "در حال بررسی"
+        },
+        {
+            title: "ممکن است عباس به بخشی از پیام‌ها یا اطلاعات قدیمی دسترسی پیدا کرده باشد.",
+            confidence: null,
+            status: "در حال بررسی"
+        },
+        {
+            title: "ممکن است اتهام‌ها صرفاً برای تحت فشار قرار دادن کاربر مطرح شده باشند.",
+            confidence: null,
+            status: "در حال بررسی"
+        },
+        {
+            title: "احتمال وجود فرافکنی یا بدبینی بدون شواهد کافی.",
+            confidence: null,
+            status: "در حال بررسی"
+        }
+    ],
+    patterns: [
+        {
+            title: "تکرار اتهام خیانت",
+            description: "در زمان تنش، عباس به جای تمرکز بر موضوع اصلی، گفتگو را به سمت اتهام خیانت و وجود شخص ثالث هدایت می‌کند.",
+            occurrences: 1
+        },
+        {
+            title: "افزایش شدت پیام‌ها پس از تأخیر در پاسخ",
+            description: "با فاصله افتادن بین پاسخ‌های کاربر، لحن پیام‌ها تندتر و اتهام‌ها بیشتر شد.",
+            occurrences: 1
+        }
+    ],
+    timeline: [
+        {
+            date: "1405-04-20 23:31",
+            action: "Observation Added",
+            type: "add"
+        },
+        {
+            date: "1405-04-20 23:42",
+            action: "Conversation Escalated",
+            type: "event"
+        },
+        {
+            date: "1405-04-20 23:50",
+            action: "Hypotheses Added",
+            type: "hypothesis"
+        }
+    ]
+}, {
+    id: "OBS-002",
+    person: "ABS",
+    date: "1405-04-10",
+    time: "18:30",
+    category: "پیام",
+    event: "بدون پاسخ",
+    cardStatus: "Observation",
+    tags: ["پیام", "سکوت", "خانواده"],
+    links: ["OBS-010", "OBS-012"],
+    linksText: "مرتبط با OBS-010 و OBS-012",
+    observation: {
+        text: "تا پایان شب پاسخی دریافت نشد.\nپیام در همان روز پاسخ داده نشد.",
+        details: "پیام ارسال شده در ساعت 18:30"
+    },
+    hypotheses: [
+        { title: "مشغله شخصی", confidence: 45, status: "در حال بررسی" },
+        { title: "بی‌تمایلی به پاسخ", confidence: 30, status: "رد شد" }
+    ],
+    patterns: [
+        { title: "عدم پاسخ در شب", description: "در ۳ مورد اخیر، پیام‌های شبانه بی‌پاسخ مانده‌اند.", occurrences: 3 }
+    ],
+    timeline: [
+        { date: "1405-04-10", action: "Observation Added", type: "add" },
+        { date: "1405-04-11", action: "Hypothesis Added", type: "hypothesis" }
+    ]
+}]; // <-- حذف کاما اضافی
 
         // ============================================================
         // STATE
