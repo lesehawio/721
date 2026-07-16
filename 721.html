@@ -258,15 +258,159 @@
             color: #13f4d2;
         }
 
-        /* ===== EMPTY ===== */
-        .empty-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        /* ===== DASHBOARD ===== */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .dash-card {
+            background: rgba(16, 28, 48, 0.04);
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(19, 244, 210, 0.04);
+            transition: 0.2s;
+        }
+
+        .dash-card:hover {
+            background: rgba(19, 244, 210, 0.02);
+        }
+
+        .dash-card .dash-title {
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+
+        .dash-card .dash-value {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #13f4d2;
+        }
+
+        .dash-card .dash-sub {
+            font-size: 0.35rem;
+            color: rgba(19, 244, 210, 0.2);
+            margin-top: 2px;
+        }
+
+        .dash-axis-mini {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .dash-axis-mini .dash-fill {
             height: 100%;
-            min-height: 200px;
-            color: rgba(19, 244, 210, 0.1);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+
+        .dash-axis-mini .dash-center {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dash-axis-mini .dash-dot {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid rgba(19, 244, 210, 0.3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            transition: left 0.4s ease;
+        }
+
+        .dash-priority-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
+            font-size: 0.45rem;
+        }
+
+        .dash-priority-item:last-child {
+            border-bottom: none;
+        }
+
+        .dash-priority-item .dp-rank {
+            color: #13f4d2;
+            font-weight: 600;
+            font-size: 0.4rem;
+            min-width: 20px;
+        }
+
+        .dash-priority-item .dp-title {
+            color: #c0d8f0;
+            flex: 1;
+            margin-right: 6px;
+        }
+
+        .dash-priority-item .dp-count {
+            color: rgba(19, 244, 210, 0.3);
+            font-size: 0.35rem;
+        }
+
+        .dash-priority-item .dp-stars {
+            color: #f59e0b;
+            font-size: 0.4rem;
+            letter-spacing: 1px;
+            margin-right: 6px;
+        }
+
+        .dash-profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 6px;
+        }
+
+        .dash-profile-item {
+            text-align: center;
+            background: rgba(16, 28, 48, 0.02);
+            border-radius: 6px;
+            padding: 6px 4px;
+        }
+
+        .dash-profile-item .dp-label {
+            font-size: 0.35rem;
+            color: rgba(19, 244, 210, 0.3);
+        }
+
+        .dash-profile-item .dp-value {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #13f4d2;
+            margin-top: 2px;
+        }
+
+        .dash-profile-item .dp-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 4px;
+            margin-top: 2px;
+            overflow: hidden;
+        }
+
+        .dash-profile-item .dp-bar .dp-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
         }
 
         /* ===== RECORD CARD ===== */
@@ -831,6 +975,17 @@
             font-weight: 600;
         }
 
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 200px;
+            color: rgba(19, 244, 210, 0.1);
+        }
+
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 3px;
@@ -875,6 +1030,18 @@
             }
             .needs-grid {
                 grid-template-columns: 1fr;
+            }
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+            .dash-profile-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .dash-profile-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -1509,7 +1676,7 @@
             document.getElementById('needsBadge').textContent = needsData.priorities.length;
 
             if (currentPage === 'dashboard') {
-                content.innerHTML = `<div class="empty-state"></div>`;
+                content.innerHTML = renderDashboard(patterns, needsData);
             } else if (currentPage === 'records') {
                 content.innerHTML = renderRecords();
             } else if (currentPage === 'patterns') {
@@ -1519,6 +1686,160 @@
             } else if (currentPage === 'needs') {
                 content.innerHTML = renderNeeds(needsData);
             }
+        }
+
+        // ============================================================
+        // RENDER DASHBOARD
+        // ============================================================
+        function renderDashboard(patterns, needsData) {
+            const profile = ProfileProcessor(RECORDS);
+            const today = getToday();
+            const totalObs = RECORDS.length;
+
+            // آخرین سند
+            const lastRecord = RECORDS.length > 0 ? RECORDS[RECORDS.length - 1] : null;
+
+            // ۳ الگوی برتر
+            const topPatterns = patterns.slice(0, 3);
+
+            // اولویت‌های برتر
+            const topPriorities = needsData.priorities.slice(0, 5);
+
+            // وضعیت پروفایل (میانگین)
+            const profileValues = Object.values(profile);
+            const avgScore = profileValues.length > 0 ?
+                Math.round(profileValues.reduce((sum, p) => sum + p.score, 0) / profileValues.length * 10) / 10 :
+                0;
+            const avgPercent = profileValues.length > 0 ?
+                Math.round(profileValues.reduce((sum, p) => sum + p.axisPercent, 0) / profileValues.length) :
+                50;
+
+            return `
+                <div class="glass">
+                    <div class="card-title">
+                        <i class="fas fa-home"></i> داشبورد
+                        <span class="badge-count">MR721AS</span>
+                    </div>
+                    <div class="window-info">
+                        <span class="win-item">📅 ${toPersianDate(today)}</span>
+                        <span class="win-item">📊 ${totalObs} مشاهده</span>
+                        <span class="win-item">🧩 ${patterns.length} الگو</span>
+                        <span class="win-item">🎯 ${needsData.priorities.length} اولویت</span>
+                    </div>
+                </div>
+
+                <!-- کارت‌های سریع -->
+                <div class="dash-grid">
+                    <div class="dash-card">
+                        <div class="dash-title">📄 کل مشاهدات</div>
+                        <div class="dash-value">${totalObs}</div>
+                        <div class="dash-sub">${lastRecord ? `آخرین: ${lastRecord.id} · ${toPersianDate(lastRecord.date)}` : 'هیچ مشاهده‌ای ثبت نشده'}</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-title">🧩 الگوهای فعال</div>
+                        <div class="dash-value">${patterns.length}</div>
+                        <div class="dash-sub">${topPatterns.length > 0 ? `برترین: ${topPatterns[0].title}` : 'هیچ الگویی شناسایی نشد'}</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-title">🎯 اولویت‌های برتر</div>
+                        <div class="dash-value">${needsData.priorities.length}</div>
+                        <div class="dash-sub">${topPriorities.length > 0 ? `۱- ${topPriorities[0].title}` : 'هنوز اولویتی ثبت نشده'}</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-title">📊 وضعیت کلی پروفایل</div>
+                        <div class="dash-value">${avgScore > 0 ? '+' : ''}${avgScore}</div>
+                        <div class="dash-sub">میانگین ${profileValues.length} محور</div>
+                        <div class="dash-axis-mini">
+                            <div class="dash-center"></div>
+                            <div class="dash-fill" style="width:${avgPercent}%;background:linear-gradient(90deg,#34d399,#13f4d2);"></div>
+                            <div class="dash-dot" style="left:${avgPercent}%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الگوهای برتر + اولویت‌ها -->
+                <div class="dash-grid">
+                    <!-- الگوهای برتر -->
+                    <div class="glass" style="padding:10px 12px;">
+                        <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
+                            <i class="fas fa-brain"></i> الگوهای برتر
+                            <span class="badge-count">${topPatterns.length}</span>
+                        </div>
+                        ${topPatterns.length === 0 ? `
+                            <div style="font-size:0.4rem;color:rgba(19,244,210,0.2);text-align:center;padding:6px 0;">هیچ الگویی ثبت نشده</div>
+                        ` : topPatterns.map(p => {
+                            const percent = p.axisPercent || 50;
+                            return `
+                                <div style="margin-bottom:4px;">
+                                    <div style="display:flex;justify-content:space-between;font-size:0.45rem;">
+                                        <span style="color:#c0d8f0;">${p.title}</span>
+                                        <span style="color:rgba(19,244,210,0.3);">${p.occurrences} بار</span>
+                                    </div>
+                                    <div class="dash-axis-mini">
+                                        <div class="dash-center"></div>
+                                        <div class="dash-fill" style="width:${percent}%;background:linear-gradient(90deg,#f59e0b,#13f4d2);"></div>
+                                        <div class="dash-dot" style="left:${percent}%;"></div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- اولویت‌ها -->
+                    <div class="glass" style="padding:10px 12px;">
+                        <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
+                            <i class="fas fa-crown"></i> اولویت‌های برتر
+                            <span class="badge-count">${topPriorities.length}</span>
+                        </div>
+                        ${topPriorities.length === 0 ? `
+                            <div style="font-size:0.4rem;color:rgba(19,244,210,0.2);text-align:center;padding:6px 0;">هیچ اولویتی ثبت نشده</div>
+                        ` : topPriorities.map((p, i) => `
+                            <div class="dash-priority-item">
+                                <span class="dp-rank">#${i+1}</span>
+                                <span class="dp-title">${p.title}</span>
+                                <span class="dp-stars">${p.stars}</span>
+                                <span class="dp-count">${p.count} بار</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- وضعیت پروفایل -->
+                <div class="glass">
+                    <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
+                        <i class="fas fa-user"></i> وضعیت پروفایل
+                        <span class="badge-count">${Object.keys(profile).length} محور</span>
+                    </div>
+                    <div class="dash-profile-grid">
+                        ${Object.entries(profile).map(([key, data]) => `
+                            <div class="dash-profile-item">
+                                <div class="dp-label">${data.icon} ${data.label}</div>
+                                <div class="dp-value">${data.score > 0 ? '+' : ''}${data.score}</div>
+                                <div class="dp-bar">
+                                    <div class="dp-fill" style="width:${data.axisPercent}%;background:${data.color};"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- آخرین سند -->
+                ${lastRecord ? `
+                    <div class="glass" style="padding:10px 12px;">
+                        <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
+                            <i class="fas fa-clock"></i> آخرین سند
+                            <span class="badge-count">${lastRecord.id}</span>
+                        </div>
+                        <div style="font-size:0.5rem;color:#c0d8f0;">
+                            ${lastRecord.event}
+                            <span style="color:rgba(19,244,210,0.3);margin-right:8px;">${toPersianDate(lastRecord.date)}</span>
+                        </div>
+                        <div style="font-size:0.4rem;color:rgba(19,244,210,0.2);margin-top:2px;">
+                            ${lastRecord.observation.text.substring(0, 80)}${lastRecord.observation.text.length > 80 ? '...' : ''}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
         }
 
         // ============================================================
@@ -1937,10 +2258,9 @@
         // ============================================================
         render();
 
-        console.log('🧠 PROJECT 721 — سیستم جامع با محورهای پروفایل دقیق');
+        console.log('🧠 PROJECT 721 — سیستم جامع با داشبورد');
         console.log(`📊 ${RECORDS.length} مشاهده بارگذاری شد`);
-        console.log('📋 محورهای پروفایل: اعتماد، ثبات، گشودگی، دلبستگی، کنترل');
-        console.log('🎯 هر محور تگ‌های مخصوص خود را دارد');
+        console.log('🏠 داشبورد: الگوهای برتر، اولویت‌ها، پروفایل، آخرین سند');
         console.log('📅 امروز:', toPersianDate(getToday()));
     </script>
 
