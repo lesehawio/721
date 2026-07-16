@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PROJECT 721 · Evidence Notebook</title>
+    <title>PROJECT 721 · سیستم جامع</title>
+    <link rel="icon" href="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" type="image/png" />
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
@@ -20,12 +21,6 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        body.light {
-            background: #eef2f7;
-            color: #1a2636;
         }
 
         #app {
@@ -34,11 +29,6 @@
             height: 100vh;
             width: 100vw;
             background: radial-gradient(ellipse at 20% 30%, #0e1a2a, #04070c);
-            transition: all 0.3s ease;
-        }
-
-        body.light #app {
-            background: radial-gradient(ellipse at 20% 30%, #d8e0ec, #b8c8dc);
         }
 
         /* ===== TOPBAR ===== */
@@ -49,15 +39,10 @@
             padding: 8px 20px;
             background: rgba(4, 8, 16, 0.4);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(60, 100, 170, 0.06);
+            border-bottom: 1px solid rgba(19, 244, 210, 0.06);
             min-height: 52px;
             flex-shrink: 0;
             z-index: 10;
-        }
-
-        body.light #topbar {
-            background: rgba(220, 230, 245, 0.6);
-            border-bottom: 1px solid rgba(80, 120, 180, 0.08);
         }
 
         .brand {
@@ -78,7 +63,7 @@
         .brand-name {
             font-size: 0.85rem;
             font-weight: 600;
-            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            background: linear-gradient(135deg, #13f4d2, #0bc5a8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -89,39 +74,10 @@
             gap: 4px;
         }
 
-        .btn-simple {
-            background: rgba(60, 100, 170, 0.06);
-            border: 1px solid rgba(60, 100, 170, 0.06);
-            color: #8ab8ff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-simple:hover {
-            background: rgba(60, 100, 170, 0.12);
-        }
-
-        body.light .btn-simple {
-            color: #1a4a7a;
-            border-color: rgba(40, 80, 160, 0.08);
-            background: rgba(40, 80, 160, 0.04);
-        }
-
-        body.light .btn-simple:hover {
-            background: rgba(40, 80, 160, 0.08);
-        }
-
         .btn-icon {
             background: transparent;
             border: none;
-            color: #6a8aaa;
+            color: #13f4d2;
             font-size: 1rem;
             padding: 4px 6px;
             border-radius: 6px;
@@ -130,58 +86,8 @@
         }
 
         .btn-icon:hover {
-            background: rgba(60, 100, 170, 0.06);
-            color: #8ab4e0;
-        }
-
-        /* ===== SEARCH BAR ===== */
-        #searchBar {
-            padding: 6px 20px;
-            background: rgba(4, 8, 16, 0.3);
-            border-bottom: 1px solid rgba(60, 100, 170, 0.04);
-            flex-shrink: 0;
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        body.light #searchBar {
-            background: rgba(220, 230, 245, 0.3);
-        }
-
-        #searchBar input {
-            flex: 1;
-            min-width: 100px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            background: rgba(20, 30, 50, 0.3);
-            border: 1px solid rgba(60, 100, 170, 0.06);
-            color: #d0ddf0;
-            font-family: inherit;
-            font-size: 0.65rem;
-            outline: none;
-            transition: 0.2s;
-        }
-
-        body.light #searchBar input {
-            background: rgba(200, 215, 235, 0.4);
-            color: #1a2636;
-        }
-
-        #searchBar input:focus {
-            border-color: #4a7aff;
-        }
-
-        #searchBar input::placeholder {
-            color: #4a6a8a;
-        }
-
-        #searchBar .search-results {
-            font-size: 0.55rem;
-            color: #5a7a9a;
-            padding: 2px 6px;
-            white-space: nowrap;
+            background: rgba(19, 244, 210, 0.06);
+            color: #13f4d2;
         }
 
         /* ===== SIDEBAR ===== */
@@ -194,17 +100,12 @@
             height: 100%;
             background: rgba(10, 18, 32, 0.92);
             backdrop-filter: blur(32px);
-            border-right: 1px solid rgba(60, 100, 170, 0.04);
+            border-right: 1px solid rgba(19, 244, 210, 0.04);
             z-index: 1000;
             transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 0.8rem;
             overflow-y: auto;
             box-shadow: 10px 0 60px rgba(0, 0, 0, 0.3);
-        }
-
-        body.light .sidebar {
-            background: rgba(220, 230, 245, 0.92);
-            border-right-color: rgba(80, 120, 180, 0.06);
         }
 
         .sidebar.open {
@@ -232,43 +133,32 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 0.6rem;
-            border-bottom: 1px solid rgba(60, 100, 170, 0.04);
+            border-bottom: 1px solid rgba(19, 244, 210, 0.04);
             margin-bottom: 0.6rem;
-        }
-
-        body.light .sidebar-header {
-            border-bottom-color: rgba(80, 120, 180, 0.06);
         }
 
         .sidebar-header .brand {
             font-weight: 700;
             font-size: 0.9rem;
-            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            background: linear-gradient(135deg, #13f4d2, #0bc5a8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .sidebar-close {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(60, 100, 170, 0.04);
+            border: 1px solid rgba(19, 244, 210, 0.04);
             padding: 0.2rem 0.5rem;
             border-radius: 6px;
             font-size: 0.8rem;
             cursor: pointer;
-            color: #6a8aaa;
+            color: #13f4d2;
             transition: 0.3s;
         }
 
         .sidebar-close:hover {
-            color: #d0ddf0;
-            border-color: rgba(60, 100, 170, 0.1);
-        }
-
-        body.light .sidebar-close {
-            color: #4a6a8a;
-        }
-        body.light .sidebar-close:hover {
-            color: #1a2636;
+            color: #13f4d2;
+            border-color: rgba(19, 244, 210, 0.1);
         }
 
         .sidebar-nav {
@@ -278,12 +168,12 @@
         }
 
         .sidebar-nav .menu-item {
-            padding: 6px 10px;
+            padding: 8px 12px;
             color: #6a8aaa;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             border: none;
             background: transparent;
             width: 100%;
@@ -291,69 +181,42 @@
             font-family: inherit;
             cursor: pointer;
             transition: 0.15s;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
         }
 
         .sidebar-nav .menu-item:hover {
-            background: rgba(60, 120, 200, 0.04);
-            color: #8ab8ff;
+            background: rgba(19, 244, 210, 0.04);
+            color: #13f4d2;
         }
 
         .sidebar-nav .menu-item.active {
-            background: rgba(60, 120, 200, 0.08);
-            color: #8ab8ff;
-        }
-
-        body.light .sidebar-nav .menu-item {
-            color: #4a6a8a;
-        }
-        body.light .sidebar-nav .menu-item:hover {
-            background: rgba(60, 120, 200, 0.04);
-            color: #1a4a7a;
-        }
-        body.light .sidebar-nav .menu-item.active {
-            background: rgba(60, 120, 200, 0.08);
-            color: #1a4a7a;
+            background: rgba(19, 244, 210, 0.08);
+            color: #13f4d2;
         }
 
         .sidebar-nav .menu-item i {
-            width: 16px;
-            color: #4a7aaa;
-            font-size: 0.7rem;
+            width: 18px;
+            color: #13f4d2;
+            font-size: 0.8rem;
         }
 
-        .sidebar-divider {
-            height: 1px;
-            background: rgba(60, 100, 170, 0.04);
-            margin: 4px 0;
-        }
-
-        body.light .sidebar-divider {
-            background: rgba(80, 120, 180, 0.06);
+        .sidebar-nav .menu-item .badge {
+            margin-right: auto;
+            font-size: 0.4rem;
+            padding: 1px 8px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.08);
+            color: #13f4d2;
         }
 
         .sidebar-footer {
             margin-top: auto;
             padding-top: 0.6rem;
-            border-top: 1px solid rgba(60, 100, 170, 0.04);
+            border-top: 1px solid rgba(19, 244, 210, 0.04);
             font-size: 0.45rem;
-            color: #4a6a8a;
+            color: rgba(19, 244, 210, 0.4);
             text-align: center;
-        }
-
-        .sidebar-footer .link-plus {
-            color: #8b5cf6;
-            font-weight: 600;
-            font-size: 0.6rem;
-            text-decoration: none;
-            display: block;
-            margin-top: 4px;
-            cursor: pointer;
-        }
-
-        .sidebar-footer .link-plus:hover {
-            color: #a78bfa;
         }
 
         /* ===== CONTENT ===== */
@@ -363,108 +226,77 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .glass {
             background: rgba(10, 18, 32, 0.4);
             backdrop-filter: blur(14px);
-            border: 1px solid rgba(60, 100, 170, 0.04);
-            border-radius: 12px;
-            padding: 10px 12px;
+            border: 1px solid rgba(19, 244, 210, 0.04);
+            border-radius: 14px;
+            padding: 14px 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        body.light .glass {
-            background: rgba(220, 230, 245, 0.5);
-            border-color: rgba(80, 120, 180, 0.06);
         }
 
         .card-title {
-            font-size: 0.45rem;
+            font-size: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #4a7aaa;
-            margin-bottom: 6px;
+            color: #13f4d2;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 4px;
-        }
-
-        /* ===== STATS ROW ===== */
-        .stats-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            font-size: 0.5rem;
-            color: #5a7a9a;
-        }
-
-        .stats-row .stat-item {
-            background: rgba(16, 28, 48, 0.1);
-            padding: 2px 8px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        body.light .stats-row .stat-item {
-            background: rgba(200, 215, 235, 0.2);
-        }
-
-        .stats-row .stat-item .num {
+            gap: 6px;
             font-weight: 600;
-            color: #c0d8f0;
+        }
+
+        .card-title .badge-count {
+            font-size: 0.35rem;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.08);
+            color: #13f4d2;
+        }
+
+        /* ===== EMPTY ===== */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 200px;
+            color: rgba(19, 244, 210, 0.1);
         }
 
         /* ===== RECORD CARD ===== */
         .record-card {
-            background: rgba(16, 28, 48, 0.1);
+            background: rgba(16, 28, 48, 0.08);
             border-radius: 10px;
             margin-bottom: 6px;
-            border-right: 3px solid rgba(60, 150, 255, 0.15);
-            transition: all 0.2s ease;
+            border-right: 3px solid rgba(19, 244, 210, 0.15);
+            transition: 0.2s;
             overflow: hidden;
             cursor: pointer;
         }
 
         .record-card:hover {
-            background: rgba(16, 28, 48, 0.18);
+            background: rgba(19, 244, 210, 0.04);
         }
 
-        body.light .record-card {
-            background: rgba(200, 215, 235, 0.12);
+        .record-card .weight-badge {
+            font-size: 0.35rem;
+            padding: 1px 8px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.06);
+            color: #13f4d2;
+            margin-right: 4px;
         }
 
-        body.light .record-card:hover {
-            background: rgba(200, 215, 235, 0.2);
+        .record-card .weight-badge.low {
+            opacity: 0.3;
         }
 
-        /* ===== CARD STATUS COLORS ===== */
-        .record-card.status-observation {
-            border-right-color: #4a7aff;
-        }
-
-        .record-card.status-hypothesis {
-            border-right-color: #f59e0b;
-        }
-
-        .record-card.status-pattern {
-            border-right-color: #8b5cf6;
-        }
-
-        .record-card.status-rejected {
-            border-right-color: #ef4444;
-            opacity: 0.7;
-        }
-
-        .record-card.status-rejected:hover {
-            opacity: 0.9;
-        }
-
-        /* ===== CARD HEADER ===== */
         .card-header {
             padding: 6px 10px;
             display: flex;
@@ -476,87 +308,39 @@
 
         .card-header .left {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             flex-wrap: wrap;
             align-items: center;
         }
 
         .card-header .id {
             font-weight: 600;
-            color: #8ab8ff;
-            font-size: 0.6rem;
+            color: #13f4d2;
+            font-size: 0.55rem;
         }
 
         .card-header .person {
             font-size: 0.45rem;
-            color: #5a9ac0;
-            background: rgba(60, 150, 255, 0.06);
-            padding: 1px 6px;
+            color: rgba(19, 244, 210, 0.6);
+            background: rgba(19, 244, 210, 0.04);
+            padding: 1px 8px;
             border-radius: 30px;
-            border: 1px solid rgba(60, 150, 255, 0.06);
+            border: 1px solid rgba(19, 244, 210, 0.04);
         }
 
         .card-header .date {
-            color: #5a7a9a;
-            font-size: 0.45rem;
-        }
-
-        .card-header .category {
+            color: rgba(19, 244, 210, 0.3);
             font-size: 0.4rem;
-            padding: 1px 6px;
-            border-radius: 30px;
-            background: rgba(40, 80, 140, 0.08);
-            border: 1px solid rgba(40, 80, 140, 0.04);
-            color: #6a9ac0;
         }
 
         .card-header .event {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 500;
             color: #c0d8f0;
         }
 
-        body.light .card-header .event {
-            color: #1a3a5a;
-        }
-
-        /* ===== STATUS BADGE ON CARD ===== */
-        .card-status-badge {
-            font-size: 0.4rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            font-weight: 500;
-        }
-
-        .card-status-badge.status-obs {
-            background: rgba(74, 122, 255, 0.12);
-            color: #4a7aff;
-            border: 1px solid rgba(74, 122, 255, 0.1);
-        }
-
-        .card-status-badge.status-hyp {
-            background: rgba(245, 158, 11, 0.12);
-            color: #f59e0b;
-            border: 1px solid rgba(245, 158, 11, 0.1);
-        }
-
-        .card-status-badge.status-pat {
-            background: rgba(139, 92, 246, 0.12);
-            color: #8b5cf6;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-        }
-
-        .card-status-badge.status-rej {
-            background: rgba(239, 68, 68, 0.12);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.1);
-        }
-
         .card-header .expand-icon {
-            color: #5a7a9a;
+            color: rgba(19, 244, 210, 0.4);
             font-size: 0.6rem;
             transition: transform 0.3s ease;
         }
@@ -565,7 +349,6 @@
             transform: rotate(180deg);
         }
 
-        /* ===== CARD BODY ===== */
         .card-body {
             max-height: 0;
             overflow: hidden;
@@ -578,300 +361,495 @@
             padding: 0 10px 10px 10px;
         }
 
-        /* ===== SECTIONS ===== */
         .card-body .section {
             margin-top: 6px;
             padding: 6px 8px;
             border-radius: 6px;
-            background: rgba(16, 28, 48, 0.06);
-            border-right: 3px solid transparent;
-        }
-
-        body.light .card-body .section {
-            background: rgba(200, 215, 235, 0.1);
+            background: rgba(19, 244, 210, 0.02);
+            border-right: 2px solid rgba(19, 244, 210, 0.06);
         }
 
         .card-body .section .section-label {
-            font-size: 0.4rem;
+            font-size: 0.35rem;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            color: rgba(19, 244, 210, 0.4);
             font-weight: 600;
         }
 
         .card-body .section .section-content {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             color: #c0d8f0;
             line-height: 1.7;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        body.light .card-body .section .section-content {
-            color: #1a3a5a;
-        }
-
-        .section-observation {
-            border-right-color: #4a7aff;
-        }
-        .section-observation .section-label {
-            color: #4a7aff;
-        }
-
-        .section-hypothesis {
-            border-right-color: #f59e0b;
-        }
-        .section-hypothesis .section-label {
-            color: #f59e0b;
-        }
-
-        .section-pattern {
-            border-right-color: #8b5cf6;
-        }
-        .section-pattern .section-label {
-            color: #8b5cf6;
-        }
-
-        /* ===== HYPOTHESIS ITEMS ===== */
-        .hypothesis-item {
-            padding: 4px 6px;
-            margin-bottom: 2px;
-            border-radius: 4px;
-            background: rgba(245, 158, 11, 0.04);
-            border-right: 2px solid rgba(245, 158, 11, 0.1);
-            font-size: 0.55rem;
-        }
-
-        body.light .hypothesis-item {
-            background: rgba(245, 158, 11, 0.04);
-        }
-
-        .hypothesis-item .h-title {
-            font-weight: 500;
-            color: #c0d8f0;
-        }
-
-        body.light .hypothesis-item .h-title {
-            color: #1a3a5a;
-        }
-
-        .hypothesis-item .h-meta {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            font-size: 0.45rem;
-            color: #5a7a9a;
             margin-top: 2px;
         }
 
-        .conf-badge {
-            padding: 1px 6px;
-            border-radius: 30px;
+        .card-body .hypothesis-item {
+            font-size: 0.45rem;
+            color: rgba(19, 244, 210, 0.5);
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
+        }
+
+        .card-body .pattern-item {
+            font-size: 0.45rem;
+            color: #13f4d2;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
+        }
+
+        .card-body .pattern-item .p-desc {
+            color: rgba(19, 244, 210, 0.4);
             font-size: 0.4rem;
+        }
+
+        /* ===== AXIS ===== */
+        .axis-container {
+            margin-top: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            padding: 8px 12px;
+            border: 1px solid rgba(19, 244, 210, 0.04);
+            position: relative;
+        }
+
+        .axis-track {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #dc2626 0%, #dc2626 20%, #f59e0b 40%, #fbbf24 48%, #22c55e 52%, #3b82f6 60%, #8b5cf6 80%, #8b5cf6 100%);
+            border-radius: 40px;
+            overflow: visible;
+        }
+
+        .axis-track .fill-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 40px;
+            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .axis-track .indicator {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle at 30% 30%, #f8fafc, #94a3b8);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .axis-track .indicator .dot-inner {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle at 40% 35%, #1e293b, #0f172a);
+            border-radius: 50%;
+        }
+
+        .axis-center-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        .axis-ticks {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 4px 0;
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.2);
+            position: relative;
+        }
+
+        .axis-ticks .tick-main {
+            color: rgba(19, 244, 210, 0.3);
             font-weight: 600;
         }
 
-        .conf-badge.low {
-            background: rgba(100, 100, 140, 0.15);
-            color: #8080b0;
+        .axis-ticks .tick-negative {
+            color: rgba(239, 68, 68, 0.3);
         }
 
-        .conf-badge.medium {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
+        .axis-ticks .tick-positive {
+            color: rgba(52, 211, 153, 0.3);
         }
 
-        .conf-badge.high {
-            background: rgba(52, 211, 153, 0.15);
-            color: #34d399;
+        .axis-value {
+            text-align: center;
+            font-size: 0.5rem;
+            color: #13f4d2;
+            font-weight: 600;
+            margin-top: 4px;
         }
 
-        .status-badge {
-            padding: 1px 6px;
-            border-radius: 30px;
-            font-size: 0.4rem;
+        /* ===== PROFILE AXIS CARD ===== */
+        .profile-axis-card {
+            background: rgba(16, 28, 48, 0.06);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            border-right: 3px solid rgba(19, 244, 210, 0.1);
+            transition: 0.2s;
         }
 
-        .status-review {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
+        .profile-axis-card:hover {
+            background: rgba(19, 244, 210, 0.02);
         }
 
-        .status-confirmed {
-            background: rgba(52, 211, 153, 0.15);
-            color: #34d399;
+        .profile-axis-card .pa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
         }
 
-        .status-rejected {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-        }
-
-        /* ===== PATTERN ITEMS ===== */
-        .pattern-item {
-            padding: 4px 6px;
-            margin-bottom: 2px;
-            border-radius: 4px;
-            background: rgba(139, 92, 246, 0.04);
-            border-right: 2px solid rgba(139, 92, 246, 0.1);
+        .profile-axis-card .pa-name {
             font-size: 0.55rem;
+            font-weight: 600;
+            color: #13f4d2;
         }
 
-        body.light .pattern-item {
-            background: rgba(139, 92, 246, 0.04);
+        .profile-axis-card .pa-weight {
+            font-size: 0.4rem;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.06);
+            color: #13f4d2;
         }
 
-        .pattern-item .p-title {
-            font-weight: 500;
-            color: #c0d8f0;
-        }
-
-        body.light .pattern-item .p-title {
-            color: #1a3a5a;
-        }
-
-        .pattern-item .p-meta {
-            font-size: 0.45rem;
-            color: #5a7a9a;
-            margin-top: 2px;
-        }
-
-        /* ===== TAGS ===== */
-        .tags-row {
+        .profile-axis-card .pa-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 3px;
+            gap: 4px;
             margin-top: 4px;
             padding-top: 4px;
-            border-top: 1px solid rgba(60, 100, 170, 0.04);
+            border-top: 1px solid rgba(19, 244, 210, 0.04);
         }
 
-        .tags-row .tag {
-            font-size: 0.4rem;
-            padding: 1px 6px;
-            border-radius: 30px;
-            background: rgba(40, 80, 140, 0.06);
-            border: 1px solid rgba(40, 80, 140, 0.04);
-            color: #5a8aaa;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        .tags-row .tag .tag-icon {
+        .profile-axis-card .pa-tags .tag {
             font-size: 0.35rem;
-        }
-
-        /* ===== LINKS ===== */
-        .links-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3px;
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(60, 100, 170, 0.04);
-        }
-
-        .links-row .links-label {
-            font-size: 0.4rem;
-            color: #5a7a9a;
-            margin-left: 4px;
-        }
-
-        .links-row .link-item {
-            font-size: 0.4rem;
-            padding: 1px 6px;
+            padding: 1px 8px;
             border-radius: 30px;
-            background: rgba(60, 150, 255, 0.06);
-            border: 1px solid rgba(60, 150, 255, 0.04);
-            color: #5a9ac0;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        .links-row .link-item:hover {
-            background: rgba(60, 150, 255, 0.12);
-        }
-
-        .links-row .link-item .link-icon {
-            font-size: 0.35rem;
-        }
-
-        /* ===== TIMELINE ===== */
-        .timeline-row {
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(60, 100, 170, 0.04);
-        }
-
-        .timeline-row .tl-label {
-            font-size: 0.4rem;
-            color: #5a7a9a;
-            margin-bottom: 2px;
-        }
-
-        .timeline-row .tl-item {
+            background: rgba(19, 244, 210, 0.04);
+            border: 1px solid rgba(19, 244, 210, 0.04);
+            color: rgba(19, 244, 210, 0.6);
             display: flex;
             align-items: center;
             gap: 4px;
+        }
+
+        .profile-axis-card .pa-tags .tag .effect {
+            font-size: 0.35rem;
+        }
+
+        .profile-axis-card .pa-tags .tag .effect.positive {
+            color: #34d399;
+        }
+
+        .profile-axis-card .pa-tags .tag .effect.negative {
+            color: #ef4444;
+        }
+
+        .profile-axis-card .pa-info {
             font-size: 0.4rem;
-            color: #5a7a9a;
-            padding: 1px 0;
+            color: rgba(19, 244, 210, 0.25);
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(19, 244, 210, 0.02);
         }
 
-        .timeline-row .tl-item .tl-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #4a7aff;
+        /* ===== PATTERN AXIS CARD ===== */
+        .pattern-axis-card {
+            background: rgba(16, 28, 48, 0.06);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            border-right: 3px solid rgba(19, 244, 210, 0.1);
         }
 
-        .timeline-row .tl-item .tl-dot.green {
-            background: #34d399;
-        }
-        .timeline-row .tl-item .tl-dot.orange {
-            background: #f59e0b;
-        }
-        .timeline-row .tl-item .tl-dot.purple {
-            background: #8b5cf6;
+        .pattern-axis-card .pa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
         }
 
-        .timeline-row .tl-item .tl-text {
-            color: #6a8aaa;
+        .pattern-axis-card .pa-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #13f4d2;
         }
 
-        .timeline-row .tl-item .tl-text strong {
+        .pattern-axis-card .pa-weight {
+            font-size: 0.4rem;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.06);
+            color: #13f4d2;
+        }
+
+        .pattern-axis-card .pa-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(19, 244, 210, 0.04);
+        }
+
+        .pattern-axis-card .pa-tags .tag {
+            font-size: 0.35rem;
+            padding: 1px 8px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.04);
+            border: 1px solid rgba(19, 244, 210, 0.04);
+            color: rgba(19, 244, 210, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pattern-axis-card .pa-tags .tag .effect {
+            font-size: 0.35rem;
+        }
+
+        .pattern-axis-card .pa-tags .tag .effect.positive {
+            color: #34d399;
+        }
+
+        .pattern-axis-card .pa-tags .tag .effect.negative {
+            color: #ef4444;
+        }
+
+        .pattern-axis-card .pa-info {
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.25);
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid rgba(19, 244, 210, 0.02);
+        }
+
+        /* ===== NEEDS & INTERESTS ===== */
+        .needs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .needs-column {
+            background: rgba(16, 28, 48, 0.04);
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(19, 244, 210, 0.04);
+        }
+
+        .needs-column .col-title {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: #13f4d2;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .need-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
+        }
+
+        .need-item:last-child {
+            border-bottom: none;
+        }
+
+        .need-item .n-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .need-item .n-title {
+            font-size: 0.5rem;
             color: #c0d8f0;
         }
 
-        body.light .timeline-row .tl-item .tl-text strong {
-            color: #1a3a5a;
+        .need-item .n-count {
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.3);
         }
 
-        .no-data {
-            color: #5a7a9a;
-            font-size: 0.55rem;
-            text-align: center;
-            padding: 10px 0;
+        .need-item .n-stars {
+            color: #f59e0b;
+            font-size: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .need-item .n-weight {
+            font-size: 0.35rem;
+            padding: 1px 8px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.04);
+            color: rgba(19, 244, 210, 0.4);
+        }
+
+        .need-item .n-last {
+            font-size: 0.35rem;
+            color: rgba(19, 244, 210, 0.2);
+        }
+
+        /* ===== PRIORITIES ===== */
+        .priority-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px;
+            background: rgba(16, 28, 48, 0.04);
+            border-radius: 8px;
+            border-right: 3px solid rgba(19, 244, 210, 0.15);
+            transition: 0.2s;
+        }
+
+        .priority-item:hover {
+            background: rgba(19, 244, 210, 0.02);
+        }
+
+        .priority-item .p-rank {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #13f4d2;
+            min-width: 24px;
+        }
+
+        .priority-item .p-title {
+            font-size: 0.5rem;
+            color: #c0d8f0;
+            flex: 1;
+        }
+
+        .priority-item .p-count {
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.3);
+        }
+
+        .priority-item .p-stars {
+            color: #f59e0b;
+            font-size: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .priority-item .p-badge {
+            font-size: 0.35rem;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.04);
+            color: rgba(19, 244, 210, 0.4);
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(19, 244, 210, 0.04);
+            padding-bottom: 6px;
+        }
+
+        .tab-btn {
+            padding: 4px 16px;
+            border: none;
+            background: transparent;
+            color: rgba(19, 244, 210, 0.3);
+            font-family: inherit;
+            font-size: 0.5rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: rgba(19, 244, 210, 0.5);
+        }
+
+        .tab-btn.active {
+            color: #13f4d2;
+            background: rgba(19, 244, 210, 0.04);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== WINDOW INFO ===== */
+        .window-info {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.4rem;
+            color: rgba(19, 244, 210, 0.3);
+        }
+
+        .window-info .win-item {
+            padding: 2px 10px;
+            border-radius: 30px;
+            background: rgba(19, 244, 210, 0.02);
+            border: 1px solid rgba(19, 244, 210, 0.02);
+        }
+
+        .window-info .win-item .num {
+            color: #13f4d2;
+            font-weight: 600;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(19, 244, 210, 0.01);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #13f4d2;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(19, 244, 210, 0.6);
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 700px) {
             #topbar {
                 padding: 6px 10px;
-            }
-            #searchBar {
-                padding: 4px 10px;
-            }
-            #searchBar input {
-                font-size: 0.55rem;
-                padding: 4px 6px;
-                min-width: 60px;
             }
             #content {
                 padding: 6px 8px;
@@ -883,29 +861,20 @@
                 width: 22px;
                 height: 22px;
             }
-            .btn-simple {
-                font-size: 0.5rem;
-                padding: 2px 6px;
-            }
-            .card-header {
-                padding: 4px 6px;
-            }
-            .card-body.open {
-                padding: 0 6px 6px 6px;
-            }
-            .card-body .section {
-                padding: 4px 6px;
-            }
-            .card-header .event {
-                font-size: 0.5rem;
-            }
             .sidebar {
                 width: 200px;
                 padding: 0.6rem;
             }
-            .stats-row .stat-item {
-                font-size: 0.45rem;
-                padding: 1px 6px;
+            .pattern-axis-card .pa-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .profile-axis-card .pa-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .needs-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -914,23 +883,20 @@
 
     <div id="app">
 
-        <!-- ===== TOPBAR ===== -->
+        <!-- TOPBAR -->
         <header id="topbar">
             <div class="brand">
                 <img class="logo" src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" alt="PROJECT 721" />
                 <span class="brand-name">PROJECT 721</span>
             </div>
             <div class="topbar-right">
-                <button class="btn-simple" id="themeToggle">
-                    <i class="fas fa-moon" id="themeIcon"></i> <span id="themeLabel">تاریک</span>
-                </button>
                 <button class="btn-icon" id="menuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </header>
 
-        <!-- ===== SIDEBAR ===== -->
+        <!-- SIDEBAR -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -942,430 +908,591 @@
                     <i class="fas fa-home"></i> خانه
                 </button>
                 <button data-page="records" class="menu-item">
-                    <i class="fas fa-book"></i> پرونده‌ها
+                    <i class="fas fa-folder-open"></i> پرونده‌ها
+                    <span class="badge" id="recordBadge">۰</span>
                 </button>
-                <button data-page="people" class="menu-item">
-                    <i class="fas fa-users"></i> افراد
+                <button data-page="patterns" class="menu-item">
+                    <i class="fas fa-brain"></i> الگوها
+                    <span class="badge" id="patternBadge">۰</span>
                 </button>
-                <div class="sidebar-divider"></div>
-                <button data-page="settings" class="menu-item">
-                    <i class="fas fa-cog"></i> تنظیمات
+                <button data-page="profile" class="menu-item">
+                    <i class="fas fa-user"></i> پروفایل
+                    <span class="badge" id="profileBadge">⬤</span>
+                </button>
+                <button data-page="needs" class="menu-item">
+                    <i class="fas fa-heart"></i> نیازها و علاقه‌ها
+                    <span class="badge" id="needsBadge">⬤</span>
                 </button>
             </nav>
             <div class="sidebar-footer">
-                <span>v1.0 · Evidence Notebook</span>
-                <!-- ===== اصلاح: هایپرلینک به پوشه A ===== -->
-                <a href="./A/" class="link-plus" id="linkPlus">
-                    <i class="fas fa-user-circle"></i> Character Profile (PLUS)
-                </a>
+                <span>v5.0 · سیستم جامع</span>
             </div>
         </aside>
 
-        <!-- ===== SEARCH BAR ===== -->
-        <div id="searchBar">
-            <input id="searchInput" placeholder="جستجو در پرونده‌ها..." />
-            <span class="search-results" id="resultCount">۰ نتیجه</span>
-        </div>
-
-        <!-- ===== CONTENT ===== -->
+        <!-- CONTENT -->
         <main id="content"></main>
 
     </div>
 
     <script>
-        /**
-         * PROJECT 721 — Evidence Notebook
-         * با وضعیت کارت (Observation, Hypothesis, Pattern, Rejected)
-         * و بخش Links کامل
-         */
+        // ============================================================
+        // 📋 پروتکل تگ‌ها (Tag Protocol) v2.0
+        // ============================================================
+        // ساختار هر تگ:
+        // {
+        //     category: "الگو" | "پروفایل" | "نیاز" | "علاقه" | "ترجیح",
+        //     title: string,
+        //     effect: { score: number, axis: string },  // برای الگو و پروفایل
+        //     weight: number,  // برای نیاز و علاقه
+        //     expiry: number   // روزهای اعتبار
+        // }
+        // ============================================================
 
         // ============================================================
-        // PEOPLE
-        // ============================================================
-        const PEOPLE = {
-            "ABS": { name: "Abbas", label: "عباس" },
-
-        };
-
-        // ============================================================
-        // TAG ICONS
-        // ============================================================
-        const TAG_ICONS = {
-            "خانواده": "👨‍👩‍👧",
-            "کار": "💼",
-            "تماس": "📞",
-            "پیام": "💬",
-            "احساس": "💭",
-            "دعوا": "⚡",
-            "شوخی": "😂",
-            "وقت": "⏰",
-            "سکوت": "🔇",
-            "استرس": "😰",
-            "خوشحالی": "😊",
-            "ناراحتی": "😢",
-            "محبت": "❤️",
-            "دوست": "🤝",
-            "سلامت": "💊",
-            "پول": "💰",
-            "سفر": "✈️"
-        };
-
-        // ============================================================
-        // RECORDS — با وضعیت کارت و لینک‌ها
+        // DATA — دستی وارد می‌شود
         // ============================================================
         const RECORDS = [{
-    id: "OBS-001",  // ← تغییر ID به OBS-001
-    person: "MR721AS",
-    date: "1405-04-20",
-    time: "23:31",
-    category: "پیام",
-    event: "اتهام خیانت",
-    cardStatus: "Observation",
-    tags: ["پیام", "دعوا", "احساس"],
-    links: [],
-    linksText: "",
-    observation: {
-        text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ عباس آغاز شد. در ادامه چندین بار اتهام داشتن رابطه با «علی» و سپس «علیرضا» مطرح شد. من وجود هرگونه رابطه را رد کردم.",
-        details: "شروع گفتگو با پیام «عشق خُلم؟» در ساعت 23:31 و ادامه مکالمه تا پایان شب صورت گرفت و آخرین پیامم تا روز بعد جوابی نگرفت."
-    },
-    hypotheses: [
-        {
-            title: "عباس تصور می‌کند من با علیرضا در ارتباط هستم.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "ممکن است عباس به بخشی از پیام‌ها یا اطلاعات قدیمی دسترسی پیدا کرده باشد.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "ممکن است اتهام‌ها صرفاً برای تحت فشار قرار دادن من مطرح شده باشند.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "احتمال وجود فرافکنی یا بدبینی بدون شواهد کافی.",
-            confidence: null,
-            status: "در حال بررسی"
+            id: "OBS-001",
+            person: "MR721AS",
+            date: "2026-07-16",
+            time: "23:31",
+            category: "پیام",
+            event: "اتهام خیانت",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
+                { category: "الگو", title: "واژگون‌سازی", effect: { score: -8, axis: "trust" }, expiry: 45 },
+                { category: "پروفایل", title: "حسادت", effect: { score: -6, axis: "trust" }, expiry: 40 },
+                { category: "پروفایل", title: "کنترل", effect: { score: -4, axis: "control" }, expiry: 35 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
+                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+            ],
+            links: [],
+            linksText: "",
+            observation: {
+                text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ MR721AS آغاز شد.",
+                details: "شروع گفتگو در ساعت 23:31 و ادامه مکالمه تا پایان شب صورت گرفت."
+            },
+            hypotheses: [
+                "MR721AS تصور می‌کند با افراد دیگر در ارتباط هستم."
+            ],
+            patterns: [{
+                title: "تکرار اتهام",
+                description: "در زمان تنش، MR721AS به جای تمرکز بر موضوع اصلی، گفتگو را به سمت اتهام هدایت می‌کند.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-16 23:31",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-002",
+            person: "MR721AS",
+            date: "2026-07-15",
+            time: "14:27",
+            category: "تماس",
+            event: "الگوی تماس‌های کوتاه",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "عمل و استراحت", effect: { score: -3, axis: "stability" }, expiry: 20 },
+                { category: "پروفایل", title: "عملکردی", effect: { score: 3, axis: "openness" }, expiry: 30 },
+                { category: "پروفایل", title: "قابلیت اتکا", effect: { score: 7, axis: "trust" }, expiry: 60 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "نیاز", title: "پاسخ سریع", weight: 5, expiry: 30 },
+                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+            ],
+            links: [],
+            linksText: "",
+            observation: {
+                text: "در طول روز ارتباط تلفنی MR721AS به چند تماس بسیار کوتاه محدود شد.",
+                details: "پس از بیدار شدن، اولین تماس حدود ۱ دقیقه و ۱۹ ثانیه بود."
+            },
+            hypotheses: [
+                "ممکن است MR721AS هنگام وجود مشکل، ارتباط را فقط به موضوعات کاربردی محدود کند."
+            ],
+            patterns: [{
+                title: "ارتباط عملکردی",
+                description: "بخش عمده تماس‌ها حول حل مشکلات فنی و مسائل روزمره بود.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-15 14:27",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-003",
+            person: "MR721AS",
+            date: "2026-07-15",
+            time: "23:40",
+            category: "پیام",
+            event: "پایان شب بدون ادامه گفتگو",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "سکوت", effect: { score: -4, axis: "attachment" }, expiry: 15 },
+                { category: "پروفایل", title: "کناره‌گیری", effect: { score: -4, axis: "stability" }, expiry: 20 },
+                { category: "پروفایل", title: "دلبستگی", effect: { score: -3, axis: "attachment" }, expiry: 25 },
+                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
+                { category: "علاقه", title: "سکوت", weight: 2, expiry: 30 }
+            ],
+            links: ["OBS-002"],
+            linksText: "ارتباط با الگوی تماس‌های کوتاه همان روز",
+            observation: {
+                text: "پس از پایان گفتگوهای کوتاه روز، تا پایان شب پیام مؤثری از MR721AS دریافت نشد.",
+                details: "آخرین پیام‌ها شامل شوخی و ابراز علاقه بود."
+            },
+            hypotheses: [
+                "ممکن است MR721AS در زمان دریافت تماس خوابیده باشد."
+            ],
+            patterns: [{
+                title: "پایان ناگهانی گفتگو",
+                description: "پس از چند پیام یا تماس کوتاه، ارتباط تا روز بعد متوقف می‌شود.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-15 23:40",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-004",
+            person: "MR721AS",
+            date: "2026-07-14",
+            time: "21:30",
+            category: "گفتگو",
+            event: "گلایه از کاهش ارتباط",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "نزدیکی", effect: { score: 4, axis: "attachment" }, expiry: 25 },
+                { category: "پروفایل", title: "ارتباط", effect: { score: 5, axis: "openness" }, expiry: 30 },
+                { category: "پروفایل", title: "دلبستگی", effect: { score: 5, axis: "attachment" }, expiry: 25 },
+                { category: "نیاز", title: "توجه", weight: 7, expiry: 25 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "علاقه", title: "گفتگو", weight: 4, expiry: 45 }
+            ],
+            links: [],
+            linksText: "",
+            observation: {
+                text: "پس از بیان گلایه درباره کوتاه بودن تماس‌ها، مدت مکالمه نسبت به روزهای قبل افزایش یافت.",
+                details: "MR721AS در طول شب چند بار تماس گرفت و مجموع زمان مکالمه به حدود 25 دقیقه رسید."
+            },
+            hypotheses: [
+                "بیان مستقیم نیاز عاطفی می‌تواند میزان تعامل MR721AS را افزایش دهد."
+            ],
+            patterns: [{
+                title: "افزایش تعامل پس از گلایه",
+                description: "پس از بیان نیاز، زمان و تعداد تماس‌ها افزایش پیدا می‌کند.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-14 21:30",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-005",
+            person: "MR721AS",
+            date: "2026-07-12",
+            time: "23:58",
+            category: "پیام",
+            event: "اتهام خیانت",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
+                { category: "الگو", title: "اتهام", effect: { score: -8, axis: "trust" }, expiry: 20 },
+                { category: "پروفایل", title: "حسادت", effect: { score: -6, axis: "trust" }, expiry: 40 },
+                { category: "پروفایل", title: "کنترل", effect: { score: -4, axis: "control" }, expiry: 35 },
+                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
+                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+            ],
+            links: [],
+            linksText: "",
+            observation: {
+                text: "در اوج تنش، چندین بار بدون ارائه شواهد، اتهام خیانت مطرح کرد.",
+                details: "پیام‌های متعدد با محتوای توهین و تحقیر ارسال شد."
+            },
+            hypotheses: [
+                "در شرایط فشار هیجانی از اتهام به عنوان ابزار دفاعی استفاده می‌کند."
+            ],
+            patterns: [{
+                title: "اتهام در بحران",
+                description: "در زمان تنش شدید، احتمال طرح اتهام افزایش می‌یابد.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-12 23:58",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-006",
+            person: "MR721AS",
+            date: "2026-07-13",
+            time: "00:30",
+            category: "رفتار",
+            event: "تغییر ناگهانی لحن",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
+                { category: "الگو", title: "دلجویی", effect: { score: 4, axis: "attachment" }, expiry: 15 },
+                { category: "پروفایل", title: "انعطاف", effect: { score: 3, axis: "openness" }, expiry: 20 },
+                { category: "پروفایل", title: "دلبستگی", effect: { score: 4, axis: "attachment" }, expiry: 25 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "علاقه", title: "دلجویی", weight: 3, expiry: 25 }
+            ],
+            links: ["OBS-005"],
+            linksText: "پس از دوره اتهام",
+            observation: {
+                text: "پس از دوره‌ای از توهین و اتهام، ناگهان وارد فاز دلجویی و عذرخواهی شد.",
+                details: "با عباراتی مانند «ببخشید» و «عشقم» تلاش کرد رابطه را ترمیم کند."
+            },
+            hypotheses: [
+                "پس از تخلیه هیجان، نیاز به ترمیم رابطه در او فعال می‌شود."
+            ],
+            patterns: [{
+                title: "پروتکل آونگ",
+                description: "جابجایی سریع بین حمله و دلجویی.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-13 00:30",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-007",
+            person: "MR721AS",
+            date: "2026-07-14",
+            time: "10:43",
+            category: "تماس",
+            event: "پینگ خاموش",
+            cardStatus: "Observation",
+            tags: [
+                { category: "الگو", title: "سنجش", effect: { score: 2, axis: "attachment" }, expiry: 10 },
+                { category: "پروفایل", title: "محتاط", effect: { score: 2, axis: "openness" }, expiry: 15 },
+                { category: "پروفایل", title: "اعتماد", effect: { score: 1, axis: "trust" }, expiry: 20 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "علاقه", title: "تماس کوتاه", weight: 2, expiry: 20 }
+            ],
+            links: ["OBS-006"],
+            linksText: "پس از دلجویی شب قبل",
+            observation: {
+                text: "تماس 15 ثانیه‌ای بدون ورود به بحث برقرار شد.",
+                details: "MR721AS گفت تازه بیدار شده است، فقط وضعیت را پرسید و تماس را پایان داد."
+            },
+            hypotheses: [
+                "پس از بحران، تماس کوتاه بدون تنش می‌تواند وضعیت رابطه را ارزیابی کند."
+            ],
+            patterns: [{
+                title: "پینگ خاموش",
+                description: "بررسی وضعیت طرف مقابل با تماس کوتاه و بدون ورود به تعارض.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-07-14 10:43",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }, {
+            id: "OBS-008",
+            person: "MR721AS",
+            date: "2026-06-01",
+            time: "09:00",
+            category: "رفتار",
+            event: "انجام قول قدیمی",
+            cardStatus: "Observation",
+            tags: [
+                { category: "پروفایل", title: "قابلیت اتکا", effect: { score: 7, axis: "trust" }, expiry: 60 },
+                { category: "پروفایل", title: "ثبات", effect: { score: 6, axis: "stability" }, expiry: 50 },
+                { category: "پروفایل", title: "اعتماد", effect: { score: 6, axis: "trust" }, expiry: 55 },
+                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
+                { category: "علاقه", title: "انجام کار", weight: 4, expiry: 45 }
+            ],
+            links: [],
+            linksText: "",
+            observation: {
+                text: "قولی که داده بود را به موقع انجام داد.",
+                details: "این یک سند قدیمی است (حدود ۴۵ روز پیش)"
+            },
+            hypotheses: [
+                "معمولاً قول‌هایش را انجام می‌دهد."
+            ],
+            patterns: [{
+                title: "انجام قول",
+                description: "قول‌های خود را به موقع انجام می‌دهد.",
+                occurrences: 1
+            }],
+            timeline: [{
+                date: "2026-06-01 09:00",
+                action: "Observation Added",
+                type: "add"
+            }]
+        }];
+
+        // ============================================================
+        // 📋 محورهای پروفایل (Profile Axes)
+        // ============================================================
+        const PROFILE_AXES = {
+            trust: {
+                label: 'اعتماد',
+                icon: '🤝',
+                color: '#34d399',
+                tags: ['اتهام', 'قابلیت اتکا', 'حسادت', 'اعتماد', 'دلجویی']
+            },
+            stability: {
+                label: 'ثبات',
+                icon: '⚖️',
+                color: '#60a5fa',
+                tags: ['آونگ', 'عمل و استراحت', 'کناره‌گیری', 'ثبات']
+            },
+            openness: {
+                label: 'گشودگی',
+                icon: '🌱',
+                color: '#a78bfa',
+                tags: ['ارتباط', 'انعطاف', 'محتاط', 'عملکردی']
+            },
+            attachment: {
+                label: 'دلبستگی',
+                icon: '💞',
+                color: '#f472b6',
+                tags: ['نزدیکی', 'سکوت', 'دلجویی', 'دلبستگی']
+            },
+            control: {
+                label: 'کنترل',
+                icon: '🎯',
+                color: '#f59e0b',
+                tags: ['کنترل', 'اطمینان', 'توجه']
+            }
+        };
+
+        // ============================================================
+        // 🧠 PROCESSORS — مصرف‌کننده‌های تگ
+        // ============================================================
+
+        // ---- ابزارهای کمکی ----
+        function getToday() {
+            return new Date().toISOString().split('T')[0];
         }
-    ],
-    patterns: [
-        {
-            title: "تکرار اتهام خیانت",
-            description: "در زمان تنش، عباس به جای تمرکز بر موضوع اصلی، گفتگو را به سمت اتهام خیانت و وجود شخص ثالث هدایت می‌کند.",
-            occurrences: 1
-        },
-        {
-            title: "افزایش شدت پیام‌ها پس از تأخیر در پاسخ",
-            description: "با فاصله افتادن بین پاسخ‌های من، لحن پیام‌ها تندتر و اتهام‌ها بیشتر شد.",
-            occurrences: 1
+
+        function daysBetween(date1, date2) {
+            const d1 = new Date(date1);
+            const d2 = new Date(date2);
+            return Math.floor((d2 - d1) / (1000 * 60 * 60 * 24));
         }
-    ],
-    timeline: [
-        {
-            date: "1405-04-20 23:31",
-            action: "Observation Added",
-            type: "add"
-        },
-        {
-            date: "1405-04-20 23:42",
-            action: "Conversation Escalated",
-            type: "event"
-        },
-        {
-            date: "1405-04-20 23:50",
-            action: "Hypotheses Added",
-            type: "hypothesis"
+
+        function toPersianDate(dateStr) {
+            const d = new Date(dateStr);
+            const year = d.getFullYear() - 621;
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
         }
-    ]
-}, {
-    id: "OBS-002",
-    person: "MR721AS",
-    date: "1405-04-21",
-    category: "تماس",
-    event: "الگوی تماس‌های کوتاه و پراکنده",
-    cardStatus: "Observation",
-    tags: ["تماس", "ارتباط", "زمان", "رفتار"],
-    links: [],
-    linksText: "",
-    observation: {
-        text: "در طول روز ارتباط تلفنی عباس به چند تماس بسیار کوتاه محدود شد. مجموع زمان مکالمات کمتر از چند دقیقه بود و اغلب تماس‌ها صرف انتقال یک موضوع فنی یا اداری شد.",
-        details: "پس از بیدار شدن، اولین تماس حدود ۱ دقیقه و ۱۹ ثانیه بود. سپس تماس‌های کوتاه دیگری برای اطلاع دادن درباره مشکل سیم‌کارت، درخواست ارسال شماره و اطلاع از وضعیت اینترنت برقرار شد. پس از ارسال شماره، تا پایان روز تماس یا گفتگوی طولانی دیگری شکل نگرفت. در مجموع، زمان واقعی گفتگوی عاطفی کمتر از چند دقیقه بود."
-    },
-    hypotheses: [
-        {
-            title: "ممکن است درگیری‌های مربوط به سیم‌کارت و حساب بانکی بخش زیادی از توجه عباس را گرفته باشد.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "ممکن است عباس هنگام وجود مشکل، ارتباط را فقط به موضوعات کاربردی محدود کند.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "احتمال دارد کاهش زمان مکالمه صرفاً ناشی از شرایط همان روز نباشد و بخشی از الگوی ارتباطی او باشد.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "ممکن است برداشت من از کمبود توجه، ناشی از اختلاف زیاد بین انتظار عاطفی من و سبک ارتباطی عباس باشد.",
-            confidence: null,
-            status: "در حال بررسی"
+
+        function getTagWeight(tag, recordDate) {
+            const today = getToday();
+            const age = daysBetween(recordDate, today);
+            const expiry = tag.expiry || 30;
+
+            if (age >= expiry) return 0;
+            if (age <= 0) return tag.effect?.score || tag.weight || 3;
+
+            const remaining = expiry - age;
+            const ratio = remaining / expiry;
+            return (tag.effect?.score || tag.weight || 3) * ratio;
         }
-    ],
-    patterns: [
-        {
-            title: "ارتباط عملکردی به جای ارتباط عاطفی",
-            description: "بخش عمده تماس‌ها حول حل مشکلات فنی، اینترنت، سیم‌کارت یا مسائل روزمره بود و گفتگوی عاطفی بسیار کوتاه باقی ماند.",
-            occurrences: 1
-        },
-        {
-            title: "تماس‌های بسیار کوتاه",
-            description: "عباس در طول روز چند تماس برقرار کرد اما مدت هر تماس کوتاه بود و بعد از انتقال پیام تماس پایان یافت.",
-            occurrences: 1
+
+        function getTagRawWeight(tag) {
+            return tag.effect?.score || tag.weight || 3;
         }
-    ],
-    timeline: [
-        {
-            date: "1405-04-21 14:27",
-            action: "Phone Conversation Started",
-            type: "event"
-        },
-        {
-            date: "1405-04-21 17:24",
-            action: "Short Call About SIM Issue",
-            type: "event"
-        },
-        {
-            date: "1405-04-21 18:25",
-            action: "Requested Phone Number",
-            type: "event"
+
+        function scoreToAxisPercent(score) {
+            const clamped = Math.min(Math.max(score, -10), 10);
+            return ((clamped + 10) / 20) * 100;
         }
-    ]
-},{
-    id: "OBS-003",
-    person: "MR721AS",
-    date: "1405-04-21",
-    category: "پیام",
-    event: "پایان شب بدون ادامه گفتگو",
-    cardStatus: "Observation",
-    tags: ["پیام", "شب", "ارتباط", "احساس"],
-    links: ["OBS-002"],
-    linksText: "ارتباط با الگوی تماس‌های کوتاه همان روز",
-    observation: {
-        text: "پس از پایان گفتگوهای کوتاه روز، تا پایان شب پیام مؤثری از عباس دریافت نشد. من چند پیام با لحن شوخی و محبت ارسال کردم و در پایان نیز دو بار تماس گرفتم که پاسخ داده نشد.",
-        details: "آخرین پیام‌های من شامل شوخی، ابراز علاقه و اطمینان دادن درباره وفاداری بود. سپس دو تماس برقرار کردم که فقط بوق خورد و پاسخی دریافت نشد. با توجه به اینکه تماس زنگ می‌خورد، نتیجه گرفتم که احتمالاً گوشی روی حالت بی‌صدا بوده و بلاک نشده بود."
-    },
-    hypotheses: [
-        {
-            title: "ممکن است عباس در زمان دریافت تماس خوابیده باشد.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "احتمال دارد گوشی روی حالت بی‌صدا یا مزاحم نشوید قرار داشته باشد.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "عدم پاسخ لزوماً به معنای قطع ارتباط یا بلاک کردن نبوده است.",
-            confidence: null,
-            status: "در حال بررسی"
-        },
-        {
-            title: "ممکن است سبک پایان دادن روز برای عباس متفاوت از انتظار من باشد و بدون خداحافظی یا ادامه گفتگو بخوابد.",
-            confidence: null,
-            status: "در حال بررسی"
+
+        function getStars(count) {
+            const stars = Math.min(Math.ceil(count / 3), 5);
+            return '★'.repeat(stars) + '☆'.repeat(5 - stars);
         }
-    ],
-    patterns: [
-        {
-            title: "پایان ناگهانی گفتگو",
-            description: "پس از چند پیام یا تماس کوتاه، ارتباط تا روز بعد متوقف می‌شود و ادامه پیدا نمی‌کند.",
-            occurrences: 1
-        },
-        {
-            title: "ارسال پیام‌های اطمینان‌بخش از سوی من",
-            description: "در پایان شب تلاش کردم با شوخی، محبت و تأکید بر وفاداری، فضای گفتگو را آرام نگه دارم.",
-            occurrences: 1
+
+        // ---- پردازشگر الگو (PatternProcessor) ----
+        function PatternProcessor(records) {
+            const patterns = {};
+
+            records.forEach(record => {
+                (record.tags || []).forEach(tag => {
+                    if (tag.category !== 'الگو') return;
+
+                    const weight = getTagWeight(tag, record.date);
+                    if (weight === 0) return;
+
+                    if (!patterns[tag.title]) {
+                        patterns[tag.title] = {
+                            title: tag.title,
+                            totalWeight: 0,
+                            count: 0,
+                            axis: tag.effect?.axis || 'trust',
+                            records: [],
+                            effects: []
+                        };
+                    }
+
+                    patterns[tag.title].totalWeight += weight;
+                    patterns[tag.title].count += 1;
+                    patterns[tag.title].records.push(record.id);
+                    patterns[tag.title].effects.push({
+                        score: tag.effect.score,
+                        axis: tag.effect.axis,
+                        expiry: tag.expiry
+                    });
+                });
+            });
+
+            return Object.values(patterns).map(p => {
+                const avgScore = p.totalWeight / p.count;
+                return {
+                    title: p.title,
+                    score: Math.round(avgScore * 10) / 10,
+                    axis: p.axis,
+                    occurrences: p.count,
+                    records: p.records,
+                    effects: p.effects,
+                    weight: Math.round((p.totalWeight / p.count) * 10) / 10,
+                    axisPercent: scoreToAxisPercent(avgScore)
+                };
+            }).sort((a, b) => b.score - a.score);
         }
-    ],
-    timeline: [
-        {
-            date: "1405-04-21 23:40",
-            action: "Affectionate Messages Sent",
-            type: "event"
-        },
-        {
-            date: "1405-04-21 23:46",
-            action: "Two Calls Placed",
-            type: "event"
-        },
-        {
-            date: "1405-04-21 23:48",
-            action: "No Response - Observation Recorded",
-            type: "add"
+
+        // ---- پردازشگر پروفایل (ProfileProcessor) با محورهای دقیق ----
+        function ProfileProcessor(records) {
+            // مقداردهی اولیه محورها
+            const axes = {};
+            Object.keys(PROFILE_AXES).forEach(key => {
+                axes[key] = { total: 0, count: 0, tags: [] };
+            });
+
+            records.forEach(record => {
+                (record.tags || []).forEach(tag => {
+                    if (tag.category !== 'پروفایل') return;
+
+                    const weight = getTagWeight(tag, record.date);
+                    if (weight === 0) return;
+
+                    // پیدا کردن محور مناسب برای این تگ
+                    let foundAxis = null;
+                    for (const [axisKey, axisData] of Object.entries(PROFILE_AXES)) {
+                        if (axisData.tags.includes(tag.title)) {
+                            foundAxis = axisKey;
+                            break;
+                        }
+                    }
+
+                    if (foundAxis && axes[foundAxis]) {
+                        axes[foundAxis].total += weight;
+                        axes[foundAxis].count += 1;
+                        if (!axes[foundAxis].tags.includes(tag.title)) {
+                            axes[foundAxis].tags.push(tag.title);
+                        }
+                    }
+                });
+            });
+
+            // ساخت نتیجه نهایی
+            const result = {};
+            Object.keys(axes).forEach(key => {
+                const avg = axes[key].count > 0 ? axes[key].total / axes[key].count : 0;
+                result[key] = {
+                    label: PROFILE_AXES[key].label,
+                    icon: PROFILE_AXES[key].icon,
+                    color: PROFILE_AXES[key].color,
+                    score: Math.round(avg * 10) / 10,
+                    axisPercent: scoreToAxisPercent(avg),
+                    count: axes[key].count,
+                    tags: axes[key].tags
+                };
+            });
+
+            return result;
         }
-    ]
-},];
+
+        // ---- پردازشگر نیازها و علاقه‌ها ----
+        function NeedsInterestsProcessor(records) {
+            const needs = {};
+            const interests = {};
+
+            records.forEach(record => {
+                (record.tags || []).forEach(tag => {
+                    const weight = getTagWeight(tag, record.date);
+                    if (weight === 0) return;
+
+                    if (tag.category === 'نیاز') {
+                        if (!needs[tag.title]) {
+                            needs[tag.title] = {
+                                title: tag.title,
+                                count: 0,
+                                weightSum: 0,
+                                lastSeen: record.date,
+                                records: []
+                            };
+                        }
+                        needs[tag.title].count += 1;
+                        needs[tag.title].weightSum += getTagRawWeight(tag);
+                        needs[tag.title].records.push(record.id);
+                        if (record.date > needs[tag.title].lastSeen) {
+                            needs[tag.title].lastSeen = record.date;
+                        }
+                    }
+
+                    if (tag.category === 'علاقه') {
+                        if (!interests[tag.title]) {
+                            interests[tag.title] = {
+                                title: tag.title,
+                                count: 0,
+                                weightSum: 0,
+                                lastSeen: record.date,
+                                records: []
+                            };
+                        }
+                        interests[tag.title].count += 1;
+                        interests[tag.title].weightSum += getTagRawWeight(tag);
+                        interests[tag.title].records.push(record.id);
+                        if (record.date > interests[tag.title].lastSeen) {
+                            interests[tag.title].lastSeen = record.date;
+                        }
+                    }
+                });
+            });
+
+            const needsArray = Object.values(needs).map(n => ({
+                ...n,
+                score: Math.round((n.weightSum / n.count) * 10) / 10,
+                stars: getStars(n.count)
+            })).sort((a, b) => b.count - a.count);
+
+            const interestsArray = Object.values(interests).map(i => ({
+                ...i,
+                score: Math.round((i.weightSum / i.count) * 10) / 10,
+                stars: getStars(i.count)
+            })).sort((a, b) => b.count - a.count);
+
+            const allItems = [...needsArray, ...interestsArray];
+            const priorities = allItems.sort((a, b) => b.count - a.count).slice(0, 10);
+
+            return {
+                needs: needsArray,
+                interests: interestsArray,
+                priorities: priorities
+            };
+        }
 
         // ============================================================
         // STATE
         // ============================================================
         let currentPage = 'dashboard';
-        let searchQuery = '';
         let expandedCard = null;
-        let currentFilter = 'all';
-        let selectedPerson = null;
-
-        // ============================================================
-        // HELPERS
-        // ============================================================
-        function getPersonLabel(personId) {
-            return PEOPLE[personId] ? PEOPLE[personId].label : personId;
-        }
-
-        function getPersonName(personId) {
-            return PEOPLE[personId] ? PEOPLE[personId].name : personId;
-        }
-
-        function getRecordsByPerson(personId) {
-            return RECORDS.filter(r => r.person === personId);
-        }
-
-        function getPersonStats(personId) {
-            const records = getRecordsByPerson(personId);
-            return {
-                total: records.length,
-                obs: records.filter(r => r.observation && r.observation.text).length,
-                hyp: records.filter(r => r.hypotheses && r.hypotheses.length > 0).length,
-                pat: records.filter(r => r.patterns && r.patterns.length > 0).length
-            };
-        }
-
-        function getAllTags() {
-            const tags = new Set();
-            RECORDS.forEach(r => (r.tags || []).forEach(t => tags.add(t)));
-            return Array.from(tags).sort();
-        }
-
-        function getTagIcon(tag) {
-            return TAG_ICONS[tag] || '🏷️';
-        }
-
-        function getCardStatusClass(status) {
-            const map = {
-                'Observation': 'status-obs',
-                'Hypothesis': 'status-hyp',
-                'Pattern': 'status-pat',
-                'Rejected': 'status-rej'
-            };
-            return map[status] || 'status-obs';
-        }
-
-        function getCardStatusColor(status) {
-            const map = {
-                'Observation': 'status-observation',
-                'Hypothesis': 'status-hypothesis',
-                'Pattern': 'status-pattern',
-                'Rejected': 'status-rejected'
-            };
-            return map[status] || 'status-observation';
-        }
-
-        function getCardStatusIcon(status) {
-            const map = {
-                'Observation': '🟦',
-                'Hypothesis': '🟨',
-                'Pattern': '🟩',
-                'Rejected': '🔴'
-            };
-            return map[status] || '🟦';
-        }
-
-        function getConfidenceClass(confidence) {
-            if (confidence < 40) return 'low';
-            if (confidence < 70) return 'medium';
-            return 'high';
-        }
-
-        function getStatusClass(status) {
-            if (status === 'تأیید شد') return 'status-confirmed';
-            if (status === 'رد شد') return 'status-rejected';
-            return 'status-review';
-        }
-
-        function getStatusIcon(status) {
-            if (status === 'تأیید شد') return '🟢';
-            if (status === 'رد شد') return '🔴';
-            return '🟡';
-        }
-
-        function getFilteredRecords(query, filter, person) {
-            let result = RECORDS;
-
-            if (person) {
-                result = result.filter(r => r.person === person);
-            }
-
-            if (query.trim()) {
-                const q = query.trim().toLowerCase();
-                result = result.filter(r =>
-                    r.id.toLowerCase().includes(q) ||
-                    r.person.toLowerCase().includes(q) ||
-                    getPersonLabel(r.person).includes(q) ||
-                    r.category.toLowerCase().includes(q) ||
-                    r.event.toLowerCase().includes(q) ||
-                    r.cardStatus.toLowerCase().includes(q) ||
-                    r.observation.text.toLowerCase().includes(q) ||
-                    (r.tags || []).some(t => t.toLowerCase().includes(q)) ||
-                    (r.links || []).some(l => l.toLowerCase().includes(q))
-                );
-            }
-
-            if (filter !== 'all') {
-                if (filter === 'observation') {
-                    result = result.filter(r => r.cardStatus === 'Observation');
-                } else if (filter === 'hypothesis') {
-                    result = result.filter(r => r.cardStatus === 'Hypothesis');
-                } else if (filter === 'pattern') {
-                    result = result.filter(r => r.cardStatus === 'Pattern');
-                } else if (filter === 'rejected') {
-                    result = result.filter(r => r.cardStatus === 'Rejected');
-                }
-            }
-
-            return result;
-        }
-
-        // ============================================================
-        // TOGGLE CARD
-        // ============================================================
-        window.toggleCard = function(id) {
-            if (expandedCard === id) {
-                expandedCard = null;
-            } else {
-                expandedCard = id;
-            }
-            render();
-        };
-
-        // ============================================================
-        // SEARCH BY LINK
-        // ============================================================
-        window.searchByLink = function(id) {
-            document.getElementById('searchInput').value = id;
-            searchQuery = id;
-            if (currentPage !== 'records') {
-                currentPage = 'records';
-                selectedPerson = null;
-                document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
-                document.querySelector('[data-page="records"]').classList.add('active');
-            }
-            render();
-        };
+        let needsTab = 'needs';
 
         // ============================================================
         // RENDER
@@ -1373,299 +1500,410 @@
         function render() {
             const content = document.getElementById('content');
 
+            document.getElementById('recordBadge').textContent = RECORDS.length;
+
+            const patterns = PatternProcessor(RECORDS);
+            document.getElementById('patternBadge').textContent = patterns.length;
+
+            const needsData = NeedsInterestsProcessor(RECORDS);
+            document.getElementById('needsBadge').textContent = needsData.priorities.length;
+
             if (currentPage === 'dashboard') {
-                content.innerHTML = renderDashboard();
-                return;
-            }
-
-            if (currentPage === 'records') {
+                content.innerHTML = `<div class="empty-state"></div>`;
+            } else if (currentPage === 'records') {
                 content.innerHTML = renderRecords();
-                return;
+            } else if (currentPage === 'patterns') {
+                content.innerHTML = renderPatterns(patterns);
+            } else if (currentPage === 'profile') {
+                content.innerHTML = renderProfile();
+            } else if (currentPage === 'needs') {
+                content.innerHTML = renderNeeds(needsData);
             }
-
-            if (currentPage === 'people') {
-                content.innerHTML = renderPeople();
-                return;
-            }
-
-            if (currentPage === 'settings') {
-                content.innerHTML = renderSettings();
-                return;
-            }
-
-            content.innerHTML = renderDashboard();
         }
 
         // ============================================================
-        // DASHBOARD
-        // ============================================================
-        function renderDashboard() {
-            const total = RECORDS.length;
-            const people = Object.keys(PEOPLE).length;
-            const totalObs = RECORDS.filter(r => r.cardStatus === 'Observation').length;
-            const totalHyp = RECORDS.filter(r => r.cardStatus === 'Hypothesis').length;
-            const totalPat = RECORDS.filter(r => r.cardStatus === 'Pattern').length;
-            const totalRej = RECORDS.filter(r => r.cardStatus === 'Rejected').length;
-            const tags = getAllTags();
-
-            let recentRecords = [...RECORDS].slice(-5).reverse();
-
-            return `
-                <div class="glass">
-                    <div class="card-title"><i class="fas fa-chart-pie"></i> خلاصه</div>
-                    <div class="stats-row">
-                        <span class="stat-item"><span class="num">${total}</span> کل</span>
-                        <span class="stat-item" style="color:#4a7aff;">🟦 <span class="num">${totalObs}</span> مشاهده</span>
-                        <span class="stat-item" style="color:#f59e0b;">🟨 <span class="num">${totalHyp}</span> فرضیه</span>
-                        <span class="stat-item" style="color:#8b5cf6;">🟩 <span class="num">${totalPat}</span> الگو</span>
-                        <span class="stat-item" style="color:#ef4444;">🔴 <span class="num">${totalRej}</span> رد</span>
-                        <span class="stat-item"><span class="num">${people}</span> افراد</span>
-                        <span class="stat-item"><span class="num">${tags.length}</span> تگ</span>
-                    </div>
-                </div>
-
-                <div class="glass">
-                    <div class="card-title"><i class="fas fa-clock"></i> آخرین مشاهدات</div>
-                    ${recentRecords.map(r => renderCard(r, false)).join('')}
-                    ${recentRecords.length === 0 ? '<div class="no-data">هیچ مشاهده‌ای ثبت نشده است</div>' : ''}
-                </div>
-            `;
-        }
-
-        // ============================================================
-        // RECORDS
+        // RENDER RECORDS
         // ============================================================
         function renderRecords() {
-            const filtered = getFilteredRecords(searchQuery, currentFilter, selectedPerson);
-            document.getElementById('resultCount').innerHTML = filtered.length > 0 ?
-                `<strong>${filtered.length}</strong> نتیجه` :
-                '۰ نتیجه';
-
-            let filterHtml = `
-                <div style="display:flex; gap:3px; flex-wrap:wrap; margin-bottom:6px;">
-                    <button class="filter-chip ${currentFilter === 'all' ? 'active' : ''}" data-filter="all" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🏷️ همه</button>
-                    <button class="filter-chip ${currentFilter === 'observation' ? 'active' : ''}" data-filter="observation" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟦 مشاهده</button>
-                    <button class="filter-chip ${currentFilter === 'hypothesis' ? 'active' : ''}" data-filter="hypothesis" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟨 فرضیه</button>
-                    <button class="filter-chip ${currentFilter === 'pattern' ? 'active' : ''}" data-filter="pattern" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🟩 الگو</button>
-                    <button class="filter-chip ${currentFilter === 'rejected' ? 'active' : ''}" data-filter="rejected" style="background:rgba(60,100,170,0.04);border:1px solid rgba(60,100,170,0.04);border-radius:20px;padding:1px 8px;font-size:0.45rem;color:#6a8aaa;cursor:pointer;font-family:inherit;">🔴 رد</button>
-                </div>
-            `;
-
-            if (selectedPerson) {
-                filterHtml +=
-                    `<div style="font-size:0.45rem;color:#5a9ac0;margin-bottom:4px;">👤 نمایش برای: ${getPersonLabel(selectedPerson)} (${getPersonName(selectedPerson)})</div>`;
-            }
+            const today = getToday();
 
             return `
                 <div class="glass">
-                    <div class="card-title"><i class="fas fa-book"></i> پرونده‌ها (${filtered.length})</div>
-                    ${filterHtml}
-                    ${filtered.map(r => renderCard(r, true)).join('')}
-                    ${filtered.length === 0 ? '<div class="no-data">نتیجه‌ای یافت نشد</div>' : ''}
+                    <div class="card-title">
+                        <i class="fas fa-folder-open"></i> همه مشاهدات
+                        <span class="badge-count">${RECORDS.length}</span>
+                    </div>
+                    <div class="window-info">
+                        <span class="win-item">📅 امروز: <span class="num">${toPersianDate(today)}</span></span>
+                    </div>
+                    ${RECORDS.map(r => renderRecordCard(r)).join('')}
                 </div>
             `;
         }
 
         // ============================================================
-        // CARD
+        // RENDER RECORD CARD
         // ============================================================
-        function renderCard(record, showAll) {
+        function renderRecordCard(record) {
             const isOpen = expandedCard === record.id;
-            const statusClass = getCardStatusColor(record.cardStatus);
-            const statusBadgeClass = getCardStatusClass(record.cardStatus);
+            const today = getToday();
+            const age = daysBetween(record.date, today);
 
-            // نمایش تگ‌ها با آیکون
-            const tagsHtml = (record.tags || []).map(t =>
-                `<span class="tag"><span class="tag-icon">${getTagIcon(t)}</span> ${t}</span>`
+            const tagsHtml = (record.tags || []).map(t => {
+                const weight = getTagWeight(t, record.date);
+                const remaining = Math.max(0, t.expiry - age);
+                const isExpired = weight === 0;
+                const effectClass = (t.effect?.score || 0) > 0 ? 'positive' : 'negative';
+                const displayWeight = t.effect?.score || t.weight || 3;
+
+                return `
+                    <span style="font-size:0.35rem;padding:1px 8px;border-radius:30px;background:${isExpired ? 'rgba(239,68,68,0.08)' : 'rgba(19,244,210,0.04)'};border:1px solid ${isExpired ? 'rgba(239,68,68,0.1)' : 'rgba(19,244,210,0.04)'};color:${isExpired ? '#ef4444' : 'rgba(19,244,210,0.6)'};">
+                        ${t.category}: ${t.title}
+                        <span class="effect ${effectClass}">[${displayWeight > 0 ? '+' : ''}${displayWeight}]</span>
+                        ${isExpired ? '⛔' : `⏳${remaining}روز`}
+                    </span>
+                `;
+            }).join('');
+
+            const hypsHtml = (record.hypotheses || []).map(h =>
+                `<div class="hypothesis-item">• ${h}</div>`
             ).join('');
 
-            // نمایش لینک‌ها با آیکون
-            const linksHtml = (record.links || []).map(id =>
-                `<span class="link-item" onclick="event.stopPropagation();searchByLink('${id}')"><span class="link-icon">🔗</span> ${id}</span>`
+            const patternsHtml = (record.patterns || []).map(p =>
+                `<div class="pattern-item">${p.title}<div class="p-desc">${p.description} · تکرار: ${p.occurrences}</div></div>`
             ).join('');
+
+            let totalWeight = 0;
+            let totalMaxWeight = 0;
+            (record.tags || []).forEach(t => {
+                const w = getTagWeight(t, record.date);
+                totalWeight += Math.abs(w);
+                totalMaxWeight += Math.abs(t.effect?.score || t.weight || 3);
+            });
+            const weightPercent = totalMaxWeight > 0 ? Math.round((totalWeight / totalMaxWeight) * 100) : 0;
+            const weightClass = weightPercent < 30 ? 'low' : '';
 
             return `
-                <div class="record-card ${statusClass}" onclick="toggleCard('${record.id}')">
+                <div class="record-card" onclick="toggleCard('${record.id}')">
                     <div class="card-header">
                         <div class="left">
                             <span class="id">${record.id}</span>
-                            <span class="person" title="${getPersonName(record.person)}">${getPersonLabel(record.person)}</span>
-                            <span class="date">${record.date} ${record.time || ''}</span>
-                            <span class="category">${record.category}</span>
+                            <span class="person">${record.person}</span>
+                            <span class="date">${toPersianDate(record.date)} ${record.time || ''}</span>
                             <span class="event">${record.event}</span>
-                            <span class="card-status-badge ${statusBadgeClass}">${getCardStatusIcon(record.cardStatus)} ${record.cardStatus}</span>
+                            <span class="weight-badge ${weightClass}">⚖️ ${weightPercent}%</span>
+                            ${age > 0 ? `<span style="font-size:0.35rem;color:rgba(19,244,210,0.2);">(${age} روز پیش)</span>` : ''}
                         </div>
                         <span class="expand-icon ${isOpen ? 'open' : ''}"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="card-body ${isOpen ? 'open' : ''}">
-
-                        <!-- Observation -->
-                        <div class="section section-observation">
-                            <div class="section-label"><i class="fas fa-eye"></i> Observation</div>
+                        <div class="section">
+                            <div class="section-label"><i class="fas fa-eye"></i> مشاهده</div>
                             <div class="section-content">${record.observation.text}</div>
-                            ${record.observation.details ? `<div style="font-size:0.5rem;color:#5a7a9a;margin-top:2px;">📌 ${record.observation.details}</div>` : ''}
+                            ${record.observation.details ? `<div style="font-size:0.45rem;color:rgba(19,244,210,0.3);margin-top:2px;">${record.observation.details}</div>` : ''}
                         </div>
 
-                        <!-- Hypotheses -->
                         ${record.hypotheses && record.hypotheses.length > 0 ? `
-                            <div class="section section-hypothesis">
-                                <div class="section-label"><i class="fas fa-lightbulb"></i> Hypotheses</div>
-                                ${record.hypotheses.map(h => `
-                                    <div class="hypothesis-item">
-                                        <div class="h-title">${h.title}</div>
-                                        <div class="h-meta">
-                                            <span class="conf-badge ${getConfidenceClass(h.confidence)}">${h.confidence}%</span>
-                                            <span class="status-badge ${getStatusClass(h.status)}">${getStatusIcon(h.status)} ${h.status}</span>
-                                        </div>
-                                    </div>
-                                `).join('')}
+                            <div class="section" style="border-right-color:rgba(245,158,11,0.2);">
+                                <div class="section-label" style="color:#f59e0b;"><i class="fas fa-lightbulb"></i> فرضیه‌ها</div>
+                                ${hypsHtml}
                             </div>
                         ` : ''}
 
-                        <!-- Patterns -->
                         ${record.patterns && record.patterns.length > 0 ? `
-                            <div class="section section-pattern">
-                                <div class="section-label"><i class="fas fa-stream"></i> Patterns</div>
-                                ${record.patterns.map(p => `
-                                    <div class="pattern-item">
-                                        <div class="p-title">${p.title}</div>
-                                        <div class="p-meta">${p.description} · تکرار: ${p.occurrences} بار</div>
-                                    </div>
-                                `).join('')}
+                            <div class="section" style="border-right-color:rgba(139,92,246,0.2);">
+                                <div class="section-label" style="color:#8b5cf6;"><i class="fas fa-stream"></i> الگوها</div>
+                                ${patternsHtml}
                             </div>
                         ` : ''}
 
-                        <!-- Tags -->
                         ${record.tags && record.tags.length > 0 ? `
-                            <div class="tags-row">
+                            <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;padding-top:4px;border-top:1px solid rgba(19,244,210,0.02);">
                                 ${tagsHtml}
                             </div>
                         ` : ''}
 
-                        <!-- Links -->
                         ${record.links && record.links.length > 0 ? `
-                            <div class="links-row">
-                                <span class="links-label">🔗 لینک‌ها:</span>
-                                ${linksHtml}
-                            </div>
-                            ${record.linksText ? `<div style="font-size:0.4rem;color:#5a7a9a;margin-top:2px;padding-right:4px;">${record.linksText}</div>` : ''}
-                        ` : ''}
-
-                        <!-- Timeline -->
-                        ${record.timeline && record.timeline.length > 0 ? `
-                            <div class="timeline-row">
-                                <div class="tl-label"><i class="fas fa-history"></i> History</div>
-                                ${record.timeline.map(t => `
-                                    <div class="tl-item">
-                                        <span class="tl-dot ${t.type === 'add' ? '' : t.type === 'hypothesis' ? 'orange' : t.type === 'pattern' ? 'purple' : 'green'}"></span>
-                                        <span class="tl-text">${t.date} · <strong>${t.action}</strong></span>
-                                    </div>
-                                `).join('')}
+                            <div style="font-size:0.4rem;color:rgba(19,244,210,0.3);margin-top:4px;padding-top:4px;border-top:1px solid rgba(19,244,210,0.02);">
+                                🔗 لینک‌ها: ${record.links.join('، ')}
+                                ${record.linksText ? `· ${record.linksText}` : ''}
                             </div>
                         ` : ''}
 
+                        <div style="font-size:0.35rem;color:rgba(19,244,210,0.15);margin-top:4px;padding-top:4px;border-top:1px solid rgba(19,244,210,0.02);">
+                            سن: ${age} روز · وزن در تحلیل: ${weightPercent}%
+                        </div>
                     </div>
                 </div>
             `;
         }
 
         // ============================================================
-        // PEOPLE
+        // RENDER AXIS
         // ============================================================
-        function renderPeople() {
-            let html = `
-                <div class="glass">
-                    <div class="card-title"><i class="fas fa-users"></i> افراد</div>
-            `;
+        function renderAxis(percent, label = '', color = '#13f4d2') {
+            const clamped = Math.min(Math.max(percent, 0), 100);
+            const score = ((clamped / 100) * 20) - 10;
+            const displayScore = Math.round(score * 10) / 10;
 
-            Object.entries(PEOPLE).forEach(([id, data]) => {
-                const stats = getPersonStats(id);
-
-                html += `
-                    <div class="person-card" onclick="selectPerson('${id}')" style="background:rgba(16,28,48,0.12);border-radius:10px;padding:8px 12px;margin-bottom:4px;border-right:3px solid rgba(60,150,255,0.15);cursor:pointer;transition:all 0.2s;">
-                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                            <span style="font-weight:600;color:#8ab8ff;font-size:0.6rem;">${id}</span>
-                            <span style="font-size:0.6rem;color:#c0d8f0;">${data.label} (${data.name})</span>
+            return `
+                <div class="axis-container">
+                    <div class="axis-track">
+                        <div class="axis-center-line"></div>
+                        <div class="fill-progress" style="width:${clamped}%;"></div>
+                        <div class="indicator" style="left:${clamped}%;">
+                            <div class="dot-inner"></div>
                         </div>
-                        <div style="display:flex;gap:6px;font-size:0.45rem;color:#5a7a9a;margin-top:4px;flex-wrap:wrap;">
-                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">📄 ${stats.total} پرونده</span>
-                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">👁️ ${stats.obs} مشاهده</span>
-                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">💡 ${stats.hyp} فرضیه</span>
-                            <span style="background:rgba(16,28,48,0.06);padding:1px 6px;border-radius:20px;">🧩 ${stats.pat} الگو</span>
+                    </div>
+                    <div class="axis-ticks">
+                        <span class="tick-negative">-۱۰</span>
+                        <span>-۵</span>
+                        <span class="tick-main">۰</span>
+                        <span>+۵</span>
+                        <span class="tick-positive">+۱۰</span>
+                    </div>
+                    <div class="axis-value" style="color:${color};">${displayScore > 0 ? '+' : ''}${displayScore} ${label}</div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // RENDER PATTERNS
+        // ============================================================
+        function renderPatterns(patterns) {
+            const today = getToday();
+
+            if (patterns.length === 0) {
+                return `
+                    <div class="glass">
+                        <div class="card-title"><i class="fas fa-brain"></i> الگوها</div>
+                        <div style="text-align:center;padding:30px 0;color:rgba(19,244,210,0.2);font-size:0.6rem;">
+                            <i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;"></i>
+                            هیچ الگویی شناسایی نشد
                         </div>
                     </div>
                 `;
-            });
+            }
 
-            html += `
-                <div style="margin-top:6px; font-size:0.45rem; color:#5a7a9a;">
-                    <span>💡 روی هر فرد کلیک کنید تا پرونده‌های او نمایش داده شود</span>
+            return `
+                <div class="glass">
+                    <div class="card-title">
+                        <i class="fas fa-brain"></i> الگوهای شناسایی شده
+                        <span class="badge-count">${patterns.length}</span>
+                    </div>
+                    <div class="window-info">
+                        <span class="win-item">📅 امروز: <span class="num">${toPersianDate(today)}</span></span>
+                        <span class="win-item">📊 الگوهای فعال: <span class="num">${patterns.length}</span></span>
+                    </div>
+                    ${patterns.map(p => renderPatternAxis(p)).join('')}
+                </div>
+
+                <div class="glass" style="background:rgba(19,244,210,0.02);">
+                    <div class="card-title"><i class="fas fa-info-circle"></i> راهنمای محور</div>
+                    <div style="font-size:0.4rem;color:rgba(19,244,210,0.3);line-height:1.8;text-align:center;">
+                        <p>🔴 <strong>منفی</strong> ← ۰ (مرکز) → <strong>مثبت</strong> 🟢</p>
+                        <p style="font-size:0.35rem;">اعداد از -۱۰ تا +۱۰ با صفر در مرکز</p>
+                    </div>
                 </div>
             `;
-
-            html += `</div>`;
-            return html;
         }
 
         // ============================================================
-        // SELECT PERSON
+        // RENDER PATTERN AXIS
         // ============================================================
-        window.selectPerson = function(personId) {
-            selectedPerson = selectedPerson === personId ? null : personId;
-            currentPage = 'records';
-            document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
-            document.querySelector('[data-page="records"]').classList.add('active');
+        function renderPatternAxis(pattern) {
+            const percent = pattern.axisPercent || 50;
+
+            const effectHtml = (pattern.effects || []).slice(0, 3).map(e =>
+                `<span class="tag">${e.axis}: <span class="effect ${e.score > 0 ? 'positive' : 'negative'}">${e.score > 0 ? '+' : ''}${e.score}</span></span>`
+            ).join('');
+
+            return `
+                <div class="pattern-axis-card">
+                    <div class="pa-header">
+                        <span class="pa-name">${pattern.title}</span>
+                        <span class="pa-weight">${pattern.occurrences} بار · امتیاز ${pattern.score}</span>
+                    </div>
+
+                    ${renderAxis(percent, `(${pattern.axis})`)}
+
+                    <div class="pa-tags">
+                        ${effectHtml}
+                        <span class="tag">
+                            📄 ${pattern.records.join('، ')}
+                        </span>
+                    </div>
+
+                    <div class="pa-info">
+                        وزن‌گذاری شده: ${pattern.weight} · ${pattern.occurrences} بار تکرار
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // RENDER PROFILE
+        // ============================================================
+        function renderProfile() {
+            const profile = ProfileProcessor(RECORDS);
+            const today = getToday();
+
+            const profileHtml = Object.entries(profile).map(([key, data]) => {
+                const percent = data.axisPercent || 50;
+                const color = data.color || '#13f4d2';
+
+                return `
+                    <div class="profile-axis-card">
+                        <div class="pa-header">
+                            <span class="pa-name">${data.icon} ${data.label}</span>
+                            <span class="pa-weight">${data.count} مشاهده · امتیاز ${data.score}</span>
+                        </div>
+
+                        ${renderAxis(percent, `(${data.label})`, color)}
+
+                        <div class="pa-tags">
+                            ${data.tags.map(t => `
+                                <span class="tag">${t}</span>
+                            `).join('')}
+                            ${data.tags.length === 0 ? '<span class="tag" style="color:rgba(19,244,210,0.2);">هیچ تگی ثبت نشده</span>' : ''}
+                        </div>
+
+                        <div class="pa-info">
+                            ${data.count} بار مشاهده · ${data.tags.length} تگ مرتبط
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div class="glass">
+                    <div class="card-title">
+                        <i class="fas fa-user"></i> پروفایل شخصیت
+                        <span class="badge-count">MR721AS</span>
+                    </div>
+                    <div class="window-info">
+                        <span class="win-item">📅 امروز: <span class="num">${toPersianDate(today)}</span></span>
+                        <span class="win-item">📊 ${RECORDS.length} مشاهده</span>
+                    </div>
+                    ${profileHtml}
+                    <div style="font-size:0.35rem;color:rgba(19,244,210,0.15);text-align:center;margin-top:6px;">
+                        🔴 منفی ← ۰ (مرکز) → مثبت 🟢
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // RENDER NEEDS & INTERESTS
+        // ============================================================
+        function renderNeeds(data) {
+            const today = getToday();
+
+            const needsHtml = data.needs.map(n => `
+                <div class="need-item">
+                    <div class="n-left">
+                        <span class="n-title">${n.title}</span>
+                        <span class="n-count">(${n.count} بار)</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <span class="n-stars">${n.stars}</span>
+                        <span class="n-weight">وزن ${n.score}</span>
+                        <span class="n-last">${toPersianDate(n.lastSeen)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const interestsHtml = data.interests.map(i => `
+                <div class="need-item">
+                    <div class="n-left">
+                        <span class="n-title">${i.title}</span>
+                        <span class="n-count">(${i.count} بار)</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <span class="n-stars">${i.stars}</span>
+                        <span class="n-weight">وزن ${i.score}</span>
+                        <span class="n-last">${toPersianDate(i.lastSeen)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const prioritiesHtml = data.priorities.slice(0, 10).map((p, index) => `
+                <div class="priority-item">
+                    <span class="p-rank">#${index + 1}</span>
+                    <span class="p-title">${p.title}</span>
+                    <span class="p-count">${p.count} بار</span>
+                    <span class="p-stars">${p.stars}</span>
+                    <span class="p-badge">${p.category || 'نیاز/علاقه'}</span>
+                </div>
+            `).join('');
+
+            return `
+                <div class="glass">
+                    <div class="card-title">
+                        <i class="fas fa-heart"></i> نیازها و علاقه‌ها
+                        <span class="badge-count">${data.priorities.length} اولویت</span>
+                    </div>
+                    <div class="window-info">
+                        <span class="win-item">📅 امروز: <span class="num">${toPersianDate(today)}</span></span>
+                        <span class="win-item">📊 ${data.needs.length} نیاز · ${data.interests.length} علاقه</span>
+                    </div>
+
+                    <!-- اولویت‌ها -->
+                    <div style="margin-top:8px;margin-bottom:12px;">
+                        <div style="font-size:0.5rem;color:#13f4d2;margin-bottom:6px;font-weight:600;">
+                            <i class="fas fa-crown"></i> اولویت‌های برتر
+                        </div>
+                        <div class="priority-list">
+                            ${prioritiesHtml}
+                        </div>
+                    </div>
+
+                    <!-- تب‌ها -->
+                    <div class="tabs">
+                        <button class="tab-btn ${needsTab === 'needs' ? 'active' : ''}" onclick="switchNeedsTab('needs')">
+                            <i class="fas fa-list"></i> نیازها (${data.needs.length})
+                        </button>
+                        <button class="tab-btn ${needsTab === 'interests' ? 'active' : ''}" onclick="switchNeedsTab('interests')">
+                            <i class="fas fa-star"></i> علاقه‌ها (${data.interests.length})
+                        </button>
+                    </div>
+
+                    <div class="tab-content ${needsTab === 'needs' ? 'active' : ''}" id="tab-needs">
+                        <div class="needs-column">
+                            <div class="col-title"><i class="fas fa-list"></i> نیازها</div>
+                            ${needsHtml || '<div style="font-size:0.4rem;color:rgba(19,244,210,0.2);text-align:center;padding:10px 0;">هیچ نیازی ثبت نشده است</div>'}
+                        </div>
+                    </div>
+
+                    <div class="tab-content ${needsTab === 'interests' ? 'active' : ''}" id="tab-interests">
+                        <div class="needs-column">
+                            <div class="col-title"><i class="fas fa-star"></i> علاقه‌ها</div>
+                            ${interestsHtml || '<div style="font-size:0.4rem;color:rgba(19,244,210,0.2);text-align:center;padding:10px 0;">هیچ علاقه‌ای ثبت نشده است</div>'}
+                        </div>
+                    </div>
+
+                    <div style="font-size:0.35rem;color:rgba(19,244,210,0.15);text-align:center;margin-top:8px;">
+                        ⭐ ستاره‌ها بر اساس تعداد تکرار: هر ۳ بار = ۱ ستاره
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // SWITCH NEEDS TAB
+        // ============================================================
+        window.switchNeedsTab = function(tab) {
+            needsTab = tab;
             render();
         };
 
         // ============================================================
-        // SETTINGS
+        // TOGGLE CARD
         // ============================================================
-        function renderSettings() {
-            return `
-                <div class="glass">
-                    <div class="card-title"><i class="fas fa-cog"></i> تنظیمات</div>
-                    <div style="display:flex; flex-direction:column; gap:4px; font-size:0.65rem;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid rgba(60,100,170,0.03);">
-                            <span>🌙 تم</span>
-                            <span><button class="btn-simple" onclick="document.getElementById('themeToggle').click()">تغییر تم</button></span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
-                            <span>نسخه</span>
-                            <span style="color:#4a6a8a;">v1.0</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-top:1px solid rgba(60,100,170,0.03);">
-                            <span>کل پرونده‌ها</span>
-                            <span style="color:#5a9ac0;">${RECORDS.length}</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
-                            <span>افراد</span>
-                            <span style="color:#5a9ac0;">${Object.keys(PEOPLE).length}</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-top:1px solid rgba(60,100,170,0.03);">
-                            <span style="font-size:0.5rem; color:#4a6a8a;">وضعیت داده</span>
-                            <span style="font-size:0.5rem; color:#5aaa7a;">✅ ${RECORDS.length} پرونده معتبر</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0;">
-                            <span style="font-size:0.5rem; color:#4a6a8a;">هیچ عدد ساختگی</span>
-                            <span style="font-size:0.5rem; color:#5aaa7a;">✅ رعایت شده</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // ============================================================
-        // FILTER CHIPS
-        // ============================================================
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('filter-chip')) {
-                currentFilter = e.target.dataset.filter;
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                e.target.classList.add('active');
-                render();
-            }
-        });
+        window.toggleCard = function(id) {
+            expandedCard = expandedCard === id ? null : id;
+            render();
+        };
 
         // ============================================================
         // NAVIGATION
@@ -1687,7 +1925,6 @@
         document.querySelectorAll('.sidebar-nav .menu-item[data-page]').forEach(item => {
             item.addEventListener('click', function() {
                 currentPage = this.dataset.page;
-                selectedPerson = null;
                 document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
                 this.classList.add('active');
                 closeSidebar();
@@ -1696,45 +1933,15 @@
         });
 
         // ============================================================
-        // SEARCH
-        // ============================================================
-        document.getElementById('searchInput').addEventListener('input', function() {
-            searchQuery = this.value;
-            if (currentPage !== 'records') {
-                currentPage = 'records';
-                selectedPerson = null;
-                document.querySelectorAll('.sidebar-nav .menu-item').forEach(m => m.classList.remove('active'));
-                document.querySelector('[data-page="records"]').classList.add('active');
-            }
-            render();
-        });
-
-        // ============================================================
-        // THEME
-        // ============================================================
-        let theme = 'dark';
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            theme = theme === 'dark' ? 'light' : 'dark';
-            document.body.classList.toggle('light', theme === 'light');
-            this.querySelector('#themeIcon').className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-            this.querySelector('#themeLabel').textContent = theme === 'light' ? 'روشن' : 'تاریک';
-        });
-
-        // ============================================================
         // START
         // ============================================================
         render();
 
-        console.log('✅ PROJECT 721 — Evidence Notebook با وضعیت کارت و لینک‌ها');
-        console.log(`📊 ${RECORDS.length} پرونده بارگذاری شد`);
-        console.log(`🟦 Observation: ${RECORDS.filter(r => r.cardStatus === 'Observation').length}`);
-        console.log(`🟨 Hypothesis: ${RECORDS.filter(r => r.cardStatus === 'Hypothesis').length}`);
-        console.log(`🟩 Pattern: ${RECORDS.filter(r => r.cardStatus === 'Pattern').length}`);
-        console.log(`🔴 Rejected: ${RECORDS.filter(r => r.cardStatus === 'Rejected').length}`);
-        console.log(`👤 ${Object.keys(PEOPLE).length} فرد`);
-        console.log(`🏷️ ${getAllTags().length} تگ`);
-        console.log('🔗 لینک بین کارت‌ها');
-        console.log('❌ هیچ عدد ساختگی وجود ندارد');
+        console.log('🧠 PROJECT 721 — سیستم جامع با محورهای پروفایل دقیق');
+        console.log(`📊 ${RECORDS.length} مشاهده بارگذاری شد`);
+        console.log('📋 محورهای پروفایل: اعتماد، ثبات، گشودگی، دلبستگی، کنترل');
+        console.log('🎯 هر محور تگ‌های مخصوص خود را دارد');
+        console.log('📅 امروز:', toPersianDate(getToday()));
     </script>
 
 </body>
