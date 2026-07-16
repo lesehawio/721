@@ -42,16 +42,31 @@
         .glass {
             background: rgba(10, 18, 32, 0.5);
             backdrop-filter: blur(18px);
-            border: 1px solid rgba(60, 100, 170, 0.06);
+            border: 1px solid rgba(19, 244, 210, 0.06);
             border-radius: 20px;
             padding: 44px 36px;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(19, 244, 210, 0.02), transparent 60%);
+            pointer-events: none;
         }
 
         /* ===== LOGO ===== */
         .logo-wrapper {
             margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
 
         .logo-img {
@@ -61,7 +76,7 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            filter: drop-shadow(0 4px 30px rgba(74, 122, 255, 0.08));
+            filter: drop-shadow(0 4px 30px rgba(19, 244, 210, 0.08));
             transition: transform 0.3s ease;
         }
 
@@ -73,7 +88,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-top: 12px;
-            background: linear-gradient(135deg, #8ab8ff, #4a7aff);
+            background: linear-gradient(135deg, #13f4d2, #0bc5a8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
@@ -81,7 +96,7 @@
 
         .logo-subtitle {
             font-size: 0.65rem;
-            color: #4a6a8a;
+            color: rgba(19, 244, 210, 0.3);
             margin-top: 2px;
             letter-spacing: 2px;
         }
@@ -89,8 +104,10 @@
         /* ===== DIVIDER ===== */
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(60, 100, 170, 0.08), transparent);
+            background: linear-gradient(90deg, transparent, rgba(19, 244, 210, 0.08), transparent);
             margin: 18px 0 22px 0;
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== INPUT ===== */
@@ -99,7 +116,7 @@
             padding: 12px 16px;
             border-radius: 12px;
             background: rgba(20, 30, 50, 0.3);
-            border: 1px solid rgba(60, 100, 170, 0.06);
+            border: 1px solid rgba(19, 244, 210, 0.06);
             color: #d0ddf0;
             font-family: inherit;
             font-size: 0.9rem;
@@ -109,15 +126,17 @@
             direction: ltr;
             letter-spacing: 4px;
             font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         .login-input:focus {
-            border-color: rgba(74, 122, 255, 0.2);
-            box-shadow: 0 0 0 4px rgba(74, 122, 255, 0.04);
+            border-color: rgba(19, 244, 210, 0.2);
+            box-shadow: 0 0 0 4px rgba(19, 244, 210, 0.04);
         }
 
         .login-input::placeholder {
-            color: #3a5a7a;
+            color: rgba(19, 244, 210, 0.2);
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -128,9 +147,9 @@
             margin-top: 16px;
             padding: 12px;
             border-radius: 12px;
-            background: rgba(74, 122, 255, 0.08);
-            border: 1px solid rgba(74, 122, 255, 0.08);
-            color: #8ab8ff;
+            background: rgba(19, 244, 210, 0.08);
+            border: 1px solid rgba(19, 244, 210, 0.08);
+            color: #13f4d2;
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -140,12 +159,15 @@
             justify-content: center;
             gap: 8px;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         .login-btn:hover {
-            background: rgba(74, 122, 255, 0.15);
-            border-color: rgba(74, 122, 255, 0.15);
+            background: rgba(19, 244, 210, 0.15);
+            border-color: rgba(19, 244, 210, 0.15);
             transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(19, 244, 210, 0.05);
         }
 
         .login-btn:active {
@@ -164,10 +186,34 @@
             min-height: 20px;
             opacity: 0;
             transition: opacity 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .login-error.show {
             opacity: 1;
+        }
+
+        /* ===== DECORATIVE ELEMENTS ===== */
+        .deco-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(19, 244, 210, 0.02);
+            pointer-events: none;
+        }
+
+        .deco-dot-1 {
+            width: 80px;
+            height: 80px;
+            top: -20px;
+            right: -20px;
+        }
+
+        .deco-dot-2 {
+            width: 60px;
+            height: 60px;
+            bottom: -10px;
+            left: -10px;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -214,6 +260,22 @@
                 padding: 8px;
             }
         }
+
+        /* ===== ANIMATION ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass {
+            animation: fadeInUp 0.6s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -223,11 +285,15 @@
         <div class="login-container">
             <div class="glass">
 
+                <!-- ===== DECORATIVE ===== -->
+                <div class="deco-dot deco-dot-1"></div>
+                <div class="deco-dot deco-dot-2"></div>
+
                 <!-- ===== LOGO ===== -->
                 <div class="logo-wrapper">
                     <img class="logo-img" src="https://uploadkon.ir/uploads/bc8d07_26ChatGPT-Image-Jul-7-2026-07-35-41-PM.png" alt="PROJECT 721" />
                     <div class="logo-title">PROJECT 721</div>
-                    <div class="logo-subtitle">EVIDENCE NOTEBOOK</div>
+                    <div class="logo-subtitle">BEHAVIORAL ENGINE</div>
                 </div>
 
                 <div class="divider"></div>
@@ -250,7 +316,7 @@
 
     <script>
         /**
-         * PROJECT 721 — صفحه ورود
+         * PROJECT 721 — صفحه ورود با تم جدید
          * رمز: Vv542369
          */
 
@@ -294,8 +360,9 @@
             // ===== FOCUS =====
             passwordInput.focus();
 
-            console.log('🔐 PROJECT 721 — صفحه ورود');
+            console.log('🔐 PROJECT 721 — صفحه ورود با تم جدید');
             console.log('🔑 رمز: Vv542369');
+            console.log('🎨 تم: #13f4d2 (فیروزه‌ای براق)');
         })();
     </script>
 
