@@ -8,12 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Vazirmatn', sans-serif;
             background: #070a12;
@@ -22,7 +17,6 @@
             width: 100vw;
             overflow: hidden;
         }
-
         #app {
             display: flex;
             flex-direction: column;
@@ -31,66 +25,27 @@
             background: radial-gradient(ellipse at 20% 30%, #0e1a2a, #04070c);
         }
 
-        /* ===== TOPBAR ===== */
+        /* TOPBAR */
         #topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 20px;
-            background: rgba(4, 8, 16, 0.4);
+            background: rgba(4,8,16,0.4);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(19, 244, 210, 0.06);
+            border-bottom: 1px solid rgba(19,244,210,0.06);
             min-height: 52px;
             flex-shrink: 0;
             z-index: 10;
         }
+        .brand { display: flex; align-items: center; gap: 8px; }
+        .logo { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; background: rgba(0,0,0,0.2); padding: 2px; }
+        .brand-name { font-size: 0.85rem; font-weight: 600; background: linear-gradient(135deg, #13f4d2, #0bc5a8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .topbar-right { display: flex; align-items: center; gap: 4px; }
+        .btn-icon { background: transparent; border: none; color: #13f4d2; font-size: 1rem; padding: 4px 6px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .btn-icon:hover { background: rgba(19,244,210,0.06); color: #13f4d2; }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            object-fit: contain;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 2px;
-        }
-
-        .brand-name {
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #13f4d2, #0bc5a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-icon {
-            background: transparent;
-            border: none;
-            color: #13f4d2;
-            font-size: 1rem;
-            padding: 4px 6px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-icon:hover {
-            background: rgba(19, 244, 210, 0.06);
-            color: #13f4d2;
-        }
-
-        /* ===== SIDEBAR ===== */
+        /* SIDEBAR */
         .sidebar {
             position: fixed;
             top: 0;
@@ -98,75 +53,23 @@
             width: 240px;
             max-width: 80vw;
             height: 100%;
-            background: rgba(10, 18, 32, 0.92);
+            background: rgba(10,18,32,0.92);
             backdrop-filter: blur(32px);
-            border-right: 1px solid rgba(19, 244, 210, 0.04);
+            border-right: 1px solid rgba(19,244,210,0.04);
             z-index: 1000;
-            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: left 0.35s cubic-bezier(0.16,1,0.3,1);
             padding: 0.8rem;
             overflow-y: auto;
-            box-shadow: 10px 0 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 10px 0 60px rgba(0,0,0,0.3);
         }
-
-        .sidebar.open {
-            left: 0;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.30);
-            backdrop-filter: blur(3px);
-            z-index: 999;
-            display: none;
-        }
-
-        .sidebar-overlay.active {
-            display: block;
-        }
-
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 0.6rem;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.04);
-            margin-bottom: 0.6rem;
-        }
-
-        .sidebar-header .brand {
-            font-weight: 700;
-            font-size: 0.9rem;
-            background: linear-gradient(135deg, #13f4d2, #0bc5a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .sidebar-close {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(19, 244, 210, 0.04);
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: #13f4d2;
-            transition: 0.3s;
-        }
-
-        .sidebar-close:hover {
-            color: #13f4d2;
-            border-color: rgba(19, 244, 210, 0.1);
-        }
-
-        .sidebar-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
+        .sidebar.open { left: 0; }
+        .sidebar-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.30); backdrop-filter: blur(3px); z-index:999; display:none; }
+        .sidebar-overlay.active { display: block; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(19,244,210,0.04); margin-bottom: 0.6rem; }
+        .sidebar-header .brand { font-weight: 700; font-size: 0.9rem; background: linear-gradient(135deg, #13f4d2, #0bc5a8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sidebar-close { background: rgba(255,255,255,0.02); border: 1px solid rgba(19,244,210,0.04); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: #13f4d2; transition: 0.3s; }
+        .sidebar-close:hover { color: #13f4d2; border-color: rgba(19,244,210,0.1); }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
         .sidebar-nav .menu-item {
             padding: 8px 12px;
             color: #6a8aaa;
@@ -184,42 +87,13 @@
             border-radius: 8px;
             text-decoration: none;
         }
+        .sidebar-nav .menu-item:hover { background: rgba(19,244,210,0.04); color: #13f4d2; }
+        .sidebar-nav .menu-item.active { background: rgba(19,244,210,0.08); color: #13f4d2; }
+        .sidebar-nav .menu-item i { width: 18px; color: #13f4d2; font-size: 0.8rem; }
+        .sidebar-nav .menu-item .badge { margin-right: auto; font-size: 0.4rem; padding: 1px 8px; border-radius: 30px; background: rgba(19,244,210,0.08); color: #13f4d2; }
+        .sidebar-footer { margin-top: auto; padding-top: 0.6rem; border-top: 1px solid rgba(19,244,210,0.04); font-size: 0.45rem; color: rgba(19,244,210,0.4); text-align: center; }
 
-        .sidebar-nav .menu-item:hover {
-            background: rgba(19, 244, 210, 0.04);
-            color: #13f4d2;
-        }
-
-        .sidebar-nav .menu-item.active {
-            background: rgba(19, 244, 210, 0.08);
-            color: #13f4d2;
-        }
-
-        .sidebar-nav .menu-item i {
-            width: 18px;
-            color: #13f4d2;
-            font-size: 0.8rem;
-        }
-
-        .sidebar-nav .menu-item .badge {
-            margin-right: auto;
-            font-size: 0.4rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.08);
-            color: #13f4d2;
-        }
-
-        .sidebar-footer {
-            margin-top: auto;
-            padding-top: 0.6rem;
-            border-top: 1px solid rgba(19, 244, 210, 0.04);
-            font-size: 0.45rem;
-            color: rgba(19, 244, 210, 0.4);
-            text-align: center;
-        }
-
-        /* ===== CONTENT ===== */
+        /* CONTENT */
         #content {
             flex: 1;
             padding: 12px 16px;
@@ -228,16 +102,14 @@
             flex-direction: column;
             gap: 10px;
         }
-
         .glass {
-            background: rgba(10, 18, 32, 0.4);
+            background: rgba(10,18,32,0.4);
             backdrop-filter: blur(14px);
-            border: 1px solid rgba(19, 244, 210, 0.04);
+            border: 1px solid rgba(19,244,210,0.04);
             border-radius: 14px;
             padding: 14px 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
         }
-
         .card-title {
             font-size: 0.5rem;
             text-transform: uppercase;
@@ -249,79 +121,38 @@
             gap: 6px;
             font-weight: 600;
         }
-
         .card-title .badge-count {
             font-size: 0.35rem;
             padding: 1px 10px;
             border-radius: 30px;
-            background: rgba(19, 244, 210, 0.08);
+            background: rgba(19,244,210,0.08);
             color: #13f4d2;
         }
 
-        /* ===== DASHBOARD ===== */
-        .dash-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
+        /* DASHBOARD */
+        .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .dash-card {
-            background: rgba(16, 28, 48, 0.04);
+            background: rgba(16,28,48,0.04);
             border-radius: 10px;
             padding: 10px 12px;
-            border: 1px solid rgba(19, 244, 210, 0.04);
+            border: 1px solid rgba(19,244,210,0.04);
             transition: 0.2s;
         }
-
-        .dash-card:hover {
-            background: rgba(19, 244, 210, 0.02);
-        }
-
-        .dash-card .dash-title {
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-bottom: 4px;
-        }
-
-        .dash-card .dash-value {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #13f4d2;
-        }
-
-        .dash-card .dash-sub {
-            font-size: 0.35rem;
-            color: rgba(19, 244, 210, 0.2);
-            margin-top: 2px;
-        }
-
+        .dash-card:hover { background: rgba(19,244,210,0.02); }
+        .dash-card .dash-title { font-size: 0.4rem; color: rgba(19,244,210,0.3); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; }
+        .dash-card .dash-value { font-size: 0.7rem; font-weight: 700; color: #13f4d2; }
+        .dash-card .dash-sub { font-size: 0.35rem; color: rgba(19,244,210,0.2); margin-top: 2px; }
         .dash-axis-mini {
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 4px;
             position: relative;
             overflow: hidden;
             margin-top: 4px;
         }
-
-        .dash-axis-mini .dash-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.4s ease;
-        }
-
-        .dash-axis-mini .dash-center {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
+        .dash-axis-mini .dash-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+        .dash-axis-mini .dash-center { position: absolute; top:0; left:50%; width:1px; height:100%; background: rgba(255,255,255,0.1); }
         .dash-axis-mini .dash-dot {
             position: absolute;
             top: 50%;
@@ -330,233 +161,71 @@
             height: 8px;
             border-radius: 50%;
             background: white;
-            border: 1px solid rgba(19, 244, 210, 0.3);
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(19,244,210,0.3);
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
             transition: left 0.4s ease;
         }
-
         .dash-priority-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 3px 0;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
+            border-bottom: 1px solid rgba(19,244,210,0.02);
             font-size: 0.45rem;
         }
-
-        .dash-priority-item:last-child {
-            border-bottom: none;
-        }
-
-        .dash-priority-item .dp-rank {
-            color: #13f4d2;
-            font-weight: 600;
-            font-size: 0.4rem;
-            min-width: 20px;
-        }
-
-        .dash-priority-item .dp-title {
-            color: #c0d8f0;
-            flex: 1;
-            margin-right: 6px;
-        }
-
-        .dash-priority-item .dp-count {
-            color: rgba(19, 244, 210, 0.3);
-            font-size: 0.35rem;
-        }
-
-        .dash-priority-item .dp-stars {
-            color: #f59e0b;
-            font-size: 0.4rem;
-            letter-spacing: 1px;
-            margin-right: 6px;
-        }
-
+        .dash-priority-item:last-child { border-bottom: none; }
+        .dash-priority-item .dp-rank { color: #13f4d2; font-weight: 600; font-size: 0.4rem; min-width: 20px; }
+        .dash-priority-item .dp-title { color: #c0d8f0; flex: 1; margin-right: 6px; }
+        .dash-priority-item .dp-count { color: rgba(19,244,210,0.3); font-size: 0.35rem; }
+        .dash-priority-item .dp-stars { color: #f59e0b; font-size: 0.4rem; letter-spacing: 1px; margin-right: 6px; }
         .dash-profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             gap: 6px;
         }
-
         .dash-profile-item {
             text-align: center;
-            background: rgba(16, 28, 48, 0.02);
+            background: rgba(16,28,48,0.02);
             border-radius: 6px;
             padding: 6px 4px;
         }
+        .dash-profile-item .dp-label { font-size: 0.35rem; color: rgba(19,244,210,0.3); }
+        .dash-profile-item .dp-value { font-size: 0.6rem; font-weight: 700; color: #13f4d2; margin-top: 2px; }
+        .dash-profile-item .dp-bar { width:100%; height:2px; background:rgba(255,255,255,0.04); border-radius:4px; margin-top:2px; overflow:hidden; }
+        .dash-profile-item .dp-bar .dp-fill { height:100%; border-radius:4px; transition:width 0.4s ease; }
 
-        .dash-profile-item .dp-label {
-            font-size: 0.35rem;
-            color: rgba(19, 244, 210, 0.3);
-        }
-
-        .dash-profile-item .dp-value {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #13f4d2;
-            margin-top: 2px;
-        }
-
-        .dash-profile-item .dp-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 4px;
-            margin-top: 2px;
-            overflow: hidden;
-        }
-
-        .dash-profile-item .dp-bar .dp-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.4s ease;
-        }
-
-        /* ===== RECORD CARD ===== */
+        /* RECORD CARD */
         .record-card {
-            background: rgba(16, 28, 48, 0.08);
+            background: rgba(16,28,48,0.08);
             border-radius: 10px;
             margin-bottom: 6px;
-            border-right: 3px solid rgba(19, 244, 210, 0.15);
+            border-right: 3px solid rgba(19,244,210,0.15);
             transition: 0.2s;
             overflow: hidden;
             cursor: pointer;
         }
+        .record-card:hover { background: rgba(19,244,210,0.04); }
+        .record-card .weight-badge { font-size:0.35rem; padding:1px 8px; border-radius:30px; background:rgba(19,244,210,0.06); color:#13f4d2; margin-right:4px; }
+        .record-card .weight-badge.low { opacity:0.3; }
+        .card-header { padding:6px 10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+        .card-header .left { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+        .card-header .id { font-weight:600; color:#13f4d2; font-size:0.55rem; }
+        .card-header .person { font-size:0.45rem; color:rgba(19,244,210,0.6); background:rgba(19,244,210,0.04); padding:1px 8px; border-radius:30px; border:1px solid rgba(19,244,210,0.04); }
+        .card-header .date { color:rgba(19,244,210,0.3); font-size:0.4rem; }
+        .card-header .event { font-size:0.5rem; font-weight:500; color:#c0d8f0; }
+        .card-header .expand-icon { color:rgba(19,244,210,0.4); font-size:0.6rem; transition:transform 0.3s ease; }
+        .card-header .expand-icon.open { transform:rotate(180deg); }
+        .card-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s ease; padding:0 10px; }
+        .card-body.open { max-height:2500px; padding:0 10px 10px 10px; }
+        .card-body .section { margin-top:6px; padding:6px 8px; border-radius:6px; background:rgba(19,244,210,0.02); border-right:2px solid rgba(19,244,210,0.06); }
+        .card-body .section .section-label { font-size:0.35rem; text-transform:uppercase; letter-spacing:0.3px; color:rgba(19,244,210,0.4); font-weight:600; }
+        .card-body .section .section-content { font-size:0.5rem; color:#c0d8f0; line-height:1.7; margin-top:2px; }
+        .card-body .hypothesis-item { font-size:0.45rem; color:rgba(19,244,210,0.5); padding:2px 0; border-bottom:1px solid rgba(19,244,210,0.02); }
+        .card-body .pattern-item { font-size:0.45rem; color:#13f4d2; padding:2px 0; border-bottom:1px solid rgba(19,244,210,0.02); }
+        .card-body .pattern-item .p-desc { color:rgba(19,244,210,0.4); font-size:0.4rem; }
 
-        .record-card:hover {
-            background: rgba(19, 244, 210, 0.04);
-        }
-
-        .record-card .weight-badge {
-            font-size: 0.35rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.06);
-            color: #13f4d2;
-            margin-right: 4px;
-        }
-
-        .record-card .weight-badge.low {
-            opacity: 0.3;
-        }
-
-        .card-header {
-            padding: 6px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-
-        .card-header .left {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .card-header .id {
-            font-weight: 600;
-            color: #13f4d2;
-            font-size: 0.55rem;
-        }
-
-        .card-header .person {
-            font-size: 0.45rem;
-            color: rgba(19, 244, 210, 0.6);
-            background: rgba(19, 244, 210, 0.04);
-            padding: 1px 8px;
-            border-radius: 30px;
-            border: 1px solid rgba(19, 244, 210, 0.04);
-        }
-
-        .card-header .date {
-            color: rgba(19, 244, 210, 0.3);
-            font-size: 0.4rem;
-        }
-
-        .card-header .event {
-            font-size: 0.5rem;
-            font-weight: 500;
-            color: #c0d8f0;
-        }
-
-        .card-header .expand-icon {
-            color: rgba(19, 244, 210, 0.4);
-            font-size: 0.6rem;
-            transition: transform 0.3s ease;
-        }
-
-        .card-header .expand-icon.open {
-            transform: rotate(180deg);
-        }
-
-        .card-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 10px;
-        }
-
-        .card-body.open {
-            max-height: 2500px;
-            padding: 0 10px 10px 10px;
-        }
-
-        .card-body .section {
-            margin-top: 6px;
-            padding: 6px 8px;
-            border-radius: 6px;
-            background: rgba(19, 244, 210, 0.02);
-            border-right: 2px solid rgba(19, 244, 210, 0.06);
-        }
-
-        .card-body .section .section-label {
-            font-size: 0.35rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            color: rgba(19, 244, 210, 0.4);
-            font-weight: 600;
-        }
-
-        .card-body .section .section-content {
-            font-size: 0.5rem;
-            color: #c0d8f0;
-            line-height: 1.7;
-            margin-top: 2px;
-        }
-
-        .card-body .hypothesis-item {
-            font-size: 0.45rem;
-            color: rgba(19, 244, 210, 0.5);
-            padding: 2px 0;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        .card-body .pattern-item {
-            font-size: 0.45rem;
-            color: #13f4d2;
-            padding: 2px 0;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        .card-body .pattern-item .p-desc {
-            color: rgba(19, 244, 210, 0.4);
-            font-size: 0.4rem;
-        }
-
-        /* ===== AXIS ===== */
-        .axis-container {
-            margin-top: 4px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 40px;
-            padding: 8px 12px;
-            border: 1px solid rgba(19, 244, 210, 0.04);
-            position: relative;
-        }
-
+        /* AXIS */
+        .axis-container { margin-top:4px; background:rgba(255,255,255,0.02); border-radius:40px; padding:8px 12px; border:1px solid rgba(19,244,210,0.04); position:relative; }
         .axis-track {
             position: relative;
             width: 100%;
@@ -565,17 +234,15 @@
             border-radius: 40px;
             overflow: visible;
         }
-
         .axis-track .fill-progress {
             position: absolute;
             top: 0;
             left: 0;
             height: 100%;
-            background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), rgba(139, 92, 246, 0.2));
+            background: linear-gradient(90deg, rgba(220,38,38,0.2), rgba(139,92,246,0.2));
             border-radius: 40px;
-            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: width 0.4s cubic-bezier(0.34,1.56,0.64,1);
         }
-
         .axis-track .indicator {
             position: absolute;
             top: 50%;
@@ -584,466 +251,123 @@
             height: 22px;
             background: radial-gradient(circle at 30% 30%, #f8fafc, #94a3b8);
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(255,255,255,0.8);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: left 0.4s cubic-bezier(0.34,1.56,0.64,1);
             z-index: 10;
             pointer-events: none;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+        .axis-track .indicator .dot-inner { width:8px; height:8px; background:radial-gradient(circle at 40% 35%, #1e293b, #0f172a); border-radius:50%; }
+        .axis-center-line { position:absolute; top:0; left:50%; width:2px; height:100%; background:rgba(255,255,255,0.15); transform:translateX(-50%); z-index:5; }
+        .axis-ticks { display:flex; justify-content:space-between; padding:6px 4px 0; font-size:0.4rem; color:rgba(19,244,210,0.2); position:relative; }
+        .axis-ticks .tick-main { color:rgba(19,244,210,0.3); font-weight:600; }
+        .axis-ticks .tick-negative { color:rgba(239,68,68,0.3); }
+        .axis-ticks .tick-positive { color:rgba(52,211,153,0.3); }
+        .axis-value { text-align:center; font-size:0.5rem; color:#13f4d2; font-weight:600; margin-top:4px; }
 
-        .axis-track .indicator .dot-inner {
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle at 40% 35%, #1e293b, #0f172a);
-            border-radius: 50%;
-        }
-
-        .axis-center-line {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(-50%);
-            z-index: 5;
-        }
-
-        .axis-ticks {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 4px 0;
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.2);
-            position: relative;
-        }
-
-        .axis-ticks .tick-main {
-            color: rgba(19, 244, 210, 0.3);
-            font-weight: 600;
-        }
-
-        .axis-ticks .tick-negative {
-            color: rgba(239, 68, 68, 0.3);
-        }
-
-        .axis-ticks .tick-positive {
-            color: rgba(52, 211, 153, 0.3);
-        }
-
-        .axis-value {
-            text-align: center;
-            font-size: 0.5rem;
-            color: #13f4d2;
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        /* ===== PROFILE AXIS CARD ===== */
+        /* PROFILE AXIS CARD */
         .profile-axis-card {
-            background: rgba(16, 28, 48, 0.06);
+            background: rgba(16,28,48,0.06);
             border-radius: 10px;
             padding: 12px 14px;
             margin-bottom: 8px;
-            border-right: 3px solid rgba(19, 244, 210, 0.1);
+            border-right: 3px solid rgba(19,244,210,0.1);
             transition: 0.2s;
         }
+        .profile-axis-card:hover { background: rgba(19,244,210,0.02); }
+        .profile-axis-card .pa-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+        .profile-axis-card .pa-name { font-size:0.55rem; font-weight:600; color:#13f4d2; }
+        .profile-axis-card .pa-weight { font-size:0.4rem; padding:1px 10px; border-radius:30px; background:rgba(19,244,210,0.06); color:#13f4d2; }
+        .profile-axis-card .pa-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; padding-top:4px; border-top:1px solid rgba(19,244,210,0.04); }
+        .profile-axis-card .pa-tags .tag { font-size:0.35rem; padding:1px 8px; border-radius:30px; background:rgba(19,244,210,0.04); border:1px solid rgba(19,244,210,0.04); color:rgba(19,244,210,0.6); display:flex; align-items:center; gap:4px; }
+        .profile-axis-card .pa-info { font-size:0.4rem; color:rgba(19,244,210,0.25); margin-top:4px; padding-top:4px; border-top:1px solid rgba(19,244,210,0.02); }
 
-        .profile-axis-card:hover {
-            background: rgba(19, 244, 210, 0.02);
-        }
-
-        .profile-axis-card .pa-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-
-        .profile-axis-card .pa-name {
-            font-size: 0.55rem;
-            font-weight: 600;
-            color: #13f4d2;
-        }
-
-        .profile-axis-card .pa-weight {
-            font-size: 0.4rem;
-            padding: 1px 10px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.06);
-            color: #13f4d2;
-        }
-
-        .profile-axis-card .pa-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(19, 244, 210, 0.04);
-        }
-
-        .profile-axis-card .pa-tags .tag {
-            font-size: 0.35rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.04);
-            border: 1px solid rgba(19, 244, 210, 0.04);
-            color: rgba(19, 244, 210, 0.6);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .profile-axis-card .pa-tags .tag .effect {
-            font-size: 0.35rem;
-        }
-
-        .profile-axis-card .pa-tags .tag .effect.positive {
-            color: #34d399;
-        }
-
-        .profile-axis-card .pa-tags .tag .effect.negative {
-            color: #ef4444;
-        }
-
-        .profile-axis-card .pa-info {
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.25);
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        /* ===== PATTERN AXIS CARD ===== */
+        /* PATTERN AXIS CARD */
         .pattern-axis-card {
-            background: rgba(16, 28, 48, 0.06);
+            background: rgba(16,28,48,0.06);
             border-radius: 10px;
             padding: 12px 14px;
             margin-bottom: 8px;
-            border-right: 3px solid rgba(19, 244, 210, 0.1);
+            border-right: 3px solid rgba(19,244,210,0.1);
         }
+        .pattern-axis-card .pa-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+        .pattern-axis-card .pa-name { font-size:0.55rem; font-weight:600; color:#13f4d2; }
+        .pattern-axis-card .pa-weight { font-size:0.4rem; padding:1px 10px; border-radius:30px; background:rgba(19,244,210,0.06); color:#13f4d2; }
+        .pattern-axis-card .pa-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; padding-top:4px; border-top:1px solid rgba(19,244,210,0.04); }
+        .pattern-axis-card .pa-tags .tag { font-size:0.35rem; padding:1px 8px; border-radius:30px; background:rgba(19,244,210,0.04); border:1px solid rgba(19,244,210,0.04); color:rgba(19,244,210,0.6); display:flex; align-items:center; gap:4px; }
+        .pattern-axis-card .pa-info { font-size:0.4rem; color:rgba(19,244,210,0.25); margin-top:4px; padding-top:4px; border-top:1px solid rgba(19,244,210,0.02); }
 
-        .pattern-axis-card .pa-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
+        /* NEEDS & INTERESTS */
+        .needs-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .needs-column { background:rgba(16,28,48,0.04); border-radius:10px; padding:10px 12px; border:1px solid rgba(19,244,210,0.04); }
+        .needs-column .col-title { font-size:0.5rem; font-weight:600; color:#13f4d2; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+        .need-item { display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid rgba(19,244,210,0.02); }
+        .need-item:last-child { border-bottom:none; }
+        .need-item .n-left { display:flex; align-items:center; gap:6px; }
+        .need-item .n-title { font-size:0.5rem; color:#c0d8f0; }
+        .need-item .n-count { font-size:0.4rem; color:rgba(19,244,210,0.3); }
+        .need-item .n-stars { color:#f59e0b; font-size:0.5rem; letter-spacing:1px; }
+        .need-item .n-weight { font-size:0.35rem; padding:1px 8px; border-radius:30px; background:rgba(19,244,210,0.04); color:rgba(19,244,210,0.4); }
+        .need-item .n-last { font-size:0.35rem; color:rgba(19,244,210,0.2); }
 
-        .pattern-axis-card .pa-name {
-            font-size: 0.55rem;
-            font-weight: 600;
-            color: #13f4d2;
-        }
-
-        .pattern-axis-card .pa-weight {
-            font-size: 0.4rem;
-            padding: 1px 10px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.06);
-            color: #13f4d2;
-        }
-
-        .pattern-axis-card .pa-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(19, 244, 210, 0.04);
-        }
-
-        .pattern-axis-card .pa-tags .tag {
-            font-size: 0.35rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.04);
-            border: 1px solid rgba(19, 244, 210, 0.04);
-            color: rgba(19, 244, 210, 0.6);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .pattern-axis-card .pa-tags .tag .effect {
-            font-size: 0.35rem;
-        }
-
-        .pattern-axis-card .pa-tags .tag .effect.positive {
-            color: #34d399;
-        }
-
-        .pattern-axis-card .pa-tags .tag .effect.negative {
-            color: #ef4444;
-        }
-
-        .pattern-axis-card .pa-info {
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.25);
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        /* ===== NEEDS & INTERESTS ===== */
-        .needs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .needs-column {
-            background: rgba(16, 28, 48, 0.04);
-            border-radius: 10px;
-            padding: 10px 12px;
-            border: 1px solid rgba(19, 244, 210, 0.04);
-        }
-
-        .needs-column .col-title {
-            font-size: 0.5rem;
-            font-weight: 600;
-            color: #13f4d2;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .need-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        .need-item:last-child {
-            border-bottom: none;
-        }
-
-        .need-item .n-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .need-item .n-title {
-            font-size: 0.5rem;
-            color: #c0d8f0;
-        }
-
-        .need-item .n-count {
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.3);
-        }
-
-        .need-item .n-stars {
-            color: #f59e0b;
-            font-size: 0.5rem;
-            letter-spacing: 1px;
-        }
-
-        .need-item .n-weight {
-            font-size: 0.35rem;
-            padding: 1px 8px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.04);
-            color: rgba(19, 244, 210, 0.4);
-        }
-
-        .need-item .n-last {
-            font-size: 0.35rem;
-            color: rgba(19, 244, 210, 0.2);
-        }
-
-        /* ===== PRIORITIES ===== */
-        .priority-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
+        /* PRIORITIES */
+        .priority-list { display:flex; flex-direction:column; gap:4px; }
         .priority-item {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 6px 10px;
-            background: rgba(16, 28, 48, 0.04);
+            background: rgba(16,28,48,0.04);
             border-radius: 8px;
-            border-right: 3px solid rgba(19, 244, 210, 0.15);
+            border-right: 3px solid rgba(19,244,210,0.15);
             transition: 0.2s;
         }
+        .priority-item:hover { background: rgba(19,244,210,0.02); }
+        .priority-item .p-rank { font-size:0.6rem; font-weight:700; color:#13f4d2; min-width:24px; }
+        .priority-item .p-title { font-size:0.5rem; color:#c0d8f0; flex:1; }
+        .priority-item .p-count { font-size:0.4rem; color:rgba(19,244,210,0.3); }
+        .priority-item .p-stars { color:#f59e0b; font-size:0.5rem; letter-spacing:1px; }
+        .priority-item .p-badge { font-size:0.35rem; padding:1px 10px; border-radius:30px; background:rgba(19,244,210,0.04); color:rgba(19,244,210,0.4); }
 
-        .priority-item:hover {
-            background: rgba(19, 244, 210, 0.02);
-        }
+        /* TABS */
+        .tabs { display:flex; gap:4px; margin-bottom:10px; border-bottom:1px solid rgba(19,244,210,0.04); padding-bottom:6px; }
+        .tab-btn { padding:4px 16px; border:none; background:transparent; color:rgba(19,244,210,0.3); font-family:inherit; font-size:0.5rem; cursor:pointer; border-radius:30px; transition:0.2s; }
+        .tab-btn:hover { color:rgba(19,244,210,0.5); }
+        .tab-btn.active { color:#13f4d2; background:rgba(19,244,210,0.04); }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
 
-        .priority-item .p-rank {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #13f4d2;
-            min-width: 24px;
-        }
+        /* WINDOW INFO */
+        .window-info { display:flex; gap:12px; flex-wrap:wrap; font-size:0.4rem; color:rgba(19,244,210,0.3); }
+        .window-info .win-item { padding:2px 10px; border-radius:30px; background:rgba(19,244,210,0.02); border:1px solid rgba(19,244,210,0.02); }
+        .window-info .win-item .num { color:#13f4d2; font-weight:600; }
 
-        .priority-item .p-title {
-            font-size: 0.5rem;
-            color: #c0d8f0;
-            flex: 1;
-        }
+        /* EMPTY STATE */
+        .empty-state { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:200px; color:rgba(19,244,210,0.1); }
 
-        .priority-item .p-count {
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.3);
-        }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width:3px; }
+        ::-webkit-scrollbar-track { background:rgba(19,244,210,0.01); }
+        ::-webkit-scrollbar-thumb { background:#13f4d2; border-radius:10px; }
+        ::-webkit-scrollbar-thumb:hover { background:rgba(19,244,210,0.6); }
 
-        .priority-item .p-stars {
-            color: #f59e0b;
-            font-size: 0.5rem;
-            letter-spacing: 1px;
+        /* RESPONSIVE */
+        @media (max-width:700px) {
+            #topbar { padding:6px 10px; }
+            #content { padding:6px 8px; }
+            .brand-name { font-size:0.7rem; }
+            .logo { width:22px; height:22px; }
+            .sidebar { width:200px; padding:0.6rem; }
+            .pattern-axis-card .pa-header { flex-direction:column; align-items:flex-start; }
+            .profile-axis-card .pa-header { flex-direction:column; align-items:flex-start; }
+            .needs-grid { grid-template-columns:1fr; }
+            .dash-grid { grid-template-columns:1fr; }
+            .dash-profile-grid { grid-template-columns:1fr 1fr 1fr; }
         }
-
-        .priority-item .p-badge {
-            font-size: 0.35rem;
-            padding: 1px 10px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.04);
-            color: rgba(19, 244, 210, 0.4);
-        }
-
-        /* ===== TABS ===== */
-        .tabs {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid rgba(19, 244, 210, 0.04);
-            padding-bottom: 6px;
-        }
-
-        .tab-btn {
-            padding: 4px 16px;
-            border: none;
-            background: transparent;
-            color: rgba(19, 244, 210, 0.3);
-            font-family: inherit;
-            font-size: 0.5rem;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: 0.2s;
-        }
-
-        .tab-btn:hover {
-            color: rgba(19, 244, 210, 0.5);
-        }
-
-        .tab-btn.active {
-            color: #13f4d2;
-            background: rgba(19, 244, 210, 0.04);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* ===== WINDOW INFO ===== */
-        .window-info {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            font-size: 0.4rem;
-            color: rgba(19, 244, 210, 0.3);
-        }
-
-        .window-info .win-item {
-            padding: 2px 10px;
-            border-radius: 30px;
-            background: rgba(19, 244, 210, 0.02);
-            border: 1px solid rgba(19, 244, 210, 0.02);
-        }
-
-        .window-info .win-item .num {
-            color: #13f4d2;
-            font-weight: 600;
-        }
-
-        /* ===== EMPTY STATE ===== */
-        .empty-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            min-height: 200px;
-            color: rgba(19, 244, 210, 0.1);
-        }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 3px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(19, 244, 210, 0.01);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #13f4d2;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(19, 244, 210, 0.6);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 700px) {
-            #topbar {
-                padding: 6px 10px;
-            }
-            #content {
-                padding: 6px 8px;
-            }
-            .brand-name {
-                font-size: 0.7rem;
-            }
-            .logo {
-                width: 22px;
-                height: 22px;
-            }
-            .sidebar {
-                width: 200px;
-                padding: 0.6rem;
-            }
-            .pattern-axis-card .pa-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .profile-axis-card .pa-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .needs-grid {
-                grid-template-columns: 1fr;
-            }
-            .dash-grid {
-                grid-template-columns: 1fr;
-            }
-            .dash-profile-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .dash-profile-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+        @media (max-width:450px) { .dash-profile-grid { grid-template-columns:1fr 1fr; } }
     </style>
 </head>
 <body>
@@ -1092,7 +416,7 @@
                 </button>
             </nav>
             <div class="sidebar-footer">
-                <span>v5.0 · سیستم جامع</span>
+                <span>v6.0 · آزاد</span>
             </div>
         </aside>
 
@@ -1103,15 +427,14 @@
 
     <script>
         // ============================================================
-        // 📋 پروتکل تگ‌ها (Tag Protocol) v2.0
+        // 📋 پروتکل ساده تگ‌ها (Tag Protocol) v3.0
         // ============================================================
-        // ساختار هر تگ:
+        // ساختار هر تگ فقط ۴ فیلد دارد:
         // {
-        //     category: "الگو" | "پروفایل" | "نیاز" | "علاقه" | "ترجیح",
-        //     title: string,
-        //     effect: { score: number, axis: string },  // برای الگو و پروفایل
-        //     weight: number,  // برای نیاز و علاقه
-        //     expiry: number   // روزهای اعتبار
+        //     category: "هرچیزی که دوست داری",
+        //     title: "هرچیزی که دوست داری",
+        //     value: هر عددی که دوست داری,
+        //     expiry: هر عددی که دوست داری
         // }
         // ============================================================
 
@@ -1121,28 +444,30 @@
         const RECORDS = [{
             id: "OBS-001",
             person: "MR721AS",
-            date: "2026-07-16",
+            date: "2026-07-11",
             time: "23:31",
             category: "پیام",
             event: "اتهام خیانت",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
-                { category: "الگو", title: "واژگون‌سازی", effect: { score: -8, axis: "trust" }, expiry: 45 },
-                { category: "پروفایل", title: "حسادت", effect: { score: -6, axis: "trust" }, expiry: 40 },
-                { category: "پروفایل", title: "کنترل", effect: { score: -4, axis: "control" }, expiry: 35 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
-                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+                { category: "الگو", title: "آونگ", value: -5, expiry: 29 },
+                { category: "الگو", title: "واژگون‌سازی", value: -8, expiry: 45 },
+                { category: "پروفایل", title: "حسادت", value: -6, expiry: 40 },
+                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+                { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
+                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
             ],
             links: [],
             linksText: "",
             observation: {
-                text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ MR721AS آغاز شد.",
+                text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ MR721AS آغاز شد. در ادامه چندین بار اتهام داشتن رابطه با افراد دیگر مطرح شد.",
                 details: "شروع گفتگو در ساعت 23:31 و ادامه مکالمه تا پایان شب صورت گرفت."
             },
             hypotheses: [
-                "MR721AS تصور می‌کند با افراد دیگر در ارتباط هستم."
+                "MR721AS تصور می‌کند با افراد دیگر در ارتباط هستم.",
+                "ممکن است MR721AS به بخشی از پیام‌ها یا اطلاعات قدیمی دسترسی پیدا کرده باشد.",
+                "ممکن است اتهام‌ها صرفاً برای تحت فشار قرار دادن مطرح شده باشند.",
+                "احتمال وجود فرافکنی یا بدبینی بدون شواهد کافی."
             ],
             patterns: [{
                 title: "تکرار اتهام",
@@ -1150,30 +475,30 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-16 23:31",
+                date: "2025-07-11 23:31",
                 action: "Observation Added",
                 type: "add"
             }]
         }, {
             id: "OBS-002",
             person: "MR721AS",
-            date: "2026-07-15",
+            date: "2026-07-12",
             time: "14:27",
             category: "تماس",
             event: "الگوی تماس‌های کوتاه",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "عمل و استراحت", effect: { score: -3, axis: "stability" }, expiry: 20 },
-                { category: "پروفایل", title: "عملکردی", effect: { score: 3, axis: "openness" }, expiry: 30 },
-                { category: "پروفایل", title: "قابلیت اتکا", effect: { score: 7, axis: "trust" }, expiry: 60 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "نیاز", title: "پاسخ سریع", weight: 5, expiry: 30 },
-                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+                { category: "الگو", title: "عمل و استراحت", value: -3, expiry: 20 },
+                { category: "پروفایل", title: "عملکردی", value: 3, expiry: 30 },
+                { category: "پروفایل", title: "قابلیت اتکا", value: 7, expiry: 60 },
+                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+                { category: "نیاز", title: "پاسخ سریع", value: 5, expiry: 30 },
+                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
             ],
             links: [],
             linksText: "",
             observation: {
-                text: "در طول روز ارتباط تلفنی MR721AS به چند تماس بسیار کوتاه محدود شد.",
+                text: "در طول روز ارتباط تلفنی MR721AS به چند تماس بسیار کوتاه محدود شد. مجموع زمان مکالمات کمتر از چند دقیقه بود.",
                 details: "پس از بیدار شدن، اولین تماس حدود ۱ دقیقه و ۱۹ ثانیه بود."
             },
             hypotheses: [
@@ -1185,24 +510,24 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-15 14:27",
+                date: "2025-07-12 14:27",
                 action: "Observation Added",
                 type: "add"
             }]
         }, {
             id: "OBS-003",
             person: "MR721AS",
-            date: "2026-07-15",
+            date: "2026-07-12",
             time: "23:40",
             category: "پیام",
             event: "پایان شب بدون ادامه گفتگو",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "سکوت", effect: { score: -4, axis: "attachment" }, expiry: 15 },
-                { category: "پروفایل", title: "کناره‌گیری", effect: { score: -4, axis: "stability" }, expiry: 20 },
-                { category: "پروفایل", title: "دلبستگی", effect: { score: -3, axis: "attachment" }, expiry: 25 },
-                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
-                { category: "علاقه", title: "سکوت", weight: 2, expiry: 30 }
+                { category: "الگو", title: "سکوت", value: -4, expiry: 15 },
+                { category: "پروفایل", title: "کناره‌گیری", value: -4, expiry: 20 },
+                { category: "پروفایل", title: "دلبستگی", value: -3, expiry: 25 },
+                { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
+                { category: "علاقه", title: "سکوت", value: 2, expiry: 30 }
             ],
             links: ["OBS-002"],
             linksText: "ارتباط با الگوی تماس‌های کوتاه همان روز",
@@ -1219,25 +544,25 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-15 23:40",
+                date: "2025-07-12 23:40",
                 action: "Observation Added",
                 type: "add"
             }]
         }, {
             id: "OBS-004",
             person: "MR721AS",
-            date: "2026-07-14",
+            date: "2026-07-13",
             time: "21:30",
             category: "گفتگو",
             event: "گلایه از کاهش ارتباط",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "نزدیکی", effect: { score: 4, axis: "attachment" }, expiry: 25 },
-                { category: "پروفایل", title: "ارتباط", effect: { score: 5, axis: "openness" }, expiry: 30 },
-                { category: "پروفایل", title: "دلبستگی", effect: { score: 5, axis: "attachment" }, expiry: 25 },
-                { category: "نیاز", title: "توجه", weight: 7, expiry: 25 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "علاقه", title: "گفتگو", weight: 4, expiry: 45 }
+                { category: "الگو", title: "نزدیکی", value: 4, expiry: 25 },
+                { category: "پروفایل", title: "ارتباط", value: 5, expiry: 30 },
+                { category: "پروفایل", title: "دلبستگی", value: 5, expiry: 25 },
+                { category: "نیاز", title: "توجه", value: 7, expiry: 25 },
+                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+                { category: "علاقه", title: "گفتگو", value: 4, expiry: 45 }
             ],
             links: [],
             linksText: "",
@@ -1254,25 +579,25 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-14 21:30",
+                date: "2025-07-13 21:30",
                 action: "Observation Added",
                 type: "add"
             }]
         }, {
             id: "OBS-005",
             person: "MR721AS",
-            date: "2026-07-12",
+            date: "2026-07-13",
             time: "23:58",
             category: "پیام",
             event: "اتهام خیانت",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
-                { category: "الگو", title: "اتهام", effect: { score: -8, axis: "trust" }, expiry: 20 },
-                { category: "پروفایل", title: "حسادت", effect: { score: -6, axis: "trust" }, expiry: 40 },
-                { category: "پروفایل", title: "کنترل", effect: { score: -4, axis: "control" }, expiry: 35 },
-                { category: "نیاز", title: "کنترل", weight: 8, expiry: 35 },
-                { category: "علاقه", title: "تماس صوتی", weight: 3, expiry: 50 }
+                { category: "الگو", title: "آونگ", value: -5, expiry: 29 },
+                { category: "الگو", title: "اتهام", value: -8, expiry: 20 },
+                { category: "پروفایل", title: "حسادت", value: -6, expiry: 40 },
+                { category: "پروفایل", title: "کنترل", value: -4, expiry: 35 },
+                { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
+                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
             ],
             links: [],
             linksText: "",
@@ -1289,25 +614,25 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-12 23:58",
+                date: "2025-07-13 23:58",
                 action: "Observation Added",
                 type: "add"
             }]
         }, {
             id: "OBS-006",
             person: "MR721AS",
-            date: "2026-07-13",
+            date: "2026-07-14",
             time: "00:30",
             category: "رفتار",
             event: "تغییر ناگهانی لحن",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "آونگ", effect: { score: -5, axis: "stability" }, expiry: 29 },
-                { category: "الگو", title: "دلجویی", effect: { score: 4, axis: "attachment" }, expiry: 15 },
-                { category: "پروفایل", title: "انعطاف", effect: { score: 3, axis: "openness" }, expiry: 20 },
-                { category: "پروفایل", title: "دلبستگی", effect: { score: 4, axis: "attachment" }, expiry: 25 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "علاقه", title: "دلجویی", weight: 3, expiry: 25 }
+                { category: "الگو", title: "آونگ", value: -5, expiry: 29 },
+                { category: "الگو", title: "دلجویی", value: 4, expiry: 15 },
+                { category: "پروفایل", title: "انعطاف", value: 3, expiry: 20 },
+                { category: "پروفایل", title: "دلبستگی", value: 4, expiry: 25 },
+                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+                { category: "علاقه", title: "دلجویی", value: 3, expiry: 25 }
             ],
             links: ["OBS-005"],
             linksText: "پس از دوره اتهام",
@@ -1324,7 +649,7 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-13 00:30",
+                date: "2025-07-14 00:30",
                 action: "Observation Added",
                 type: "add"
             }]
@@ -1337,11 +662,11 @@
             event: "پینگ خاموش",
             cardStatus: "Observation",
             tags: [
-                { category: "الگو", title: "سنجش", effect: { score: 2, axis: "attachment" }, expiry: 10 },
-                { category: "پروفایل", title: "محتاط", effect: { score: 2, axis: "openness" }, expiry: 15 },
-                { category: "پروفایل", title: "اعتماد", effect: { score: 1, axis: "trust" }, expiry: 20 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "علاقه", title: "تماس کوتاه", weight: 2, expiry: 20 }
+                { category: "الگو", title: "سنجش", value: 2, expiry: 10 },
+                { category: "پروفایل", title: "محتاط", value: 2, expiry: 15 },
+                { category: "پروفایل", title: "اعتماد", value: 1, expiry: 20 },
+                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+                { category: "علاقه", title: "تماس کوتاه", value: 2, expiry: 20 }
             ],
             links: ["OBS-006"],
             linksText: "پس از دلجویی شب قبل",
@@ -1358,81 +683,240 @@
                 occurrences: 1
             }],
             timeline: [{
-                date: "2026-07-14 10:43",
+                date: "2025-07-14 10:43",
                 action: "Observation Added",
                 type: "add"
             }]
-        }, {
-            id: "OBS-008",
-            person: "MR721AS",
-            date: "2026-06-01",
-            time: "09:00",
-            category: "رفتار",
-            event: "انجام قول قدیمی",
-            cardStatus: "Observation",
-            tags: [
-                { category: "پروفایل", title: "قابلیت اتکا", effect: { score: 7, axis: "trust" }, expiry: 60 },
-                { category: "پروفایل", title: "ثبات", effect: { score: 6, axis: "stability" }, expiry: 50 },
-                { category: "پروفایل", title: "اعتماد", effect: { score: 6, axis: "trust" }, expiry: 55 },
-                { category: "نیاز", title: "اطمینان", weight: 6, expiry: 40 },
-                { category: "علاقه", title: "انجام کار", weight: 4, expiry: 45 }
-            ],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "قولی که داده بود را به موقع انجام داد.",
-                details: "این یک سند قدیمی است (حدود ۴۵ روز پیش)"
-            },
-            hypotheses: [
-                "معمولاً قول‌هایش را انجام می‌دهد."
-            ],
-            patterns: [{
-                title: "انجام قول",
-                description: "قول‌های خود را به موقع انجام می‌دهد.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2026-06-01 09:00",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }];
+        },{
+    id: "OBS-008",
+    person: "MR721AS",
+    date: "2026-07-15",
+    time: "20:30",
+    category: "تماس",
+    event: "اتهام خیانت و ترمیم رابطه",
+    cardStatus: "Observation",
+    tags: [
+        { category: "الگو", title: "آونگ", value: -8, expiry: 30 },
+        { category: "الگو", title: "اتهام", value: -9, expiry: 30 },
+        { category: "الگو", title: "دلجویی", value: 7, expiry: 20 },
+        { category: "پروفایل", title: "حسادت", value: -8, expiry: 45 },
+        { category: "پروفایل", title: "شکاک", value: -7, expiry: 45 },
+        { category: "پروفایل", title: "دلبستگی", value: 6, expiry: 35 },
+        { category: "نیاز", title: "اطمینان", value: 9, expiry: 45 },
+        { category: "نیاز", title: "کنترل", value: 8, expiry: 40 },
+        { category: "علاقه", title: "تماس تلفنی", value: 5, expiry: 50 },
+        { category: "علاقه", title: "حل تعارض", value: 4, expiry: 35 }
+    ],
+    links: [
+        "OBS-001",
+        "OBS-005",
+        "OBS-006"
+    ],
+    linksText: "ارتباط مستقیم با چرخه‌های قبلی آونگ، اتهام و دلجویی.",
+    observation: {
+        text: "به دلیل شنیده شدن صدای لپ‌تاپ هنگام تماس، MR721AS تصور کرد شخص دیگری در کنار من حضور دارد و چندین بار اتهام خیانت مطرح کرد. پس از پایان تماس، مجموعه‌ای از پیام‌های احساسی، طعنه‌آمیز و تحریک‌کننده ارسال شد. حدود ۳۰ دقیقه بعد دوباره تماس برقرار شد و پس از گفتگوی طولانی، تنش کاهش یافت و مکالمه با آرامش پایان پیدا کرد.",
+        details: "در طول پیام‌ها چند بار اعلام کرد قصد دارد وارد رابطه جدید شود، سپس دوباره تماس گرفت، احساسات خود را بیان کرد و در پایان رابطه به حالت عادی بازگشت."
+    },
+    hypotheses: [
+        "محرک اولیه بحران، برداشت اشتباه از صدای لپ‌تاپ بود.",
+        "پس از تخلیه هیجان، تمایل به ترمیم رابطه فعال شد.",
+        "الگوی آونگ (حمله → دلجویی) دوباره تکرار شد.",
+        "نیاز به اطمینان نسبت به وفاداری طرف مقابل در این رویداد بسیار پررنگ بود."
+    ],
+    patterns: [
+        {
+            title: "آونگ هیجانی",
+            description: "اتهام شدید، تهدید به پایان رابطه، سپس تماس مجدد و ترمیم رابطه.",
+            occurrences: 1
+        },
+        {
+            title: "فعال شدن حسادت با محرک مبهم",
+            description: "وجود یک محرک نامشخص کافی بود تا سناریوی خیانت در ذهن او شکل بگیرد.",
+            occurrences: 1
+        }
+    ],
+    timeline: [
+        {
+            date: "2025-07-16 20:30",
+            action: "Observation Added",
+            type: "add"
+        },
+        {
+            date: "2025-07-16 21:10",
+            action: "Relationship Repaired",
+            type: "update"
+        }
+    ]
+},{
+    id: "OBS-009",
+    person: "MR721AS",
+    date: "2026-07-16",
+    time: "23:50",
+    category: "گفتگو",
+    event: "آشتی پس از بحران و بیان علت فاصله",
+    cardStatus: "Observation",
+    tags: [
+        { category: "الگو", title: "دلجویی", value: 8, expiry: 20 },
+        { category: "الگو", title: "بازگشت", value: 7, expiry: 25 },
+        { category: "الگو", title: "ترمیم رابطه", value: 9, expiry: 30 },
+        { category: "پروفایل", title: "همدلی", value: 6, expiry: 35 },
+        { category: "پروفایل", title: "اعتماد", value: 5, expiry: 40 },
+        { category: "پروفایل", title: "مسئولیت‌پذیری", value: 4, expiry: 30 },
+        { category: "نیاز", title: "امنیت", value: 10, expiry: 60 },
+        { category: "نیاز", title: "اطمینان", value: 8, expiry: 45 },
+        { category: "نیاز", title: "صمیمیت", value: 10, expiry: 60 },
+        { category: "علاقه", title: "گفتگو", value: 6, expiry: 40 },
+        { category: "علاقه", title: "تماس صوتی", value: 5, expiry: 40 }
+    ],
+    links: ["OBS-001", "OBS-002", "OBS-003", "OBS-004", "OBS-005", "OBS-006", "OBS-007", "OBS-008"],
+    linksText: "این مشاهده، جمع‌بندی و نقطه اتصال اسناد قبلی است.",
+    observation: {
+        text: "پس از یک دعوای شدید همراه با فحاشی، اتهام خیانت، سوءظن و فشار روانی، برای نخستین بار علت اصلی فاصله‌ها و محدودیت دیدارها برای MR721AS توضیح داده شد. موضوع اصلی، ترس ناشی از اتفاق دانشگاه و نگرانی درباره امنیت او بود. پس از شنیدن این توضیحات، فضای گفتگو کاملاً آرام شد، MR721AS از رفتار خود عذرخواهی کرد و اعلام کرد که صبر خواهد کرد.",
+        details: "در پایان مکالمه هر دو طرف احساسات خود را ابراز کردند. MR721AS گفت: «صبر می‌کنم عشقم، خدا بزرگه» و «بابت امشب ببخشید، خودم حالم خراب شد». گفتگو با ابراز عشق متقابل و پایان آرام خاتمه یافت."
+    },
+    hypotheses: [
+        "ریشه بخش بزرگی از سوءظن‌ها، نبود امکان دیدار و نزدیکی فیزیکی است.",
+        "بیان آسیب‌پذیری واقعی، مؤثرتر از دفاع و توضیح منطقی عمل کرد.",
+        "اگر درباره احساسات واقعی صحبت شود، احتمال خروج MR721AS از حالت تدافعی بیشتر می‌شود.",
+        "فشار ناشی از نبود فضای امن، محرک اصلی چرخه بحران در رابطه است."
+    ],
+    patterns: [
+        {
+            title: "آرامش پس از بیان آسیب‌پذیری",
+            description: "زمانی که به جای دفاع، احساس واقعی و ترس بیان شد، شدت تعارض کاهش یافت.",
+            occurrences: 1
+        },
+        {
+            title: "ترمیم پس از بحران",
+            description: "پس از اوج تنش، گفتگو به سمت همدلی، عذرخواهی و ابراز محبت حرکت کرد.",
+            occurrences: 1
+        }
+    ],
+    timeline: [
+        {
+            date: "2025-07-16 20:30",
+            action: "Severe Conflict",
+            type: "crisis"
+        },
+        {
+            date: "2025-07-16 23:50",
+            action: "Relationship Repair",
+            type: "repair"
+        }
+    ]
+}];
+// ============================================================
+// 📚 Dictionary — PROJECT 721
+// ============================================================
 
-        // ============================================================
-        // 📋 محورهای پروفایل (Profile Axes)
-        // ============================================================
-        const PROFILE_AXES = {
-            trust: {
-                label: 'اعتماد',
-                icon: '🤝',
-                color: '#34d399',
-                tags: ['اتهام', 'قابلیت اتکا', 'حسادت', 'اعتماد', 'دلجویی']
-            },
-            stability: {
-                label: 'ثبات',
-                icon: '⚖️',
-                color: '#60a5fa',
-                tags: ['آونگ', 'عمل و استراحت', 'کناره‌گیری', 'ثبات']
-            },
-            openness: {
-                label: 'گشودگی',
-                icon: '🌱',
-                color: '#a78bfa',
-                tags: ['ارتباط', 'انعطاف', 'محتاط', 'عملکردی']
-            },
-            attachment: {
-                label: 'دلبستگی',
-                icon: '💞',
-                color: '#f472b6',
-                tags: ['نزدیکی', 'سکوت', 'دلجویی', 'دلبستگی']
-            },
-            control: {
-                label: 'کنترل',
-                icon: '🎯',
-                color: '#f59e0b',
-                tags: ['کنترل', 'اطمینان', 'توجه']
-            }
-        };
+// ------------------------------------------------------------
+// الگوها (Patterns)
+// ------------------------------------------------------------
+// آونگ
+// واژگون‌سازی
+// اتهام
+// فرافکنی
+// دلجویی
+// کناره‌گیری
+// سکوت
+// پینگ خاموش
+// سنجش
+// آزمون وفاداری
+// تشدید تنش
+// فرار از پاسخ
+// جابجایی موضوع
+// مقایسه
+// تهدید به ترک
+// بازگشت
+// وابستگی
+// چرخه بحران
+
+// ------------------------------------------------------------
+// پروفایل (Profile)
+// ------------------------------------------------------------
+// اعتماد
+// بی‌اعتمادی
+// حسادت
+// کنترل
+// خودآگاهی
+// همدلی
+// انعطاف
+// قابلیت اتکا
+// مسئولیت‌پذیری
+// دلبستگی
+// بلوغ هیجانی
+// ثبات
+// واقع‌گرایی
+// خوش‌بینی
+// بدبینی
+// جرئت
+// ترس
+// عزت نفس
+// استقلال
+// صداقت
+// شفافیت
+// تاب‌آوری
+
+// ------------------------------------------------------------
+// نیازها (Needs)
+// ------------------------------------------------------------
+// اطمینان
+// امنیت
+// توجه
+// کنترل
+// تأیید
+// پذیرش
+// احترام
+// صمیمیت
+// استقلال
+// آرامش
+// درک شدن
+// شنیده شدن
+// وفاداری
+// صداقت
+// همراهی
+// حمایت
+// ثبات
+// پیش‌بینی‌پذیری
+// ارزشمند بودن
+
+// ------------------------------------------------------------
+// علاقه‌ها (Interests)
+// ------------------------------------------------------------
+// تماس صوتی
+// تماس تصویری
+// پیام
+// گفتگو
+// شوخی
+// وقت‌گذرانی
+// بازی
+// فیلم
+// موسیقی
+// آشپزی
+// رابطه جنسی
+// هدیه
+// پیاده‌روی
+// مسافرت
+// کار
+// یادگیری
+// پول
+// تکنولوژی
+// ماشین
+
+// ------------------------------------------------------------
+// ترجیح‌ها (Preferences)
+// ------------------------------------------------------------
+// شب
+// صبح
+// ارتباط کوتاه
+// ارتباط طولانی
+// حضوری
+// مجازی
+// تنهایی
+// جمع
+// تصمیم‌گیری سریع
+// برنامه‌ریزی
+// ============================================================
 
         // ============================================================
         // 🧠 PROCESSORS — مصرف‌کننده‌های تگ
@@ -1450,7 +934,9 @@
         }
 
         function toPersianDate(dateStr) {
+            if (!dateStr) return '';
             const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return dateStr;
             const year = d.getFullYear() - 621;
             const month = String(d.getMonth() + 1).padStart(2, '0');
             const day = String(d.getDate()).padStart(2, '0');
@@ -1463,20 +949,15 @@
             const expiry = tag.expiry || 30;
 
             if (age >= expiry) return 0;
-            if (age <= 0) return tag.effect?.score || tag.weight || 3;
+            if (age <= 0) return tag.value || 3;
 
             const remaining = expiry - age;
             const ratio = remaining / expiry;
-            return (tag.effect?.score || tag.weight || 3) * ratio;
+            return (tag.value || 3) * ratio;
         }
 
-        function getTagRawWeight(tag) {
-            return tag.effect?.score || tag.weight || 3;
-        }
-
-        function scoreToAxisPercent(score) {
-            const clamped = Math.min(Math.max(score, -10), 10);
-            return ((clamped + 10) / 20) * 100;
+        function getTagRawValue(tag) {
+            return tag.value || 3;
         }
 
         function getStars(count) {
@@ -1498,47 +979,34 @@
                     if (!patterns[tag.title]) {
                         patterns[tag.title] = {
                             title: tag.title,
-                            totalWeight: 0,
+                            totalValue: 0,
                             count: 0,
-                            axis: tag.effect?.axis || 'trust',
-                            records: [],
-                            effects: []
+                            records: []
                         };
                     }
 
-                    patterns[tag.title].totalWeight += weight;
+                    patterns[tag.title].totalValue += weight;
                     patterns[tag.title].count += 1;
                     patterns[tag.title].records.push(record.id);
-                    patterns[tag.title].effects.push({
-                        score: tag.effect.score,
-                        axis: tag.effect.axis,
-                        expiry: tag.expiry
-                    });
                 });
             });
 
             return Object.values(patterns).map(p => {
-                const avgScore = p.totalWeight / p.count;
+                const avgValue = p.totalValue / p.count;
                 return {
                     title: p.title,
-                    score: Math.round(avgScore * 10) / 10,
-                    axis: p.axis,
+                    value: Math.round(avgValue * 10) / 10,
                     occurrences: p.count,
                     records: p.records,
-                    effects: p.effects,
-                    weight: Math.round((p.totalWeight / p.count) * 10) / 10,
-                    axisPercent: scoreToAxisPercent(avgScore)
+                    weight: Math.round((p.totalValue / p.count) * 10) / 10,
+                    axisPercent: ((Math.min(Math.max(avgValue, -10), 10) + 10) / 20) * 100
                 };
-            }).sort((a, b) => b.score - a.score);
+            }).sort((a, b) => b.value - a.value);
         }
 
-        // ---- پردازشگر پروفایل (ProfileProcessor) با محورهای دقیق ----
+        // ---- پردازشگر پروفایل (ProfileProcessor) ----
         function ProfileProcessor(records) {
-            // مقداردهی اولیه محورها
-            const axes = {};
-            Object.keys(PROFILE_AXES).forEach(key => {
-                axes[key] = { total: 0, count: 0, tags: [] };
-            });
+            const profile = {};
 
             records.forEach(record => {
                 (record.tags || []).forEach(tag => {
@@ -1547,41 +1015,54 @@
                     const weight = getTagWeight(tag, record.date);
                     if (weight === 0) return;
 
-                    // پیدا کردن محور مناسب برای این تگ
-                    let foundAxis = null;
-                    for (const [axisKey, axisData] of Object.entries(PROFILE_AXES)) {
-                        if (axisData.tags.includes(tag.title)) {
-                            foundAxis = axisKey;
-                            break;
-                        }
+                    if (!profile[tag.title]) {
+                        profile[tag.title] = {
+                            title: tag.title,
+                            total: 0,
+                            count: 0
+                        };
                     }
 
-                    if (foundAxis && axes[foundAxis]) {
-                        axes[foundAxis].total += weight;
-                        axes[foundAxis].count += 1;
-                        if (!axes[foundAxis].tags.includes(tag.title)) {
-                            axes[foundAxis].tags.push(tag.title);
-                        }
-                    }
+                    profile[tag.title].total += weight;
+                    profile[tag.title].count += 1;
                 });
             });
 
-            // ساخت نتیجه نهایی
-            const result = {};
-            Object.keys(axes).forEach(key => {
-                const avg = axes[key].count > 0 ? axes[key].total / axes[key].count : 0;
-                result[key] = {
-                    label: PROFILE_AXES[key].label,
-                    icon: PROFILE_AXES[key].icon,
-                    color: PROFILE_AXES[key].color,
-                    score: Math.round(avg * 10) / 10,
-                    axisPercent: scoreToAxisPercent(avg),
-                    count: axes[key].count,
-                    tags: axes[key].tags
-                };
-            });
+            const result = Object.values(profile).map(item => ({
+                title: item.title,
+                value: Math.round((item.total / item.count) * 10) / 10,
+                count: item.count,
+                axisPercent: ((Math.min(Math.max((item.total / item.count), -10), 10) + 10) / 20) * 100,
+                color: getColorForTag(item.title)
+            })).sort((a, b) => b.value - a.value);
 
             return result;
+        }
+
+        function getColorForTag(title) {
+            const colors = {
+                'ترس': '#ef4444',
+                'شجاعت': '#34d399',
+                'صبر': '#60a5fa',
+                'عزت نفس': '#a78bfa',
+                'خودآگاهی': '#f472b6',
+                'همدلی': '#34d399',
+                'مسئولیت‌پذیری': '#f59e0b',
+                'انعطاف‌پذیری': '#60a5fa',
+                'خوش‌بینی': '#34d399',
+                'واقع‌گرایی': '#f59e0b',
+                'حسادت': '#ef4444',
+                'کنترل': '#f59e0b',
+                'اعتماد': '#34d399',
+                'قابلیت اتکا': '#34d399',
+                'دلبستگی': '#f472b6',
+                'ارتباط': '#60a5fa',
+                'کناره‌گیری': '#ef4444',
+                'انعطاف': '#60a5fa',
+                'محتاط': '#f59e0b',
+                'ثبات': '#60a5fa'
+            };
+            return colors[title] || '#13f4d2';
         }
 
         // ---- پردازشگر نیازها و علاقه‌ها ----
@@ -1599,13 +1080,13 @@
                             needs[tag.title] = {
                                 title: tag.title,
                                 count: 0,
-                                weightSum: 0,
+                                totalValue: 0,
                                 lastSeen: record.date,
                                 records: []
                             };
                         }
                         needs[tag.title].count += 1;
-                        needs[tag.title].weightSum += getTagRawWeight(tag);
+                        needs[tag.title].totalValue += getTagRawValue(tag);
                         needs[tag.title].records.push(record.id);
                         if (record.date > needs[tag.title].lastSeen) {
                             needs[tag.title].lastSeen = record.date;
@@ -1617,13 +1098,13 @@
                             interests[tag.title] = {
                                 title: tag.title,
                                 count: 0,
-                                weightSum: 0,
+                                totalValue: 0,
                                 lastSeen: record.date,
                                 records: []
                             };
                         }
                         interests[tag.title].count += 1;
-                        interests[tag.title].weightSum += getTagRawWeight(tag);
+                        interests[tag.title].totalValue += getTagRawValue(tag);
                         interests[tag.title].records.push(record.id);
                         if (record.date > interests[tag.title].lastSeen) {
                             interests[tag.title].lastSeen = record.date;
@@ -1634,13 +1115,13 @@
 
             const needsArray = Object.values(needs).map(n => ({
                 ...n,
-                score: Math.round((n.weightSum / n.count) * 10) / 10,
+                avgValue: Math.round((n.totalValue / n.count) * 10) / 10,
                 stars: getStars(n.count)
             })).sort((a, b) => b.count - a.count);
 
             const interestsArray = Object.values(interests).map(i => ({
                 ...i,
-                score: Math.round((i.weightSum / i.count) * 10) / 10,
+                avgValue: Math.round((i.totalValue / i.count) * 10) / 10,
                 stars: getStars(i.count)
             })).sort((a, b) => b.count - a.count);
 
@@ -1696,23 +1177,14 @@
             const today = getToday();
             const totalObs = RECORDS.length;
 
-            // آخرین سند
             const lastRecord = RECORDS.length > 0 ? RECORDS[RECORDS.length - 1] : null;
-
-            // ۳ الگوی برتر
             const topPatterns = patterns.slice(0, 3);
-
-            // اولویت‌های برتر
             const topPriorities = needsData.priorities.slice(0, 5);
 
-            // وضعیت پروفایل (میانگین)
-            const profileValues = Object.values(profile);
-            const avgScore = profileValues.length > 0 ?
-                Math.round(profileValues.reduce((sum, p) => sum + p.score, 0) / profileValues.length * 10) / 10 :
+            const profileValues = profile.map(p => p.value);
+            const avgValue = profileValues.length > 0 ?
+                Math.round(profileValues.reduce((sum, v) => sum + v, 0) / profileValues.length * 10) / 10 :
                 0;
-            const avgPercent = profileValues.length > 0 ?
-                Math.round(profileValues.reduce((sum, p) => sum + p.axisPercent, 0) / profileValues.length) :
-                50;
 
             return `
                 <div class="glass">
@@ -1728,7 +1200,6 @@
                     </div>
                 </div>
 
-                <!-- کارت‌های سریع -->
                 <div class="dash-grid">
                     <div class="dash-card">
                         <div class="dash-title">📄 کل مشاهدات</div>
@@ -1747,19 +1218,12 @@
                     </div>
                     <div class="dash-card">
                         <div class="dash-title">📊 وضعیت کلی پروفایل</div>
-                        <div class="dash-value">${avgScore > 0 ? '+' : ''}${avgScore}</div>
-                        <div class="dash-sub">میانگین ${profileValues.length} محور</div>
-                        <div class="dash-axis-mini">
-                            <div class="dash-center"></div>
-                            <div class="dash-fill" style="width:${avgPercent}%;background:linear-gradient(90deg,#34d399,#13f4d2);"></div>
-                            <div class="dash-dot" style="left:${avgPercent}%;"></div>
-                        </div>
+                        <div class="dash-value">${avgValue > 0 ? '+' : ''}${avgValue}</div>
+                        <div class="dash-sub">میانگین ${profile.length} محور</div>
                     </div>
                 </div>
 
-                <!-- الگوهای برتر + اولویت‌ها -->
                 <div class="dash-grid">
-                    <!-- الگوهای برتر -->
                     <div class="glass" style="padding:10px 12px;">
                         <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
                             <i class="fas fa-brain"></i> الگوهای برتر
@@ -1767,25 +1231,14 @@
                         </div>
                         ${topPatterns.length === 0 ? `
                             <div style="font-size:0.4rem;color:rgba(19,244,210,0.2);text-align:center;padding:6px 0;">هیچ الگویی ثبت نشده</div>
-                        ` : topPatterns.map(p => {
-                            const percent = p.axisPercent || 50;
-                            return `
-                                <div style="margin-bottom:4px;">
-                                    <div style="display:flex;justify-content:space-between;font-size:0.45rem;">
-                                        <span style="color:#c0d8f0;">${p.title}</span>
-                                        <span style="color:rgba(19,244,210,0.3);">${p.occurrences} بار</span>
-                                    </div>
-                                    <div class="dash-axis-mini">
-                                        <div class="dash-center"></div>
-                                        <div class="dash-fill" style="width:${percent}%;background:linear-gradient(90deg,#f59e0b,#13f4d2);"></div>
-                                        <div class="dash-dot" style="left:${percent}%;"></div>
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
+                        ` : topPatterns.map(p => `
+                            <div style="display:flex;justify-content:space-between;font-size:0.45rem;padding:2px 0;border-bottom:1px solid rgba(19,244,210,0.02);">
+                                <span style="color:#c0d8f0;">${p.title}</span>
+                                <span style="color:rgba(19,244,210,0.3);">${p.value > 0 ? '+' : ''}${p.value} · ${p.occurrences} بار</span>
+                            </div>
+                        `).join('')}
                     </div>
 
-                    <!-- اولویت‌ها -->
                     <div class="glass" style="padding:10px 12px;">
                         <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
                             <i class="fas fa-crown"></i> اولویت‌های برتر
@@ -1804,26 +1257,24 @@
                     </div>
                 </div>
 
-                <!-- وضعیت پروفایل -->
                 <div class="glass">
                     <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
                         <i class="fas fa-user"></i> وضعیت پروفایل
-                        <span class="badge-count">${Object.keys(profile).length} محور</span>
+                        <span class="badge-count">${profile.length} محور</span>
                     </div>
                     <div class="dash-profile-grid">
-                        ${Object.entries(profile).map(([key, data]) => `
+                        ${profile.map(data => `
                             <div class="dash-profile-item">
-                                <div class="dp-label">${data.icon} ${data.label}</div>
-                                <div class="dp-value">${data.score > 0 ? '+' : ''}${data.score}</div>
+                                <div class="dp-label">${data.title}</div>
+                                <div class="dp-value">${data.value > 0 ? '+' : ''}${data.value}</div>
                                 <div class="dp-bar">
-                                    <div class="dp-fill" style="width:${data.axisPercent}%;background:${data.color};"></div>
+                                    <div class="dp-fill" style="width:${data.axisPercent}%;background:${data.color || '#13f4d2'};"></div>
                                 </div>
                             </div>
                         `).join('')}
                     </div>
                 </div>
 
-                <!-- آخرین سند -->
                 ${lastRecord ? `
                     <div class="glass" style="padding:10px 12px;">
                         <div class="card-title" style="font-size:0.45rem;margin-bottom:4px;">
@@ -1874,13 +1325,12 @@
                 const weight = getTagWeight(t, record.date);
                 const remaining = Math.max(0, t.expiry - age);
                 const isExpired = weight === 0;
-                const effectClass = (t.effect?.score || 0) > 0 ? 'positive' : 'negative';
-                const displayWeight = t.effect?.score || t.weight || 3;
+                const displayValue = t.value || 3;
 
                 return `
                     <span style="font-size:0.35rem;padding:1px 8px;border-radius:30px;background:${isExpired ? 'rgba(239,68,68,0.08)' : 'rgba(19,244,210,0.04)'};border:1px solid ${isExpired ? 'rgba(239,68,68,0.1)' : 'rgba(19,244,210,0.04)'};color:${isExpired ? '#ef4444' : 'rgba(19,244,210,0.6)'};">
                         ${t.category}: ${t.title}
-                        <span class="effect ${effectClass}">[${displayWeight > 0 ? '+' : ''}${displayWeight}]</span>
+                        [${displayValue > 0 ? '+' : ''}${displayValue}]
                         ${isExpired ? '⛔' : `⏳${remaining}روز`}
                     </span>
                 `;
@@ -1899,7 +1349,7 @@
             (record.tags || []).forEach(t => {
                 const w = getTagWeight(t, record.date);
                 totalWeight += Math.abs(w);
-                totalMaxWeight += Math.abs(t.effect?.score || t.weight || 3);
+                totalMaxWeight += Math.abs(t.value || 3);
             });
             const weightPercent = totalMaxWeight > 0 ? Math.round((totalWeight / totalMaxWeight) * 100) : 0;
             const weightClass = weightPercent < 30 ? 'low' : '';
@@ -1960,7 +1410,7 @@
         }
 
         // ============================================================
-        // RENDER AXIS
+        // RENDER AXIS (مشترک)
         // ============================================================
         function renderAxis(percent, label = '', color = '#13f4d2') {
             const clamped = Math.min(Math.max(percent, 0), 100);
@@ -2033,23 +1483,16 @@
         // RENDER PATTERN AXIS
         // ============================================================
         function renderPatternAxis(pattern) {
-            const percent = pattern.axisPercent || 50;
-
-            const effectHtml = (pattern.effects || []).slice(0, 3).map(e =>
-                `<span class="tag">${e.axis}: <span class="effect ${e.score > 0 ? 'positive' : 'negative'}">${e.score > 0 ? '+' : ''}${e.score}</span></span>`
-            ).join('');
-
             return `
                 <div class="pattern-axis-card">
                     <div class="pa-header">
                         <span class="pa-name">${pattern.title}</span>
-                        <span class="pa-weight">${pattern.occurrences} بار · امتیاز ${pattern.score}</span>
+                        <span class="pa-weight">${pattern.occurrences} بار · مقدار ${pattern.value > 0 ? '+' : ''}${pattern.value}</span>
                     </div>
 
-                    ${renderAxis(percent, `(${pattern.axis})`)}
+                    ${renderAxis(pattern.axisPercent || 50, `(${pattern.title})`)}
 
                     <div class="pa-tags">
-                        ${effectHtml}
                         <span class="tag">
                             📄 ${pattern.records.join('، ')}
                         </span>
@@ -2069,28 +1512,20 @@
             const profile = ProfileProcessor(RECORDS);
             const today = getToday();
 
-            const profileHtml = Object.entries(profile).map(([key, data]) => {
-                const percent = data.axisPercent || 50;
+            const profileHtml = profile.map(data => {
                 const color = data.color || '#13f4d2';
 
                 return `
                     <div class="profile-axis-card">
                         <div class="pa-header">
-                            <span class="pa-name">${data.icon} ${data.label}</span>
-                            <span class="pa-weight">${data.count} مشاهده · امتیاز ${data.score}</span>
+                            <span class="pa-name">${data.title}</span>
+                            <span class="pa-weight">${data.count} مشاهده · مقدار ${data.value > 0 ? '+' : ''}${data.value}</span>
                         </div>
 
-                        ${renderAxis(percent, `(${data.label})`, color)}
-
-                        <div class="pa-tags">
-                            ${data.tags.map(t => `
-                                <span class="tag">${t}</span>
-                            `).join('')}
-                            ${data.tags.length === 0 ? '<span class="tag" style="color:rgba(19,244,210,0.2);">هیچ تگی ثبت نشده</span>' : ''}
-                        </div>
+                        ${renderAxis(data.axisPercent || 50, `(${data.title})`, color)}
 
                         <div class="pa-info">
-                            ${data.count} بار مشاهده · ${data.tags.length} تگ مرتبط
+                            ${data.count} بار مشاهده
                         </div>
                     </div>
                 `;
@@ -2106,7 +1541,7 @@
                         <span class="win-item">📅 امروز: <span class="num">${toPersianDate(today)}</span></span>
                         <span class="win-item">📊 ${RECORDS.length} مشاهده</span>
                     </div>
-                    ${profileHtml}
+                    ${profileHtml || '<div style="text-align:center;padding:20px 0;color:rgba(19,244,210,0.2);font-size:0.6rem;">هیچ تگ پروفایلی ثبت نشده است</div>'}
                     <div style="font-size:0.35rem;color:rgba(19,244,210,0.15);text-align:center;margin-top:6px;">
                         🔴 منفی ← ۰ (مرکز) → مثبت 🟢
                     </div>
@@ -2128,7 +1563,7 @@
                     </div>
                     <div style="display:flex;align-items:center;gap:6px;">
                         <span class="n-stars">${n.stars}</span>
-                        <span class="n-weight">وزن ${n.score}</span>
+                        <span class="n-weight">مقدار ${n.avgValue > 0 ? '+' : ''}${n.avgValue}</span>
                         <span class="n-last">${toPersianDate(n.lastSeen)}</span>
                     </div>
                 </div>
@@ -2142,7 +1577,7 @@
                     </div>
                     <div style="display:flex;align-items:center;gap:6px;">
                         <span class="n-stars">${i.stars}</span>
-                        <span class="n-weight">وزن ${i.score}</span>
+                        <span class="n-weight">مقدار ${i.avgValue > 0 ? '+' : ''}${i.avgValue}</span>
                         <span class="n-last">${toPersianDate(i.lastSeen)}</span>
                     </div>
                 </div>
@@ -2169,7 +1604,6 @@
                         <span class="win-item">📊 ${data.needs.length} نیاز · ${data.interests.length} علاقه</span>
                     </div>
 
-                    <!-- اولویت‌ها -->
                     <div style="margin-top:8px;margin-bottom:12px;">
                         <div style="font-size:0.5rem;color:#13f4d2;margin-bottom:6px;font-weight:600;">
                             <i class="fas fa-crown"></i> اولویت‌های برتر
@@ -2179,7 +1613,6 @@
                         </div>
                     </div>
 
-                    <!-- تب‌ها -->
                     <div class="tabs">
                         <button class="tab-btn ${needsTab === 'needs' ? 'active' : ''}" onclick="switchNeedsTab('needs')">
                             <i class="fas fa-list"></i> نیازها (${data.needs.length})
@@ -2258,9 +1691,10 @@
         // ============================================================
         render();
 
-        console.log('🧠 PROJECT 721 — سیستم جامع با داشبورد');
+        console.log('🧠 PROJECT 721 — معماری آزاد');
         console.log(`📊 ${RECORDS.length} مشاهده بارگذاری شد`);
-        console.log('🏠 داشبورد: الگوهای برتر، اولویت‌ها، پروفایل، آخرین سند');
+        console.log('📋 هر تگ: { category, title, value, expiry }');
+        console.log('✅ هر چیزی که دوست داری اضافه کن');
         console.log('📅 امروز:', toPersianDate(getToday()));
     </script>
 
