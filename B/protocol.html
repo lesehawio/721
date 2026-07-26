@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>پروتکل‌یاب ۷۲۱ · آزمایشگاه مداخلات</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/lesehawio/721/refs/heads/main/A/721.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ============================================================
+           ROOT — Dark Lab Theme
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #08070e;
+            --bg-secondary: #0c0a16;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-card-hover: rgba(255, 255, 255, 0.035);
+            --bg-input: rgba(0, 20, 30, 0.15);
+            --border: rgba(0, 255, 200, 0.06);
+            --border-focus: rgba(0, 255, 200, 0.15);
+            --text: #e0f0f0;
+            --text-sec: #80b0b0;
+            --text-muted: #305050;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.04);
+            --accent-glow: rgba(0, 212, 170, 0.02);
+            --accent-blue: #00b4d8;
+            --accent-green: #00e676;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 48px rgba(0, 0, 0, 0.4);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 28px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-ar: 'Vazirmatn', sans-serif;
+            --font-en: 'Inter', sans-serif;
+        }
+        body.light {
+            --bg-primary: #f0f8f5;
+            --bg-secondary: #e4f0ea;
+            --bg-card: rgba(255, 255, 255, 0.5);
+            --bg-card-hover: rgba(255, 255, 255, 0.7);
+            --bg-input: rgba(255, 255, 255, 0.5);
+            --border: rgba(0, 180, 150, 0.06);
+            --border-focus: rgba(0, 180, 150, 0.12);
+            --text: #0a1a18;
+            --text-sec: #2a5a50;
+            --text-muted: #6a9a90;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 8px 48px rgba(0, 0, 0, 0.04);
+        }
+        body {
+            font-family: var(--font-ar);
+            background: var(--bg-primary);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0.5rem 0.8rem 2rem;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ============================================================
+           BACKGROUND — LAB EFFECTS
+           ============================================================ */
+        .lab-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(0, 200, 180, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 180, 200, 0.02) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 230, 118, 0.01) 0%, transparent 60%),
+                var(--bg-primary);
+            transition: background var(--transition);
+        }
+        body.light .lab-bg {
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(0, 200, 180, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 180, 200, 0.03) 0%, transparent 40%),
+                var(--bg-primary);
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 212, 170, 0.15), rgba(0, 180, 200, 0.02));
+            animation: floatParticle linear infinite;
+            pointer-events: none;
+        }
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Energy rings */
+        .energy-ring {
+            position: absolute;
+            border: 1px solid rgba(0, 212, 170, 0.02);
+            border-radius: 50%;
+            animation: pulseRing 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRing {
+            0%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        /* Grid lines */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 212, 170, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.01) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* Glow orbs */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        .glow-orb.green {
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.08), transparent 70%);
+        }
+        .glow-orb.blue {
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.06), transparent 70%);
+        }
+        .glow-orb.cyan {
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.06), transparent 70%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            width: 100%;
+            max-width: 760px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0.2rem 0.1rem 0.6rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .header-actions {
+            display: flex;
+            gap: 0.2rem;
+        }
+        .header-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-sec);
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+        .header-btn:hover {
+            background: var(--bg-card);
+            color: var(--text);
+            border-color: var(--accent);
+        }
+
+        /* ============================================================
+           MAIN — Centered
+           ============================================================ */
+        .main {
+            width: 100%;
+            max-width: 760px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 55vh;
+            padding: 0.5rem 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ============================================================
+           LOGO — Large, No Background
+           ============================================================ */
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            position: relative;
+        }
+        .logo-section .logo-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-section .logo-img {
+            height: 80px;
+            width: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 170, 0.08));
+            transition: filter var(--transition);
+            background: transparent;
+            padding: 0;
+        }
+        .logo-section .logo-img:hover {
+            filter: drop-shadow(0 0 50px rgba(0, 212, 170, 0.15));
+        }
+
+        /* Glow ring behind logo */
+        .logo-ring {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 212, 170, 0.04);
+            animation: logoPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .logo-ring:nth-child(2) {
+            width: 140px;
+            height: 140px;
+            animation-delay: 1.2s;
+            border-color: rgba(0, 180, 216, 0.03);
+        }
+        @keyframes logoPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        .logo-section .brand-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+        .logo-section .brand-name .hl {
+            color: var(--accent);
+        }
+        .logo-section .brand-sub {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            font-family: var(--font-en);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 0.05rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            width: 100%;
+            text-align: center;
+            transition: all var(--transition);
+        }
+        .hero.has-results {
+            text-align: right;
+            padding-top: 0.2rem;
+        }
+        .hero-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+            margin-bottom: 0.1rem;
+        }
+        .hero-title .hl {
+            color: var(--accent);
+            text-shadow: 0 0 40px rgba(0, 212, 170, 0.05);
+        }
+        .hero-sub {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+            opacity: 0.6;
+        }
+        .hero.has-results .hero-title {
+            font-size: 0.95rem;
+            text-align: right;
+        }
+        .hero.has-results .hero-sub {
+            font-size: 0.65rem;
+            text-align: right;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ============================================================
+           SEARCH — Professional Glass
+           ============================================================ */
+        .search-wrapper {
+            width: 100%;
+            position: relative;
+        }
+        .search-box {
+            background: var(--bg-input);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            padding: 0.05rem 0.1rem 0.05rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Inner glow */
+        .search-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.02), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+        .search-box:focus-within::before {
+            opacity: 1;
+        }
+        .search-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim), 0 0 40px rgba(0, 212, 170, 0.03), var(--shadow);
+            background: var(--bg-card);
+        }
+        .search-box .icon {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .search-box:focus-within .icon {
+            color: var(--accent);
+        }
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.5rem 0.1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            outline: none;
+            font-family: var(--font-ar);
+            min-height: 50px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .search-box input::placeholder {
+            color: var(--text-muted);
+            font-weight: 300;
+            opacity: 0.5;
+        }
+        .search-box .actions {
+            display: flex;
+            gap: 0.05rem;
+            align-items: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .search-box .actions button {
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            width: 40px;
+            height: 40px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .search-box .actions button:hover {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .search-box .actions .filter-btn {
+            width: auto;
+            padding: 0 0.8rem;
+            gap: 0.2rem;
+            font-size: 0.6rem;
+            font-weight: 500;
+        }
+        .search-box .actions .filter-btn .badge {
+            font-size: 0.4rem;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .search-box .actions .clear-btn {
+            display: none;
+        }
+        .search-box .actions .clear-btn.visible {
+            display: flex;
+        }
+        .search-box .actions .voice-btn {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .search-box .actions .voice-btn:hover {
+            color: var(--accent);
+        }
+        .search-box .actions .voice-btn.active {
+            color: var(--accent);
+            animation: pulseMic 0.8s infinite;
+        }
+        @keyframes pulseMic {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Decorative line under search */
+        .search-underline {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto;
+            transition: width 0.6s ease;
+            opacity: 0.3;
+        }
+        .search-wrapper:focus-within .search-underline {
+            width: 60%;
+        }
+
+        /* ============================================================
+           QUICK CHIPS
+           ============================================================ */
+        .quick-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+        .hero.has-results .quick-chips {
+            justify-content: flex-start;
+            margin-top: 0.3rem;
+        }
+        .quick-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.1rem 0.7rem;
+            font-size: 0.55rem;
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-ar);
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+        .quick-chip:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .quick-chip .plus {
+            font-size: 0.5rem;
+            opacity: 0.4;
+        }
+
+        /* ============================================================
+           FILTER PANEL
+           ============================================================ */
+        .filter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(4px);
+            z-index: 90;
+            display: none;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .filter-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+        .filter-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.96);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.2rem;
+            z-index: 100;
+            max-width: 440px;
+            width: 92%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--transition);
+        }
+        body.light .filter-panel {
+            background: var(--bg-secondary);
+        }
+        .filter-panel.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .filter-panel .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .filter-panel .head .title {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .filter-panel .head .close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.2rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .filter-panel .head .close:hover {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .filter-group {
+            margin-bottom: 0.6rem;
+        }
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+        .filter-group .label {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+        .filter-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        .filter-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.05rem 0.7rem;
+            font-size: 0.5rem;
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-ar);
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+            font-weight: 500;
+        }
+        .filter-chip:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .filter-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .filter-chip .count {
+            opacity: 0.3;
+            font-size: 0.4rem;
+        }
+        .filter-chip .remove {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 0.4rem;
+            opacity: 0.5;
+            padding: 0 0.05rem;
+        }
+        .filter-chip .remove:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           RESULTS
+           ============================================================ */
+        .results {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            animation: fadeUp 0.25s ease;
+        }
+        .results.visible {
+            display: flex;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .results-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            padding: 0 0.1rem;
+        }
+        .results-head .count {
+            font-size: 0.7rem;
+            color: var(--text-sec);
+        }
+        .results-head .count strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .results-head .active-filters {
+            display: flex;
+            gap: 0.2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .results-head .active-filters .tag {
+            font-size: 0.45rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(0, 212, 170, 0.06);
+            border-radius: 30px;
+            padding: 0.05rem 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+        .results-head .active-filters .tag .remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.4rem;
+            padding: 0 0.05rem;
+        }
+        .results-head .active-filters .tag .remove:hover {
+            color: var(--text);
+        }
+        .results-head .clear-all {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.5rem;
+            font-family: var(--font-ar);
+            transition: var(--transition);
+            padding: 0.1rem 0.3rem;
+            border-radius: var(--radius-sm);
+        }
+        .results-head .clear-all:hover {
+            color: var(--text);
+            background: var(--bg-card);
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.7rem 0.9rem;
+            transition: all var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(0, 212, 170, 0.06);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+        .card-indicator {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .card-indicator.active {
+            background: var(--accent);
+        }
+        .card-indicator.supportive {
+            background: #4a9eff;
+        }
+        .card-indicator.boundary {
+            background: #c9a05c;
+        }
+        .card-indicator.de-escalation {
+            background: #7c8cf0;
+        }
+        .card-indicator.safety {
+            background: #e06070;
+        }
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .card-left {
+            flex: 1;
+            min-width: 0;
+        }
+        .card-id {
+            font-size: 0.45rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-family: var(--font-en);
+            letter-spacing: 0.3px;
+        }
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0.05rem;
+            line-height: 1.3;
+        }
+        .card-title .hl {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0 0.15rem;
+            border-radius: 3px;
+        }
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+            margin-top: 0.15rem;
+        }
+        .card-meta .badge {
+            font-size: 0.4rem;
+            padding: 0.05rem 0.45rem;
+            border-radius: 30px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.1rem;
+        }
+        .badge-status.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .badge-status.supportive {
+            border-color: #4a9eff;
+            color: #4a9eff;
+            background: rgba(74, 158, 255, 0.04);
+        }
+        .badge-status.boundary {
+            border-color: #c9a05c;
+            color: #c9a05c;
+            background: rgba(201, 160, 92, 0.04);
+        }
+        .badge-status.de-escalation {
+            border-color: #7c8cf0;
+            color: #7c8cf0;
+            background: rgba(124, 140, 240, 0.04);
+        }
+        .badge-status.safety {
+            border-color: #e06070;
+            color: #e06070;
+            background: rgba(224, 96, 112, 0.04);
+        }
+        .badge-risk.low {
+            color: #4a9eff;
+        }
+        .badge-risk.medium {
+            color: #c9a05c;
+        }
+        .badge-risk.high {
+            color: #e06070;
+        }
+        .badge-risk.critical {
+            color: #e06070;
+            border-color: rgba(224, 96, 112, 0.15);
+            background: rgba(224, 96, 112, 0.04);
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.15rem;
+            margin-top: 0.2rem;
+        }
+        .card-tag {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.03rem 0.5rem;
+            background: var(--bg-card);
+            transition: var(--transition);
+        }
+        .card-tag.hl {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        .card-situation {
+            font-size: 0.65rem;
+            color: var(--text-sec);
+            margin-top: 0.15rem;
+            line-height: 1.5;
+        }
+        .card-situation .hl {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0 0.15rem;
+            border-radius: 3px;
+        }
+        .card-action {
+            font-size: 0.7rem;
+            color: var(--text-sec);
+            margin-top: 0.05rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        .card-action .hl {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0 0.15rem;
+            border-radius: 3px;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+            padding-top: 0.3rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+        .card-expand {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-ar);
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+        .card-expand:hover {
+            color: var(--accent);
+        }
+        .card-related {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            flex-wrap: wrap;
+        }
+        .card-related .label {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .card-related .btn {
+            font-size: 0.4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.03rem 0.5rem;
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-en);
+            font-weight: 500;
+        }
+        .card-related .btn:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .card-full {
+            display: none;
+            margin-top: 0.3rem;
+            padding-top: 0.3rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.65rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-family: var(--font-ar);
+        }
+        .card-full.open {
+            display: block;
+            animation: fadeUp 0.2s ease;
+        }
+        .card-full .hl {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0 0.15rem;
+            border-radius: 3px;
+        }
+        .card-review {
+            margin-top: 0.3rem;
+            padding: 0.2rem 0.4rem;
+            background: rgba(224, 96, 112, 0.04);
+            border: 1px solid rgba(224, 96, 112, 0.06);
+            border-radius: var(--radius-sm);
+            font-size: 0.55rem;
+            color: #e06070;
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           EMPTY
+           ============================================================ */
+        .empty {
+            text-align: center;
+            padding: 2rem 1rem;
+            opacity: 0.4;
+        }
+        .empty .icon {
+            font-size: 2rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .empty .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .empty .sub {
+            font-size: 0.65rem;
+            color: var(--text-sec);
+            margin-top: 0.15rem;
+        }
+        .empty .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+        .empty .suggestions button {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.05rem 0.6rem;
+            font-size: 0.5rem;
+            color: var(--text-sec);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-ar);
+        }
+        .empty .suggestions button:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .empty .clear-filters-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.65rem;
+            font-family: var(--font-ar);
+            margin-top: 0.2rem;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            opacity: 0.5;
+        }
+        .empty .clear-filters-btn:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           KEYBOARD HINT
+           ============================================================ */
+        .kbd-hint {
+            width: 100%;
+            max-width: 760px;
+            font-size: 0.4rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.5rem;
+            opacity: 0.3;
+            letter-spacing: 0.3px;
+            font-family: var(--font-en);
+        }
+        .kbd-hint kbd {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.05rem 0.3rem;
+            border-radius: 4px;
+            font-size: 0.35rem;
+            font-family: inherit;
+            color: var(--text-sec);
+        }
+
+        /* ============================================================
+           VOICE OVERLAY
+           ============================================================ */
+        .voice-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 7, 14, 0.75);
+            backdrop-filter: blur(24px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        body.light .voice-overlay {
+            background: rgba(247, 245, 250, 0.85);
+        }
+        .voice-overlay.open {
+            display: flex;
+            animation: fadeUp 0.25s ease;
+        }
+        .voice-overlay .icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            animation: pulseMic 1s infinite;
+        }
+        .voice-overlay .text {
+            font-size: 1rem;
+            color: var(--text-sec);
+        }
+        .voice-overlay .result {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 500;
+            background: var(--bg-card);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            max-width: 80%;
+            text-align: center;
+        }
+        .voice-overlay .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .voice-overlay .close-btn:hover {
+            color: var(--text);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 640px) {
+            body {
+                padding: 0.4rem 0.5rem 1.5rem;
+            }
+            .logo-section .logo-img {
+                height: 56px;
+                width: 56px;
+            }
+            .logo-ring {
+                width: 90px;
+                height: 90px;
+            }
+            .logo-ring:nth-child(2) {
+                width: 110px;
+                height: 110px;
+            }
+            .logo-section .brand-name {
+                font-size: 1.05rem;
+            }
+            .hero-title {
+                font-size: 1.05rem;
+            }
+            .hero.has-results .hero-title {
+                font-size: 0.85rem;
+            }
+            .hero-sub {
+                font-size: 0.65rem;
+            }
+            .hero.has-results .hero-sub {
+                font-size: 0.55rem;
+            }
+            .search-box input {
+                font-size: 0.8rem;
+                min-height: 40px;
+            }
+            .search-box .actions button {
+                width: 34px;
+                height: 34px;
+                font-size: 0.65rem;
+            }
+            .search-box .actions .filter-btn {
+                padding: 0 0.5rem;
+                font-size: 0.5rem;
+            }
+            .quick-chip {
+                font-size: 0.5rem;
+                padding: 0.05rem 0.5rem;
+            }
+            .filter-panel {
+                padding: 0.8rem 0.9rem;
+                max-width: 96%;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transform: translate(0, 0) scale(1);
+                width: 100%;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+                max-height: 70vh;
+            }
+            .filter-panel.open {
+                transform: translate(0, 0) scale(1);
+            }
+            .card {
+                padding: 0.6rem 0.7rem;
+            }
+            .card-title {
+                font-size: 0.8rem;
+            }
+            .card-situation {
+                font-size: 0.6rem;
+            }
+            .card-action {
+                font-size: 0.6rem;
+            }
+            .card-meta .badge {
+                font-size: 0.35rem;
+                padding: 0.03rem 0.35rem;
+            }
+            .card-tag {
+                font-size: 0.4rem;
+                padding: 0.02rem 0.4rem;
+            }
+            .filter-chip {
+                font-size: 0.45rem;
+                padding: 0.03rem 0.5rem;
+            }
+            .voice-overlay .icon {
+                font-size: 2.8rem;
+            }
+            .voice-overlay .text {
+                font-size: 0.85rem;
+            }
+            .voice-overlay .result {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 0.9rem;
+            }
+            .hero.has-results .hero-title {
+                font-size: 0.75rem;
+            }
+            .card-title {
+                font-size: 0.7rem;
+            }
+            .search-box input {
+                font-size: 0.7rem;
+                min-height: 36px;
+            }
+            .logo-section .logo-img {
+                height: 44px;
+                width: 44px;
+            }
+            .logo-section .brand-name {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    LAB BACKGROUND
+    ============================================================ -->
+    <div class="lab-bg" id="labBg">
+        <div class="grid-overlay"></div>
+
+        <!-- Glow orbs -->
+        <div class="glow-orb green" style="top:10%;left:5%;width:300px;height:300px;"></div>
+        <div class="glow-orb blue" style="bottom:20%;right:10%;width:250px;height:250px;"></div>
+        <div class="glow-orb cyan" style="top:50%;left:50%;width:400px;height:400px;transform:translate(-50%,-50%);"></div>
+
+        <!-- Energy rings -->
+        <div class="energy-ring" style="top:5%;right:15%;width:200px;height:200px;"></div>
+        <div class="energy-ring" style="bottom:10%;left:10%;width:300px;height:300px;animation-delay:2s;"></div>
+        <div class="energy-ring" style="top:40%;right:5%;width:150px;height:150px;animation-delay:4s;"></div>
+
+        <!-- Particles (generated by JS) -->
+        <div id="particleContainer"></div>
+    </div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header">
+        <div></div>
+        <div class="header-actions">
+            <button class="header-btn" id="themeBtn"><i class="fas fa-moon" id="themeIcon"></i></button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MAIN
+    ============================================================ -->
+    <main class="main">
+
+        <!-- ============================================================
+        LOGO — Large, No Background
+        ============================================================ -->
+        <div class="logo-section">
+            <div class="logo-wrap">
+                <div class="logo-ring"></div>
+                <div class="logo-ring"></div>
+                <img class="logo-img" src="https://raw.githubusercontent.com/lesehawio/721/refs/heads/main/A/721.png" alt="پروتکل‌یاب ۷۲۱" />
+            </div>
+            <div class="brand-name">پروتکل‌یاب <span class="hl">۷۲۱</span></div>
+            <div class="brand-sub">Intervention Retrieval System</div>
+        </div>
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <div class="hero" id="hero">
+            <h1 class="hero-title">الان در چه <span class="hl">موقعیتی</span> هستی؟</h1>
+            <p class="hero-sub">موقعیتت را جستجو کن تا پروتکل مناسب را پیدا کنیم</p>
+
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search icon"></i>
+                    <input type="text" id="searchInput" placeholder="مثلاً: وقتی بدون مدرک متهمم می‌کند…" autofocus />
+                    <div class="actions">
+                        <button class="voice-btn" id="voiceBtn" title="جستجوی صوتی"><i class="fas fa-microphone"></i></button>
+                        <button class="filter-btn" id="filterBtn"><i class="fas fa-sliders-h"></i> <span class="badge" id="filterBadge" style="display:none;">0</span></button>
+                        <button class="clear-btn" id="clearBtn"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="search-underline"></div>
+            </div>
+
+            <div class="quick-chips" id="quickChips">
+                <button class="quick-chip" data-query="خیانت"><span class="plus">+</span> خیانت</button>
+                <button class="quick-chip" data-query="اتهام"><span class="plus">+</span> اتهام</button>
+                <button class="quick-chip" data-query="سکوت"><span class="plus">+</span> سکوت</button>
+                <button class="quick-chip" data-query="تهدید"><span class="plus">+</span> تهدید</button>
+                <button class="quick-chip" data-query="فاصله"><span class="plus">+</span> فاصله</button>
+                <button class="quick-chip" data-query="بحران"><span class="plus">+</span> بحران</button>
+                <button class="quick-chip" data-query="ترمیم"><span class="plus">+</span> ترمیم</button>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        FILTER PANEL
+        ============================================================ -->
+        <div class="filter-overlay" id="filterOverlay"></div>
+        <div class="filter-panel" id="filterPanel">
+            <div class="head">
+                <span class="title">فیلتر پروتکل‌ها</span>
+                <button class="close" id="filterClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="filter-group">
+                <div class="label">🏷️ تگ‌ها</div>
+                <div class="filter-grid" id="tagFilterGrid"></div>
+            </div>
+            <div class="filter-group">
+                <div class="label">📊 وضعیت</div>
+                <div class="filter-grid" id="statusFilterGrid"></div>
+            </div>
+            <div class="filter-group">
+                <div class="label">⚠️ سطح ریسک</div>
+                <div class="filter-grid" id="riskFilterGrid"></div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        RESULTS
+        ============================================================ -->
+        <div class="results" id="results">
+            <div class="results-head">
+                <span class="count" id="resultCount"><strong>۰</strong> پروتکل</span>
+                <div class="active-filters" id="activeFilters"></div>
+                <button class="clear-all" id="clearAllBtn">✕ پاک کردن همه</button>
+            </div>
+            <div class="cards" id="cardsContainer"></div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    VOICE OVERLAY
+    ============================================================ -->
+    <div class="voice-overlay" id="voiceOverlay">
+        <button class="close-btn" id="voiceClose"><i class="fas fa-times"></i></button>
+        <div class="icon"><i class="fas fa-microphone"></i></div>
+        <div class="text" id="voiceText">برای جستجوی صوتی صحبت کنید...</div>
+        <div class="result" id="voiceResult"></div>
+    </div>
+
+    <!-- ============================================================
+    KEYBOARD HINT
+    ============================================================ -->
+    <div class="kbd-hint">
+        <kbd>⌘K</kbd> یا <kbd>Ctrl+K</kbd> برای جستجو · <kbd>Esc</kbd> برای پاک کردن · <kbd>🎤</kbd> جستجوی صوتی
+    </div>
+
+    <script>
+        // ============================================================
+        // PARTICLES
+        // ============================================================
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const count = 30;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = 2 + Math.random() * 4;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (15 + Math.random() * 20) + 's';
+                p.style.animationDelay = (Math.random() * 20) + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // ============================================================
+        // 📚 DATA — PROTOCOLS
+        // ============================================================
+        const protocols = [{
+            id: "P-001",
+            title: "پروتکل صفر",
+            version: "2.1",
+            status: "active",
+            riskLevel: "low",
+            tags: ["سکوت", "آگاهی", "مرز", "کنترل"],
+            triggers: ["احساس اتهام بدون شواهد", "تأخیر در پاسخ‌دهی", "شروع داستان‌سازی ذهنی"],
+            patterns: ["آونگ هیجانی", "اتهام‌زنی"],
+            situation: "وقتی نمی‌دانی تماس بگیری یا نه، یا در آستانهٔ واکنش هیجانی هستی.",
+            action: "پیام خنثی بفرست، منتظر پاسخ باش، وارد بازیِ اثبات نشو.",
+            fullText: "۱. هیچ تماسی نگیر.\n۲. یک پیام خنثی بفرست: «سلام. بیدار شدی؟ اگه حالشو داری، یه تماس بگیر. اگه نه، بعداً.»\n۳. اگر تماس گرفت، با لحن خنثی-مثبت پاسخ بده.\n۴. به اتهامات پاسخ دفاعی نده؛ سؤال بپرس.\n۵. اگر حمله کرد، بگو: «می‌بینم ناراحتی. من حاضرم حرف بزنم، اما نه با اتهام.»",
+            successCriteria: ["آیا بدون اتهام‌زنی مسئله حل شد؟", "آیا مرز حفظ شد؟", "آیا فرض اولیه اشتباه بود؟"],
+            relatedProtocols: ["P-006", "P-009"],
+            stats: { executions: 3, success: 2, avgScore: 4.0 },
+            reviewNote: null
+        }, {
+            id: "P-002",
+            title: "پروتکل پاسخ به اتهام",
+            version: "1.2",
+            status: "active",
+            riskLevel: "medium",
+            tags: ["خیانت", "اتهام", "دفاع"],
+            triggers: ["اتهام بدون شواهد", "احساس بی‌عدالتی"],
+            patterns: ["اتهام‌زنی", "فرافکنی"],
+            situation: "وقتی عباس بدون مدرک متهمت می‌کند.",
+            action: "به‌جای دفاع، سؤال بپرس: «چرا اینطور فکر می‌کنی؟»",
+            fullText: "۱. هرگز وارد دفاع نشو.\n۲. سؤال بپرس: «چه چیزی باعث شد اینطور فکر کنی؟»\n۳. اگر اصرار کرد، بگو: «من حاضرم دربارهٔ احساساتت حرف بزنم، اما دربارهٔ اتهامات نه.»\n۴. اگر باز هم ادامه داد، بگو: «من اینجا هستم تا حرف بزنم، نه برای اینکه متهم بشم.»",
+            successCriteria: ["آیا توانستی بدون دفاع کردن گفتگو را ادامه دهی؟", "آیا موضوع به سمت احساسات رفت؟"],
+            relatedProtocols: ["P-008"],
+            stats: { executions: 2, success: 1, avgScore: 3.0 },
+            reviewNote: null
+        }, {
+            id: "P-003",
+            title: "پروتکل آونگ",
+            version: "1.0",
+            status: "active",
+            riskLevel: "high",
+            tags: ["آونگ", "نزدیکی", "فاصله", "بحران"],
+            triggers: ["تکرار چرخهٔ نزدیکی→اتهام→فاصله→دلجویی"],
+            patterns: ["آونگ هیجانی"],
+            situation: "وقتی چرخهٔ نزدیکی → اتهام → فاصله → دلجویی تکرار می‌شود.",
+            action: "از چرخه خارج شو. سکوتِ فعال کن.",
+            fullText: "۱. الگو را بشناس.\n۲. وارد فازِ «دلجوییِ فوری» نشو.\n۳. بگذار او اولین قدم را برای ترمیم بردارد.\n۴. اگر ترمیم کرد، بپذیر اما بلافاصله به حالت عادی برنگرد.\n۵. بگو: «خوشحالم که آروم شدی. بیا دربارهٔ شرایط حرف بزنیم.»",
+            successCriteria: ["آیا چرخه متوقف شد؟", "آیا توانستی بدون واکنش هیجانی فاصله بگیری؟"],
+            relatedProtocols: ["P-009"],
+            stats: { executions: 4, success: 2, avgScore: 3.2 },
+            reviewNote: null
+        }, {
+            id: "P-004",
+            title: "پروتکل تهدید به ترک",
+            version: "1.1",
+            status: "boundary",
+            riskLevel: "high",
+            tags: ["تهدید", "ترک", "کنترل", "بحران"],
+            triggers: ["تهدید به ترک رابطه", "تهدید به جایگزینی"],
+            patterns: ["کنترل‌گری", "آزمون وفاداری"],
+            situation: "وقتی عباس تهدید می‌کند که می‌رود یا جایگزین می‌کند.",
+            action: "پاسخِ آرام و بدون التماس.",
+            fullText: "۱. نترس.\n۲. بگو: «دوست داری بری؟ اختیار با خودته.»\n۳. اگر برگشت، بگو: «خوشحالم که موندی.»\n۴. هرگز برای ماندنش التماس نکن.",
+            successCriteria: ["آیا توانستی آرامش خود را حفظ کنی؟", "آیا تهدید عملی نشد؟"],
+            relatedProtocols: ["P-010"],
+            stats: { executions: 1, success: 1, avgScore: 4.5 },
+            reviewNote: null
+        }, {
+            id: "P-005",
+            title: "پروتکل ترمیم پس از بحران",
+            version: "1.0",
+            status: "supportive",
+            riskLevel: "low",
+            tags: ["ترمیم", "آشتی", "بازگشت", "نزدیکی"],
+            triggers: ["پایان تنش", "احساس پشیمانی از طرف مقابل"],
+            patterns: ["ترمیم رابطه"],
+            situation: "وقتی تنش فروکش کرده و هر دو آرام‌ترید.",
+            action: "از فرصت برای گفتگوی واقعی استفاده کن، نه بازگشتِ کور.",
+            fullText: "۱. بپذیر که بحران رخ داده.\n۲. بگو: «دیشب سخت بود.»\n۳. سؤال بپرس: «از نظر تو چه چیزی باعث شد اینقدر ناراحت بشی؟»\n۴. بدون اتهام، احساساتت را بگو.\n۵. اگر او عذرخواهی کرد، بپذیر اما شرط نگذار.",
+            successCriteria: ["آیا گفتگو بدون اتهام انجام شد؟", "آیا هر دو احساس بهتری پیدا کردید؟"],
+            relatedProtocols: ["P-007"],
+            stats: { executions: 2, success: 2, avgScore: 4.0 },
+            reviewNote: null
+        }, {
+            id: "P-006",
+            title: "پروتکل پینگ خنثی",
+            version: "1.0",
+            status: "archived",
+            riskLevel: "low",
+            tags: ["سکوت", "کنترل", "مرز", "آگاهی"],
+            triggers: ["نیاز به بررسی وضعیت طرف مقابل"],
+            patterns: ["سنجش"],
+            situation: "وقتی می‌خواهی ارتباط بگیری اما نمی‌خواهی وارد بازی شوی.",
+            action: "یک پیام کوتاه، بدون انتظار برای پاسخ فوری.",
+            fullText: "۱. پیام بفرست: «سلام. اگه حالشو داری، یه تماس بگیر. اگه نه، بعداً.»\n۲. منتظر پاسخ نمان.\n۳. به زندگی خودت ادامه بده.\n۴. اگر او تماس گرفت، با لحن خنثی-مثبت جواب بده.",
+            successCriteria: ["آیا بدون تنش ارتباط برقرار شد؟", "آیا وارد بازی نشدی؟"],
+            relatedProtocols: ["P-001"],
+            stats: { executions: 1, success: 1, avgScore: 5.0 },
+            reviewNote: "پروتکل موفق اما ساده. ادغام با P-001 پیشنهاد می‌شود."
+        }, {
+            id: "P-007",
+            title: "پروتکل پاسخ به دلجویی",
+            version: "1.0",
+            status: "supportive",
+            riskLevel: "low",
+            tags: ["دلجویی", "ترمیم", "نزدیکی"],
+            triggers: ["عذرخواهی از طرف مقابل", "احساس پشیمانی"],
+            patterns: ["ترمیم رابطه"],
+            situation: "وقتی عباس بعد از بحران عذرخواهی می‌کند.",
+            action: "عذرخواهی را بپذیر اما بلافاصله به حالت عادی برنگرد.",
+            fullText: "۱. بگو: «متشکرم که عذرخواهی کردی.»\n۲. بگو: «این دفعه می‌پذیرم، اما اگر دوباره تکرار شد، نیاز به فاصله دارم.»\n۳. بحث را به سمت علت بحران هدایت کن، نه تکرار آن.",
+            successCriteria: ["آیا عذرخواهی پذیرفته شد؟", "آیا علت بحران شناسایی شد؟"],
+            relatedProtocols: ["P-005"],
+            stats: { executions: 0, success: 0, avgScore: 0 },
+            reviewNote: null
+        }, {
+            id: "P-008",
+            title: "پروتکل فرار از اثبات",
+            version: "1.0",
+            status: "boundary",
+            riskLevel: "medium",
+            tags: ["اتهام", "دفاع", "کنترل", "خیانت"],
+            triggers: ["درخواست اثبات بی‌گناهی", "احساس گرفتار شدن"],
+            patterns: ["اتهام‌زنی", "کنترل‌گری"],
+            situation: "وقتی از تو می‌خواهند ثابت کنی که خیانت نکردی.",
+            action: "از بازیِ اثبات خارج شو.",
+            fullText: "۱. بگو: «من نیازی به اثبات بی‌گناهی ندارم.»\n۲. بگو: «اگر به من اعتماد نداری، این مشکل رابطه‌ست، نه مشکل من.»\n۳. هرگز وارد چرخهٔ ارائهٔ مدرک نشو.",
+            successCriteria: ["آیا از بازی اثبات خارج شدی؟", "آیا مرز حفظ شد؟"],
+            relatedProtocols: ["P-002"],
+            stats: { executions: 0, success: 0, avgScore: 0 },
+            reviewNote: null
+        }, {
+            id: "P-009",
+            title: "پروتکل سکوتِ فعال",
+            version: "1.2",
+            status: "de-escalation",
+            riskLevel: "medium",
+            tags: ["سکوت", "کنترل", "مرز", "آگاهی"],
+            triggers: ["احساس گیر افتادن در چرخه", "ناتوانی در پاسخ‌دهی منطقی"],
+            patterns: ["آونگ هیجانی", "کناره‌گیری"],
+            situation: "وقتی می‌خواهی از چرخهٔ آونگ خارج شوی.",
+            action: "سکوت کن، اما نه از سرِ قهر؛ از سرِ آگاهی.",
+            fullText: "۱. هیچ تماسی نگیر.\n۲. هیچ پیامی نفرست.\n۳. به خودت زمان بده تا از واکنشِ هیجانی خارج شوی.\n۴. اگر او زنگ زد، با آرامش پاسخ بده.\n۵. اگر او زنگ نزد، یعنی آنقدرها هم که می‌گوید عاشق نیست.",
+            successCriteria: ["آیا توانستی از واکنش هیجانی فاصله بگیری؟", "آیا سکوتت به او پیام داد؟"],
+            relatedProtocols: ["P-003", "P-001"],
+            stats: { executions: 1, success: 0, avgScore: 2.0 },
+            reviewNote: "در حال آزمایش - نیاز به بازخورد بیشتر"
+        }, {
+            id: "P-010",
+            title: "پروتکل پاسخ به تهدید",
+            version: "1.0",
+            status: "safety",
+            riskLevel: "critical",
+            tags: ["تهدید", "کنترل", "بحران"],
+            triggers: ["تهدید به آبروریزی", "تهدید به حضور فیزیکی"],
+            patterns: ["کنترل‌گری", "تهاجم"],
+            situation: "وقتی عباس تهدید به آبروریزی یا حضور در محل زندگی‌ات می‌کند.",
+            action: "مرزهای فیزیکی و روانی را مشخص کن.",
+            fullText: "۱. بگو: «این رفتار قابل‌قبول نیست.»\n۲. بگو: «اگر این کار را بکنی، رابطه تمام است.»\n۳. اگر تهدید را عملی کرد، رابطه را برای همیشه قطع کن.",
+            successCriteria: ["آیا تهدید عملی نشد؟", "آیا مرز حفظ شد؟"],
+            relatedProtocols: ["P-004"],
+            stats: { executions: 0, success: 0, avgScore: 0 },
+            reviewNote: "⚠️ در شرایط خشونت فیزیکی، با مراجع قانونی تماس بگیرید."
+        }];
+
+        // ============================================================
+        // 🧠 STATE
+        // ============================================================
+        let activeFilters = { tag: null, status: null, risk: null };
+        let searchQuery = '';
+        let isFilterOpen = false;
+        let isLight = false;
+        let expandedCard = null;
+        let recognition = null;
+        let isVoiceActive = false;
+
+        // ============================================================
+        // 🎯 DOM REFS
+        // ============================================================
+        const hero = document.getElementById('hero');
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
+        const filterBtn = document.getElementById('filterBtn');
+        const filterOverlay = document.getElementById('filterOverlay');
+        const filterPanel = document.getElementById('filterPanel');
+        const filterClose = document.getElementById('filterClose');
+        const tagFilterGrid = document.getElementById('tagFilterGrid');
+        const statusFilterGrid = document.getElementById('statusFilterGrid');
+        const riskFilterGrid = document.getElementById('riskFilterGrid');
+        const filterBadge = document.getElementById('filterBadge');
+        const results = document.getElementById('results');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const resultCount = document.getElementById('resultCount');
+        const activeFiltersDisplay = document.getElementById('activeFilters');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const quickChips = document.getElementById('quickChips');
+        const voiceBtn = document.getElementById('voiceBtn');
+        const voiceOverlay = document.getElementById('voiceOverlay');
+        const voiceClose = document.getElementById('voiceClose');
+        const voiceText = document.getElementById('voiceText');
+        const voiceResult = document.getElementById('voiceResult');
+
+        // ============================================================
+        // 🧩 HELPERS
+        // ============================================================
+        function normalizeText(text) {
+            if (!text) return '';
+            return text.trim().replace(/[ي]/g, 'ی').replace(/[ك]/g, 'ک').replace(/\s+/g, ' ').toLowerCase();
+        }
+
+        function getAllTags() {
+            const set = new Set();
+            protocols.forEach(p => p.tags.forEach(t => set.add(t)));
+            return Array.from(set).sort();
+        }
+
+        function getTagCount(tag) {
+            return protocols.filter(p => p.tags.includes(tag)).length;
+        }
+
+        function getProtocolById(id) {
+            return protocols.find(p => p.id === id);
+        }
+
+        function getStatusLabel(s) {
+            const map = { active: 'فعال', supportive: 'حمایتی', boundary: 'مرزی', 'de-escalation': 'کاهش تنش',
+                safety: 'ایمنی' };
+            return map[s] || s;
+        }
+
+        function getRiskLabel(r) {
+            const map = { low: 'کم', medium: 'متوسط', high: 'بالا', critical: 'بحرانی', unspecified: 'نامشخص' };
+            return map[r] || r;
+        }
+
+        function getRiskIcon(r) {
+            const map = { low: '🟢', medium: '🟡', high: '🟠', critical: '🔴', unspecified: '⚪' };
+            return map[r] || '⚪';
+        }
+
+        function getStatusIcon(s) {
+            const map = { active: '●', supportive: '●', boundary: '●', 'de-escalation': '●', safety: '●' };
+            return map[s] || '●';
+        }
+
+        // ============================================================
+        // 🔍 SEARCH ENGINE
+        // ============================================================
+        function searchProtocols(query, filters) {
+            const normalizedQuery = normalizeText(query);
+            const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0);
+            let results = [...protocols];
+            if (filters.tag) results = results.filter(p => p.tags.includes(filters.tag));
+            if (filters.status) results = results.filter(p => p.status === filters.status);
+            if (filters.risk) results = results.filter(p => p.riskLevel === filters.risk);
+            if (searchTerms.length === 0) return results.map(p => ({ ...p, score: 0 }));
+            const scored = results.map(p => {
+                let score = 0;
+                const nTitle = normalizeText(p.title);
+                const nSituation = normalizeText(p.situation);
+                const nAction = normalizeText(p.action);
+                const nFull = normalizeText(p.fullText);
+                const nTags = p.tags.map(t => normalizeText(t));
+                searchTerms.forEach(term => {
+                    if (nTitle.includes(term)) { score += 10; if (nTitle.startsWith(term)) score += 3; } else if (
+                        nTitle.split(' ').some(w => w.includes(term))) { score += 7; }
+                    if (nTags.some(t => t.includes(term))) { score += 5; }
+                    if (nSituation.includes(term)) { score += 3; }
+                    if (nAction.includes(term)) { score += 2; }
+                    if (nFull.includes(term)) { score += 1; }
+                });
+                const matchCount = searchTerms.filter(term =>
+                    nTitle.includes(term) || nTags.some(t => t.includes(term)) ||
+                    nSituation.includes(term) || nAction.includes(term) || nFull.includes(term)
+                ).length;
+                if (matchCount > 0) score += matchCount * 2;
+                return { ...p, score };
+            });
+            return scored.filter(p => p.score > 0).sort((a, b) => b.score - a.score);
+        }
+
+        // ============================================================
+        // 🎨 RENDER FUNCTIONS
+        // ============================================================
+        function renderFilters() {
+            const allTags = getAllTags();
+            tagFilterGrid.innerHTML =
+                `<button class="filter-chip ${!activeFilters.tag ? 'active' : ''}" data-filter="tag" data-value="">همه <span class="count">(${protocols.length})</span></button>`;
+            allTags.forEach(t => {
+                const count = getTagCount(t);
+                const isActive = activeFilters.tag === t;
+                const chip = document.createElement('button');
+                chip.className = `filter-chip ${isActive ? 'active' : ''}`;
+                chip.dataset.filter = 'tag';
+                chip.dataset.value = t;
+                chip.innerHTML = `${t} <span class="count">(${count})</span>`;
+                if (isActive) chip.innerHTML += `<span class="remove" data-filter="tag">✕</span>`;
+                chip.onclick = (e) => {
+                    if (e.target.classList.contains('remove')) { activeFilters.tag = null; } else { activeFilters.tag =
+                            activeFilters.tag === t ? null : t; }
+                    renderFilters();
+                    updateFilterBadge();
+                    applySearch();
+                };
+                tagFilterGrid.appendChild(chip);
+            });
+            const statuses = ['active', 'supportive', 'boundary', 'de-escalation', 'safety'];
+            statusFilterGrid.innerHTML =
+                `<button class="filter-chip ${!activeFilters.status ? 'active' : ''}" data-filter="status" data-value="">همه <span class="count">(${protocols.length})</span></button>`;
+            statuses.forEach(s => {
+                const count = protocols.filter(p => p.status === s).length;
+                const isActive = activeFilters.status === s;
+                const chip = document.createElement('button');
+                chip.className = `filter-chip ${isActive ? 'active' : ''}`;
+                chip.dataset.filter = 'status';
+                chip.dataset.value = s;
+                chip.innerHTML = `${getStatusLabel(s)} <span class="count">(${count})</span>`;
+                if (isActive) chip.innerHTML += `<span class="remove" data-filter="status">✕</span>`;
+                chip.onclick = (e) => {
+                    if (e.target.classList.contains('remove')) { activeFilters.status = null; } else { activeFilters
+                            .status = activeFilters.status === s ? null : s; }
+                    renderFilters();
+                    updateFilterBadge();
+                    applySearch();
+                };
+                statusFilterGrid.appendChild(chip);
+            });
+            const risks = ['low', 'medium', 'high', 'critical', 'unspecified'];
+            riskFilterGrid.innerHTML =
+                `<button class="filter-chip ${!activeFilters.risk ? 'active' : ''}" data-filter="risk" data-value="">همه <span class="count">(${protocols.length})</span></button>`;
+            risks.forEach(r => {
+                const count = protocols.filter(p => p.riskLevel === r).length;
+                const isActive = activeFilters.risk === r;
+                const chip = document.createElement('button');
+                chip.className = `filter-chip ${isActive ? 'active' : ''}`;
+                chip.dataset.filter = 'risk';
+                chip.dataset.value = r;
+                chip.innerHTML = `${getRiskIcon(r)} ${getRiskLabel(r)} <span class="count">(${count})</span>`;
+                if (isActive) chip.innerHTML += `<span class="remove" data-filter="risk">✕</span>`;
+                chip.onclick = (e) => {
+                    if (e.target.classList.contains('remove')) { activeFilters.risk = null; } else { activeFilters.risk =
+                            activeFilters.risk === r ? null : r; }
+                    renderFilters();
+                    updateFilterBadge();
+                    applySearch();
+                };
+                riskFilterGrid.appendChild(chip);
+            });
+        }
+
+        function updateFilterBadge() {
+            const count = Object.values(activeFilters).filter(v => v !== null).length;
+            filterBadge.style.display = count > 0 ? 'inline-flex' : 'none';
+            if (count > 0) filterBadge.textContent = count;
+        }
+
+        function toggleFilter() {
+            isFilterOpen = !isFilterOpen;
+            filterOverlay.classList.toggle('open', isFilterOpen);
+            filterPanel.classList.toggle('open', isFilterOpen);
+            document.body.style.overflow = isFilterOpen ? 'hidden' : '';
+        }
+
+        function applySearch() {
+            const query = searchInput.value;
+            const resultsList = searchProtocols(query, activeFilters);
+            const hasContent = query.trim() || Object.values(activeFilters).some(v => v !== null);
+            hero.classList.toggle('has-results', hasContent && resultsList.length > 0);
+            if (!hasContent) { results.classList.remove('visible');
+                cardsContainer.innerHTML = ''; return; }
+            if (resultsList.length === 0) { renderEmptyState(query);
+                resultCount.innerHTML = `<strong>۰</strong> پروتکل`;
+                results.classList.add('visible');
+                renderActiveFilters(); return; }
+            renderResults(resultsList, query);
+            resultCount.innerHTML = `<strong>${resultsList.length}</strong> پروتکل`;
+            results.classList.add('visible');
+            renderActiveFilters();
+        }
+
+        function renderResults(list, query) {
+            const searchTerms = normalizeText(query).split(' ').filter(t => t.length > 0);
+            const highlight = (text) => {
+                if (!searchTerms.length || !text) return text;
+                let result = text;
+                searchTerms.forEach(term => {
+                    const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    result = result.replace(regex, '<span class="hl">$1</span>');
+                });
+                return result;
+            };
+            let html = '';
+            list.forEach(p => {
+                const isExpanded = expandedCard === p.id;
+                const statusClass = p.status || 'active';
+                const riskClass = p.riskLevel || 'unspecified';
+                html += `
+                    <div class="card">
+                        <div class="card-indicator ${statusClass}"></div>
+                        <div class="card-top">
+                            <div class="card-left">
+                                <div class="card-id">${p.id} · v${p.version}</div>
+                                <div class="card-title">${highlight(p.title)}</div>
+                                <div class="card-meta">
+                                    <span class="badge badge-status ${statusClass}">${getStatusIcon(p.status)} ${getStatusLabel(p.status)}</span>
+                                    <span class="badge badge-risk ${riskClass}">${getRiskIcon(p.riskLevel)} ریسک ${getRiskLabel(p.riskLevel)}</span>
+                                </div>
+                                <div class="card-tags">${p.tags.map(t => {
+                                    const isMatch = searchTerms.some(term => normalizeText(t).includes(term));
+                                    return `<span class="card-tag ${isMatch ? 'hl' : ''}">#${t}</span>`;
+                                }).join('')}</div>
+                                <div class="card-situation">📌 ${highlight(p.situation)}</div>
+                                <div class="card-action">✅ ${highlight(p.action)}</div>
+                                <div class="card-footer">
+                                    <button class="card-expand" data-id="${p.id}">${isExpanded ? '📕 بستن' : '📖 مشاهده پروتکل'}</button>
+                                    ${p.relatedProtocols && p.relatedProtocols.length > 0 ? `
+                                        <div class="card-related">
+                                            <span class="label">مرتبط:</span>
+                                            ${p.relatedProtocols.map(id => {
+                                                const related = getProtocolById(id);
+                                                return related ? `<button class="btn" data-id="${id}">${related.id}</button>` : '';
+                                            }).join('')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <div class="card-full ${isExpanded ? 'open' : ''}" id="full-${p.id}">
+                                    ${highlight(p.fullText)}
+                                    ${p.successCriteria && p.successCriteria.length > 0 ? `
+                                        <div style="margin-top:0.4rem;padding-top:0.3rem;border-top:1px solid var(--border);">
+                                            <div style="font-size:0.5rem;font-weight:600;color:var(--text-muted);">✅ معیارهای موفقیت:</div>
+                                            ${p.successCriteria.map(c => `<div style="font-size:0.55rem;color:var(--text-sec);margin-top:0.1rem;">• ${c}</div>`).join('')}
+                                        </div>
+                                    ` : ''}
+                                    ${p.reviewNote ? `<div class="card-review">${p.reviewNote}</div>` : ''}
+                                    ${p.stats && p.stats.executions > 0 ? `
+                                        <div style="margin-top:0.3rem;padding-top:0.2rem;border-top:1px solid var(--border);font-size:0.5rem;color:var(--text-muted);">
+                                            📊 ${p.stats.executions} اجرا · ${p.stats.success} موفق · ⭐ ${p.stats.avgScore}/۵
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            cardsContainer.innerHTML = html;
+            document.querySelectorAll('.card-expand').forEach(btn => {
+                btn.onclick = () => {
+                    const id = btn.dataset.id;
+                    const full = document.getElementById(`full-${id}`);
+                    const isOpen = full.classList.contains('open');
+                    if (isOpen) { full.classList.remove('open');
+                        btn.textContent = '📖 مشاهده پروتکل';
+                        expandedCard = null; } else { document.querySelectorAll('.card-full').forEach(el => el.classList
+                            .remove('open'));
+                        document.querySelectorAll('.card-expand').forEach(b => b.textContent =
+                        '📖 مشاهده پروتکل');
+                        full.classList.add('open');
+                        btn.textContent = '📕 بستن';
+                        expandedCard = id; }
+                };
+            });
+            document.querySelectorAll('.card-related .btn').forEach(btn => {
+                btn.onclick = () => {
+                    const id = btn.dataset.id;
+                    const protocol = getProtocolById(id);
+                    if (protocol) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        searchInput.value = protocol.title;
+                        activeFilters = { tag: null, status: null, risk: null };
+                        renderFilters();
+                        updateFilterBadge();
+                        const resultsList = [protocol];
+                        renderResults(resultsList, protocol.title);
+                        resultCount.innerHTML = `<strong>۱</strong> پروتکل`;
+                        results.classList.add('visible');
+                        hero.classList.add('has-results');
+                        renderActiveFilters();
+                        setTimeout(() => {
+                            const full = document.getElementById(`full-${id}`);
+                            if (full) { full.classList.add('open');
+                                expandedCard = id;
+                                const btn = document.querySelector(`.card-expand[data-id="${id}"]`);
+                                if (btn) btn.textContent = '📕 بستن'; }
+                        }, 100);
+                    }
+                };
+            });
+        }
+
+        function renderEmptyState(query) {
+            const searchTerms = normalizeText(query).split(' ').filter(t => t.length > 0);
+            let suggestions = [];
+            if (searchTerms.length > 0) {
+                const scored = protocols.map(p => {
+                    let score = 0;
+                    const combined = normalizeText(p.title + ' ' + p.tags.join(' ') + ' ' + p.situation + ' ' + p
+                    .action);
+                    searchTerms.forEach(term => { if (combined.includes(term)) score += 1; });
+                    return { ...p, score };
+                });
+                suggestions = scored.filter(p => p.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
+            }
+            const filterCount = Object.values(activeFilters).filter(v => v !== null).length;
+            let html = `
+                <div class="empty">
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <div class="title">هیچ پروتکلی پیدا نشد</div>
+                    <div class="sub">سعی کن با کلمهٔ دیگری جستجو کنی یا فیلترها را تغییر دهی</div>
+            `;
+            if (filterCount > 0) {
+                html +=
+                    `<button class="clear-filters-btn" onclick="clearAll()">پاک کردن ${filterCount} فیلتر فعال</button>`;
+            }
+            if (suggestions.length > 0) {
+                html += `<div class="suggestions">${suggestions.map(p => `
+                            <button onclick="document.getElementById('searchInput').value='${p.title}';document.getElementById('searchInput').dispatchEvent(new Event('input'));">${p.title}</button>
+                        `).join('')}</div>`;
+            }
+            html += `</div>`;
+            cardsContainer.innerHTML = html;
+        }
+
+        function renderActiveFilters() {
+            const filters = [];
+            if (activeFilters.tag) filters.push({ key: 'tag', label: activeFilters.tag });
+            if (activeFilters.status) filters.push({ key: 'status', label: getStatusLabel(activeFilters.status) });
+            if (activeFilters.risk) filters.push({ key: 'risk', label: getRiskLabel(activeFilters.risk) });
+            if (filters.length === 0) { activeFiltersDisplay.innerHTML = ''; return; }
+            activeFiltersDisplay.innerHTML = filters.map(f =>
+                `<span class="tag">${f.label} <button class="remove" data-filter="${f.key}">✕</button></span>`
+            ).join('');
+            activeFiltersDisplay.querySelectorAll('.remove').forEach(btn => {
+                btn.onclick = () => {
+                    const key = btn.dataset.filter;
+                    activeFilters[key] = null;
+                    renderFilters();
+                    updateFilterBadge();
+                    applySearch();
+                };
+            });
+        }
+
+        function clearAll() {
+            searchInput.value = '';
+            activeFilters = { tag: null, status: null, risk: null };
+            expandedCard = null;
+            renderFilters();
+            updateFilterBadge();
+            results.classList.remove('visible');
+            cardsContainer.innerHTML = '';
+            hero.classList.remove('has-results');
+            clearBtn.classList.remove('visible');
+            renderActiveFilters();
+            searchInput.focus();
+        }
+
+        // ============================================================
+        // 🎤 VOICE SEARCH
+        // ============================================================
+        function initVoice() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                voiceBtn.style.display = 'none';
+                return;
+            }
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SR();
+            recognition.lang = 'fa-IR';
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.onstart = () => {
+                isVoiceActive = true;
+                voiceBtn.classList.add('active');
+                voiceOverlay.classList.add('open');
+                voiceText.textContent = 'در حال گوش دادن...';
+                voiceResult.textContent = '';
+            };
+            recognition.onresult = (e) => {
+                let transcript = '';
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    transcript += e.results[i][0].transcript;
+                    if (e.results[i].isFinal) {
+                        voiceResult.textContent = transcript;
+                        searchInput.value = transcript;
+                        clearBtn.classList.toggle('visible', transcript.length > 0);
+                        setTimeout(() => {
+                            voiceOverlay.classList.remove('open');
+                            isVoiceActive = false;
+                            voiceBtn.classList.remove('active');
+                            applySearch();
+                        }, 400);
+                    }
+                }
+                voiceResult.textContent = transcript;
+            };
+            recognition.onerror = () => {
+                voiceText.textContent = 'خطا در تشخیص صدا';
+                setTimeout(() => {
+                    voiceOverlay.classList.remove('open');
+                    isVoiceActive = false;
+                    voiceBtn.classList.remove('active');
+                }, 600);
+            };
+            recognition.onend = () => {
+                if (voiceOverlay.classList.contains('open')) {
+                    voiceOverlay.classList.remove('open');
+                    isVoiceActive = false;
+                    voiceBtn.classList.remove('active');
+                }
+            };
+        }
+
+        function startVoice() {
+            if (isVoiceActive) return;
+            if (!recognition) initVoice();
+            if (!recognition) { alert('مرورگر شما از جستجوی صوتی پشتیبانی نمی‌کند.'); return; }
+            try { recognition.start(); } catch (e) {}
+        }
+
+        // ============================================================
+        // 🌗 THEME
+        // ============================================================
+        function toggleTheme() {
+            isLight = !isLight;
+            document.body.classList.toggle('light', isLight);
+            themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // ============================================================
+        // 🎧 EVENTS
+        // ============================================================
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value;
+            clearBtn.classList.toggle('visible', query.length > 0);
+            applySearch();
+        });
+        clearBtn.addEventListener('click', () => { searchInput.value = '';
+            clearBtn.classList.remove('visible');
+            applySearch();
+            searchInput.focus(); });
+        clearAllBtn.addEventListener('click', clearAll);
+        filterBtn.addEventListener('click', (e) => { e.stopPropagation();
+            toggleFilter(); });
+        filterClose.addEventListener('click', toggleFilter);
+        filterOverlay.addEventListener('click', toggleFilter);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isFilterOpen) toggleFilter(); });
+        themeBtn.addEventListener('click', toggleTheme);
+        quickChips.querySelectorAll('.quick-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const query = chip.dataset.query;
+                searchInput.value = query;
+                clearBtn.classList.toggle('visible', query.length > 0);
+                applySearch();
+                searchInput.focus();
+            });
+        });
+        voiceBtn.addEventListener('click', startVoice);
+        voiceClose.addEventListener('click', () => {
+            voiceOverlay.classList.remove('open');
+            isVoiceActive = false;
+            voiceBtn.classList.remove('active');
+            if (recognition) try { recognition.stop(); } catch (e) {}
+        });
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault();
+                searchInput.focus();
+                searchInput.select(); }
+            if (e.key === 'Escape' && document.activeElement === searchInput) {
+                if (searchInput.value) { clearBtn.click(); } else { clearAll(); }
+            }
+        });
+
+        // ============================================================
+        // 🚀 INIT
+        // ============================================================
+        renderFilters();
+        updateFilterBadge();
+        results.classList.remove('visible');
+        cardsContainer.innerHTML = '';
+        initVoice();
+
+        console.log('🧪 پروتکل‌یاب ۷۲۱ — آزمایشگاه مداخلات');
+        console.log(`📋 ${protocols.length} پروتکل بارگذاری شد`);
+        console.log(`🏷️ ${getAllTags().length} تگ`);
+        console.log('🎤 جستجوی صوتی فعال شد');
+        console.log('⌨️ میانبر: Ctrl+K برای جستجو، Esc برای پاک کردن');
+        console.log('✨ طراحی علمی با افکت‌های آزمایشگاهی');
+    </script>
+
+</body>
+</html>
