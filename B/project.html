@@ -441,253 +441,292 @@
         // ============================================================
         // DATA — دستی وارد می‌شود
         // ============================================================
-        const RECORDS = [{
-            id: "OBS-001",
-            person: "MR721AS",
-            date: "2026-07-11",
-            time: "23:31",
-            category: "پیام",
-            event: "اتهام خیانت",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "آونگ", value: -5, expiry: 29 },
-                { category: "الگو", title: "واژگون‌سازی", value: -8, expiry: 45 },
-                { category: "پروفایل", title: "حسادت", value: -6, expiry: 40 },
-                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
-                { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
-                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
-            ],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ MR721AS آغاز شد. در ادامه چندین بار اتهام داشتن رابطه با افراد دیگر مطرح شد.",
-                details: "شروع گفتگو در ساعت 23:31 و ادامه مکالمه تا پایان شب صورت گرفت."
-            },
-            hypotheses: [
-                "MR721AS تصور می‌کند با افراد دیگر در ارتباط هستم.",
-                "ممکن است MR721AS به بخشی از پیام‌ها یا اطلاعات قدیمی دسترسی پیدا کرده باشد.",
-                "ممکن است اتهام‌ها صرفاً برای تحت فشار قرار دادن مطرح شده باشند.",
-                "احتمال وجود فرافکنی یا بدبینی بدون شواهد کافی."
-            ],
-            patterns: [{
-                title: "تکرار اتهام",
-                description: "در زمان تنش، MR721AS به جای تمرکز بر موضوع اصلی، گفتگو را به سمت اتهام هدایت می‌کند.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-11 23:31",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-002",
-            person: "MR721AS",
-            date: "2026-07-12",
-            time: "14:27",
-            category: "تماس",
-            event: "الگوی تماس‌های کوتاه",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "عمل و استراحت", value: -3, expiry: 20 },
-                { category: "پروفایل", title: "عملکردی", value: 3, expiry: 30 },
-                { category: "پروفایل", title: "قابلیت اتکا", value: 7, expiry: 60 },
-                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
-                { category: "نیاز", title: "پاسخ سریع", value: 5, expiry: 30 },
-                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
-            ],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "در طول روز ارتباط تلفنی MR721AS به چند تماس بسیار کوتاه محدود شد. مجموع زمان مکالمات کمتر از چند دقیقه بود.",
-                details: "پس از بیدار شدن، اولین تماس حدود ۱ دقیقه و ۱۹ ثانیه بود."
-            },
-            hypotheses: [
-                "ممکن است MR721AS هنگام وجود مشکل، ارتباط را فقط به موضوعات کاربردی محدود کند."
-            ],
-            patterns: [{
-                title: "ارتباط عملکردی",
-                description: "بخش عمده تماس‌ها حول حل مشکلات فنی و مسائل روزمره بود.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-12 14:27",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-003",
-            person: "MR721AS",
-            date: "2026-07-12",
-            time: "23:40",
-            category: "پیام",
-            event: "پایان شب بدون ادامه گفتگو",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "سکوت", value: -4, expiry: 15 },
-                { category: "پروفایل", title: "کناره‌گیری", value: -4, expiry: 20 },
-                { category: "پروفایل", title: "دلبستگی", value: -3, expiry: 25 },
-                { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
-                { category: "علاقه", title: "سکوت", value: 2, expiry: 30 }
-            ],
-            links: ["OBS-002"],
-            linksText: "ارتباط با الگوی تماس‌های کوتاه همان روز",
-            observation: {
-                text: "پس از پایان گفتگوهای کوتاه روز، تا پایان شب پیام مؤثری از MR721AS دریافت نشد.",
-                details: "آخرین پیام‌ها شامل شوخی و ابراز علاقه بود."
-            },
-            hypotheses: [
-                "ممکن است MR721AS در زمان دریافت تماس خوابیده باشد."
-            ],
-            patterns: [{
-                title: "پایان ناگهانی گفتگو",
-                description: "پس از چند پیام یا تماس کوتاه، ارتباط تا روز بعد متوقف می‌شود.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-12 23:40",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-004",
-            person: "MR721AS",
-            date: "2026-07-13",
-            time: "21:30",
-            category: "گفتگو",
-            event: "گلایه از کاهش ارتباط",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "نزدیکی", value: 4, expiry: 25 },
-                { category: "پروفایل", title: "ارتباط", value: 5, expiry: 30 },
-                { category: "پروفایل", title: "دلبستگی", value: 5, expiry: 25 },
-                { category: "نیاز", title: "توجه", value: 7, expiry: 25 },
-                { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
-                { category: "علاقه", title: "گفتگو", value: 4, expiry: 45 }
-            ],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "پس از بیان گلایه درباره کوتاه بودن تماس‌ها، مدت مکالمه نسبت به روزهای قبل افزایش یافت.",
-                details: "MR721AS در طول شب چند بار تماس گرفت و مجموع زمان مکالمه به حدود 25 دقیقه رسید."
-            },
-            hypotheses: [
-                "بیان مستقیم نیاز عاطفی می‌تواند میزان تعامل MR721AS را افزایش دهد."
-            ],
-            patterns: [{
-                title: "افزایش تعامل پس از گلایه",
-                description: "پس از بیان نیاز، زمان و تعداد تماس‌ها افزایش پیدا می‌کند.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-13 21:30",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-005",
-            person: "MR721AS",
-            date: "2026-07-13",
-            time: "23:58",
-            category: "پیام",
-            event: "اتهام خیانت",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "آونگ", value: 5, expiry: 29 },
-                { category: "الگو", title: "اتهام", value: 5, expiry: 20 },
-                { category: "پروفایل", title: "حسادت", value: 5, expiry: 40 },
-                { category: "پروفایل", title: "کنترل", value: 4, expiry: 35 },
-                { category: "نیاز", title: "کنترل", value: 5, expiry: 35 },
-                { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
-            ],
-            links: [],
-            linksText: "",
-            observation: {
-                text: "در اوج تنش، چندین بار بدون ارائه شواهد، اتهام خیانت مطرح کرد.",
-                details: "پیام‌های متعدد با محتوای توهین و تحقیر ارسال شد."
-            },
-            hypotheses: [
-                "در شرایط فشار هیجانی از اتهام به عنوان ابزار دفاعی استفاده می‌کند."
-            ],
-            patterns: [{
-                title: "اتهام در بحران",
-                description: "در زمان تنش شدید، احتمال طرح اتهام افزایش می‌یابد.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-13 23:58",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-006",
-            person: "MR721AS",
-            date: "2026-07-14",
-            time: "00:30",
-            category: "رفتار",
-            event: "تغییر ناگهانی لحن",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "آونگ", value: 5, expiry: 29 },
-                { category: "الگو", title: "دلجویی", value: 4, expiry: 15 },
-                { category: "پروفایل", title: "انعطاف", value: 3, expiry: 20 },
-                { category: "پروفایل", title: "دلبستگی", value: 4, expiry: 25 },
-                { category: "نیاز", title: "اطمینان", value: 5, expiry: 40 },
-                { category: "علاقه", title: "دلجویی", value: 3, expiry: 25 }
-            ],
-            links: ["OBS-005"],
-            linksText: "پس از دوره اتهام",
-            observation: {
-                text: "پس از دوره‌ای از توهین و اتهام، ناگهان وارد فاز دلجویی و عذرخواهی شد.",
-                details: "با عباراتی مانند «ببخشید» و «عشقم» تلاش کرد رابطه را ترمیم کند."
-            },
-            hypotheses: [
-                "پس از تخلیه هیجان، نیاز به ترمیم رابطه در او فعال می‌شود."
-            ],
-            patterns: [{
-                title: "پروتکل آونگ",
-                description: "جابجایی سریع بین حمله و دلجویی.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-14 00:30",
-                action: "Observation Added",
-                type: "add"
-            }]
-        }, {
-            id: "OBS-007",
-            person: "MR721AS",
-            date: "2026-07-14",
-            time: "10:43",
-            category: "تماس",
-            event: "پینگ خاموش",
-            cardStatus: "Observation",
-            tags: [
-                { category: "الگو", title: "سنجش", value: 2, expiry: 10 },
-                { category: "پروفایل", title: "محتاط", value: 2, expiry: 15 },
-                { category: "پروفایل", title: "اعتماد", value: 1, expiry: 20 },
-                { category: "نیاز", title: "اطمینان", value: 5, expiry: 40 },
-                { category: "علاقه", title: "تماس کوتاه", value: 2, expiry: 20 }
-            ],
-            links: ["OBS-006"],
-            linksText: "پس از دلجویی شب قبل",
-            observation: {
-                text: "تماس 15 ثانیه‌ای بدون ورود به بحث برقرار شد.",
-                details: "MR721AS گفت تازه بیدار شده است، فقط وضعیت را پرسید و تماس را پایان داد."
-            },
-            hypotheses: [
-                "پس از بحران، تماس کوتاه بدون تنش می‌تواند وضعیت رابطه را ارزیابی کند."
-            ],
-            patterns: [{
-                title: "پینگ خاموش",
-                description: "بررسی وضعیت طرف مقابل با تماس کوتاه و بدون ورود به تعارض.",
-                occurrences: 1
-            }],
-            timeline: [{
-                date: "2025-07-14 10:43",
-                action: "Observation Added",
-                type: "add"
-            }]
-        },{
+       const RECORDS = [{
+    id: "OBS-001",
+    person: "MR721AS",
+    date: "2026-07-11",
+    time: "23:31",
+    category: "پیام",
+    event: "اتهام خیانت",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: -5, expiry: 29 },
+        { category: "الگو", title: "اتهام", value: -5, expiry: 25 },
+        { category: "الگو", title: "تزریق حسادت", value: -3, expiry: 20 },
+        { category: "الگو", title: "فشار هیجانی", value: -4, expiry: 20 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "حسادت", value: -5, expiry: 40 },
+        { category: "پروفایل", title: "بی‌اعتمادی", value: -4, expiry: 35 },
+        { category: "پروفایل", title: "کنترل", value: -3, expiry: 30 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+        { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
+    ],
+    links: [],
+    linksText: "",
+    observation: {
+        text: "پس از چند تماس بی‌پاسخ، گفتگو با پاسخ MR721AS آغاز شد. در ادامه چندین بار اتهام داشتن رابطه با افراد دیگر مطرح شد.",
+        details: "شروع گفتگو در ساعت 23:31 و ادامه مکالمه تا پایان شب صورت گرفت."
+    },
+    hypotheses: [
+        "MR721AS تصور می‌کند با افراد دیگر در ارتباط هستم.",
+        "ممکن است MR721AS به بخشی از پیام‌ها یا اطلاعات قدیمی دسترسی پیدا کرده باشد.",
+        "ممکن است اتهام‌ها صرفاً برای تحت فشار قرار دادن مطرح شده باشند.",
+        "احتمال وجود فرافکنی یا بدبینی بدون شواهد کافی."
+    ],
+    patterns: [{
+        title: "تکرار اتهام",
+        description: "در زمان تنش، MR721AS به جای تمرکز بر موضوع اصلی، گفتگو را به سمت اتهام هدایت می‌کند.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-11 23:31",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-002",
+    person: "MR721AS",
+    date: "2026-07-12",
+    time: "14:27",
+    category: "تماس",
+    event: "الگوی تماس‌های کوتاه",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: -2, expiry: 15 },
+        { category: "الگو", title: "ساخت روایت ذهنی", value: -2, expiry: 10 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "کنترل", value: 2, expiry: 25 },
+        { category: "پروفایل", title: "بی‌اعتمادی", value: -2, expiry: 20 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+        { category: "نیاز", title: "پاسخ سریع", value: 5, expiry: 30 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
+    ],
+    links: [],
+    linksText: "",
+    observation: {
+        text: "در طول روز ارتباط تلفنی MR721AS به چند تماس بسیار کوتاه محدود شد. مجموع زمان مکالمات کمتر از چند دقیقه بود.",
+        details: "پس از بیدار شدن، اولین تماس حدود ۱ دقیقه و ۱۹ ثانیه بود."
+    },
+    hypotheses: [
+        "ممکن است MR721AS هنگام وجود مشکل، ارتباط را فقط به موضوعات کاربردی محدود کند."
+    ],
+    patterns: [{
+        title: "ارتباط عملکردی",
+        description: "بخش عمده تماس‌ها حول حل مشکلات فنی و مسائل روزمره بود.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-12 14:27",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-003",
+    person: "MR721AS",
+    date: "2026-07-12",
+    time: "23:40",
+    category: "پیام",
+    event: "پایان شب بدون ادامه گفتگو",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: -3, expiry: 15 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: -2, expiry: 10 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "وابستگی", value: -3, expiry: 25 },
+        { category: "پروفایل", title: "ترس", value: -3, expiry: 20 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "کنترل", value: 8, expiry: 35 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "سکوت", value: 2, expiry: 30 }
+    ],
+    links: ["OBS-002"],
+    linksText: "ارتباط با الگوی تماس‌های کوتاه همان روز",
+    observation: {
+        text: "پس از پایان گفتگوهای کوتاه روز، تا پایان شب پیام مؤثری از MR721AS دریافت نشد.",
+        details: "آخرین پیام‌ها شامل شوخی و ابراز علاقه بود."
+    },
+    hypotheses: [
+        "ممکن است MR721AS در زمان دریافت تماس خوابیده باشد."
+    ],
+    patterns: [{
+        title: "پایان ناگهانی گفتگو",
+        description: "پس از چند پیام یا تماس کوتاه، ارتباط تا روز بعد متوقف می‌شود.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-12 23:40",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-004",
+    person: "MR721AS",
+    date: "2026-07-13",
+    time: "21:30",
+    category: "گفتگو",
+    event: "گلایه از کاهش ارتباط",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: 3, expiry: 20 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 2, expiry: 15 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "وابستگی", value: 4, expiry: 25 },
+        { category: "پروفایل", title: "آسیب‌پذیری", value: 3, expiry: 20 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "توجه", value: 7, expiry: 25 },
+        { category: "نیاز", title: "اطمینان", value: 6, expiry: 40 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "گفتگو", value: 4, expiry: 45 }
+    ],
+    links: [],
+    linksText: "",
+    observation: {
+        text: "پس از بیان گلایه درباره کوتاه بودن تماس‌ها، مدت مکالمه نسبت به روزهای قبل افزایش یافت.",
+        details: "MR721AS در طول شب چند بار تماس گرفت و مجموع زمان مکالمه به حدود 25 دقیقه رسید."
+    },
+    hypotheses: [
+        "بیان مستقیم نیاز عاطفی می‌تواند میزان تعامل MR721AS را افزایش دهد."
+    ],
+    patterns: [{
+        title: "افزایش تعامل پس از گلایه",
+        description: "پس از بیان نیاز، زمان و تعداد تماس‌ها افزایش پیدا می‌کند.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-13 21:30",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-005",
+    person: "MR721AS",
+    date: "2026-07-13",
+    time: "23:58",
+    category: "پیام",
+    event: "اتهام خیانت",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: 5, expiry: 29 },
+        { category: "الگو", title: "اتهام", value: 5, expiry: 20 },
+        { category: "الگو", title: "تزریق حسادت", value: 4, expiry: 25 },
+        { category: "الگو", title: "فشار هیجانی", value: 5, expiry: 20 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "حسادت", value: 5, expiry: 40 },
+        { category: "پروفایل", title: "کنترل", value: 4, expiry: 35 },
+        { category: "پروفایل", title: "خشم", value: 4, expiry: 30 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "کنترل", value: 5, expiry: 35 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "تماس صوتی", value: 3, expiry: 50 }
+    ],
+    links: [],
+    linksText: "",
+    observation: {
+        text: "در اوج تنش، چندین بار بدون ارائه شواهد، اتهام خیانت مطرح کرد.",
+        details: "پیام‌های متعدد با محتوای توهین و تحقیر ارسال شد."
+    },
+    hypotheses: [
+        "در شرایط فشار هیجانی از اتهام به عنوان ابزار دفاعی استفاده می‌کند."
+    ],
+    patterns: [{
+        title: "اتهام در بحران",
+        description: "در زمان تنش شدید، احتمال طرح اتهام افزایش می‌یابد.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-13 23:58",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-006",
+    person: "MR721AS",
+    date: "2026-07-14",
+    time: "00:30",
+    category: "رفتار",
+    event: "تغییر ناگهانی لحن",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آونگ", value: 5, expiry: 29 },
+        { category: "الگو", title: "پروژکشن", value: 3, expiry: 20 },
+        { category: "الگو", title: "فشار هیجانی", value: -2, expiry: 15 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "وابستگی", value: 4, expiry: 25 },
+        { category: "پروفایل", title: "آسیب‌پذیری", value: 3, expiry: 20 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "اطمینان", value: 5, expiry: 40 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "دلجویی", value: 3, expiry: 25 }
+    ],
+    links: ["OBS-005"],
+    linksText: "پس از دوره اتهام",
+    observation: {
+        text: "پس از دوره‌ای از توهین و اتهام، ناگهان وارد فاز دلجویی و عذرخواهی شد.",
+        details: "با عباراتی مانند «ببخشید» و «عشقم» تلاش کرد رابطه را ترمیم کند."
+    },
+    hypotheses: [
+        "پس از تخلیه هیجان، نیاز به ترمیم رابطه در او فعال می‌شود."
+    ],
+    patterns: [{
+        title: "پروتکل آونگ",
+        description: "جابجایی سریع بین حمله و دلجویی.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-14 00:30",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
+    id: "OBS-007",
+    person: "MR721AS",
+    date: "2026-07-14",
+    time: "10:43",
+    category: "تماس",
+    event: "پینگ خاموش",
+    cardStatus: "Observation",
+    tags: [
+        // ===== الگوها =====
+        { category: "الگو", title: "آزمون وفاداری", value: 2, expiry: 10 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "بی‌اعتمادی", value: 2, expiry: 15 },
+        { category: "پروفایل", title: "ترس", value: 1, expiry: 20 },
+        // ===== نیازها =====
+        { category: "نیاز", title: "اطمینان", value: 5, expiry: 40 },
+        // ===== علاقه‌ها =====
+        { category: "علاقه", title: "تماس کوتاه", value: 2, expiry: 20 }
+    ],
+    links: ["OBS-006"],
+    linksText: "پس از دلجویی شب قبل",
+    observation: {
+        text: "تماس 15 ثانیه‌ای بدون ورود به بحث برقرار شد.",
+        details: "MR721AS گفت تازه بیدار شده است، فقط وضعیت را پرسید و تماس را پایان داد."
+    },
+    hypotheses: [
+        "پس از بحران، تماس کوتاه بدون تنش می‌تواند وضعیت رابطه را ارزیابی کند."
+    ],
+    patterns: [{
+        title: "پینگ خاموش",
+        description: "بررسی وضعیت طرف مقابل با تماس کوتاه و بدون ورود به تعارض.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-14 10:43",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
     id: "OBS-008",
     person: "MR721AS",
     date: "2026-07-15",
@@ -696,14 +735,21 @@
     event: "اتهام خیانت و ترمیم رابطه",
     cardStatus: "Observation",
     tags: [
+        // ===== الگوها =====
         { category: "الگو", title: "آونگ", value: 5, expiry: 30 },
         { category: "الگو", title: "اتهام", value: 5, expiry: 30 },
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 20 },
+        { category: "الگو", title: "تزریق حسادت", value: 4, expiry: 25 },
+        { category: "الگو", title: "فشار هیجانی", value: 4, expiry: 25 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 4, expiry: 20 },
+        // ===== پروفایل‌ها =====
         { category: "پروفایل", title: "حسادت", value: 5, expiry: 45 },
-        { category: "پروفایل", title: "شکاک", value: 5, expiry: 45 },
-        { category: "پروفایل", title: "دلبستگی", value: 5, expiry: 35 },
+        { category: "پروفایل", title: "بی‌اعتمادی", value: 5, expiry: 45 },
+        { category: "پروفایل", title: "وابستگی", value: 5, expiry: 35 },
+        { category: "پروفایل", title: "خشم", value: 4, expiry: 30 },
+        // ===== نیازها =====
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 45 },
         { category: "نیاز", title: "کنترل", value: 5, expiry: 40 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "تماس تلفنی", value: 5, expiry: 50 },
         { category: "علاقه", title: "حل تعارض", value: 4, expiry: 35 }
     ],
@@ -723,31 +769,25 @@
         "الگوی آونگ (حمله → دلجویی) دوباره تکرار شد.",
         "نیاز به اطمینان نسبت به وفاداری طرف مقابل در این رویداد بسیار پررنگ بود."
     ],
-    patterns: [
-        {
-            title: "آونگ هیجانی",
-            description: "اتهام شدید، تهدید به پایان رابطه، سپس تماس مجدد و ترمیم رابطه.",
-            occurrences: 1
-        },
-        {
-            title: "فعال شدن حسادت با محرک مبهم",
-            description: "وجود یک محرک نامشخص کافی بود تا سناریوی خیانت در ذهن او شکل بگیرد.",
-            occurrences: 1
-        }
-    ],
-    timeline: [
-        {
-            date: "2025-07-16 20:30",
-            action: "Observation Added",
-            type: "add"
-        },
-        {
-            date: "2025-07-16 21:10",
-            action: "Relationship Repaired",
-            type: "update"
-        }
-    ]
-},{
+    patterns: [{
+        title: "آونگ هیجانی",
+        description: "اتهام شدید، تهدید به پایان رابطه، سپس تماس مجدد و ترمیم رابطه.",
+        occurrences: 1
+    }, {
+        title: "فعال شدن حسادت با محرک مبهم",
+        description: "وجود یک محرک نامشخص کافی بود تا سناریوی خیانت در ذهن او شکل بگیرد.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2025-07-16 20:30",
+        action: "Observation Added",
+        type: "add"
+    }, {
+        date: "2025-07-16 21:10",
+        action: "Relationship Repaired",
+        type: "update"
+    }]
+}, {
     id: "OBS-009",
     person: "MR721AS",
     date: "2026-07-16",
@@ -756,15 +796,18 @@
     event: "آشتی پس از بحران و بیان علت فاصله",
     cardStatus: "Observation",
     tags: [
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 20 },
-        { category: "الگو", title: "بازگشت", value: 5, expiry: 25 },
-        { category: "الگو", title: "ترمیم رابطه", value: 5, expiry: 30 },
-        { category: "پروفایل", title: "همدلی", value: 5, expiry: 35 },
-        { category: "پروفایل", title: "اعتماد", value: 5, expiry: 40 },
-        { category: "پروفایل", title: "مسئولیت‌پذیری", value: 4, expiry: 30 },
+        // ===== الگوها =====
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 4, expiry: 20 },
+        { category: "الگو", title: "آونگ", value: -3, expiry: 25 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "آسیب‌پذیری", value: 5, expiry: 35 },
+        { category: "پروفایل", title: "وابستگی", value: 5, expiry: 40 },
+        { category: "پروفایل", title: "ترس", value: 4, expiry: 30 },
+        // ===== نیازها =====
         { category: "نیاز", title: "امنیت", value: 5, expiry: 60 },
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 45 },
         { category: "نیاز", title: "صمیمیت", value: 5, expiry: 60 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "گفتگو", value: 5, expiry: 40 },
         { category: "علاقه", title: "تماس صوتی", value: 5, expiry: 40 }
     ],
@@ -780,33 +823,25 @@
         "اگر درباره احساسات واقعی صحبت شود، احتمال خروج MR721AS از حالت تدافعی بیشتر می‌شود.",
         "فشار ناشی از نبود فضای امن، محرک اصلی چرخه بحران در رابطه است."
     ],
-    patterns: [
-        {
-            title: "آرامش پس از بیان آسیب‌پذیری",
-            description: "زمانی که به جای دفاع، احساس واقعی و ترس بیان شد، شدت تعارض کاهش یافت.",
-            occurrences: 1
-        },
-        {
-            title: "ترمیم پس از بحران",
-            description: "پس از اوج تنش، گفتگو به سمت همدلی، عذرخواهی و ابراز محبت حرکت کرد.",
-            occurrences: 1
-        }
-    ],
-    timeline: [
-        {
-            date: "2026-07-16 20:30",
-            action: "Severe Conflict",
-            type: "crisis"
-        },
-        {
-            date: "2026-07-16 23:50",
-            action: "Relationship Repair",
-            type: "repair"
-        }
-    ]
-    // ... اسناد قبلی ...
-   
-    },{
+    patterns: [{
+        title: "آرامش پس از بیان آسیب‌پذیری",
+        description: "زمانی که به جای دفاع، احساس واقعی و ترس بیان شد، شدت تعارض کاهش یافت.",
+        occurrences: 1
+    }, {
+        title: "ترمیم پس از بحران",
+        description: "پس از اوج تنش، گفتگو به سمت همدلی، عذرخواهی و ابراز محبت حرکت کرد.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2026-07-16 20:30",
+        action: "Severe Conflict",
+        type: "crisis"
+    }, {
+        date: "2026-07-16 23:50",
+        action: "Relationship Repair",
+        type: "repair"
+    }]
+}, {
     id: "OBS-010",
     person: "MR721AS",
     date: "2026-07-18",
@@ -815,14 +850,18 @@
     event: "ترمیم رابطه و خبر مثبت پرونده",
     cardStatus: "Observation",
     tags: [
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 20 },
-        { category: "الگو", title: "ترمیم رابطه", value: 5, expiry: 30 },
-        { category: "پروفایل", title: "مسئولیت‌پذیری", value: 5, expiry: 45 },
-        { category: "پروفایل", title: "همدلی", value: 5, expiry: 35 },
-        { category: "پروفایل", title: "امید", value: 5, expiry: 40 },
+        // ===== الگوها =====
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 4, expiry: 20 },
+        { category: "الگو", title: "آونگ", value: -3, expiry: 25 },
+        // ===== پروفایل‌ها =====
+        { category: "پروفایل", title: "آسیب‌پذیری", value: 5, expiry: 45 },
+        { category: "پروفایل", title: "وابستگی", value: 5, expiry: 40 },
+        { category: "پروفایل", title: "ترس", value: 4, expiry: 30 },
+        // ===== نیازها =====
         { category: "نیاز", title: "امنیت", value: 5, expiry: 60 },
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 50 },
         { category: "نیاز", title: "آرامش", value: 5, expiry: 45 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "گفتگو", value: 5, expiry: 40 },
         { category: "علاقه", title: "تماس صوتی", value: 5, expiry: 45 }
     ],
@@ -840,29 +879,21 @@
         "کاهش فشار پرونده حقوقی می‌تواند شدت تنش‌های آینده را کاهش دهد.",
         "بخش قابل توجهی از پرخاشگری‌های اخیر ممکن است تحت تأثیر فشارهای بیرونی بوده باشد."
     ],
-    patterns: [
-        {
-            title: "ترمیم پس از بحران",
-            description: "پس از یک چرخه تنش شدید، با تماس مستقیم و گفتگوی آرام تلاش می‌کند رابطه را بازسازی کند.",
-            occurrences: 1
-        },
-        {
-            title: "اثر استرس بیرونی بر رابطه",
-            description: "با کاهش فشارهای حقوقی و مالی، کیفیت ارتباط عاطفی نیز بهبود پیدا می‌کند.",
-            occurrences: 1
-        }
-    ],
-    timeline: [
-        {
-            date: "2026-07-18 22:36",
-            action: "Observation Added",
-            type: "add"
-        }
-    ]
-},
-    // 👇 اینجا سند جدید رو اضافه کن
-    {
-
+    patterns: [{
+        title: "ترمیم پس از بحران",
+        description: "پس از یک چرخه تنش شدید، با تماس مستقیم و گفتگوی آرام تلاش می‌کند رابطه را بازسازی کند.",
+        occurrences: 1
+    }, {
+        title: "اثر استرس بیرونی بر رابطه",
+        description: "با کاهش فشارهای حقوقی و مالی، کیفیت ارتباط عاطفی نیز بهبود پیدا می‌کند.",
+        occurrences: 1
+    }],
+    timeline: [{
+        date: "2026-07-18 22:36",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
     id: "OBS-011",
     person: "MR721AS",
     date: "2026-07-19",
@@ -871,15 +902,19 @@
     event: "بسته شدن پرونده و فعال شدن دوباره حسادت",
     cardStatus: "Observation",
     tags: [
+        // ===== الگوها =====
         { category: "الگو", title: "اتهام", value: 5, expiry: 25 },
         { category: "الگو", title: "آونگ", value: 5, expiry: 30 },
-        { category: "الگو", title: "ترمیم رابطه", value: 5, expiry: 30 },
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 25 },
+        { category: "الگو", title: "تزریق حسادت", value: 4, expiry: 20 },
+        { category: "الگو", title: "فشار هیجانی", value: 4, expiry: 20 },
+        // ===== پروفایل‌ها =====
         { category: "پروفایل", title: "حسادت", value: 5, expiry: 45 },
         { category: "پروفایل", title: "کنترل", value: 5, expiry: 40 },
-        { category: "پروفایل", title: "همدلی", value: 4, expiry: 30 },
+        { category: "پروفایل", title: "بی‌اعتمادی", value: 4, expiry: 35 },
+        // ===== نیازها =====
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 45 },
         { category: "نیاز", title: "امنیت", value: 5, expiry: 60 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "گفتگو", value: 5, expiry: 40 },
         { category: "علاقه", title: "هدیه", value: 4, expiry: 30 }
     ],
@@ -897,28 +932,21 @@
         "با کاهش فشار بیرونی، مدت زمان بحران کوتاه‌تر شده است.",
         "رفتار جبرانی پس از تنش، یکی از روش‌های ترمیم رابطه توسط MR721AS است."
     ],
-    patterns: [
-        {
-            title: "فعال شدن حسادت با محرک‌های جدید",
-            description: "حتی صحبت درباره افراد دیگر نیز می‌تواند به عنوان محرک ذهنی برای اتهام خیانت عمل کند.",
-            occurrences: 2
-        },
-        {
-            title: "جبران پس از بحران",
-            description: "پس از پایان مشاجره، با محبت یا هدیه کوچک تلاش می‌کند رابطه را به حالت عادی برگرداند.",
-            occurrences: 2
-        }
-    ],
-    timeline: [
-        {
-            date: "2026-07-19 18:40",
-            action: "Observation Added",
-            type: "add"
-        }
-    ]
-
-        // ... بقیه فیلدها
-    },{
+    patterns: [{
+        title: "فعال شدن حسادت با محرک‌های جدید",
+        description: "حتی صحبت درباره افراد دیگر نیز می‌تواند به عنوان محرک ذهنی برای اتهام خیانت عمل کند.",
+        occurrences: 2
+    }, {
+        title: "جبران پس از بحران",
+        description: "پس از پایان مشاجره، با محبت یا هدیه کوچک تلاش می‌کند رابطه را به حالت عادی برگرداند.",
+        occurrences: 2
+    }],
+    timeline: [{
+        date: "2026-07-19 18:40",
+        action: "Observation Added",
+        type: "add"
+    }]
+}, {
     id: "OBS-012",
     person: "MR721AS",
     date: "2026-07-19",
@@ -927,17 +955,23 @@
     event: "تشدید تنش، تهدید به رابطه جایگزین، سپس بازگشت و دعوت به دیدار",
     cardStatus: "Observation",
     tags: [
+        // ===== الگوها =====
         { category: "الگو", title: "آونگ", value: 5, expiry: 45 },
         { category: "الگو", title: "آزمون وفاداری", value: 5, expiry: 40 },
-        { category: "الگو", title: "تهدید به ترک", value: 5, expiry: 60 },
-        { category: "الگو", title: "بازگشت", value: 5, expiry: 20 },
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 20 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 5, expiry: 60 },
+        { category: "الگو", title: "تزریق حسادت", value: 5, expiry: 40 },
+        { category: "الگو", title: "فشار هیجانی", value: 5, expiry: 35 },
+        { category: "الگو", title: "اتهام", value: 5, expiry: 30 },
+        // ===== پروفایل‌ها =====
         { category: "پروفایل", title: "حسادت", value: 5, expiry: 60 },
         { category: "پروفایل", title: "کنترل", value: 5, expiry: 55 },
         { category: "پروفایل", title: "بی‌اعتمادی", value: 5, expiry: 60 },
+        { category: "پروفایل", title: "خشم", value: 4, expiry: 45 },
+        // ===== نیازها =====
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 60 },
         { category: "نیاز", title: "نزدیکی", value: 5, expiry: 45 },
         { category: "نیاز", title: "کنترل", value: 5, expiry: 45 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "دیدار حضوری", value: 5, expiry: 30 }
     ],
     links: [
@@ -957,51 +991,41 @@
         "بازگشت سریع پس از مشاهده واکنش هیجانی طرف مقابل.",
         "نیاز شدید به دیدار حضوری که باعث نادیده گرفتن محدودیت‌های امنیتی می‌شود."
     ],
-    patterns: [
-        {
-            title: "آونگ هیجانی",
-            description: "حمله شدید → ایجاد ترس → تماس‌های مکرر → اعتراف → دلجویی → دعوت به نزدیکی.",
-            occurrences: 4
-        },
-        {
-            title: "آزمون وفاداری",
-            description: "ایجاد سناریوی خیانت یا تهدید به جایگزینی برای سنجش واکنش طرف مقابل.",
-            occurrences: 3
-        },
-        {
-            title: "بحران برای رسیدن به نزدیکی",
-            description: "تنش شدید در نهایت به درخواست دیدار حضوری ختم می‌شود.",
-            occurrences: 2
-        }
-    ],
-    timeline: [
-        {
-            date: "2026-07-19 21:00",
-            action: "Observation Added",
-            type: "add"
-        },
-        {
-            date: "2026-07-19 21:15",
-            action: "Severe Conflict & Threat",
-            type: "crisis"
-        },
-        {
-            date: "2026-07-19 21:30",
-            action: "Multiple Calls Made",
-            type: "event"
-        },
-        {
-            date: "2026-07-19 21:45",
-            action: "Confession & Repair Attempt",
-            type: "repair"
-        },
-        {
-            date: "2026-07-19 22:00",
-            action: "Invitation to Meet",
-            type: "update"
-        }
-    ]
-},{
+    patterns: [{
+        title: "آونگ هیجانی",
+        description: "حمله شدید → ایجاد ترس → تماس‌های مکرر → اعتراف → دلجویی → دعوت به نزدیکی.",
+        occurrences: 4
+    }, {
+        title: "آزمون وفاداری",
+        description: "ایجاد سناریوی خیانت یا تهدید به جایگزینی برای سنجش واکنش طرف مقابل.",
+        occurrences: 3
+    }, {
+        title: "بحران برای رسیدن به نزدیکی",
+        description: "تنش شدید در نهایت به درخواست دیدار حضوری ختم می‌شود.",
+        occurrences: 2
+    }],
+    timeline: [{
+        date: "2026-07-19 21:00",
+        action: "Observation Added",
+        type: "add"
+    }, {
+        date: "2026-07-19 21:15",
+        action: "Severe Conflict & Threat",
+        type: "crisis"
+    }, {
+        date: "2026-07-19 21:30",
+        action: "Multiple Calls Made",
+        type: "event"
+    }, {
+        date: "2026-07-19 21:45",
+        action: "Confession & Repair Attempt",
+        type: "repair"
+    }, {
+        date: "2026-07-19 22:00",
+        action: "Invitation to Meet",
+        type: "update"
+    }]
+}, {
     id: "OBS-013",
     person: "MR721AS",
     date: "2026-07-19",
@@ -1010,22 +1034,25 @@
     event: "Pattern Collision · سناریوی خیانت نمایشی",
     cardStatus: "Observation",
     tags: [
+        // ===== الگوها =====
         { category: "الگو", title: "آونگ", value: 5, expiry: 45 },
         { category: "الگو", title: "پروژکشن", value: 5, expiry: 50 },
-        { category: "الگو", title: "اتهام دروغین", value: 5, expiry: 50 },
         { category: "الگو", title: "آزمون وفاداری", value: 5, expiry: 40 },
         { category: "الگو", title: "فشار هیجانی", value: 5, expiry: 35 },
         { category: "الگو", title: "تزریق حسادت", value: 5, expiry: 40 },
-        { category: "الگو", title: "تغییر روایت", value: 5, expiry: 30 },
-        { category: "الگو", title: "تهدید", value: 5, expiry: 60 },
-        { category: "الگو", title: "بازگشت", value: 5, expiry: 20 },
-        { category: "الگو", title: "دلجویی", value: 5, expiry: 20 },
+        { category: "الگو", title: "اتهام", value: 5, expiry: 35 },
+        { category: "الگو", title: "ساخت روایت ذهنی", value: 5, expiry: 30 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 5, expiry: 25 },
+        // ===== پروفایل‌ها =====
         { category: "پروفایل", title: "حسادت", value: 5, expiry: 60 },
         { category: "پروفایل", title: "کنترل", value: 5, expiry: 55 },
         { category: "پروفایل", title: "بی‌اعتمادی", value: 5, expiry: 60 },
+        { category: "پروفایل", title: "خشم", value: 4, expiry: 50 },
+        // ===== نیازها =====
         { category: "نیاز", title: "توجه", value: 5, expiry: 45 },
         { category: "نیاز", title: "کنترل", value: 5, expiry: 50 },
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 50 },
+        // ===== علاقه‌ها =====
         { category: "علاقه", title: "گفتگو", value: 5, expiry: 30 },
         { category: "علاقه", title: "بازی", value: 5, expiry: 25 }
     ],
@@ -1048,122 +1075,82 @@
         "الگوی مثبت (CounterPattern) این بار پاسخ سیستم خودکار نبوده و آگاهانه انتخاب شده است.",
         "بازی با مرزهای امنیتی و عاطفی، بخشی از الگوی تکراری عباس است."
     ],
-    patterns: [
-        {
-            title: "آونگ هیجانی (Attack → Silence → Apology → Return → Attack)",
-            description: "چرخه حمله، سکوت، عذرخواهی، بازگشت و حمله مجدد. این بار با سناریوسازی پیچیده‌تر.",
-            occurrences: 5
-        },
-        {
-            title: "پروژکشن",
-            description: "فرافکنی و نسبت دادن ویژگی‌های منفی خود به طرف مقابل.",
-            occurrences: 2
-        },
-        {
-            title: "اتهام دروغین",
-            description: "ساخت سناریوی خیانت و ارائه شواهد جعلی.",
-            occurrences: 3
-        },
-        {
-            title: "آزمون وفاداری (Loyalty Test)",
-            description: "ایجاد موقعیت‌های ساختگی برای سنجش واکنش و وفاداری طرف مقابل.",
-            occurrences: 4
-        },
-        {
-            title: "فشار هیجانی (Emotional Pressure)",
-            description: "استفاده از تهدید و ایجاد اضطراب برای کنترل واکنش‌ها.",
-            occurrences: 3
-        },
-        {
-            title: "تزریق حسادت (Jealousy Injection)",
-            description: "ایجاد سناریوهای ساختگی برای تحریک حسادت.",
-            occurrences: 3
-        },
-        {
-            title: "تغییر روایت (Narrative Switch)",
-            description: "انکار روایت قبلی و جایگزینی آن با روایت جدید «نمایشی بود».",
-            occurrences: 2
-        },
-        {
-            title: "تهدید (Threat)",
-            description: "تهدید به ترک رابطه، پول، رل جدید، گروه و خانواده.",
-            occurrences: 3
-        },
-        {
-            title: "بازگشت (Return)",
-            description: "پس از سکوت، بازگشت با دلجویی و تلاش برای ترمیم.",
-            occurrences: 3
-        },
-        {
-            title: "دلجویی (Apology)",
-            description: "پس از اوج تنش، عذرخواهی و تلاش برای بازگشت به حالت عادی.",
-            occurrences: 3
-        },
-        {
-            title: "CounterPattern · سکوت کنترل‌شده",
-            description: "این بار پاسخ سیستم خودکار نبود؛ سکوت آگاهانه و کنترل‌شده جایگزین واکنش فوری شد.",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "CounterPattern · تشخیص الگو (Pattern Recognition)",
-            description: "شناسایی آگاهانه الگوهای تکرارشونده در لحظه وقوع.",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "CounterPattern · تأخیر در واکنش (Delay Reaction)",
-            description: "مکث و تأخیر در پاسخ به جای واکنش فوری هیجانی.",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "CounterPattern · بررسی واقعیت (Reality Check)",
-            description: "ارزیابی منطقی سناریو قبل از واکنش هیجانی.",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "CounterPattern · جمع‌آوری شواهد (Evidence Collection)",
-            description: "ثبت و مستندسازی الگوها برای تحلیل بعدی.",
-            occurrences: 1,
-            isPositive: true
-        }
-    ],
-    timeline: [
-        {
-            date: "2026-07-19 23:45",
-            action: "Observation Added",
-            type: "add"
-        },
-        {
-            date: "2026-07-19 23:50",
-            action: "Loyalty Test Executed",
-            type: "crisis"
-        },
-        {
-            date: "2026-07-19 23:55",
-            action: "Narrative Switch",
-            type: "event"
-        },
-        {
-            date: "2026-07-19 23:58",
-            action: "CounterPatterns Activated",
-            type: "update"
-        },
-        {
-            date: "2026-07-19 23:59",
-            action: "Pattern Collision Detected",
-            type: "event"
-        },
-        {
-
-            date: "2026-07-19 23:59",
-            action: "Pattern Collision Detected",
-            type: "event"
-        }
-    ]
-},{
+    patterns: [{
+        title: "آونگ هیجانی (Attack → Silence → Apology → Return → Attack)",
+        description: "چرخه حمله، سکوت، عذرخواهی، بازگشت و حمله مجدد. این بار با سناریوسازی پیچیده‌تر.",
+        occurrences: 5
+    }, {
+        title: "پروژکشن",
+        description: "فرافکنی و نسبت دادن ویژگی‌های منفی خود به طرف مقابل.",
+        occurrences: 2
+    }, {
+        title: "آزمون وفاداری (Loyalty Test)",
+        description: "ایجاد موقعیت‌های ساختگی برای سنجش واکنش و وفاداری طرف مقابل.",
+        occurrences: 4
+    }, {
+        title: "فشار هیجانی (Emotional Pressure)",
+        description: "استفاده از تهدید و ایجاد اضطراب برای کنترل واکنش‌ها.",
+        occurrences: 3
+    }, {
+        title: "تزریق حسادت (Jealousy Injection)",
+        description: "ایجاد سناریوهای ساختگی برای تحریک حسادت.",
+        occurrences: 3
+    }, {
+        title: "ساخت روایت ذهنی",
+        description: "اتصال داده‌های بی‌ربط به یک سناریوی واحد.",
+        occurrences: 2
+    }, {
+        title: "تهدید به ترک/بازگشت",
+        description: "تهدید به پایان رابطه، سپس بازگشت با دلجویی.",
+        occurrences: 3
+    }, {
+        title: "CounterPattern · سکوت کنترل‌شده",
+        description: "این بار پاسخ سیستم خودکار نبود؛ سکوت آگاهانه و کنترل‌شده جایگزین واکنش فوری شد.",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "CounterPattern · تشخیص الگو (Pattern Recognition)",
+        description: "شناسایی آگاهانه الگوهای تکرارشونده در لحظه وقوع.",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "CounterPattern · تأخیر در واکنش (Delay Reaction)",
+        description: "مکث و تأخیر در پاسخ به جای واکنش فوری هیجانی.",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "CounterPattern · بررسی واقعیت (Reality Check)",
+        description: "ارزیابی منطقی سناریو قبل از واکنش هیجانی.",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "CounterPattern · جمع‌آوری شواهد (Evidence Collection)",
+        description: "ثبت و مستندسازی الگوها برای تحلیل بعدی.",
+        occurrences: 1,
+        isPositive: true
+    }],
+    timeline: [{
+        date: "2026-07-19 23:45",
+        action: "Observation Added",
+        type: "add"
+    }, {
+        date: "2026-07-19 23:50",
+        action: "Loyalty Test Executed",
+        type: "crisis"
+    }, {
+        date: "2026-07-19 23:55",
+        action: "Narrative Switch",
+        type: "event"
+    }, {
+        date: "2026-07-19 23:58",
+        action: "CounterPatterns Activated",
+        type: "update"
+    }, {
+        date: "2026-07-19 23:59",
+        action: "Pattern Collision Detected",
+        type: "event"
+    }]
+}, {
     id: "OBS-014",
     person: "MR721AS",
     date: "2026-07-21",
@@ -1172,30 +1159,21 @@
     event: "اعتراف زیر فشار، بازگشت از لبه و ظهور لایه‌ی عاطفی",
     cardStatus: "Observation",
     tags: [
+        // ===== الگوها =====
         { category: "الگو", title: "آونگ", value: 5, expiry: 45 },
-        { category: "الگو", title: "پروتست عاطفی", value: 5, expiry: 40 },
         { category: "الگو", title: "آزمون وفاداری", value: 5, expiry: 40 },
-        { category: "الگو", title: "تهدید به ترک", value: 5, expiry: 60 },
+        { category: "الگو", title: "تهدید به ترک/بازگشت", value: 5, expiry: 60 },
         { category: "الگو", title: "تزریق حسادت", value: 5, expiry: 40 },
         { category: "الگو", title: "فشار هیجانی", value: 5, expiry: 35 },
-        { category: "الگو", title: "تغییر روایت", value: 5, expiry: 30 },
-        { category: "الگو", title: "حمله هیجانی", value: 5, expiry: 35 },
-        
-        // ===== الگوهای مثبت (اعداد مثبت بزرگ = شدت بیشتر) =====
-        { category: "الگو", title: "بازگشت", value: 7, expiry: 20 },
-        { category: "الگو", title: "دلجویی", value: 6, expiry: 20 },
-        { category: "الگو", title: "آسیب‌پذیری", value: 9, expiry: 25 },
-        { category: "الگو", title: "اعتراف عاطفی", value: 9, expiry: 30 },
-        { category: "الگو", title: "درخواست اطمینان", value: 6, expiry: 25 },
-        { category: "الگو", title: "ترمیم رابطه", value: 8, expiry: 30 },
-        
-        // ===== پروفایل =====
+        { category: "الگو", title: "اتهام", value: 5, expiry: 35 },
+        { category: "الگو", title: "پروژکشن", value: 4, expiry: 30 },
+        // ===== پروفایل‌ها =====
         { category: "پروفایل", title: "حسادت", value: 5, expiry: 60 },
         { category: "پروفایل", title: "کنترل", value: 5, expiry: 55 },
         { category: "پروفایل", title: "بی‌اعتمادی", value: 5, expiry: 60 },
         { category: "پروفایل", title: "آسیب‌پذیری", value: 5, expiry: 45 },
         { category: "پروفایل", title: "وابستگی", value: 5, expiry: 50 },
-        
+        { category: "پروفایل", title: "ترس", value: 4, expiry: 40 },
         // ===== نیازها =====
         { category: "نیاز", title: "اطمینان", value: 5, expiry: 60 },
         { category: "نیاز", title: "امنیت", value: 5, expiry: 55 },
@@ -1203,7 +1181,6 @@
         { category: "نیاز", title: "نزدیکی", value: 5, expiry: 50 },
         { category: "نیاز", title: "انحصار", value: 5, expiry: 40 },
         { category: "نیاز", title: "کنترل", value: 5, expiry: 45 },
-        
         // ===== علاقه‌ها =====
         { category: "علاقه", title: "گفتگو", value: 5, expiry: 40 },
         { category: "علاقه", title: "تماس صوتی", value: 5, expiry: 45 },
@@ -1220,13 +1197,10 @@
         "OBS-013"
     ],
     linksText: "نقطه‌ی عطف در الگوی آونگ · ظهور لایه‌ی آسیب‌پذیری",
-    
     observation: {
         text: "پس از بحران شدید شب 19 July، عباس ابتدا رابطه را عملاً در وضعیت فروپاشی قرار داد. ادعای رل جدید، انکار اهمیت رابطه، ورود به گروه‌های جنسی، ارسال پیام‌های تحریک‌آمیز و سپس اعلام اینکه همه‌ی این‌ها «نمایشی» بوده. اما در ادامه، تغییر لحن قابل توجهی رخ داد. عباس از حالت دفاعی و تهاجمی به حالت آسیب‌پذیر منتقل شد. او اعتراف کرد که خوابش نبرده، صبح زنگ زده، افسردگی‌اش برگشته، دچار حمله‌ی اضطرابی شده و به بیمارستان مراجعه کرده است. برای اولین بار به‌جای اتهام، گفت: «عاشقتم، زندگیم هستی.» و «غرورم شکست.» در پایان گفت‌وگو، درخواست انحصار عاطفی کرد و مها نیز با قول ماندن، پاسخ داد.",
-        
         details: "چرخه: حمله شدید → تهدید به ترک → قطع ارتباط → ترس از دست دادن → تماس مجدد → افشای افسردگی و اضطراب → اعتراف به علاقه → درخواست اطمینان → آرامش موقت.\n\nنکته‌ی مهم: این اولین بار است که عباس به‌جای «تو خیانت کردی» می‌گوید «من می‌ترسم از دستت بدم» و به‌جای «برای همیشه می‌روم» می‌گوید «دلم برایت تنگ شده».\n\nتغییر نقش مها: از قربانیِ اتهام به تنظیم‌کننده‌ی بحران و هدایت‌کننده‌ی گفت‌وگو با Qهای مؤثر.\n\nهشدار تحلیلی: این سند نشان‌دهنده‌ی تغییر رفتار است، نه اثبات قطعی تغییر پایدار الگو. ترمیم واقعی به سه بخش نیاز دارد: ۱. اعتراف به آسیب ۲. پذیرش مسئولیت ۳. تغییر رفتار قابل مشاهده."
     },
-    
     hypotheses: [
         "پشت خشم و اتهام‌های عباس، ترس از دست دادن و نیاز شدید به اطمینان وجود دارد.",
         "رفتارهای نمایشی (ورود به گروه، تهدید به رل جدید) به عنوان مکانیسم دفاعی و پروتست عاطفی عمل می‌کنند.",
@@ -1236,80 +1210,63 @@
         "انحصارطلبی عباس می‌تواند هم نشانه‌ی دلبستگی عمیق باشد و هم ابزار کنترل.",
         "مها نباید به تنظیم‌کننده‌ی دائمی بحران عباس تبدیل شود."
     ],
-    
-    patterns: [
-        {
-            title: "پروتست عاطفی (Protest Behavior)",
-            description: "ایجاد حسادت، تهدید به جدایی، ورود به گروه‌های جنسی، ارسال پیام‌های تحریک‌کننده، درخواست پاسخ فوری و تماس‌های مکرر به عنوان رفتارهای اعتراضی برای گرفتن واکنش.",
-            occurrences: 4
-        },
-        {
-            title: "آونگ هیجانی با لایه‌ی جدید",
-            description: "نزدیکی شدید → اتهام → فاصله → تهدید → حسادت → قطع → ترس → بازگشت → آسیب‌پذیری → اعتراف عاطفی → درخواست اطمینان → آرامش. ورود به محور جدید: خشم ↔ ترس ↔ آسیب‌پذیری.",
-            occurrences: 6
-        },
-        {
-            title: "گسست و ترمیم (Rupture & Repair)",
-            description: "ایجاد بحران عاطفی شدید، سپس تلاش برای ترمیم از طریق اعتراف به آسیب، ابراز علاقه و درخواست اطمینان.",
-            occurrences: 3
-        },
-        {
-            title: "اعتراف زیر فشار",
-            description: "پس از مقاومت طولانی، در مواجهه با سؤال مستقیم عاطفی (Q) و تهدید قطع ارتباط، عباس احساسات واقعی خود را افشا می‌کند.",
-            occurrences: 2
-        },
-        {
-            title: "تغییر نقش مها (از قربانی به تنظیم‌کننده)",
-            description: "مها با Qهای مؤثر (احساس واقعی‌ت چیه؟، همه رو شکوندم، می‌مونی یا می‌ری؟) گفت‌وگو را به سمت لایه‌ی عمیق‌تر هدایت می‌کند.",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "شکستن پوسته‌ی دفاعی",
-            description: "عباس برای اولین بار به‌جای «تو خیانت کردی» می‌گوید «من می‌ترسم از دستت بدم» و به‌جای «برای همیشه می‌روم» می‌گوید «دلم برایت تنگ شده».",
-            occurrences: 1,
-            isPositive: true
-        },
-        {
-            title: "درخواست انحصار عاطفی",
-            description: "درخواست قول برای بلاک کردن هر فرد دیگری که وارد زندگی مها شود، به عنوان نیاز به اطمینان از جایگاه ویژه.",
-            occurrences: 2
-        }
-    ],
-    
-    timeline: [
-        {
-            date: "2026-07-19 23:45",
-            action: "Crisis Peak",
-            type: "crisis"
-        },
-        {
-            date: "2026-07-20 09:00",
-            action: "Persistent Contact Attempts",
-            type: "event"
-        },
-        {
-            date: "2026-07-21 10:00",
-            action: "Anxiety Attack & Hospital",
-            type: "health"
-        },
-        {
-            date: "2026-07-21 22:00",
-            action: "Vulnerability Revealed",
-            type: "breakthrough"
-        },
-        {
-            date: "2026-07-21 23:00",
-            action: "Observation Added",
-            type: "add"
-        },
-        {
-            date: "2026-07-21 23:15",
-            action: "Pattern Shift Detected",
-            type: "update"
-        }
-    ]
-},{
+    patterns: [{
+        title: "پروتست عاطفی (Protest Behavior)",
+        description: "ایجاد حسادت، تهدید به جدایی، ورود به گروه‌های جنسی، ارسال پیام‌های تحریک‌کننده، درخواست پاسخ فوری و تماس‌های مکرر به عنوان رفتارهای اعتراضی برای گرفتن واکنش.",
+        occurrences: 4
+    }, {
+        title: "آونگ هیجانی با لایه‌ی جدید",
+        description: "نزدیکی شدید → اتهام → فاصله → تهدید → حسادت → قطع → ترس → بازگشت → آسیب‌پذیری → اعتراف عاطفی → درخواست اطمینان → آرامش. ورود به محور جدید: خشم ↔ ترس ↔ آسیب‌پذیری.",
+        occurrences: 6
+    }, {
+        title: "گسست و ترمیم (Rupture & Repair)",
+        description: "ایجاد بحران عاطفی شدید، سپس تلاش برای ترمیم از طریق اعتراف به آسیب، ابراز علاقه و درخواست اطمینان.",
+        occurrences: 3
+    }, {
+        title: "اعتراف زیر فشار",
+        description: "پس از مقاومت طولانی، در مواجهه با سؤال مستقیم عاطفی (Q) و تهدید قطع ارتباط، عباس احساسات واقعی خود را افشا می‌کند.",
+        occurrences: 2
+    }, {
+        title: "تغییر نقش مها (از قربانی به تنظیم‌کننده)",
+        description: "مها با Qهای مؤثر (احساس واقعی‌ت چیه؟، همه رو شکوندم، می‌مونی یا می‌ری؟) گفت‌وگو را به سمت لایه‌ی عمیق‌تر هدایت می‌کند.",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "شکستن پوسته‌ی دفاعی",
+        description: "عباس برای اولین بار به‌جای «تو خیانت کردی» می‌گوید «من می‌ترسم از دستت بدم» و به‌جای «برای همیشه می‌روم» می‌گوید «دلم برایت تنگ شده».",
+        occurrences: 1,
+        isPositive: true
+    }, {
+        title: "درخواست انحصار عاطفی",
+        description: "درخواست قول برای بلاک کردن هر فرد دیگری که وارد زندگی مها شود، به عنوان نیاز به اطمینان از جایگاه ویژه.",
+        occurrences: 2
+    }],
+    timeline: [{
+        date: "2026-07-19 23:45",
+        action: "Crisis Peak",
+        type: "crisis"
+    }, {
+        date: "2026-07-20 09:00",
+        action: "Persistent Contact Attempts",
+        type: "event"
+    }, {
+        date: "2026-07-21 10:00",
+        action: "Anxiety Attack & Hospital",
+        type: "health"
+    }, {
+        date: "2026-07-21 22:00",
+        action: "Vulnerability Revealed",
+        type: "breakthrough"
+    }, {
+        date: "2026-07-21 23:00",
+        action: "Observation Added",
+        type: "add"
+    }, {
+        date: "2026-07-21 23:15",
+        action: "Pattern Shift Detected",
+        type: "update"
+    }]
+}, {
     "id": "OBS-015.1",
     "person": "MR721AS",
     "date": "2026-07-22",
@@ -1318,32 +1275,34 @@
     "event": "قرار پس از بحران — بخش اول · ورود خشونت فیزیکی به چرخه",
     "cardStatus": "Observation",
     "tags": [
+        // ===== الگوها =====
         { "category": "الگو", "title": "آونگ", "value": 5, "expiry": 50 },
-        { "category": "الگو", "title": "تهدید به ترک", "value": 5, "expiry": 60 },
-        { "category": "الگو", "title": "تهدید به حضور در منزل", "value": 10, "expiry": 60 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": 5, "expiry": 60 },
         { "category": "الگو", "title": "آزمون وفاداری", "value": 5, "expiry": 45 },
         { "category": "الگو", "title": "تزریق حسادت", "value": 5, "expiry": 50 },
-        { "category": "الگو", "title": "پروژکشن", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "فشار هیجانی", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "حمله هیجانی", "value": 10, "expiry": 40 },
-        { "category": "الگو", "title": "خشونت فیزیکی", "value": 10, "expiry": 90 },
-        { "category": "الگو", "title": "ساخت روایت ذهنی", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "بازگشت", "value": 5, "expiry": 25 },
-        { "category": "پروفایل", "title": "حسادت", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "کنترل", "value": 10, "expiry": 60 },
-        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "خشم", "value": 10, "expiry": 50 },
-        { "category": "پروفایل", "title": "ترس", "value": 10, "expiry": 50 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 5, "expiry": 40 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 5, "expiry": 50 },
-        { "category": "نیاز", "title": "اطمینان", "value": 10, "expiry": 70 },
-        { "category": "نیاز", "title": "امنیت", "value": 10, "expiry": 65 },
-        { "category": "نیاز", "title": "توجه", "value": 10, "expiry": 50 },
-        { "category": "نیاز", "title": "کنترل", "value": 10, "expiry": 55 },
-        { "category": "نیاز", "title": "انحصار", "value": 10, "expiry": 60 },
-        { "category": "نیاز", "title": "آرامش", "value": 5, "expiry": 45 },
-        { "category": "علاقه", "title": "دیدار حضوری", "value": 10, "expiry": 40 },
-        { "category": "علاقه", "title": "گفتگو", "value": 5, "expiry": 35 },
+        { "category": "الگو", "title": "پروژکشن", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "فشار هیجانی", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام", "value": 5, "expiry": 40 },
+        { "category": "الگو", "title": "ساخت روایت ذهنی", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام متقابل", "value": 4, "expiry": 35 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "حسادت", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "کنترل", "value": 5, "expiry": 60 },
+        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "خشم", "value": 5, "expiry": 50 },
+        { "category": "پروفایل", "title": "ترس", "value": 5, "expiry": 50 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 3, "expiry": 40 },
+        { "category": "پروفایل", "title": "وابستگی", "value": 4, "expiry": 50 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 5, "expiry": 70 },
+        { "category": "نیاز", "title": "امنیت", "value": 5, "expiry": 65 },
+        { "category": "نیاز", "title": "توجه", "value": 5, "expiry": 50 },
+        { "category": "نیاز", "title": "کنترل", "value": 5, "expiry": 55 },
+        { "category": "نیاز", "title": "انحصار", "value": 5, "expiry": 60 },
+        { "category": "نیاز", "title": "آرامش", "value": 3, "expiry": 45 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "دیدار حضوری", "value": 5, "expiry": 40 },
+        { "category": "علاقه", "title": "گفتگو", "value": 3, "expiry": 35 },
         { "category": "علاقه", "title": "تماس صوتی", "value": 2, "expiry": 40 }
     ],
     "links": [
@@ -1369,39 +1328,32 @@
         "مشاهده نام «احسان خان‌محمدی» می‌تواند یک داده‌ی جدید در چرخه‌ی سوءظن عباس باشد. الگوی احتمالی: داده مبهم → تفسیر شخصی → اتصال به داده‌های قبلی → ساخت روایت خیانت → افزایش اضطراب → کنترل بیشتر → درگیری.",
         "من در این ملاقات چندین بار در توضیح دادن ناتوان بودم. این ناتوانی می‌تواند با فشار هیجانی بالا مرتبط باشد. در شرایطی که فرد تحت فشار شدید قرار می‌گیرد، ممکن است به جای توضیح منطقی و پیوسته: سکوت کند، جواب‌های کوتاه بدهد، از موضوع فرار کند، مسیر را تغییر دهد یا تصمیم‌های لحظه‌ای بگیرد. بنابراین سکوت من در این بخش لزوماً به معنای بی‌تفاوتی نیست."
     ],
-    "patterns": [
-        {
-            "title": "آونگ هیجانی",
-            "description": "نزدیکی → تنش → تهدید → جدایی → بازگشت → تنش دوباره. این چرخه در همان ملاقات اولیه قابل مشاهده است.",
-            "occurrences": 1
-        },
-        {
-            "title": "تهدید به حضور در منزل",
-            "description": "عباس برای گرفتن پاسخ و کنترل اوضاع، از تهدید به حضور فیزیکی در خانه‌ام استفاده کرد.",
-            "occurrences": 1
-        },
-        {
-            "title": "خشونت فیزیکی دوطرفه",
-            "description": "برای اولین بار در این پرونده، دعوا از کلامی به فیزیکی تبدیل شد. هر دو طرف به یکدیگر ضربه زدیم.",
-            "occurrences": 1
-        },
-        {
-            "title": "ساخت روایت ذهنی",
-            "description": "عباس داده‌های جدا از هم (E، احسان، اسنپ، گوشی، فاصله) را به یک روایت واحد از خیانت متصل می‌کند.",
-            "occurrences": 1
-        },
-        {
-            "title": "تغییر نقش (از منفعل به فعال)",
-            "description": "من در این ملاقات چندین بار نقش فعال‌تری نسبت به گذشته پیدا کردم: تغییر مسیر، مقاومت در برابر بانک، تصمیم‌گیری لحظه‌ای.",
-            "occurrences": 3
-        },
-        {
-            "title": "ناتوانی در توضیح‌دهی",
-            "description": "من در طول ملاقات بارها ناتوانی خود در توضیح احساسات و موقعیت را تجربه کردم.",
-            "occurrences": 2
-        }
-    ]
-},{
+    "patterns": [{
+        "title": "آونگ هیجانی",
+        "description": "نزدیکی → تنش → تهدید → جدایی → بازگشت → تنش دوباره. این چرخه در همان ملاقات اولیه قابل مشاهده است.",
+        "occurrences": 1
+    }, {
+        "title": "تهدید به حضور در منزل",
+        "description": "عباس برای گرفتن پاسخ و کنترل اوضاع، از تهدید به حضور فیزیکی در خانه‌ام استفاده کرد.",
+        "occurrences": 1
+    }, {
+        "title": "خشونت فیزیکی دوطرفه",
+        "description": "برای اولین بار در این پرونده، دعوا از کلامی به فیزیکی تبدیل شد. هر دو طرف به یکدیگر ضربه زدیم.",
+        "occurrences": 1
+    }, {
+        "title": "ساخت روایت ذهنی",
+        "description": "عباس داده‌های جدا از هم (E، احسان، اسنپ، گوشی، فاصله) را به یک روایت واحد از خیانت متصل می‌کند.",
+        "occurrences": 1
+    }, {
+        "title": "تغییر نقش (از منفعل به فعال)",
+        "description": "من در این ملاقات چندین بار نقش فعال‌تری نسبت به گذشته پیدا کردم: تغییر مسیر، مقاومت در برابر بانک، تصمیم‌گیری لحظه‌ای.",
+        "occurrences": 3
+    }, {
+        "title": "ناتوانی در توضیح‌دهی",
+        "description": "من در طول ملاقات بارها ناتوانی خود در توضیح احساسات و موقعیت را تجربه کردم.",
+        "occurrences": 2
+    }]
+}, {
     "id": "OBS-015.2",
     "person": "MR721AS",
     "date": "2026-07-22",
@@ -1410,34 +1362,34 @@
     "event": "قرار پس از بحران — بخش دوم: مسیر بازگشت · پروتکل رل جدید و کشف نقض قول",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "آونگ", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "تهدید به ترک", "value": 10, "expiry": 60 },
-        { "category": "الگو", "title": "پروتکل جایگزینی", "value": 10, "expiry": 55 },
-        { "category": "الگو", "title": "آزمون وفاداری", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "تزریق حسادت", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "پروژکشن", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "فشار هیجانی", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "حمله هیجانی", "value": 10, "expiry": 40 },
-        { "category": "الگو", "title": "خشونت فیزیکی", "value": 10, "expiry": 90 },
-        { "category": "الگو", "title": "نقض قول", "value": 10, "expiry": 60 },
-        { "category": "الگو", "title": "بازگشت", "value": 5, "expiry": 25 },
-        { "category": "الگو", "title": "دلجویی", "value": 4, "expiry": 20 },
-        { "category": "پروفایل", "title": "حسادت", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "کنترل", "value": 10, "expiry": 60 },
-        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "خشم", "value": 5, "expiry": 50 },
-        { "category": "پروفایل", "title": "ترس", "value": 5, "expiry": 50 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 8, "expiry": 40 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 5, "expiry": 50 },
-        { "category": "نیاز", "title": "اطمینان", "value": 10, "expiry": 70 },
-        { "category": "نیاز", "title": "امنیت", "value": 10, "expiry": 65 },
-        { "category": "نیاز", "title": "توجه", "value": 5, "expiry": 50 },
-        { "category": "نیاز", "title": "کنترل", "value": 10, "expiry": 55 },
-        { "category": "نیاز", "title": "انحصار", "value": 10, "expiry": 60 },
-        { "category": "نیاز", "title": "آرامش", "value": 5, "expiry": 45 },
-        { "category": "علاقه", "title": "دیدار حضوری", "value": 10, "expiry": 40 },
-        { "category": "علاقه", "title": "گفتگو", "value": 5, "expiry": 35 },
-        { "category": "علاقه", "title": "تماس صوتی", "value": 5, "expiry": 40 }
+        // ===== الگوها =====
+        { "category": "الگو", "title": "آونگ", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": 5, "expiry": 60 },
+        { "category": "الگو", "title": "آزمون وفاداری", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "تزریق حسادت", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "پروژکشن", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "فشار هیجانی", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام", "value": 5, "expiry": 40 },
+        { "category": "الگو", "title": "اتهام متقابل", "value": 4, "expiry": 35 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "حسادت", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "کنترل", "value": 5, "expiry": 60 },
+        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "خشم", "value": 4, "expiry": 50 },
+        { "category": "پروفایل", "title": "ترس", "value": 4, "expiry": 50 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 3, "expiry": 40 },
+        { "category": "پروفایل", "title": "وابستگی", "value": 4, "expiry": 50 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 5, "expiry": 70 },
+        { "category": "نیاز", "title": "امنیت", "value": 5, "expiry": 65 },
+        { "category": "نیاز", "title": "توجه", "value": 4, "expiry": 50 },
+        { "category": "نیاز", "title": "کنترل", "value": 5, "expiry": 55 },
+        { "category": "نیاز", "title": "انحصار", "value": 5, "expiry": 60 },
+        { "category": "نیاز", "title": "آرامش", "value": 3, "expiry": 45 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "دیدار حضوری", "value": 5, "expiry": 40 },
+        { "category": "علاقه", "title": "گفتگو", "value": 3, "expiry": 35 },
+        { "category": "علاقه", "title": "تماس صوتی", "value": 3, "expiry": 40 }
     ],
     "links": [
         "OBS-015.1",
@@ -1462,45 +1414,36 @@
         "فروپاشی هیجانی من (فریاد، گریه، از دست دادن کنترل عضلات) نشان‌دهنده‌ی عبور از آستانه‌ی تحمل روانی است. در آن لحظات، بدن وارد حالت Overload شده بود.",
         "ترکیب خشم و دلبستگی در من، باعث شد رفتارهای متناقضی از خود نشان دهم: همزمان می‌خواستم عباس را ترک کنم و نمی‌خواستم او را از دست بدهم."
     ],
-    "patterns": [
-        {
-            "title": "آونگ هیجانی شدید",
-            "description": "چرخه‌ی کامل: انتقال پول → ادامه بحران → اتهام خیانت → شخص ثالث → تهدید به جایگزینی → درگیری بر سر گوشی → کشف نقض قول → گریه → تلاش برای حفظ رابطه.",
-            "occurrences": 1
-        },
-        {
-            "title": "پروتکل جایگزینی (رل جدید)",
-            "description": "عباس به جای بیان ترس از دست دادن، تهدید می‌کند که رل جدید می‌گیرد و با دوستش تماس می‌گیرد تا این را به من نشان دهد.",
-            "occurrences": 1
-        },
-        {
-            "title": "نقض قول",
-            "description": "من کشف کردم که عباس برخلاف قول قبلی، دوباره با فردی که قبلاً از او خواسته بودم ارتباط را قطع کند، در تماس بوده است.",
-            "occurrences": 1
-        },
-        {
-            "title": "Overload عصبی",
-            "description": "من در لحظه‌ی درگیری بر سر گوشی، کنترل عضلات صورت را از دست دادم و وارد حالت فریاد بسیار شدید شدم.",
-            "occurrences": 1
-        },
-        {
-            "title": "ترکیب خشم و دلبستگی",
-            "description": "من همزمان دو احساس متضاد را تجربه کردم: خشم از رفتار عباس و ترس از دست دادن او.",
-            "occurrences": 2
-        },
-        {
-            "title": "تغییر نقش (از تحلیلگر به واکنش‌گر)",
-            "description": "من در شرایط فشار شدید، به جای تحلیل چندلایه‌ی موقعیت، تمام تمرکز را روی محرک فوری قرار دادم.",
-            "occurrences": 1
-        },
-        {
-            "title": "چرخه‌ی تعقیب و عقب‌نشینی",
-            "description": "من و عباس بارها تلاش کردیم از رابطه خارج شویم اما دوباره به سمت یکدیگر برگشتیم.",
-            "occurrences": 3
-        }
-    ]
-    
-},{
+    "patterns": [{
+        "title": "آونگ هیجانی شدید",
+        "description": "چرخه‌ی کامل: انتقال پول → ادامه بحران → اتهام خیانت → شخص ثالث → تهدید به جایگزینی → درگیری بر سر گوشی → کشف نقض قول → گریه → تلاش برای حفظ رابطه.",
+        "occurrences": 1
+    }, {
+        "title": "پروتکل جایگزینی (رل جدید)",
+        "description": "عباس به جای بیان ترس از دست دادن، تهدید می‌کند که رل جدید می‌گیرد و با دوستش تماس می‌گیرد تا این را به من نشان دهد.",
+        "occurrences": 1
+    }, {
+        "title": "نقض قول",
+        "description": "من کشف کردم که عباس برخلاف قول قبلی، دوباره با فردی که قبلاً از او خواسته بودم ارتباط را قطع کند، در تماس بوده است.",
+        "occurrences": 1
+    }, {
+        "title": "Overload عصبی",
+        "description": "من در لحظه‌ی درگیری بر سر گوشی، کنترل عضلات صورت را از دست دادم و وارد حالت فریاد بسیار شدید شدم.",
+        "occurrences": 1
+    }, {
+        "title": "ترکیب خشم و دلبستگی",
+        "description": "من همزمان دو احساس متضاد را تجربه کردم: خشم از رفتار عباس و ترس از دست دادن او.",
+        "occurrences": 2
+    }, {
+        "title": "تغییر نقش (از تحلیلگر به واکنش‌گر)",
+        "description": "من در شرایط فشار شدید، به جای تحلیل چندلایه‌ی موقعیت، تمام تمرکز را روی محرک فوری قرار دادم.",
+        "occurrences": 1
+    }, {
+        "title": "چرخه‌ی تعقیب و عقب‌نشینی",
+        "description": "من و عباس بارها تلاش کردیم از رابطه خارج شویم اما دوباره به سمت یکدیگر برگشتیم.",
+        "occurrences": 3
+    }]
+}, {
     "id": "OBS-015.3",
     "person": "MR721AS",
     "date": "2026-07-22",
@@ -1509,35 +1452,34 @@
     "event": "قرار پس از بحران — بخش سوم: صحنه‌ای که هیچ‌وقت تجربه نکرده بودم",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "آونگ", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "تهدید به ترک", "value": 10, "expiry": 60 },
-        { "category": "الگو", "title": "آبروریزی", "value": 10, "expiry": 70 },
-        { "category": "الگو", "title": "نقض حریم خصوصی", "value": 10, "expiry": 70 },
-        { "category": "الگو", "title": "خشونت فیزیکی", "value": 10, "expiry": 90 },
-        { "category": "الگو", "title": "پروتکل جایگزینی", "value": 9, "expiry": 55 },
-        { "category": "الگو", "title": "تزریق حسادت", "value": 10, "expiry": 50 },
-        { "category": "الگو", "title": "پروژکشن", "value": 9, "expiry": 50 },
-        { "category": "الگو", "title": "فشار هیجانی", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "حمله هیجانی", "value": 9, "expiry": 40 },
-        { "category": "الگو", "title": "بازگشت", "value": 5, "expiry": 25 },
-        { "category": "الگو", "title": "دلجویی", "value": 5, "expiry": 20 },
-        { "category": "الگو", "title": "پشیمانی", "value": 5, "expiry": 25 },
-        { "category": "پروفایل", "title": "حسادت", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "کنترل", "value": 10, "expiry": 60 },
-        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 10, "expiry": 70 },
-        { "category": "پروفایل", "title": "خشم", "value": 9, "expiry": 50 },
-        { "category": "پروفایل", "title": "ترس", "value": 10, "expiry": 55 },
-        { "category": "پروفایل", "title": "شرم", "value": 10, "expiry": 60 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 9, "expiry": 40 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 10, "expiry": 50 },
-        { "category": "نیاز", "title": "اطمینان", "value": 10, "expiry": 70 },
-        { "category": "نیاز", "title": "امنیت", "value": 10, "expiry": 65 },
-        { "category": "نیاز", "title": "توجه", "value": 9, "expiry": 50 },
-        { "category": "نیاز", "title": "کنترل", "value": 10, "expiry": 55 },
-        { "category": "نیاز", "title": "انحصار", "value": 10, "expiry": 60 },
-        { "category": "نیاز", "title": "آرامش", "value": 9, "expiry": 45 },
-        { "category": "علاقه", "title": "دیدار حضوری", "value": 9, "expiry": 40 },
-        { "category": "علاقه", "title": "گفتگو", "value": 5, "expiry": 35 },
+        // ===== الگوها =====
+        { "category": "الگو", "title": "آونگ", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": 5, "expiry": 60 },
+        { "category": "الگو", "title": "فشار هیجانی", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام", "value": 5, "expiry": 40 },
+        { "category": "الگو", "title": "آزمون وفاداری", "value": 4, "expiry": 40 },
+        { "category": "الگو", "title": "تزریق حسادت", "value": 5, "expiry": 50 },
+        { "category": "الگو", "title": "پروژکشن", "value": 4, "expiry": 50 },
+        { "category": "الگو", "title": "ساخت روایت ذهنی", "value": 4, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام متقابل", "value": 4, "expiry": 35 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "حسادت", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "کنترل", "value": 5, "expiry": 60 },
+        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 5, "expiry": 70 },
+        { "category": "پروفایل", "title": "خشم", "value": 5, "expiry": 50 },
+        { "category": "پروفایل", "title": "ترس", "value": 5, "expiry": 55 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 3, "expiry": 40 },
+        { "category": "پروفایل", "title": "وابستگی", "value": 5, "expiry": 50 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 5, "expiry": 70 },
+        { "category": "نیاز", "title": "امنیت", "value": 5, "expiry": 65 },
+        { "category": "نیاز", "title": "توجه", "value": 4, "expiry": 50 },
+        { "category": "نیاز", "title": "کنترل", "value": 5, "expiry": 55 },
+        { "category": "نیاز", "title": "انحصار", "value": 5, "expiry": 60 },
+        { "category": "نیاز", "title": "آرامش", "value": 3, "expiry": 45 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "دیدار حضوری", "value": 4, "expiry": 40 },
+        { "category": "علاقه", "title": "گفتگو", "value": 3, "expiry": 35 },
         { "category": "علاقه", "title": "تماس صوتی", "value": 2, "expiry": 40 }
     ],
     "links": [
@@ -1564,55 +1506,44 @@
         "پشیمانی فوری من پس از ضربه زدن به عباس، نشان‌دهنده‌ی وجود پیوند عاطفی عمیق حتی در اوج خشونت است.",
         "مدیریت همزمان بحران رابطه و بحران خانواده، نشان‌دهنده‌ی فشار مضاعفی است که من در این روز تحمل کردم."
     ],
-    "patterns": [
-        {
-            "title": "آبروریزی (Social Exposure)",
-            "description": "عباس مقابل آیفون خانه پارک کرد، بوق زد و شیشه را پایین کشید تا مادرم متوجه حضور او شود. این اولین بار است که رابطه در معرض دید خانواده قرار می‌گیرد.",
-            "occurrences": 1
-        },
-        {
-            "title": "نقض حریم خصوصی",
-            "description": "عباس با حضور در مقابل خانه و سپس نزدیک دانشگاه، مرزهای حریم خصوصی من را به‌طور کامل زیر پا گذاشت.",
-            "occurrences": 2
-        },
-        {
-            "title": "خشونت فیزیکی دوطرفه",
-            "description": "درگیری فیزیکی در این قرار ثبت شد و رابطه از سطح کلامی عبور کرد. من به عباس ضربه زدم و او نیز به من ضربه زد.",
-            "occurrences": 2
-        },
-        {
-            "title": "پشیمانی پس از خشونت",
-            "description": "من پس از ضربه زدن به عباس و دیدن درد او، بلافاصله پشیمان شدم و عذرخواهی کردم.",
-            "occurrences": 1
-        },
-        {
-            "title": "مدیریت بحران چندلایه",
-            "description": "من همزمان در حال مدیریت رابطه، خانواده، وضعیت جسمی و خروج از موقعیت بودم.",
-            "occurrences": 1
-        },
-        {
-            "title": "بازگشت پروتکل حسادت",
-            "description": "پس از حل مسئله مالی، اتهام خیانت و موضوع شخص ثالث دوباره فعال شد.",
-            "occurrences": 2
-        },
-        {
-            "title": "افشای الگوی قبلی",
-            "description": "عباس طبق روایت من، رفتار مشابهی را در رابطه قبلی نیز توصیف کرده است.",
-            "occurrences": 1
-        },
-        {
-            "title": "تهدید به جایگزینی",
-            "description": "عباس تهدید کرد که ممکن است وارد رابطه دیگری شود و من را ترک کند.",
-            "occurrences": 2
-        },
-        {
-            "title": "چرخه‌ی تعقیب و عقب‌نشینی",
-            "description": "من و عباس بارها تلاش کردیم از رابطه خارج شویم اما دوباره به سمت یکدیگر برگشتیم.",
-            "occurrences": 3
-        }
-    ]
-   
-},{
+    "patterns": [{
+        "title": "آبروریزی (Social Exposure)",
+        "description": "عباس مقابل آیفون خانه پارک کرد، بوق زد و شیشه را پایین کشید تا مادرم متوجه حضور او شود. این اولین بار است که رابطه در معرض دید خانواده قرار می‌گیرد.",
+        "occurrences": 1
+    }, {
+        "title": "نقض حریم خصوصی",
+        "description": "عباس با حضور در مقابل خانه و سپس نزدیک دانشگاه، مرزهای حریم خصوصی من را به‌طور کامل زیر پا گذاشت.",
+        "occurrences": 2
+    }, {
+        "title": "خشونت فیزیکی دوطرفه",
+        "description": "درگیری فیزیکی در این قرار ثبت شد و رابطه از سطح کلامی عبور کرد. من به عباس ضربه زدم و او نیز به من ضربه زد.",
+        "occurrences": 2
+    }, {
+        "title": "پشیمانی پس از خشونت",
+        "description": "من پس از ضربه زدن به عباس و دیدن درد او، بلافاصله پشیمان شدم و عذرخواهی کردم.",
+        "occurrences": 1
+    }, {
+        "title": "مدیریت بحران چندلایه",
+        "description": "من همزمان در حال مدیریت رابطه، خانواده، وضعیت جسمی و خروج از موقعیت بودم.",
+        "occurrences": 1
+    }, {
+        "title": "بازگشت پروتکل حسادت",
+        "description": "پس از حل مسئله مالی، اتهام خیانت و موضوع شخص ثالث دوباره فعال شد.",
+        "occurrences": 2
+    }, {
+        "title": "افشای الگوی قبلی",
+        "description": "عباس طبق روایت من، رفتار مشابهی را در رابطه قبلی نیز توصیف کرده است.",
+        "occurrences": 1
+    }, {
+        "title": "تهدید به جایگزینی",
+        "description": "عباس تهدید کرد که ممکن است وارد رابطه دیگری شود و من را ترک کند.",
+        "occurrences": 2
+    }, {
+        "title": "چرخه‌ی تعقیب و عقب‌نشینی",
+        "description": "من و عباس بارها تلاش کردیم از رابطه خارج شویم اما دوباره به سمت یکدیگر برگشتیم.",
+        "occurrences": 3
+    }]
+}, {
     "id": "OBS-016.1",
     "person": "MR721AS",
     "date": "2026-07-22",
@@ -1621,28 +1552,26 @@
     "event": "شب پس از فروپاشی — بازگشت ارتباط · مذاکره و ترمیم موقت",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "آونگ", "value": 10, "expiry": 45 },
-        { "category": "الگو", "title": "بازگشت", "value": 10, "expiry": 25 },
-        { "category": "الگو", "title": "دلجویی", "value": 5, "expiry": 20 },
-        { "category": "الگو", "title": "ترمیم رابطه", "value": 5, "expiry": 30 },
-        { "category": "الگو", "title": "تهدید به ترک", "value": 10, "expiry": 55 },
-        { "category": "الگو", "title": "پروتکل جایگزینی", "value": 5, "expiry": 50 },
-        { "category": "الگو", "title": "مذاکره", "value": 5, "expiry": 20 },
-        { "category": "الگو", "title": "شرط‌گذاری", "value": 5, "expiry": 35 },
-        { "category": "الگو", "title": "آسیب‌پذیری", "value": 5, "expiry": 25 },
-        { "category": "الگو", "title": "اعتراف عاطفی", "value": 5, "expiry": 30 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 10, "expiry": 50 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 5, "expiry": 40 },
-        { "category": "پروفایل", "title": "همدلی", "value": 5, "expiry": 30 },
-        { "category": "پروفایل", "title": "کنترل", "value": 5, "expiry": 55 },
-        { "category": "پروفایل", "title": "ترس", "value": 5, "expiry": 50 },
-        { "category": "نیاز", "title": "اطمینان", "value": 10, "expiry": 65 },
-        { "category": "نیاز", "title": "امنیت", "value": 5, "expiry": 60 },
-        { "category": "نیاز", "title": "توجه", "value": 5, "expiry": 50 },
-        { "category": "نیاز", "title": "نزدیکی", "value": 5, "expiry": 45 },
-        { "category": "نیاز", "title": "انحصار", "value": 5, "expiry": 55 },
-        { "category": "علاقه", "title": "گفتگو", "value": 5, "expiry": 35 },
-        { "category": "علاقه", "title": "تماس صوتی", "value": 10, "expiry": 40 }
+        // ===== الگوها =====
+        { "category": "الگو", "title": "آونگ", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": 5, "expiry": 55 },
+        { "category": "الگو", "title": "آزمون وفاداری", "value": 4, "expiry": 40 },
+        { "category": "الگو", "title": "اتهام", "value": 4, "expiry": 35 },
+        { "category": "الگو", "title": "اتهام متقابل", "value": 3, "expiry": 30 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "وابستگی", "value": 5, "expiry": 50 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 4, "expiry": 40 },
+        { "category": "پروفایل", "title": "کنترل", "value": 4, "expiry": 55 },
+        { "category": "پروفایل", "title": "ترس", "value": 4, "expiry": 50 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 5, "expiry": 65 },
+        { "category": "نیاز", "title": "امنیت", "value": 4, "expiry": 60 },
+        { "category": "نیاز", "title": "توجه", "value": 4, "expiry": 50 },
+        { "category": "نیاز", "title": "نزدیکی", "value": 4, "expiry": 45 },
+        { "category": "نیاز", "title": "انحصار", "value": 4, "expiry": 55 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "گفتگو", "value": 4, "expiry": 35 },
+        { "category": "علاقه", "title": "تماس صوتی", "value": 5, "expiry": 40 }
     ],
     "links": [
         "OBS-015.1",
@@ -1664,45 +1593,36 @@
         "نقطه‌ی بازگشت در پاسخ به «اگر خواهش کنم چی؟» نشان می‌دهد که عباس همچنان به درخواست عاطفی پاسخ می‌دهد، حتی پس از تمام تهدیدها.",
         "سؤال مهم برای ادامه: آیا این بازگشت، شروع یک تغییر واقعی بود؟ یا فقط یک مرحله‌ی دیگر از همان چرخه‌ی فروپاشی → ترمیم → دوباره بحران؟"
     ],
-    "patterns": [
-        {
-            "title": "آونگ هیجانی",
-            "description": "چرخه‌ی کامل: بحران شدید → فاصله → تماس دوباره → اتهام و دفاع → تهدید به جدایی → نمایش درد و نیاز → بازگشت → ابراز عشق.",
-            "occurrences": 1
-        },
-        {
-            "title": "ترمیم موقت",
-            "description": "پس از شدیدترین نقطه‌ی درگیری، هر دو طرف به سمت بازگشت و ترمیم رابطه حرکت کردند.",
-            "occurrences": 1
-        },
-        {
-            "title": "شرط‌گذاری",
-            "description": "عباس برای بازگشت به رابطه، شروطی مطرح کرد که نشان‌دهنده‌ی نیاز به کنترل و اطمینان است.",
-            "occurrences": 2
-        },
-        {
-            "title": "مذاکره دوطرفه",
-            "description": "هر دو طرف در حال تلاش برای ساختن «قانون امنیت» برای رابطه بودند، اما مرز بین نیاز واقعی، کنترل و انتقام مشخص نبود.",
-            "occurrences": 1
-        },
-        {
-            "title": "تغییر تاکتیک",
-            "description": "من با پاسخ «تو رفیق نیمه‌راه بودی» توانستم فضای احساسی را تغییر دهم و عباس را نرم‌تر کنم.",
-            "occurrences": 1
-        },
-        {
-            "title": "بازگشت با شماره جدید",
-            "description": "عباس با شماره‌ای جدید تماس گرفت تا بررسی کند آیا من هنوز در دسترس هستم یا نه.",
-            "occurrences": 1
-        },
-        {
-            "title": "آسیب‌پذیری و خواهش",
-            "description": "من با پرسش «اگر خواهش کنم چی؟» توانستم عباس را از تصمیم به جدایی بازگردانم.",
-            "occurrences": 1
-        }
-    ]
-
-},{
+    "patterns": [{
+        "title": "آونگ هیجانی",
+        "description": "چرخه‌ی کامل: بحران شدید → فاصله → تماس دوباره → اتهام و دفاع → تهدید به جدایی → نمایش درد و نیاز → بازگشت → ابراز عشق.",
+        "occurrences": 1
+    }, {
+        "title": "ترمیم موقت",
+        "description": "پس از شدیدترین نقطه‌ی درگیری، هر دو طرف به سمت بازگشت و ترمیم رابطه حرکت کردند.",
+        "occurrences": 1
+    }, {
+        "title": "شرط‌گذاری",
+        "description": "عباس برای بازگشت به رابطه، شروطی مطرح کرد که نشان‌دهنده‌ی نیاز به کنترل و اطمینان است.",
+        "occurrences": 2
+    }, {
+        "title": "مذاکره دوطرفه",
+        "description": "هر دو طرف در حال تلاش برای ساختن «قانون امنیت» برای رابطه بودند، اما مرز بین نیاز واقعی، کنترل و انتقام مشخص نبود.",
+        "occurrences": 1
+    }, {
+        "title": "تغییر تاکتیک",
+        "description": "من با پاسخ «تو رفیق نیمه‌راه بودی» توانستم فضای احساسی را تغییر دهم و عباس را نرم‌تر کنم.",
+        "occurrences": 1
+    }, {
+        "title": "بازگشت با شماره جدید",
+        "description": "عباس با شماره‌ای جدید تماس گرفت تا بررسی کند آیا من هنوز در دسترس هستم یا نه.",
+        "occurrences": 1
+    }, {
+        "title": "آسیب‌پذیری و خواهش",
+        "description": "من با پرسش «اگر خواهش کنم چی؟» توانستم عباس را از تصمیم به جدایی بازگردانم.",
+        "occurrences": 1
+    }]
+}, {
     "id": "OBS-016.2",
     "person": "MR721AS",
     "date": "2026-07-23",
@@ -1711,29 +1631,24 @@
     "event": "بازگشت پس از بحران — بخش دوم: روزی که معادله تغییر کرد",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "بازگشت", "value": 9, "expiry": 25 },
-        { "category": "الگو", "title": "دلجویی", "value": 8, "expiry": 20 },
-        { "category": "الگو", "title": "ترمیم رابطه", "value": 9, "expiry": 30 },
-        { "category": "الگو", "title": "آسیب‌پذیری", "value": 8, "expiry": 25 },
-        { "category": "الگو", "title": "اعتراف عاطفی", "value": 8, "expiry": 30 },
-        { "category": "الگو", "title": "خودافشایی", "value": 7, "expiry": 25 },
-        { "category": "الگو", "title": "نزدیکی", "value": 9, "expiry": 20 },
-        { "category": "الگو", "title": "صمیمیت", "value": 9, "expiry": 25 },
-        { "category": "الگو", "title": "مراقبت", "value": 8, "expiry": 20 },
-        { "category": "الگو", "title": "آونگ", "value": -5, "expiry": 40 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 9, "expiry": 50 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 8, "expiry": 40 },
-        { "category": "پروفایل", "title": "همدلی", "value": 7, "expiry": 30 },
-        { "category": "پروفایل", "title": "مراقبت", "value": 8, "expiry": 35 },
-        { "category": "پروفایل", "title": "اعتماد", "value": 6, "expiry": 40 },
-        { "category": "نیاز", "title": "اطمینان", "value": 9, "expiry": 60 },
-        { "category": "نیاز", "title": "امنیت", "value": 9, "expiry": 55 },
-        { "category": "نیاز", "title": "نزدیکی", "value": 10, "expiry": 50 },
-        { "category": "نیاز", "title": "صمیمیت", "value": 10, "expiry": 45 },
-        { "category": "نیاز", "title": "توجه", "value": 8, "expiry": 45 },
-        { "category": "علاقه", "title": "دیدار حضوری", "value": 10, "expiry": 35 },
-        { "category": "علاقه", "title": "گفتگو", "value": 8, "expiry": 30 },
-        { "category": "علاقه", "title": "تماس فیزیکی", "value": 9, "expiry": 30 }
+        // ===== الگوها =====
+        { "category": "الگو", "title": "آونگ", "value": -4, "expiry": 40 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": -3, "expiry": 30 },
+        { "category": "الگو", "title": "اتهام", "value": -3, "expiry": 25 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "وابستگی", "value": 4, "expiry": 50 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 3, "expiry": 40 },
+        { "category": "پروفایل", "title": "کنترل", "value": -3, "expiry": 45 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 4, "expiry": 60 },
+        { "category": "نیاز", "title": "امنیت", "value": 4, "expiry": 55 },
+        { "category": "نیاز", "title": "نزدیکی", "value": 5, "expiry": 50 },
+        { "category": "نیاز", "title": "صمیمیت", "value": 5, "expiry": 45 },
+        { "category": "نیاز", "title": "توجه", "value": 3, "expiry": 45 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "دیدار حضوری", "value": 5, "expiry": 35 },
+        { "category": "علاقه", "title": "گفتگو", "value": 4, "expiry": 30 },
+        { "category": "علاقه", "title": "تماس فیزیکی", "value": 4, "expiry": 30 }
     ],
     "links": [
         "OBS-016.1",
@@ -1756,45 +1671,36 @@
         "بررسی تلفن توسط عباس و نتیجه‌گیری او که چیزی پیدا نکرده، یک نقطه‌ی عطف در اعتمادسازی بود.",
         "سؤال مهم: این تغییر فقط یک «آرامش بعد از طوفان» بوده یا واقعاً یک تغییر در الگو ایجاد شده است؟"
     ],
-    "patterns": [
-        {
-            "title": "ترمیم پس از بحران",
-            "description": "پس از شدیدترین نقطه‌ی درگیری، هر دو طرف به سمت بازگشت و ترمیم رابطه حرکت کردند. این بار با رفتارهای متفاوت از سند ۱۵.",
-            "occurrences": 1
-        },
-        {
-            "title": "بازگشت صمیمیت",
-            "description": "برخلاف روز قبل که خشونت و فاصله غالب بود، این روز با بغل کردن، بوسه، تماس عاطفی و رابطه‌ی جنسی آرام همراه بود.",
-            "occurrences": 1
-        },
-        {
-            "title": "خودافشایی",
-            "description": "عباس درباره‌ی ناراحتی خود از رفتارش صحبت کرد و بخشی از مسئولیت احساسی اتفاقات را پذیرفت.",
-            "occurrences": 1
-        },
-        {
-            "title": "بازتعریف پول",
-            "description": "عباس بیان کرد که پول بهانه‌ای برای باز کردن مسیر گفتگو و ایجاد تماس بوده است، نه هسته‌ی اصلی بحران.",
-            "occurrences": 1
-        },
-        {
-            "title": "مراقبت و توجه",
-            "description": "خرید نوشابه، دلستر و بستنی توسط عباس و مخالفت با پرداخت هزینه توسط من، نشان‌دهنده‌ی بازگشت نقش مراقبتی او بود.",
-            "occurrences": 1
-        },
-        {
-            "title": "تغییر موضوع به آینده",
-            "description": "پس از گفتگوهای عاطفی، صحبت‌ها به سمت ایده‌های کاری، کسب‌وکار و برنامه‌های آینده رفت که نشان‌دهنده‌ی خروج از حالت جنگ بود.",
-            "occurrences": 1
-        },
-        {
-            "title": "بررسی تلفن و بازگشت اعتماد",
-            "description": "عباس تلفن من را بررسی کرد، چیزی پیدا نکرد و سپس با بغل کردن و بوسیدن، به سمت نزدیکی برگشت.",
-            "occurrences": 1
-        }
-    ]
-
-},{
+    "patterns": [{
+        "title": "ترمیم پس از بحران",
+        "description": "پس از شدیدترین نقطه‌ی درگیری، هر دو طرف به سمت بازگشت و ترمیم رابطه حرکت کردند. این بار با رفتارهای متفاوت از سند ۱۵.",
+        "occurrences": 1
+    }, {
+        "title": "بازگشت صمیمیت",
+        "description": "برخلاف روز قبل که خشونت و فاصله غالب بود، این روز با بغل کردن، بوسه، تماس عاطفی و رابطه‌ی جنسی آرام همراه بود.",
+        "occurrences": 1
+    }, {
+        "title": "خودافشایی",
+        "description": "عباس درباره‌ی ناراحتی خود از رفتارش صحبت کرد و بخشی از مسئولیت احساسی اتفاقات را پذیرفت.",
+        "occurrences": 1
+    }, {
+        "title": "بازتعریف پول",
+        "description": "عباس بیان کرد که پول بهانه‌ای برای باز کردن مسیر گفتگو و ایجاد تماس بوده است، نه هسته‌ی اصلی بحران.",
+        "occurrences": 1
+    }, {
+        "title": "مراقبت و توجه",
+        "description": "خرید نوشابه، دلستر و بستنی توسط عباس و مخالفت با پرداخت هزینه توسط من، نشان‌دهنده‌ی بازگشت نقش مراقبتی او بود.",
+        "occurrences": 1
+    }, {
+        "title": "تغییر موضوع به آینده",
+        "description": "پس از گفتگوهای عاطفی، صحبت‌ها به سمت ایده‌های کاری، کسب‌وکار و برنامه‌های آینده رفت که نشان‌دهنده‌ی خروج از حالت جنگ بود.",
+        "occurrences": 1
+    }, {
+        "title": "بررسی تلفن و بازگشت اعتماد",
+        "description": "عباس تلفن من را بررسی کرد، چیزی پیدا نکرد و سپس با بغل کردن و بوسیدن، به سمت نزدیکی برگشت.",
+        "occurrences": 1
+    }]
+}, {
     "id": "OBS-017",
     "person": "MR721AS",
     "date": "2026-07-23",
@@ -1803,23 +1709,20 @@
     "event": "بازگشت پس از بحران : داده‌ی ناشناس و تهدید بیرونی",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "آسیب‌پذیری", "value": 7, "expiry": 25 },
-        { "category": "الگو", "title": "حمایت", "value": 8, "expiry": 20 },
-        { "category": "الگو", "title": "نگرانی", "value": 7, "expiry": 20 },
-        { "category": "الگو", "title": "مراقبت", "value": 8, "expiry": 20 },
-        { "category": "الگو", "title": "اعتماد", "value": 6, "expiry": 30 },
-        { "category": "الگو", "title": "حسادت", "value": -4, "expiry": 40 },
-        { "category": "الگو", "title": "کنترل", "value": -3, "expiry": 35 },
-        { "category": "پروفایل", "title": "همدلی", "value": 7, "expiry": 30 },
-        { "category": "پروفایل", "title": "مراقبت", "value": 8, "expiry": 35 },
-        { "category": "پروفایل", "title": "اعتماد", "value": 5, "expiry": 40 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 7, "expiry": 35 },
-        { "category": "نیاز", "title": "امنیت", "value": 10, "expiry": 60 },
-        { "category": "نیاز", "title": "اطمینان", "value": 9, "expiry": 55 },
-        { "category": "نیاز", "title": "حمایت", "value": 9, "expiry": 45 },
-        { "category": "نیاز", "title": "آرامش", "value": 8, "expiry": 40 },
-        { "category": "علاقه", "title": "گفتگو", "value": 6, "expiry": 30 },
-        { "category": "علاقه", "title": "تماس صوتی", "value": 6, "expiry": 35 }
+        // ===== الگوها =====
+        { "category": "الگو", "title": "پروژکشن", "value": -3, "expiry": 20 },
+        { "category": "الگو", "title": "آزمون وفاداری", "value": -2, "expiry": 15 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 4, "expiry": 35 },
+        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": -3, "expiry": 30 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "امنیت", "value": 5, "expiry": 60 },
+        { "category": "نیاز", "title": "اطمینان", "value": 4, "expiry": 55 },
+        { "category": "نیاز", "title": "حمایت", "value": 4, "expiry": 45 },
+        { "category": "نیاز", "title": "آرامش", "value": 4, "expiry": 40 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "گفتگو", "value": 3, "expiry": 30 },
+        { "category": "علاقه", "title": "تماس صوتی", "value": 3, "expiry": 35 }
     ],
     "links": [
         "OBS-016.1",
@@ -1839,30 +1742,24 @@
         "بخشی از اضطراب من ممکن است از مواجهه با پیام‌های ناشناس و احساس ناامنی بیرونی هم آمده باشد. ممکن است ذهن من در آن دوره فقط درگیر عباس نبوده؛ بلکه همزمان احساس کرده فضای بیرونی هم امن نیست.",
         "واکنش محافظتی عباس به جای واکنش حسادت‌آمیز، یک تغییر مثبت در الگوی رفتاری اوست که می‌تواند نشانه‌ای از ترمیم اعتماد باشد."
     ],
-    "patterns": [
-        {
-            "title": "تغییر نقش عباس (از متهم به حامی)",
-            "description": "برخلاف سند ۱۵ که عباس در نقش متهم‌کننده و شکاک ظاهر شد، در این بخش او نقش محافظتی و حامی را نشان داد.",
-            "occurrences": 1
-        },
-        {
-            "title": "تهدید بیرونی",
-            "description": "پیام‌های ناشناس از چند پیام‌رسان با شماره‌های قدیمی، نشان‌دهنده‌ی احتمال نشت اطلاعات یا مزاحمت دیجیتال است.",
-            "occurrences": 2
-        },
-        {
-            "title": "مدیریت امنیت دیجیتال",
-            "description": "من با حذف پیام‌رسان‌های دارای شماره‌های قدیمی و محدود کردن حضور دیجیتال، اقدامات امنیتی انجام دادم.",
-            "occurrences": 1
-        },
-        {
-            "title": "حمایت عباس",
-            "description": "عباس با گفتن «زندگیم، خودم پشتتم» و «کسی غلط کنه بهت چپ نگاه کنه» نقش حمایتی خود را نشان داد.",
-            "occurrences": 1
-        }
-    ]
-
-},{
+    "patterns": [{
+        "title": "تغییر نقش عباس (از متهم به حامی)",
+        "description": "برخلاف سند ۱۵ که عباس در نقش متهم‌کننده و شکاک ظاهر شد، در این بخش او نقش محافظتی و حامی را نشان داد.",
+        "occurrences": 1
+    }, {
+        "title": "تهدید بیرونی",
+        "description": "پیام‌های ناشناس از چند پیام‌رسان با شماره‌های قدیمی، نشان‌دهنده‌ی احتمال نشت اطلاعات یا مزاحمت دیجیتال است.",
+        "occurrences": 2
+    }, {
+        "title": "مدیریت امنیت دیجیتال",
+        "description": "من با حذف پیام‌رسان‌های دارای شماره‌های قدیمی و محدود کردن حضور دیجیتال، اقدامات امنیتی انجام دادم.",
+        "occurrences": 1
+    }, {
+        "title": "حمایت عباس",
+        "description": "عباس با گفتن «زندگیم، خودم پشتتم» و «کسی غلط کنه بهت چپ نگاه کنه» نقش حمایتی خود را نشان داد.",
+        "occurrences": 1
+    }]
+}, {
     "id": "OBS-018",
     "person": "MR721AS",
     "date": "2026-07-25",
@@ -1871,32 +1768,33 @@
     "event": "بحران تماس‌های شبانه — وقتی یک پاسخ‌ندادن به پرونده‌ی خیانت تبدیل شد",
     "cardStatus": "Observation",
     "tags": [
-        { "category": "الگو", "title": "آونگ", "value": 9, "expiry": 45 },
-        { "category": "الگو", "title": "اتهام", "value": 9, "expiry": 40 },
-        { "category": "الگو", "title": "تزریق حسادت", "value": 9, "expiry": 45 },
-        { "category": "الگو", "title": "آزمون وفاداری", "value": 8, "expiry": 40 },
-        { "category": "الگو", "title": "پروژکشن", "value": 8, "expiry": 45 },
-        { "category": "الگو", "title": "فشار هیجانی", "value": 9, "expiry": 40 },
-        { "category": "الگو", "title": "حمله هیجانی", "value": 9, "expiry": 40 },
-        { "category": "الگو", "title": "تهدید به ترک", "value": 9, "expiry": 55 },
-        { "category": "الگو", "title": "ساخت روایت ذهنی", "value": 9, "expiry": 45 },
-        { "category": "الگو", "title": "درخواست اثبات", "value": 8, "expiry": 35 },
-        { "category": "الگو", "title": "اتهام متقابل", "value": 8, "expiry": 40 },
-        { "category": "الگو", "title": "بازگشت", "value": 5, "expiry": 25 },
-        { "category": "پروفایل", "title": "حسادت", "value": 9, "expiry": 65 },
-        { "category": "پروفایل", "title": "کنترل", "value": 9, "expiry": 60 },
-        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 9, "expiry": 65 },
-        { "category": "پروفایل", "title": "خشم", "value": 8, "expiry": 50 },
-        { "category": "پروفایل", "title": "ترس", "value": 9, "expiry": 55 },
-        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 7, "expiry": 40 },
-        { "category": "پروفایل", "title": "وابستگی", "value": 8, "expiry": 50 },
-        { "category": "نیاز", "title": "اطمینان", "value": 10, "expiry": 65 },
-        { "category": "نیاز", "title": "امنیت", "value": 9, "expiry": 60 },
-        { "category": "نیاز", "title": "توجه", "value": 9, "expiry": 50 },
-        { "category": "نیاز", "title": "کنترل", "value": 9, "expiry": 55 },
-        { "category": "نیاز", "title": "انحصار", "value": 9, "expiry": 55 },
-        { "category": "علاقه", "title": "تماس صوتی", "value": 7, "expiry": 40 },
-        { "category": "علاقه", "title": "گفتگو", "value": 6, "expiry": 35 }
+        // ===== الگوها =====
+        { "category": "الگو", "title": "آونگ", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام", "value": 5, "expiry": 40 },
+        { "category": "الگو", "title": "تزریق حسادت", "value": 5, "expiry": 45 },
+        { "category": "الگو", "title": "آزمون وفاداری", "value": 4, "expiry": 40 },
+        { "category": "الگو", "title": "پروژکشن", "value": 4, "expiry": 45 },
+        { "category": "الگو", "title": "فشار هیجانی", "value": 5, "expiry": 40 },
+        { "category": "الگو", "title": "ساخت روایت ذهنی", "value": 4, "expiry": 45 },
+        { "category": "الگو", "title": "اتهام متقابل", "value": 4, "expiry": 40 },
+        { "category": "الگو", "title": "تهدید به ترک/بازگشت", "value": 4, "expiry": 55 },
+        // ===== پروفایل‌ها =====
+        { "category": "پروفایل", "title": "حسادت", "value": 5, "expiry": 65 },
+        { "category": "پروفایل", "title": "کنترل", "value": 5, "expiry": 60 },
+        { "category": "پروفایل", "title": "بی‌اعتمادی", "value": 5, "expiry": 65 },
+        { "category": "پروفایل", "title": "خشم", "value": 4, "expiry": 50 },
+        { "category": "پروفایل", "title": "ترس", "value": 4, "expiry": 55 },
+        { "category": "پروفایل", "title": "آسیب‌پذیری", "value": 3, "expiry": 40 },
+        { "category": "پروفایل", "title": "وابستگی", "value": 4, "expiry": 50 },
+        // ===== نیازها =====
+        { "category": "نیاز", "title": "اطمینان", "value": 5, "expiry": 65 },
+        { "category": "نیاز", "title": "امنیت", "value": 4, "expiry": 60 },
+        { "category": "نیاز", "title": "توجه", "value": 4, "expiry": 50 },
+        { "category": "نیاز", "title": "کنترل", "value": 4, "expiry": 55 },
+        { "category": "نیاز", "title": "انحصار", "value": 4, "expiry": 55 },
+        // ===== علاقه‌ها =====
+        { "category": "علاقه", "title": "تماس صوتی", "value": 3, "expiry": 40 },
+        { "category": "علاقه", "title": "گفتگو", "value": 3, "expiry": 35 }
     ],
     "links": [
         "OBS-015.1",
@@ -1918,41 +1816,32 @@
         "از این مکالمه به‌تنهایی نمی‌توان نتیجه گرفت که عباس واقعاً خیانت کرده یا شخص دیگری در زندگی او وجود دارد. پیام‌های موجود نشان‌دهنده‌ی شک، اتهام و ترس از جایگزین شدن هستند، نه مدرک قطعی خیانت.",
         "من نیز در پایان، وقتی احساس کردم عباس دارد من را ترک می‌کند، به همان سیستم وارد شدم و شروع کردم به ساختن سناریوی «شخص دیگر». یعنی برای اولین بار در این سند، می‌شود دید که هر دو نفر دقیقاً از یک مکانیسم دفاعی مشابه استفاده می‌کنیم."
     ],
-    "patterns": [
-        {
-            "title": "آونگ هیجانی",
-            "description": "چرخه‌ی کامل: تماس بی‌پاسخ → شک → اتهام → درخواست اثبات → خشم → تهدید → اتهام متقابل → انفجار → قطع → بازگشت.",
-            "occurrences": 1
-        },
-        {
-            "title": "ساخت روایت ذهنی",
-            "description": "عباس از یک داده‌ی کوچک (پاسخ ندادن به تماس) به یک نتیجه‌ی بزرگ (خیانت) رسید و این روایت را به تمام رفتارهای من تعمیم داد.",
-            "occurrences": 1
-        },
-        {
-            "title": "درخواست اثبات",
-            "description": "عباس از من خواست ثابت کنم که در خانه تنها هستم و شواهد ارائه شده را نپذیرفت.",
-            "occurrences": 1
-        },
-        {
-            "title": "اتهام متقابل",
-            "description": "من نیز در پاسخ به اتهامات عباس، شروع کردم به مطرح کردن احتمال وجود شخص دیگری در زندگی او.",
-            "occurrences": 1
-        },
-        {
-            "title": "تعریف استعاری خیانت",
-            "description": "من در اوج ناراحتی، خیانت را به معنای اعتماد بیش از اندازه و عشق بیش از اندازه تعریف کردم، نه خیانت واقعی.",
-            "occurrences": 1
-        },
-        {
-            "title": "تهدید به کاهش ارتباط",
-            "description": "عباس اعلام کرد که ارتباط تلفنی و فیزیکی را کم می‌کند، اما همچنان به ارسال پیام ادامه داد.",
-            "occurrences": 1
-        }
-    ]
-
+    "patterns": [{
+        "title": "آونگ هیجانی",
+        "description": "چرخه‌ی کامل: تماس بی‌پاسخ → شک → اتهام → درخواست اثبات → خشم → تهدید → اتهام متقابل → انفجار → قطع → بازگشت.",
+        "occurrences": 1
+    }, {
+        "title": "ساخت روایت ذهنی",
+        "description": "عباس از یک داده‌ی کوچک (پاسخ ندادن به تماس) به یک نتیجه‌ی بزرگ (خیانت) رسید و این روایت را به تمام رفتارهای من تعمیم داد.",
+        "occurrences": 1
+    }, {
+        "title": "درخواست اثبات",
+        "description": "عباس از من خواست ثابت کنم که در خانه تنها هستم و شواهد ارائه شده را نپذیرفت.",
+        "occurrences": 1
+    }, {
+        "title": "اتهام متقابل",
+        "description": "من نیز در پاسخ به اتهامات عباس، شروع کردم به مطرح کردن احتمال وجود شخص دیگری در زندگی او.",
+        "occurrences": 1
+    }, {
+        "title": "تعریف استعاری خیانت",
+        "description": "من در اوج ناراحتی، خیانت را به معنای اعتماد بیش از اندازه و عشق بیش از اندازه تعریف کردم، نه خیانت واقعی.",
+        "occurrences": 1
+    }, {
+        "title": "تهدید به کاهش ارتباط",
+        "description": "عباس اعلام کرد که ارتباط تلفنی و فیزیکی را کم می‌کند، اما همچنان به ارسال پیام ادامه داد.",
+        "occurrences": 1
+    }]
 }];
-
         // ============================================================
         // 📚 Dictionary — PROJECT 721
         // ============================================================
